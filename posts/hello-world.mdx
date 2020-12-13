@@ -1,5 +1,30 @@
----
-title: Hello World
----
+# Good morning Singapore
+
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following equation.
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$
 
 This is an example post. There's another one [here](/posts/example-post).
+
+<TestComponent name="adsfgdsf sdfbsdfb"/>
+
+$$
+a^2 + b^2 = c^2
+$$
+
+```js
+import matter from 'gray-matter'
+
+const docsDirectory = join(process.cwd(), 'docs')
+
+export function getDocBySlug(slug) {
+  const realSlug = slug.replace(/\.md$/, '')
+  const fullPath = join(docsDirectory, `${realSlug}.md`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
+  return { slug: realSlug, meta: data, content }
+}
+```
+
