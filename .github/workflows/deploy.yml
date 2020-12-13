@@ -1,15 +1,15 @@
 name: CD
 on:
   push:
-		branches: [main]
+    branches: [main]
 
 jobs:
-	build:
-		runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-		steps:
-		- uses: actions/checkout@v2
-		- uses: actions/setup-node@v1
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
       with:
         node-version: 14
     - run: npm ci
