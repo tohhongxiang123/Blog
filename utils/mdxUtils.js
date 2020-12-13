@@ -7,7 +7,6 @@ import math from 'remark-math'
 import html from 'remark-html';
 import prism from 'remark-prism';
 
-
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const getFilesInDirectory = (directory) => fs
     .readdirSync(path.join(process.cwd(), directory))

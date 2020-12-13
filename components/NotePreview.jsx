@@ -5,8 +5,7 @@ export default function NotePreview({ filePath, data }) {
     return (
         <div>
             <Link
-                as={`/${filePath}`}
-                href={`/notes/[slug]`}
+                href={`/${filePath}`}
             >
                 <a><strong>{data.title}</strong></a>
             </Link>

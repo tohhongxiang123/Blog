@@ -12,8 +12,7 @@ export default function PostList({ posts = [] }) {
                     {posts.map((post) => (
                         <li key={post.filePath}>
                             <Link
-                                as={`/${post.filePath}`}
-                                href={`/posts/[slug]`}
+                                href={`/${post.filePath}`}
                             >
                                 <a>{post.data.title}</a>
                             </Link>
