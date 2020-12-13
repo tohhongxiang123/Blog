@@ -9,7 +9,7 @@ const components = {
 	TestComponent: dynamic(() => import('../../components/TestComponent')),
 }
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ source = '', frontMatter = {} }) {
 	return (
 		<Layout title={frontMatter.title}>
 			<div className={"p-8"}>

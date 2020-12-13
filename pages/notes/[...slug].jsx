@@ -1,18 +1,14 @@
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
-import Layout from '../../components/Layout'
 import { getFileContent, recursivelyGetFilesInDirectory, renderContentWithPlugins, getFilesWithStructure } from '../../utils/mdxUtils'
 import path from 'path'
 import Post from '../../components/Post'
-import styles from './index.module.scss'
-import NestedDirectoryNavigation from '../../components/NestedDirectoryNavigation'
-import NotesLayout from './_NotesLayout'
+import NotesLayout from '../../components/NotesLayout'
 
 const components = {
     TestComponent: dynamic(() => import('../../components/TestComponent')),
 }
 
-export default function PostPage({ source, frontMatter, notesStructure }) {
+export default function PostPage({ source = '', frontMatter = {}, notesStructure = [] }) {
     return (
         <NotesLayout title={frontMatter.title} notesStructure={notesStructure}>
             <div className={"p-8"}>

@@ -3,7 +3,7 @@ import { getFileContent, getFilesInDirectory } from '../../utils/mdxUtils'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 
-export default function PostList({ posts }) {
+export default function PostList({ posts = [] }) {
     return (
         <Layout title="Posts">
             <div className="max-w-5xl mx-auto p-8">

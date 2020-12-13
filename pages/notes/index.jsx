@@ -1,9 +1,9 @@
 import React from 'react'
 import { getFilesWithStructure, recursivelyGetFilesInDirectory, getFileContent } from '../../utils/mdxUtils'
-import NotesLayout from './_NotesLayout'
+import NotesLayout from '../../components/NotesLayout'
 import NotePreview from '../../components/NotePreview'
 
-export default function index({ notes, notesStructure }) {
+export default function index({ notes = [], notesStructure = [] }) {
     return (
         <NotesLayout title={"Notes"} notesStructure={notesStructure}>
             <ul className={"mx-auto p-4"}>
