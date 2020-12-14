@@ -35,7 +35,7 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
 	const paths = getFilesInDirectory('posts')
 		// Map the path into the static paths object required by Next.js
-		.map((slug) => ({ params: { slug: encodeURI(slug.split('\\').slice(1).join('\\')) } }))
+		.map((slug) => ({ params: { slug: encodeURI(slug.split('/').slice(1).join('/')) } }))
 
 	return {
 		paths,

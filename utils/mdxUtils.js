@@ -12,7 +12,7 @@ export const getFilesInDirectory = (directory) => fs
     .readdirSync(path.join(process.cwd(), directory))
     // Only include md(x) files
     .filter((path) => /\.mdx?$/.test(path))
-    .map(p => path.join(directory, p))
+    .map(p => [directory, p].join('/'))
 
 
 export function getFileContent(slug) {
@@ -32,13 +32,11 @@ export function recursivelyGetFilesInDirectory(directory) {
 
     const currentFullPath = path.join(process.cwd(), directory)
     const currentFolderResults = fs.readdirSync(currentFullPath)
-        // console.log({ currentFolderResults })
     currentFolderResults.forEach(fileOrFolderName => {
         if (fs.lstatSync(path.join(currentFullPath, fileOrFolderName)).isDirectory()) {
-            results.push(...recursivelyGetFilesInDirectory(path.join(directory, fileOrFolderName)))
+            results.push(...recursivelyGetFilesInDirectory([directory, fileOrFolderName].join('/')))
         } else {
-            // console.log("Is a file", path.join(directory, fileOrFolderName))
-            results.push(path.join(directory, fileOrFolderName))
+            results.push([directory, fileOrFolderName].join('/'))
         }
     })
 
@@ -46,7 +44,8 @@ export function recursivelyGetFilesInDirectory(directory) {
 }
 
 export function getFilesWithStructure(directory) {
-    const result = { name: directory.split('\\')[directory.split('\\').length - 1].replace(/\.(mdx|md)$/, ''), path: directory, children: [] }
+    const currentFileName = directory.replace(/\\/g, '/').split('/')[directory.replace(/\\/g, '/').split('/').length - 1]
+    const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [] }
 
     const currentFullPath = path.join(process.cwd(), directory)
     if (fs.lstatSync(path.join(currentFullPath)).isDirectory()) {
