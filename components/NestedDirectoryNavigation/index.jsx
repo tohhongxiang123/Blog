@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from './index.module.scss'
 import { useRouter } from 'next/router'
+import ArrowRight from '../../public/icons/arrow_right.svg'
+import ArrowDown from '../../public/icons/arrow_down.svg'
 
 export default function NestedDirectoryNavigation({ children, name, path, slug }) {
     const router = useRouter()
@@ -15,13 +17,13 @@ export default function NestedDirectoryNavigation({ children, name, path, slug }
 
     return (
         <div>
-            <div className={`${rootClassNames} opacity-90 hover:opacity-100`}>
+            <div className={`${rootClassNames} opacity-90 hover:opacity-100 cursor-pointer`} onClick={() => setIsOpen(c => !c)}>
                 <p className={"m-0"}><strong>{name}</strong></p>
-                <button onClick={() => setIsOpen(c => !c)} className={styles.button}>{isOpen ? '👇' : '👉'}</button>
+                <button className={"focus:outline-none border-none fill-current"}>{isOpen ? <ArrowDown /> : <ArrowRight />}</button>
             </div>
             {isOpen && <ul className={"m-0"}>
                 {children.map(child => (
-                    <li key={child.path} className={"m-0 border-l-4 border-solid border-gray-400 border-opacity-20"}><NestedDirectoryNavigation {...child} slug={slug} /></li>
+                    <li key={child.path} className={"m-0"}><NestedDirectoryNavigation {...child} slug={slug} /></li>
                 ))}
             </ul>}
         </div>
