@@ -47,7 +47,7 @@ Using binary to perform addition, subtraction, multiplication and division
     - This goes on until the last adder is reached
     - This configuration is called the **ripple-carry adder**
     - Addition speed is limited by propagation delays of the full adder - called **carry propagration**
-    - ![Ripple carry adder diagram](ripple-carry-adder.png)
+    - ![Ripple carry adder diagram](/ripple-carry-adder.png)
 
 # Signed magnitude representation
 - The sign for a binary number is the MSB
@@ -183,14 +183,14 @@ E.g.
 - For **subtraction**, no overflow occurs if the operands have the same sign
 
 # Combined circuit for addition and subtraction
-![Circuit diagram for combined addition/subtraction](./addition-subtraction-circuit(add).png)
+![Circuit diagram for combined addition/subtraction](/addition-subtraction-circuit(add).png)
 - During addition, the add/sub line is 0. The inputs of y pass through as per normal, and there is no carry in
 - During subtraction, the add/sub line is 1. The inputs of y is inverted due to the XOR gate, and there is a carry in. This converts y into its 2's complement to perform subtraction
 
 # Binary multiplication
 **Unsigned multiplication** is similar to decimal multiplication
 
-![Binary multiplication](./binary-multiplication.png)
+![Binary multiplication](/binary-multiplication.png)
 
 For **2's complement** multiplication
 - If the multiplier is positive, same as unsigned multiplication
@@ -204,7 +204,7 @@ For **2's complement** multiplication
 # Binary division
 **Unsigned division** is similar to long division in decimal arithmetic
 
-![Binary Division](./binary-division.png)
+![Binary Division](/binary-division.png)
 
 For signed division, convert signed numbers to unsigned, perform unsigned division, then convert the result using the appropriate sign representation
 
