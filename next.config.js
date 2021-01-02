@@ -11,5 +11,9 @@ module.exports = {
         })
 
         return config
+    },
+    env: {
+        NOTES_PATH: 'notes',
+        POSTS_PATH: 'posts'
     }
 }

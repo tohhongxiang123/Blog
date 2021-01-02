@@ -25,8 +25,7 @@ export default function PostList({ posts = [] }) {
 }
 
 export function getStaticProps() {
-    const postsFilePath = 'posts'
-    const posts = getFilesInDirectory(postsFilePath).map((filePath) => {
+    const posts = getFilesInDirectory(process.env.POSTS_PATH).map((filePath) => {
         const { content, data } = getFileContent(filePath)
 
         return {

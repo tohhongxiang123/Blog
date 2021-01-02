@@ -42,8 +42,7 @@ export default function Index({ posts = [], notes = [] }) {
 }
 
 export function getStaticProps() {
-	const postsFilePath = 'posts'
-	const posts = getFilesInDirectory(postsFilePath).map((filePath) => {
+	const posts = getFilesInDirectory(process.env.POSTS_PATH).map((filePath) => {
 		const { content, data } = getFileContent(filePath)
 
 		return {
@@ -53,8 +52,7 @@ export function getStaticProps() {
 		}
 	})
 
-	const notesFilePath = 'notes'
-	const notes = recursivelyGetFilesInDirectory(notesFilePath).map((filePath) => {
+	const notes = recursivelyGetFilesInDirectory(process.env.NOTES_PATH).map((filePath) => {
 		const { content, data } = getFileContent(filePath)
 
 		return {

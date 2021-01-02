@@ -18,7 +18,7 @@ export default function index({ notes = [], notesStructure = [] }) {
 }
 
 export async function getStaticProps() {
-    const notes = recursivelyGetFilesInDirectory('notes').map((filePath) => {
+    const notes = recursivelyGetFilesInDirectory(process.env.NOTES_PATH).map((filePath) => {
         const { content, data } = getFileContent(filePath)
 
         return {
@@ -27,7 +27,7 @@ export async function getStaticProps() {
             filePath,
         }
     })
-    const notesStructure = getFilesWithStructure('notes').children
+    const notesStructure = getFilesWithStructure(process.env.NOTES_PATH).children
 
     return {
         props: {

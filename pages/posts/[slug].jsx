@@ -20,7 +20,7 @@ export default function PostPage({ source = '', frontMatter = {} }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-	const { content, data } = getFileContent(path.join('posts', decodeURI(params.slug)))
+	const { content, data } = getFileContent(path.join(process.env.POSTS_PATH, decodeURI(params.slug)))
 
 	const mdxSource = await renderContentWithPlugins({ content, data, components })
 
@@ -33,7 +33,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-	const paths = getFilesInDirectory('posts')
+	const paths = getFilesInDirectory(process.env.POSTS_PATH)
 		// Map the path into the static paths object required by Next.js
 		.map((slug) => ({ params: { slug: encodeURI(slug.split('/').slice(1).join('/')) } }))
 

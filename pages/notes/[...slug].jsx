@@ -19,10 +19,10 @@ export default function PostPage({ source = '', frontMatter = {}, notesStructure
 }
 
 export async function getStaticProps({ params }) {
-    const { content, data } = getFileContent(path.join('notes', ...params.slug.map(partialSlug => decodeURI(partialSlug))))
+    const { content, data } = getFileContent(path.join(process.env.NOTES_PATH, ...params.slug.map(partialSlug => decodeURI(partialSlug))))
     const mdxSource = await renderContentWithPlugins({ content, data, components })
 
-    const notesStructure = getFilesWithStructure('notes').children
+    const notesStructure = getFilesWithStructure(process.env.NOTES_PATH).children
     return {
         props: {
             source: mdxSource,
@@ -33,7 +33,7 @@ export async function getStaticProps({ params }) {
 }
 
 export const getStaticPaths = async () => {
-    const paths = recursivelyGetFilesInDirectory('notes')
+    const paths = recursivelyGetFilesInDirectory(process.env.NOTES_PATH)
         // Map the path into the static paths object required by Next.js
         .map((slug) => ({ params: { slug: slug.split('/').slice(1).map(partialSlug => encodeURI(partialSlug)) } }))
 
