@@ -2,7 +2,7 @@
 
 Consider the following problem
 
-> Write a program that asks the user how manyu integers will be entered, then asks for each integer
+> Write a program that asks the user how manyu\ integers will be entered, then asks for each integer
 
 ```c
 int size;
@@ -129,3 +129,37 @@ Memory for 5 integers was allocated, but we inserted 10000 integers in to the ar
 - This causes parts of memory that were not allocated to us to be overwritten
 - Other variables, other program instructions etc.
 - Sometimes this will work (if lucky), most of the time it will crash the program
+
+### Buffer overflow
+Consider the following program:
+
+```c
+int main() {
+    int s[4], t[4];
+
+    for (int i=0; i<=4; i++)
+    {
+        s[i] = i;
+        t[i] = i;
+    }
+    printf("s:t\n");
+    for (int i=0; i<=4; i++)
+        printf("%d:%d\n", s[i], t[i]);
+}
+```
+
+And the following was outputted to the console
+```
+s:t
+0:4
+1:1
+2:2
+3:3
+4:4
+```
+
+`t[0]` should be `0`. This is due to C writing past the memory we allocated for it.
+
+`s[0] s[1] s[2] s[3] t[0] t[1] t[2] t[3]`
+
+When C reaches the line where `s[4] = 4`, it writes into `t[0]` instead, because there is no `s[4]`
