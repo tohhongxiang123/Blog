@@ -30,6 +30,17 @@ $$
 $$
 \hat{\sigma} = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N}(x_i - \bar{X})^2}
 $$
+
+# Effects of Transformations on the Mean and Variance
+
+If a random variable $X$ has a mean $\mu$ and standard deviation $\sigma$, and we let $Y = AX + B$, then
+$$
+\begin{aligned}
+\mu_Y &= A\mu + B \\
+\sigma_Y &= A^2 \sigma^2
+\end{aligned}
+$$
+
 # Deriving the Mean and Variance of the Sample Mean
 
 Let $X_1, X_2, ..., X_n$ be $n$ independently drawn (with replacement) observations from a distribution with mean $\mu$ and variance $\sigma^2$. If they were not drawn with replacement, each observation would not be independent anymore.

@@ -29,12 +29,12 @@ Type | Bytes | Bits | Range
 --- | --- | --- | ---
 `signed char` | 1 | 8 | $-2^7, 2^7-1$
 `unsigned char` | 1 | 8 | $0, 2^8-1$
-`short int` | 2 | 16 | $-2^15, 2^15-1$
-`unsigned short int` | 2 | 16 | $0, 2^16-1$
-`int` | 4 | 32 | $-2^31, 2^31-1$
-`unsigned int` | 4 | 32 | $0, 2^32-1$
-`long int` | 4 | 32 | $-2^31, 2^31-1$
-`long long int` | 8 | 64 | $-2^63, 2^63-1$
+`short int` | 2 | 16 | $-2^{15}, 2^{15}-1$
+`unsigned short int` | 2 | 16 | $0, 2^{16}-1$
+`int` | 4 | 32 | $-2^{31}, 2^{31}-1$
+`unsigned int` | 4 | 32 | $0, 2^{32}-1$
+`long int` | 4 | 32 | $-2^{31}, 2^{31}-1$
+`long long int` | 8 | 64 | $-2^{63}, 2^{63}-1$
 `float` | 4 | 32 | 
 `double` | 8 | 64 |
 
