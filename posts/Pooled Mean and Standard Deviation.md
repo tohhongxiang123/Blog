@@ -13,11 +13,11 @@ The **population mean**, $\mu$ is the average of the entire population
 > The **variance** is a statistical measurement of the spread between numbers in the dataset. The population variance, $\sigma^2$ and the sample variance $\hat{\sigma}^2$ are given by
 
 $$
-\sigma^2 = \frac{1}{N} \sum_{i=1}^{N}(x_i - \bar{X})^2
+\sigma^2 = \frac{1}{N} \sum_{i=1}^{N}(x_i - \bar{X})^2 = \frac{1}{N} \left( \sum_{i=1}^{N}x_i^2 - \frac{\left(\sum_{i=1}^{N} x_i\right)^2}{N} \right)
 $$
 
 $$
-\hat{\sigma}^2 = \frac{1}{N-1} \sum_{i=1}^{N}(x_i - \bar{X})^2
+\hat{\sigma}^2 = \frac{1}{N-1} \sum_{i=1}^{N}(x_i - \bar{X})^2 = \frac{1}{N-1} \left( \sum_{i=1}^{N}x_i^2 - \frac{\left(\sum_{i=1}^{N} x_i\right)^2}{N} \right)
 $$
 
 
