@@ -41,3 +41,9 @@ A new variable $Y = bX + A$ has
 $$
 \sigma^2_{X \pm Y} = \sigma^2_X + \sigma^2_Y
 $$
+
+- If 2 **correlated** populations $X$ and $Y$, with correlation $\rho$, 
+
+$$
+\sigma^2_{X \pm Y} = \sigma^2_X + \sigma^2_Y \pm 2 Cov(X, Y)
+$$
