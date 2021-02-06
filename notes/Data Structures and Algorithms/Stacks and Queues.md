@@ -1,3 +1,6 @@
+# Stacks and Queues
+
+```c
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
@@ -398,3 +401,4 @@ int removeNode(LinkedList *ll, int index){
 
 	return -1;
 }
+```
