@@ -81,6 +81,10 @@ The mean of a binomial distribution. $\mu$ is
 
 $$
 \begin{aligned}
+\mu &= np \\
+
+\\
+
 \mu &= \sum_{k=0}^{n} k {n \choose k} p^k (1-p)^{n-k} \\
 &= \sum_{k=1}^{n} k \frac{n!}{k!(n-k)!} p^k (1-p)^{n-k} & (\text{0 can be ignored}) \\
 &= \sum_{k=1}^{n} k \frac{n(n-1)!}{k(k-1)!(n-k)!} p^k (1-p)^{n-k} \\
@@ -95,5 +99,56 @@ $$
 The variance of a binomial distribution, $\sigma^2$ 
 
 $$
-\sigma^2 = np(1-p)
+\begin{aligned}
+\sigma^2 &= np(1-p) \\ \\
+
+\sigma^2 &= E(X^2) - E(X)^2 \\ \\
+
+E(X^2) &= \sum_{k=0}^{n} k^2 {n \choose k} p^k (1-p)^{n-k} \\
+&= \sum_{k=1}^{n} k^2 \frac{n!}{k!(n-k)!} p^k (1-p)^{n-k} & (\text{0 can be ignored, formula for binomial}) \\
+&= \sum_{k=1}^{n} k^2 \frac{n(n-1)!}{k(k-1)!(n-k)!} p p^{k-1} (1-p)^{n-k} \\
+&= np \sum_{k=1}^{n} k \frac{(n-1)!}{(k-1)!(n-k)!} p^{k-1} (1-p)^{n-k} & (\text{Bring out np, k cancels out}) \\
+&= np \sum_{j=0}^{m} (j+1) \frac{m!}{j!(m-j)!} p^{j} (1-p)^{m-j} & (j = k - 1, m = n - 1) \\
+&= np \left( \sum_{j=0}^{m} j\frac{m!}{j!(m-j)!} p^{j} (1-p)^{m-j} + \sum_{j=0}^{m} j\frac{m!}{j!(m-j)!} p^{j} (1-p)^{m-j} \right) \\
+&= np \left(mp + (p + (1-p))^m \right) \\
+&= np ((n-1)p + 1) \\
+&= n^2 p^2 - np^2 + np \\ \\
+
+\sigma^2 &= E(X^2) - E(X)^2 \\ \\
+&= n^2 p^2 - np^2 + np - n^2p^2 \\
+&= np(1-p)
+
+\end{aligned}
+$$
+
+# Poisson Distribution
+
+The Poisson distribution is the discrete probability distribution of the number of events occurring in a given time period, given the average number of times the event occurs over that time period, $\lambda$
+
+> Let $X$ be the discrete random variable that represents the number of events observed over a given time period. Let $\lambda$ be the expected value (average) of $X$. If $X$ follows a Poisson distribution, then the probability of observing $k$ events over the time period is
+
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+
+### Derivation of Poisson formula
+
+Consider a binomial distribution $X \sim B(n, p)$. In a certain period of time, we shall take $n$ samples and check the success rate of each sample. We know that $P(X = k) = {n \choose k} p^k (1-p)^{n-k}$
+
+However, since time is continuous, we can keep taking more and more sample. That means that $n$ approaches infinity. What is $\lim_{n \to \infty} P(X = k)$?
+
+Firstly, we let $\lambda = np$, since $\lambda$ is the expected value of $X$. Hence $p = \frac{\lambda}{n}$
+
+$$
+\begin{aligned}
+\lim_{n \to \infty} P(X = k) &= \lim_{n \to \infty} {n \choose k} \left(\frac{\lambda}{n}\right)^k \left(1-\frac{\lambda}{n}\right)^{n-k} \\ \\
+
+\lim_{n \to \infty} {n \choose k} \left(\frac{\lambda}{n}\right)^k &= \frac{n(n-1)(n-2)\cdots(n-k+1)}{k! n^k} \lambda^k \\
+&= \frac{\lambda^k}{k!} \\ \\
+
+\lim_{n \to \infty} \left(1-\frac{\lambda}{n}\right)^{n-k} &= \lim_{n \to \infty} \left(1-\frac{\lambda}{n}\right)^{n} \left(1-\frac{\lambda}{n}\right)^{-k} \\
+&= e^{-\lambda} \\ \\
+
+\lim_{n \to \infty} P(X = k) &= \frac{\lambda^k e^{-\lambda}}{k!}
+\end{aligned}
 $$

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { execSync } from 'child_process'
 import matter from 'gray-matter'
 import renderToString from 'next-mdx-remote/render-to-string'
 import rehypeKatex from 'rehype-katex'
@@ -22,6 +23,23 @@ export function getFileContent(slug) {
     const { content, data } = matter(source)
     if (!data.title) {
         data.title = content.split('\n')[0].replace('#', '')
+    }
+
+
+
+    if (!data.date) {
+        // Get last updated time from git logs
+        let lastUpdatedDate = execSync(
+            `git log -1 --pretty=format:%aI "${path.resolve(postFilePath)}"`
+        ).toString()
+
+        // If git logs does not have it, get from file created date
+        if (!lastUpdatedDate) {
+            const { birthtime } = fs.statSync(path.resolve(postFilePath))
+            lastUpdatedDate = birthtime.toISOString()
+        }
+
+        data.date = lastUpdatedDate
     }
 
     return { content, data }

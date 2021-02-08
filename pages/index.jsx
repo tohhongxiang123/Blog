@@ -27,7 +27,7 @@ export default function Index({ posts = [], notes = [] }) {
 				<Link href={"/notes"}><h3 className="cursor-pointer hover:underline">Notes</h3></Link>
 				<ul className="list-disc">
 					{notes.length > 0 ? notes.map((note) => (
-						<li key={note.filePath}>
+						<li key={note.filePath} className="mb-8">
 							<NotePreview {...note} />
 						</li>
 					)) : (
@@ -60,7 +60,7 @@ export function getStaticProps() {
 			data,
 			filePath,
 		}
-	})
+	}).sort((noteA, noteB) => new Date(noteA.data.date).getTime() - new Date(noteB.data.date).getTime() > 0 ? -1 : 1)
 
 	return { props: { posts, notes } }
 }
