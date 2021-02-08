@@ -7,8 +7,8 @@ import ArrowDown from '../../public/icons/arrow_down.svg'
 
 export default function NestedDirectoryNavigation({ children, name, path, slug }) {
     const router = useRouter()
-    const [isOpen, setIsOpen] = useState(checkIfOpen({ path, children }, router.asPath))
-    const isActive = arrayEquals(path.split('\\').filter(Boolean), router.asPath.split('/').filter(Boolean))
+    const [isOpen, setIsOpen] = useState(checkIfOpen({ path, children }, decodeURIComponent(router.asPath)))
+    const isActive = arrayEquals(path.split('\\').filter(Boolean), decodeURIComponent(router.asPath).split('/').filter(Boolean))
 
     const rootClassNames = "flex justify-between items-center font-medium rounded-r-lg overflow-hidden p-4 cursor-pointer mb-0"
     if (children.length == 0) return (
