@@ -180,3 +180,105 @@ R4 has been mutated from 0 to -1 thanks to `Sub1`
 - The system stack is the ideal place to create memory space for temporary variables
 - This temporary memory space is called the **stack frame**
 - A frame pointer is used to point to the steart of the stack frame (This is usually register R11)
+
+# Subroutines Calling Other Subroutines
+
+A subroutine can call another subroutine. Consider the follow call stack
+
+```
+main() -> dot_product(A, B) -> mult(X, Y)
+```
+
+1. `PC = 0x408, LR = 0x400`
+2. The first `BL dotproduct` is called at `0x400`. Assuming `dotproduct` is at `0xA00`, `PC = 0xA00, LR = 0x404`
+3. Within `dotproduct` at address `0xA40`, `BL mult` is called. Assuming `mult` is at `0xF00`, `PC = 0xF00, LR = 0xA44`
+4. `mult` completes, and `BX LR` is called. Now `PC = 0xA44`
+
+But now we are stuck within `dotproduct`, because we lost the location to go back to the `main` subroutine.
+
+# Support for Nested Subroutines
+- `LR` needs to be saved somewhere - System stack
+- When to save?
+  - Before any `BL` instruction
+  - At the beginning of each subroutine
+
+# Example: DotProduct
+- Write a subroutine that calculates the dot product of 2 vectors of positive integers 
+- Base addresses of X = 0x100, Y = 0x200, array size N = 20, and Z = 0x300 passed through stack
+- The subroutine will call another subroutine to calculate the product of 2 numbers
+  - Numbers are passed in R0, R1, returned in R12
+
+### Multiplication
+
+Iteratively add `R0` to `R12` `R1` times
+
+```assembly
+Mult  MOV R12, #0 ; Reset result to 0
+Loop  ADD R12, R12, R0 ; Add R0 to R12 R1 times
+      SUBS R1, R1, #1
+      BNE Loop
+      MOV PC, LR
+```
+
+### Dot Product
+```assembly
+DotProd STMFD SP!, {R4-R7} ; Store registers to stack
+        LDR R4, [SP, #28] ; Load X
+        LDR R5, [SP, #24] ; Load Y
+        LDR R6, [SP, #20] ; Load array length
+
+        MOV R7, #0 ; Clear result
+Loop1   LDR R0, [R4], #4 ; Load X[i]
+        LDR R1, [R5], #4 ; Load Y[i]
+
+        STR LR, [SP, #-4]! ; Push link register to stack 
+        BL Mult ; Call mult
+        LDR LR, [SP], #4 ; Pop link register to stack
+
+        ADD R7, R7, R12 ; Add product to R7 
+        SUBS R6, R6, #1 ; Decrement counter
+        BNE Loop1 ; Loop if not 0
+
+        LDR R4, [SP, #16] ; Read destination address
+        STR R7, [R4] ; Store in destination
+
+        LDMFD SP!, {R4-R7} ; Restore registers
+        MOV PC, LR
+```
+
+# Recursive Functions
+
+Remember that recursive functions require a **stopping condition** if not you will encounter infinite loop
+
+```assembly
+		MOV		R0, #10
+		STMFD	SP!, {R0}
+		BL		Fib
+		END
+		
+Fib		STMFD	SP!, {R4-R6, LR}
+		
+		LDR		R4, [SP, #16] ; Get n
+		CMP		R4, #1
+		MOVEQ	R12, #0 ; If n == 1, result = 0
+		
+		CMP		R4, #2
+		MOVEQ	R12, #1 ; If n == 2, result = 1
+		BLE		Done ; Complete if n <= 2
+		
+		SUB		R5, R4, #1 ; Get n-1
+		STMFD	SP!, {R5} ; Push n-1 onto stack
+		BL		Fib ; Calculate Fib(n-1)
+		LDMFD	SP!, {R5} ; Pop from stack
+		
+		MOV		R6, R12 ; Save result in temp register
+		SUB		R5, R4, #2 ; Get n-2
+		STMFD	SP!, {R5} ; Push n-2 onto stack
+		BL		Fib ; Calculate fib(n-2)
+		LDMFD	SP!, {R5} ; Pop from stack
+		
+		ADD		R12, R12, R6 ; Calculate fib(n-1) + fib(n-2)
+		
+Done		LDMFD	SP!, {R4-R6, LR}
+		MOV		PC, LR
+```

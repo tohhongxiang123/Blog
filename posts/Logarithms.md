@@ -12,7 +12,7 @@ From this definition, we can derive a few properties of the logarithm function
 
 ## $\log_a a = 1$
 
-We can multiply $a$ by itself exactly 1 time to get a ($a^1 = a$). Hence $\log_a a = 1$
+We can multiply $a$ by itself exactly 1 time to get a ($a^1 = a$). Hence $\log_a a = 1$ 
 
 ---
 
