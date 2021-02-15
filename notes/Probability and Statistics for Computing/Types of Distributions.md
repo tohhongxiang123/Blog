@@ -152,3 +152,37 @@ $$
 \lim_{n \to \infty} P(X = k) &= \frac{\lambda^k e^{-\lambda}}{k!}
 \end{aligned}
 $$
+
+The expected value of a poisson distribution, $E(X)$ is
+$$
+\begin{aligned}
+E(X) &= \sum_{k=0}^{\infty} k \frac{e^{-\lambda} \lambda^k}{k!} \\
+&= e^{-\lambda} \lambda \sum_{k=0}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} \\
+&= e^{-\lambda} \lambda e^{\lambda} \\
+&= \lambda
+\end{aligned}
+$$
+
+The variance of a poisson distribution, $Var(X)$ is
+$$
+\begin{aligned}
+Var(X) &= E(X^2) - E(X)^2 \\
+&= \sum_{k=0}^{\infty} k^2 \frac{e^{-\lambda} \lambda^k}{k!} - \lambda^2 \\
+&= \lambda e^{-\lambda} \sum_{k=0}^{\infty} k \frac{\lambda^{k-1}}{(k-1)!} - \lambda^2 \\
+&= \lambda e^{-\lambda} (\lambda e^{\lambda} + e^{\lambda}) - \lambda^2 \\
+&= \lambda
+\end{aligned}
+$$
+
+For the infinite sum $\sum_{k=0}^{\infty} k \frac{\lambda^{k-1}}{(k-1)!}$, 
+
+$$
+\begin{aligned}
+\sum_{k=0}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} &= e^\lambda \\
+\sum_{k=0}^{\infty} (k-1)\frac{\lambda^{k-2}}{(k-1)!} &= e^\lambda & \text{Differentiate wrt $\lambda$} \\
+\sum_{k=0}^{\infty} (k-1)\frac{\lambda^{k-1}}{(k-1)!} &= \lambda e^\lambda & \text{Multiply by $\lambda$} \\
+\sum_{k=0}^{\infty} k\frac{\lambda^{k-1}}{(k-1)!} - \sum_{k=0}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} &= \lambda e^\lambda \\
+\sum_{k=0}^{\infty} k\frac{\lambda^{k-1}}{(k-1)!} - e^{\lambda} &= \lambda e^\lambda \\
+\sum_{k=0}^{\infty} k\frac{\lambda^{k-1}}{(k-1)!} = \lambda e^\lambda + e^\lambda
+\end{aligned}
+$$
