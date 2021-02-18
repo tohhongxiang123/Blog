@@ -4,6 +4,8 @@
 - Binomial
 - Normal
 - Poisson
+- Exponential
+- Geometric
 - Hypergeometric
 
 Do note the general formulas for finding the mean, and the standard deviation of any function:
@@ -121,6 +123,16 @@ E(X^2) &= \sum_{k=0}^{n} k^2 {n \choose k} p^k (1-p)^{n-k} \\
 \end{aligned}
 $$
 
+# Normal Distribution
+
+![Normal Distribution graph](https://en.wikipedia.org/wiki/Normal_distribution#/media/File:Standard_deviation_diagram.svg)
+
+$$
+P(X = x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} \left( \frac{x - \mu}{\sigma} \right)^2}
+$$
+
+Where $\mu$ is the mean, and $\sigma$ is the standard deviation of the distribution.
+
 # Poisson Distribution
 
 The Poisson distribution is the discrete probability distribution of the number of events occurring in a given time period, given the average number of times the event occurs over that time period, $\lambda$
@@ -186,3 +198,32 @@ $$
 \sum_{k=0}^{\infty} k\frac{\lambda^{k-1}}{(k-1)!} = \lambda e^\lambda + e^\lambda
 \end{aligned}
 $$
+
+# Exponential Distribution
+
+![Exponential Distribution Graph](https://en.wikipedia.org/wiki/Exponential_distribution#/media/File:Exponential_probability_density.svg)
+
+The exponential distribution is the probability distribution of the time between events in a Poisson point process, i.e., a process in which events occur continuously and independently at a constant average rate.
+
+$$
+P(X = x) = \lambda e^{-\lambda x}
+$$
+
+Where $\lambda > 0$ is the rate at which the event occurs.
+
+It has a mean of $\frac{1}{\lambda}$ and a variance of $\frac{1}{\lambda^2}$
+
+# Geometric Distribution
+
+The geometric distribution is either one of two discrete probability distributions:
+
+- The probability distribution of the number X of Bernoulli trials needed to get one success, supported on the set { 1, 2, 3, ... }
+- The probability distribution of the number Y = X − 1 of failures before the first success, supported on the set { 0, 1, 2, 3, ... }
+
+$$
+P(X = x) = (1-p)^{x-1} p
+$$
+
+Where $p$ is the probability of success.
+
+The geometric distribution has a mean $\frac{1}{p}$ and variance $\frac{1-p}{p^2}$
