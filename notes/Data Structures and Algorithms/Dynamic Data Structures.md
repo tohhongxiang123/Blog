@@ -2,7 +2,7 @@
 
 Consider the following problem
 
-> Write a program that asks the user how manyu\ integers will be entered, then asks for each integer
+> Write a program that asks the user how many integers will be entered, then asks for each integer
 
 ```c
 int size;
