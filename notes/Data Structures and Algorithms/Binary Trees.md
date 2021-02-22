@@ -1,5 +1,103 @@
 # Binary Trees
 
+Each binary tree node has the following structure
+
+```c
+typedef struct node {
+    int value;
+    struct node *left, *right;
+} Node
+```
+
+Each node has its own value, and a pointer to the left and the right. Let us create a function that will create a binary tree node.
+
+```c
+Node *createNode(int value) {
+    Node *newNode = malloc(sizeof(Node));
+    newNode->value = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    return newNode;
+}
+```
+
+Now we can use it like this:
+
+```c
+int main() {
+    Node *root = createNode(0);
+    root->left = createNode(1);
+    root->right = createNode(2);
+
+    return 0;
+}
+```
+
+This creates a tree with the root node as 0, its left as 1 and its right as 2.
+
+# Traversal
+
+There are 3 types of traversals to understand for binary trees
+1. Preorder
+2. Inorder
+3. Postorder
+
+## Preorder
+
+1. If current node is `NULL`, return
+2. Print the value of the current node
+3. Recurse the left subtree
+4. Recurse the right subtree
+
+```c
+void printPreorder(Node *root) {
+    if (node == NULL) return;
+    
+    printf("%d\n", root->value);
+
+    printPreorder(root->left);
+    printPreorder(root->right);
+}
+```
+
+## Inorder
+
+1. If current node is `NULL`, return
+2. Recurse the left subtree
+3. Print the value of the current node
+4. Recurse the right subtree
+
+```c
+void printInorder(Node *root) {
+    if (node == NULL) return;
+
+    printInorder(root->left);
+
+    printf("%d\n", root->value);
+
+    printInorder(root->right);
+}
+```
+
+## Postorder
+
+1. If current node is `NULL`, return
+2. Recurse the left subtree
+3. Recurse the right subtree
+4. Print the value of the current node
+
+```c
+void printPostOrder(Node *root) {
+    if (node == NULL) return;
+
+    printPostOrder(root->left);
+    printPostOrder(root->right);
+
+    printf("%d\n", root->value);
+}
+```
+
 ```c
 ////////////////////////////////////////////////////////////////////
 
