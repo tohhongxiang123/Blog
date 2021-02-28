@@ -23,6 +23,7 @@ export default function Layout({ children, title = "Blog" }) {
 			<TopNavBar>
 				<Link href={"/posts"}>Posts</Link>
 				<Link href={"/notes"}>Notes</Link>
+				<Link href={"/about"}>About</Link>
 			</TopNavBar>
 			<main className="max-w-screen overflow-y-auto w-full">{children}</main>
 		</div>
