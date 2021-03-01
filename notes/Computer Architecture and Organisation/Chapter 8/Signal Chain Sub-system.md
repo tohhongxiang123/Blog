@@ -66,3 +66,9 @@ For each mode, the connection could be single-directional or bi-directional
 
 ### Communication Protocol
 - Communication Protocols refers to how the data is formatted during transmission.
+- Some factors include
+  - Number of bits in a transmission frame
+  - What synchronisation to use
+  - Data width
+  - Types of data and its formatting
+- Examples of communication protocols: USB, UART, SPI
