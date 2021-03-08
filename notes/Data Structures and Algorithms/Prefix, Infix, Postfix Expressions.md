@@ -136,7 +136,7 @@ def convertToPostfix(expression):
     opstack = []
     
     for token in expression:
-        if token.isalpha():
+        if token.isalnum():
             output.append(token)
             continue
         
@@ -152,11 +152,7 @@ def convertToPostfix(expression):
             continue
         
         if token in validOperators:
-            if len(opstack) < 1:
-                opstack.append(token)
-                continue
-            
-            while getPrecedence(opstack[-1]) >= getPrecedence(token):
+            while len(opstack) > 0 and getPrecedence(opstack[-1]) >= getPrecedence(token):
                 output.append(opstack.pop())
             opstack.append(token)
             
@@ -199,6 +195,53 @@ if not isBalanced(exp):
 else:
     print(f"Postfix: {convertToPostfix(exp)}")
     print(f"Prefix: {convertToPrefix(exp)}")
+```
+# Postfix Evaluation
+
+The general procedure is:
+1. Create an empty stack `operandStack`
+2. Convert string to list 
+3. Scan tokens from left to right
+   1. If token is operand, convert from string to int, and push onto `operandStack`
+   2. If token is operator, pop `operandStack` twice. The first pop is the **second operand**, the second pop is the first operand. Perform the operation, and push the result back onto `operandStack`
+4. When input expression is completely processed, the result is on top of the `operandStack`. Pop and return
+
+```python
+def performOperation(token, operand1, operand2):
+    assert token in validOperators, f"{token} is not a valid operator"
+    if token == "*":
+        return operand1*operand2
+    elif token == "/":
+        return operand1/operand2
+    elif token == "%":
+        return operand1 % operand2
+    elif token == "+":
+        return operand1 + operand2
+    elif token == "-":
+        return operand1 - operand2
+    elif token == "<<":
+        return operand1 << operand2
+    else:
+        return operand1 >> operand2
+        
+    
+def evaluatePostfix(expression):
+    """
+    Evaluates numerical postfix expression
+    Returns the result of the postfix expression
+    """
+    operandStack = []
+    for token in expression:
+        if token.isalnum():
+            currentNumber = int(token)
+            operandStack.append(currentNumber)
+        if token in validOperators:
+            operand2 = operandStack.pop()
+            operand1 = operandStack.pop()
+            result = performOperation(token, operand1, operand2)
+            operandStack.append(result)
+            
+    return operandStack.pop()
 ```
 
 - [What is Prefix, Infix, Postfix](https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
