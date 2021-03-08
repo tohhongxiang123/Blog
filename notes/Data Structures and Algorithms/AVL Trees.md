@@ -569,125 +569,113 @@ Node *minValueNode(Node *root) {
 }
 ```
 
-The overall deletion:
-
-# Alternative Prototype
-
-This is an alternative code where the prototype for `insertNode` is
-
 ```c
-Node *insertNode(Node *root, int value)
+Node *deleteNode(Node *root, int value) {
+    if (root == NULL) {
+        return root;
+    } else if (value < root->value) {
+        root->left = deleteNode(root->left, value);
+    } else if (value > root->value) {
+        root->right = deleteNode(root->right, value);
+    } else {
+        if (!root->left && !root->right) {
+            // no children
+            Node *temp = root;
+            root = NULL;
+            free(temp); // free original node
+        } else if (!!root->left ^ !!root->right) {
+            // 1 child
+            Node *temp = root;
+            root = root->left ? root->left : root->right; // copy child contents
+            free(temp); // free original node
+        } else {
+            Node *inOrderSuccessor = minValueNode(root->right);
+            root->value = inOrderSuccessor->value;
+            root->right = deleteNode(root->right, inOrderSuccessor->value);
+        }
+    }
+
+    int leftSubtreeHeight = getHeight(root->left);
+    int rightSubtreeHeight = getHeight(root->right);
+    root->height = max(leftSubtreeHeight, rightSubtreeHeight) + 1; // update height
+
+    return root;
+}
 ```
 
+However, after deletion, we need to check for the tree's balance, and update the tree accordingly. So
+1. We check the balance factor
+2. We check which of the 4 cases it belongs to, and then rebalance the tree accordingly.
+
 ```c
-#include <stdio.h>
-#include <stdlib.h>
+int balanceFactor = getBalanceFactor(root);
 
-typedef struct node {
-    int value;
-    struct node *left, *right;
-    int height;
-} Node;
-
-Node *createNode(int value) {
-    Node *newNode = malloc(sizeof(Node));
-    newNode->left = NULL;
-    newNode->right = NULL;
-    newNode->value = value;
-    newNode->height = 0;
-    
-    return newNode;
+// rotate based on case
+if (balanceFactor > 1 && getBalanceFactor(root->left) >= 0) {
+    return rightRotate(root); // left left
+} else if (balanceFactor > 1 && getBalanceFactor(root->left) < 0) {
+    root->left = leftRotate(root->left); // left right
+    return rightRotate(root);
+} else if (balanceFactor < -1 && getBalanceFactor(root->right) <= 0) {
+    return leftRotate(root); // right right
+} else if (balanceFactor < -1 && getBalanceFactor(root->right) > 0) {
+    root->right = rightRotate(root->right); // right left
+    return leftRotate(root);
 }
+```
 
-int getHeight(Node *node) {
-    if (node == NULL) return -1;
-    
-    return node->height;
-}
-
-int max(int a, int b) {
-    return a > b ? a : b;
-}
-
-Node *leftRotate(Node *x) {
-    Node *y = x->right;
-    Node *t2 = y->left;
-    
-    y->left = x;
-    x->right = t2;
-    
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1; // important that the lower node height is updated first
-    y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
-    return y;
-}
-
-Node *rightRotate(Node *y) {
-    Node *x = y->left;
-    Node *t2 = x->right;
-    
-    x->right = y;
-    y->left = t2;
-    
-    y->height = max(getHeight(y->left), getHeight(y->right)) + 1; // update lower node height first
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
-    
-    return x;
-}
-
-Node *insertNode(Node *root, int value) {
+The overall deletion looks like:
+```c
+Node *deleteNode(Node *root, int value) {
     // normal insertion
     if (root == NULL) {
-        return createNode(value);
+        return root;
     } else if (value < root->value) {
-        root->left = insertNode(root->left, value);
+        root->left = deleteNode(root->left, value);
     } else if (value > root->value) {
-        root->right = insertNode(root->right, value);
+        root->right = deleteNode(root->right, value);
     } else {
-        printf("Value already exists in tree\n");
+        if (!root->left && !root->right) {
+            // no children
+            Node *temp = root;
+            root = NULL;
+            free(temp); // free original node
+        } else if (!!root->left ^ !!root->right) {
+            // 1 child
+            Node *temp = root;
+            root = root->left ? root->left : root->right; // copy child contents
+            free(temp); // free original node
+        } else {
+            Node *inOrderSuccessor = minValueNode(root->right);
+            root->value = inOrderSuccessor->value;
+            root->right = deleteNode(root->right, inOrderSuccessor->value);
+        }
+    }
+    
+    if (root == NULL) {
         return root;
     }
     
-    // check the height of the current node
+    int balanceFactor = getBalanceFactor(root);
+    
     int leftSubtreeHeight = getHeight(root->left);
     int rightSubtreeHeight = getHeight(root->right);
-    
-    int balanceFactor = leftSubtreeHeight - rightSubtreeHeight;
     root->height = max(leftSubtreeHeight, rightSubtreeHeight) + 1;
     
     // rotate based on case
-    if (balanceFactor > 1 && value < root->left->value) {
+    if (balanceFactor > 1 && getBalanceFactor(root->left) >= 0) {
         return rightRotate(root); // left left
-    } else if (balanceFactor > 1 && value > root->left->value) {
+    } else if (balanceFactor > 1 && getBalanceFactor(root->left) < 0) {
         root->left = leftRotate(root->left); // left right
         return rightRotate(root);
-    } else if (balanceFactor < -1 && value > root->right->value) {
+    } else if (balanceFactor < -1 && getBalanceFactor(root->right) <= 0) {
         return leftRotate(root); // right right
-    } else if (balanceFactor < -1 && value < root->right->value) {
+    } else if (balanceFactor < -1 && getBalanceFactor(root->right) > 0) {
         root->right = rightRotate(root->right); // right left
         return leftRotate(root);
     }
     
     return root;
-}
-
-void inorder(Node *root) {
-    if (root == NULL) return;
-    inorder(root->left);
-    printf("%d:%d ", root->value, root->height);
-    inorder(root->right);
-}
-
-int main()
-{
-    Node *root = NULL;
- 
-    int numberOfNodes = 8191;
-    for (int i=0; i<=numberOfNodes; i++) {
-        root = insertNode(root, i);
-    }
-
-    printf("Height of tree: %d\n", getHeight(root));
-    return 0;
 }
 ```
 
@@ -740,7 +728,6 @@ Node *leftRotate(Node *x) {
 }
 
 Node *rightRotate(Node *y) {
-    printf("HErerer\n");
     Node *x = y->left;
     Node *t2 = x->right;
     
