@@ -40,6 +40,8 @@ Note: I2C not covered here
 
 # SPI Bus
 
+![SPI Diagram](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface#/media/File:SPI_three_slaves.svg)
+
 An SPI master is connected to 1 or more SPI slaves. Each SPI device has 
 - CS/SS - Chip select/Slave select. Needs to be enabled before any other function is enabled
 - SCLK - Signal Clock
@@ -60,6 +62,8 @@ To start transfer
 - Asynchronous Transmission typically also uses SYNC word/bits to provide occasional timestamps for receiver to synchronise its clock to the transmitter clock (reduces clock skew between 2 clocks)
 
 # Universal Asynchronous Receiver Transmitter (UART)
+
+![UART Diagram](https://www.circuitbasics.com/wp-content/uploads/2016/01/Introduction-to-UART-Data-Transmission-Diagram.png)
 - Most commonly used serial interface
 
 - During IDLE state, data line is in logic 1

@@ -189,12 +189,13 @@ def convertToPrefix(expression):
     postfixedExpression = convertToPostfix(expression)
     return reverseExpression(postfixedExpression)
          
-exp = input()
-if not isBalanced(exp):
-    print("Not balanced expression")
-else:
-    print(f"Postfix: {convertToPostfix(exp)}")
-    print(f"Prefix: {convertToPrefix(exp)}")
+if __name__ == "__main__":
+    exp = input()
+    if not isBalanced(exp):
+        print("Not balanced expression")
+    else:
+        print(f"Postfix: {convertToPostfix(exp)}")
+        print(f"Prefix: {convertToPrefix(exp)}")
 ```
 # Postfix Evaluation
 
@@ -243,6 +244,8 @@ def evaluatePostfix(expression):
             
     return operandStack.pop()
 ```
+
+# External Resources
 
 - [What is Prefix, Infix, Postfix](https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
 - [Converter between infix/prefix/postfix](https://raj457036.github.io/Simple-Tools/prefixAndPostfixConvertor.html)

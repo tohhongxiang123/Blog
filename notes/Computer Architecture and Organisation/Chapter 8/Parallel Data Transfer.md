@@ -7,6 +7,9 @@
   - Crosstalk: Signal transmitted on one circuit creates an undesired effect in another circuit
 
 ### Signal Skew
+
+![Signal Skew](http://1.bp.blogspot.com/-em8H-CwygxA/Vp8ozoVZhbI/AAAAAAAAA5Q/iCScfgPUp8M/s1600/Clock%2BSkew.JPG)
+
 - Signal Skew is the phenomena where the same sourced clock signal arrives at different components at different times.
 - May result in the wrong data being read
 - Is caused by variation in propagation delay between signals from the same data bus
@@ -17,6 +20,8 @@
   - Connecting active components to some of the signal lines
 
 ### Crosstalk
+
+![Crosstalk](https://networkencyclopedia.com/wp-content/uploads/2019/09/crosstalk.jpg)
 - Crosstalk is the phenomena that signal transmitted from one circuit creates an undesired effect in another circuit
 - In a parallel bus context, the close placement of data lines in PCB routing enables the effect of electrical signal in one trace/wire to be coupled over to the other, creating undesired interference
 - Crosstalk can be transmitted electrically or via electromagnetic radiation
