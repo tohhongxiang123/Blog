@@ -1,3 +1,5 @@
+# Searching
+
 1. Given an array of n elements. Find two elements in the array such that their sum is equal to K. The two elements can be the same element. Once a pair of elements is found, the program can be terminated.
 
 The function prototype is given below:
