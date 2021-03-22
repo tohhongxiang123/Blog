@@ -290,6 +290,9 @@ int Hash(int key,int hSize)
 ListNode* HashSearch(HashTable Q3Hash, int key)
 {
  // Write your code here
+    if (Q3Hash.hSize == 0) {
+        return NULL;
+    }
     int slot = Hash(key, Q3Hash.hSize);
     ListNode *currentNode = Q3Hash.Table[slot].head;
     
@@ -307,6 +310,10 @@ ListNode* HashSearch(HashTable Q3Hash, int key)
 int HashInsert(HashTable* Q3HashPtr, int key)
 {
  // Write your code here
+    if (Q3HashPtr->hSize == 0) {
+        return 0;
+    }
+    
     if (HashSearch(*Q3HashPtr, key)) {
         return 0;
     }
@@ -320,6 +327,7 @@ int HashInsert(HashTable* Q3HashPtr, int key)
     newNode->key = key;
     newNode->next = Q3HashPtr->Table[slot].head;
     Q3HashPtr->Table[slot].head = newNode;
+    Q3HashPtr->Table[slot].size++;
     Q3HashPtr->nSize++;
     
     return 1;
