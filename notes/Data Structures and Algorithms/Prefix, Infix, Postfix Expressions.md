@@ -454,3 +454,443 @@ if __name__ == "__main__":
         print(f"Prefix: {convertToPrefix(exp)}")
         print(f"Infix from postfix: {convertPostfixToInfix(convertToPostfix(exp))}")
 ```
+
+# Lab Questions
+
+1. Write a C program to convert an infix expression to a postfix expression. The input and the output of the function are character strings. The input expression contains only four possible operators: +, -, * and /. Operands can be any alphanumeric. Each operand is represented by a character symbol. The parentheses are allowed in the input expression. You may assume that the expression is always valid. The function prototype is given below:
+
+```c
+void in2Post(char* infix, char* postfix);
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define SIZE 80 //The limit of expression length
+
+typedef struct _stackNode{
+    char item;
+    struct _stackNode *next;
+}StackNode;
+
+typedef struct _stack{
+   int size;
+   StackNode *head;
+}Stack;
+
+void push(Stack *sPtr, char item);
+int pop(Stack *sPtr);
+char peek(Stack s);
+int isEmptyStack(Stack s);
+
+void in2Post(char*, char*);
+
+int getPrecedence(char);
+
+int main()
+{
+    char infix[SIZE];
+    char postfix[SIZE];
+
+    printf("Enter an infix expression:\n");
+    gets(infix);
+
+    in2Post(infix,postfix);
+    printf("The postfix expression is \n");
+    printf("%s\n",postfix);
+    return 0;
+}
+
+int getPrecedence(char token) {
+    switch(token) {
+        case '*':
+        case '/':
+            return 1;
+        case '+':
+        case '-':
+            return 0;
+        default:
+            return -1;
+    }
+}
+
+void in2Post(char* infix, char* postfix)
+{
+// Write your code here
+    int infixOffset = 0;
+    int postfixOffset = 0;
+    
+    Stack *s = malloc(sizeof(Stack));
+    s->head = NULL;
+    s->size = 0;
+
+    for (int i=0; i<strlen(infix); i++) {
+        char currentChar = infix[i];
+        
+        if (currentChar == '(') {
+            push(s, currentChar);
+            continue;
+        }
+        
+        if (currentChar == ')') {
+            while (!isEmptyStack(*s) && peek(*s) != '(') {
+                postfix[postfixOffset] = peek(*s);
+                pop(s);
+                postfixOffset++;
+            }
+            
+            pop(s);
+            continue;
+        }
+        
+        // operator
+        if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
+            while (!isEmptyStack(*s) && peek(*s) != '(' && peek(*s) != currentChar && getPrecedence(peek(*s)) >= getPrecedence(currentChar)) {
+                postfix[postfixOffset] = peek(*s);
+                postfixOffset++;
+                pop(s);
+            }
+            
+            push(s, currentChar);
+            continue;
+        }
+        
+        // operand
+        postfix[postfixOffset] = currentChar;
+        postfixOffset++;
+    }
+    
+    while (!isEmptyStack(*s)) {
+        postfix[postfixOffset] = peek(*s);
+        postfixOffset++;
+        pop(s);
+    }
+    
+    postfix[postfixOffset] = '\0';
+}
+
+void push(Stack *sPtr, char item){
+    StackNode *newNode;
+    newNode = malloc(sizeof(StackNode));
+    newNode->item = item;
+    newNode->next = sPtr->head;
+    sPtr->head = newNode;
+    sPtr->size++;
+}
+
+int pop(Stack *sPtr){
+    if(sPtr == NULL || sPtr->head == NULL){
+        return 0;
+    }
+    else{
+       StackNode *temp = sPtr->head;
+       sPtr->head = sPtr->head->next;
+       free(temp);
+       sPtr->size--;
+       return 1;
+    }
+}
+
+char peek(Stack s){
+    return s.head->item;
+}
+
+int isEmptyStack(Stack s){
+     if(s.size == 0) return 1;
+     else return 0;
+}
+```
+
+2. Write a C program to evaluate a postfix expression. You may assume that operands are single-digit numbers. The function prototype is given below:
+
+```c
+double exePostfix(char* postfix)
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define SIZE 80 //The limit of expression length
+
+typedef struct _stackNode{
+    double item;
+    struct _stackNode *next;
+}StackNode;
+
+typedef struct _stack{
+   int size;
+   StackNode *head;
+}Stack;
+
+void push(Stack *sPtr, double item);
+int pop(Stack *sPtr);
+double peek(Stack s);
+int isEmptyStack(Stack s);
+
+double exePostfix(char*);
+double performOperation(char, double, double);
+
+int main()
+{
+    char postfix[SIZE];
+
+    printf("Enter a postfix expression:\n");
+    gets(postfix);
+
+    printf("The answer is %.2lf.\n",exePostfix(postfix));
+
+    return 0;
+}
+
+double performOperation(char token, double operand1, double operand2) {
+    switch(token) {
+        case '*':
+            return operand1 * operand2;
+        case '/':
+            return operand1 / operand2;
+        case '+':
+            return operand1 + operand2;
+        case '-':
+            return operand1 - operand2;
+        default:
+            return operand1;
+    }
+}
+
+
+double exePostfix(char* postfix)
+{
+	// Write your code here
+    Stack *s = malloc(sizeof(Stack));
+    s->head = NULL;
+    s->size = 0;
+    
+    for (int i=0; i<strlen(postfix);i++) {
+        char currentChar = postfix[i];
+        int currentNumber;
+        
+        if (isdigit(currentChar)) {
+            currentNumber = currentChar - '0'; // convert char to int
+            push(s, currentNumber);
+            continue;
+        }
+        
+        double operand2 = peek(*s);
+        pop(s);
+        double operand1 = peek(*s);
+        pop(s);
+        
+        double result = performOperation(currentChar, operand1, operand2);
+        push(s, result);
+        
+    }
+    
+    double result = peek(*s);
+    pop(s);
+    free(s);
+    return result;
+}
+
+void push(Stack *sPtr, double item){
+    StackNode *newNode;
+    newNode = malloc(sizeof(StackNode));
+    newNode->item = item;
+    newNode->next = sPtr->head;
+    sPtr->head = newNode;
+    sPtr->size++;
+}
+
+int pop(Stack *sPtr){
+    if(sPtr == NULL || sPtr->head == NULL){
+        return 0;
+    }
+    else{
+       StackNode *temp = sPtr->head;
+       sPtr->head = sPtr->head->next;
+       free(temp);
+       sPtr->size--;
+       return 1;
+    }
+}
+
+double peek(Stack s){
+    return s.head->item;
+}
+
+int isEmptyStack(Stack s){
+     if(s.size == 0) return 1;
+     else return 0;
+}
+```
+
+3. Write a C program to convert an infix expression to a prefix expression.
+
+```c
+void in2Pre(char* infix , char* prefix )
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define SIZE 80 //The limit of expression length
+
+typedef struct _stackNode{
+    char item;
+    struct _stackNode *next;
+}StackNode;
+
+typedef struct _stack{
+   int size;
+   StackNode *head;
+}Stack;
+
+void push(Stack *sPtr, char item);
+int pop(Stack *sPtr);
+char peek(Stack s);
+int isEmptyStack(Stack s);
+
+void in2Pre(char*, char*);
+int getPrecedence(char);
+
+int main()
+{
+    char infix[SIZE];
+    char prefix[SIZE];
+
+    printf("Enter an infix expression:\n");
+    gets(infix);
+
+    in2Pre(infix,prefix);
+    printf("The prefix expression is \n");
+    printf("%s\n",prefix);
+
+    return 0;
+}
+
+int getPrecedence(char token) {
+    switch(token) {
+        case '*':
+        case '/':
+            return 2;
+        case '+':
+        case '-':
+            return 1;
+        default:
+            return 0;
+    }
+}
+
+void in2Pre(char* infix, char* prefix)
+{
+ // Write your code here
+    Stack tokens;
+    tokens.head = NULL;
+    tokens.size = 0;
+    
+    for (int i=0; i<strlen(infix); i++) {
+        int currentChar = infix[i];
+        if (currentChar == '(') {
+            push(&tokens, ')');
+            continue;
+        }
+        
+        if (currentChar == ')') {
+            push(&tokens, '(');
+            continue;
+        }
+        
+        push(&tokens, currentChar);
+        continue;
+    }
+    
+    Stack opStack;
+    opStack.head = NULL;
+    opStack.size = 0;
+    
+    Stack result;
+    result.head = NULL;
+    result.size = 0;
+    
+    while (!isEmptyStack(tokens)) {
+        int currentToken = peek(tokens);
+        pop(&tokens);
+        
+        switch(currentToken) {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                while (!isEmptyStack(opStack) && getPrecedence(peek(opStack)) > getPrecedence(currentToken)) {
+                    push(&result, peek(opStack));
+                    pop(&opStack);
+                }
+                push(&opStack, currentToken);
+                continue;
+            case '(':
+                push(&opStack, currentToken);
+                continue;
+            case ')':
+                while (!isEmptyStack(opStack) && peek(opStack) != '(') {
+                    push(&result, peek(opStack));
+                    pop(&opStack);
+                }
+                pop(&opStack);
+                continue;
+            default:
+                push(&result, currentToken);
+        }
+    }
+    
+    while (!isEmptyStack(opStack)) {
+        push(&result, peek(opStack));
+        pop(&opStack);
+    }
+
+    int offset = 0;
+    while (!isEmptyStack(result)) {
+        prefix[offset] = peek(result);
+        pop(&result);
+        offset++;
+    }
+    
+    prefix[offset] = '\0';
+}
+
+void push(Stack *sPtr, char item){
+    StackNode *newNode;
+    newNode = malloc(sizeof(StackNode));
+    newNode->item = item;
+    newNode->next = sPtr->head;
+    sPtr->head = newNode;
+    sPtr->size++;
+}
+
+int pop(Stack *sPtr){
+    if(sPtr == NULL || sPtr->head == NULL){
+        return 0;
+    }
+    else{
+       StackNode *temp = sPtr->head;
+       sPtr->head = sPtr->head->next;
+       free(temp);
+       sPtr->size--;
+       return 1;
+    }
+}
+
+char peek(Stack s){
+    return s.head->item;
+}
+
+int isEmptyStack(Stack s){
+     if(s.size == 0) return 1;
+     else return 0;
+}
+```

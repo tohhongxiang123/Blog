@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import NotePreview from '../components/NotePreview'
+import { formatDate } from '../utils/convertDate'
 import { getFileContent, getFilesInDirectory, recursivelyGetFilesInDirectory } from '../utils/mdxUtils'
 
 export default function Index({ posts = [], notes = [] }) {
@@ -10,13 +11,14 @@ export default function Index({ posts = [], notes = [] }) {
 				<Link href="/posts"><h3 className="cursor-pointer hover:underline">Posts</h3></Link>
 				<ul className="list-disc">
 					{posts.length > 0 ? posts.map((post) => (
-						<li key={post.filePath}>
+						<li key={post.filePath} className="flex justify-between items-baseline">
 							<Link
 								as={`/${post.filePath}`}
 								href={`/posts/[slug]`}
 							>
 								<a>{post.data.title}</a>
 							</Link>
+							<small className="flex-shrink-0">{formatDate(post.data.date)}</small>
 						</li>
 					)) : (
 						<li>
