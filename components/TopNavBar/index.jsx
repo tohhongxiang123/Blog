@@ -5,34 +5,25 @@ import styles from './index.module.scss'
 import Link from 'next/link'
 
 export default function NavBar({ children=[] }) {
-	const [isDark, setIsDark] = useState(false)
-	const handleToggle = () => setIsDark(c => !c)
-
-	useEffect(() => {
-		const cachedThemePreference = localStorage.getItem('isDark')
-		if (cachedThemePreference == 'dark') {
-			setIsDark(true)
-		}
-	}, [])
-
-	useEffect(() => {
-		const root = document.querySelector('html')
-		if (isDark) {
-			root.className = 'dark'
-		} else {
-			root.className = 'light'
-		}
-
-		localStorage.setItem('isDark', isDark ? 'dark' : 'light')
-	}, [isDark])
+	const [isOpen, setIsOpen] = useState(false)
+	const toggleMenu = () => {
+		setIsOpen(c => !c)
+	}
 
     return (
         <nav className={styles.root}>
             <ul className={styles.navBarList}>
                 <li><strong><Link href={'/'}>Home</Link></strong></li>
-                {children.map((child, index) => <li key={index}>{child}</li>)}
-                <ToggleSwitch onChange={handleToggle} checked={isDark} />
+				<li className="block sm:hidden">
+					<button className="flex z-20" onClick={toggleMenu}>
+						<img src="/icons/hamburger.svg" width={32} height={32} className="m-0" />
+					</button>
+				</li>
+                {children.map((child, index) => <li className="hidden sm:block" key={index}>{child}</li>)}
             </ul>
+			<ul className={`${isOpen ? 'opacity-100 static' : 'opacity-0 absolute'} transition-all duration-100 ease-in-out sm:hidden m-0 p-8 z-10`}>
+				{children.map((child, index) => <li key={index}>{child}</li>)}
+			</ul>
         </nav>
     )
 }

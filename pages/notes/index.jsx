@@ -6,7 +6,7 @@ import NotePreview from '../../components/NotePreview'
 export default function index({ notes = [], notesStructure = [] }) {
     return (
         <NotesLayout title={"Notes"} notesStructure={notesStructure}>
-            <ul className={"mx-auto p-4"}>
+            <ul className={"mx-auto p-4 pt-4"}>
                 {notes.map(note => (
                     <li key={note.filePath}>
                         <NotePreview {...note} />
