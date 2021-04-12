@@ -110,23 +110,31 @@ void DFS_I (Graph g, int v)
 {
 //Write your code here
     Stack *s = malloc(sizeof(Stack));
-    push(s, v);
     
     int *visited = malloc(g.V * sizeof(int));
     for (int i=0; i<g.V; i++) {
         visited[i] = 0;
     }
     
+    push(s, v);
+    visited[v - 1] = 1;
+    
     while (!isEmptyStack(*s)) {
         int currentNode = peek(*s);
-        pop(s);
-        visited[currentNode - 1] = 1;
-        printf("%d ", currentNode);
+        int hasUnvisitedChildren = 0;
         
         for (int i=0; i<g.V; i++) {
             if (g.matrix[currentNode - 1][i] && !visited[i]) {
                 push(s, i + 1);
+                visited[i] = 1;
+                hasUnvisitedChildren = 1;
+                break;
             }
+        }
+        
+        if (!hasUnvisitedChildren) {
+            printf("%d ", currentNode);
+            pop(s);
         }
     }
 }
@@ -212,7 +220,6 @@ void printGraphMatrix(Graph_DFS );
 ////////////////////////////////////////////
 
 void DFS_R (Graph_DFS , int );
-void dfs_util(Graph_DFS g, int v, int *visited);
 
 int main()
 {
@@ -260,24 +267,16 @@ int main()
 void DFS_R (Graph_DFS g, int v)
 {
 //Write your code here
-    int *visited = malloc(sizeof(int) * g.V);
-    for (int i=0; i<g.V; i++) {
-        visited[i] = 0;
-    }
+    int i;
+    g.visited[v - 1] = 1;
     
-    
-    dfs_util(g, v, visited);
-}
-
-void dfs_util(Graph_DFS g, int v, int *visited) {
-    printf("%d ", v);
-    visited[v-1] = 1;
-    
-    for (int i=0; i<g.V; i++) {
-        if (g.matrix[v-1][i] && !visited[i]) {
-            dfs_util(g, i+1, visited);
+    for (int i=0; i<g.V;i++) {
+        if (g.matrix[v-1][i] && !g.visited[v-1]) {
+            DFS_R(g, i+1);
         }
     }
+    
+    printf("%d ", v);
 }
 
 void printGraphMatrix(Graph_DFS g)
