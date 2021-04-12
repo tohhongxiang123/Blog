@@ -17,6 +17,7 @@ MOV DEST SRC
 ```
 
 `MOV R1, R0`
+
 | Register | Before Execution | After Execution |
 | -------- | ---------------- | --------------- |
 | R0       | 0x12345678       | 0X12345678      |
