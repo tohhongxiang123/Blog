@@ -49,7 +49,11 @@ export function recursivelyGetFilesInDirectory(directory) {
     const results = [];
 
     const currentFullPath = path.join(process.cwd(), directory)
-    const currentFolderResults = fs.readdirSync(currentFullPath)
+
+    // sort "Chapter 10" after "Chapter 2"
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })
+    const currentFolderResults = fs.readdirSync(currentFullPath).sort(collator.compare)
+
     currentFolderResults.forEach(fileOrFolderName => {
         if (fs.lstatSync(path.join(currentFullPath, fileOrFolderName)).isDirectory()) {
             results.push(...recursivelyGetFilesInDirectory([directory, fileOrFolderName].join('/')))
@@ -65,9 +69,11 @@ export function getFilesWithStructure(directory) {
     const currentFileName = directory.replace(/\\/g, '/').split('/')[directory.replace(/\\/g, '/').split('/').length - 1]
     const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [] }
 
+    // sort "Chapter 10" after "Chapter 2"
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })
     const currentFullPath = path.join(process.cwd(), directory)
     if (fs.lstatSync(path.join(currentFullPath)).isDirectory()) {
-        result.children = fs.readdirSync(directory).map(fileOrFolderName => getFilesWithStructure(path.join(directory, fileOrFolderName)))
+        result.children = fs.readdirSync(directory).sort(collator.compare).map(fileOrFolderName => getFilesWithStructure(path.join(directory, fileOrFolderName)))
     }
 
     return result
