@@ -72,7 +72,7 @@ $$
 - Single precision floating-point numbers (32-bits)
   - 1-bit sign + 8-bit exponent + 23 bit fraction
 - Double prevision floating-point numbers (64-bits)
-  - 1-bit sign + 11-bit exponent + 23-bit fraction
+  - 1-bit sign + 11-bit exponent + 52-bit fraction
 
 ### Sign bit (S)
 - S = 0 (positive), S = 1 (negative)
