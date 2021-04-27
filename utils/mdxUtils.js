@@ -66,7 +66,7 @@ export function recursivelyGetFilesInDirectory(directory) {
 }
 
 export function getFilesWithStructure(directory) {
-    const currentFileName = directory.replace(/\\/g, '/').split('/')[directory.replace(/\\/g, '/').split('/').length - 1]
+    const currentFileName = directory.replace(/\\/g, path.sep).split(path.sep)[directory.replace(/\\/g, path.sep).split(path.sep).length - 1]
     const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [] }
 
     // sort "Chapter 10" after "Chapter 2"

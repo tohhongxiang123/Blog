@@ -271,7 +271,7 @@ void DFS_R (Graph_DFS g, int v)
     g.visited[v - 1] = 1;
     
     for (int i=0; i<g.V;i++) {
-        if (g.matrix[v-1][i] && !g.visited[v-1]) {
+        if (g.matrix[v-1][i] && !g.visited[i]) {
             DFS_R(g, i+1);
         }
     }

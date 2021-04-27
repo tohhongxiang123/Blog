@@ -5,10 +5,11 @@ import { useRouter } from 'next/router'
 import ArrowRight from '../../public/icons/arrow_right.svg'
 import ArrowDown from '../../public/icons/arrow_down.svg'
 
+const sep = /\\|\//g // possible separators
 export default function NestedDirectoryNavigation({ children, name, path, slug }) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(checkIfOpen({ path, children }, decodeURIComponent(router.asPath)))
-    const isActive = arrayEquals(path.split('\\').filter(Boolean), decodeURIComponent(router.asPath).split('/').filter(Boolean))
+    const isActive = arrayEquals(path.split(sep).filter(Boolean), decodeURIComponent(router.asPath).split(sep).filter(Boolean))
 
     const rootClassNames = "flex justify-between items-center font-medium rounded-r-lg overflow-hidden p-4 cursor-pointer mb-0"
     if (children.length == 0) return (
@@ -32,7 +33,7 @@ export default function NestedDirectoryNavigation({ children, name, path, slug }
 
 function checkIfOpen({ path, children }, currentPath) {
     if (children.length == 0) {
-        return arrayEquals(path.split('\\').filter(Boolean), currentPath.split('/').filter(Boolean))
+        return arrayEquals(path.split(sep).filter(Boolean), currentPath.split('/').filter(Boolean))
     }
 
     return children.some(child => checkIfOpen({ ...child }, currentPath))
