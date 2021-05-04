@@ -25,8 +25,6 @@ export function getFileContent(slug) {
         data.title = content.split('\n')[0].replace('#', '')
     }
 
-
-
     if (!data.date) {
         // Get last updated time from git logs
         let lastUpdatedDate = execSync(
