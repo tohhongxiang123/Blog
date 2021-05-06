@@ -1,7 +1,6 @@
 import '../styles/reset.scss'
 import '../styles/tailwind.css'
-import '../styles/light.scss'
-import '../styles/dark.scss'
+import '../styles/markdown.css'
 
 function MyApp({ Component, pageProps }) {
 	return <Component {...pageProps} />

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import NotePreview from "../components/NotePreview";
 import PostPreview from "../components/PostPreview";
-import { formatDate } from "../utils/convertDate";
+import WaveContainer from "../components/WaveContainer";
 import {
 	getFileContent,
 	getFilesInDirectory,
@@ -13,53 +13,59 @@ export default function Index({ posts = [], notes = [] }) {
 	return (
 		<Layout title={"Home"}>
 			<div>
-				<div className="text-center flex flex-col p-20">
-					<h1 className="text-7xl">Toh Hong Xiang</h1>
-					<p className="opacity-80">Web Developer, studying in NTU</p>
-					<ul className="flex flex-wrap justify-center p-0">
-						<li>
-							<a
-								href="https://github.com/tohhongxiang123"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img
-									className="opacity-60 hover:opacity-100 cursor-pointer m-4"
-									src="/icons/github.svg"
-									width={64}
-									height={64}
-								/>
-							</a>
-						</li>
-						<li>
-							<a
-								href="https://www.linkedin.com/in/toh-hong-xiang-31551118b/"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img
-									className="opacity-60 hover:opacity-100 cursor-pointer m-4"
-									src="/icons/linkedin.svg"
-									width={64}
-									height={64}
-								/>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div className="max-w-5xl mx-auto p-8 px-16">
-					<div>
+				<WaveContainer top={false} className="z-10 -mb-16 sm:-mb-32 md:-mb-48 lg:-mb-64">
+					<div className="p-8 pt-32 text-center flex flex-col">
+						<h1 className="text-7xl font-bold mb-4">
+							Toh Hong Xiang
+						</h1>
+						<p className="opacity-80 font-semibold tracking-wide">
+							Web Developer, studying in NTU
+						</p>
+						<ul className="flex flex-wrap justify-center p-0">
+							<li>
+								<a
+									href="https://github.com/tohhongxiang123"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<img
+										className="opacity-60 hover:opacity-100 transition-all duration-75 cursor-pointer m-4"
+										src="/icons/github.svg"
+										width={64}
+										height={64}
+										alt="Github"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/toh-hong-xiang-31551118b/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<img
+										className="opacity-60 hover:opacity-100 transition-all duration-75 cursor-pointer m-4"
+										src="/icons/linkedin.svg"
+										width={64}
+										height={64}
+										alt="LinkedIn"
+									/>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</WaveContainer>
+				<div className="m-8">
+					<section className="relative z-10 max-w-3xl mx-auto mb-8 p-8 pt-4 rounded-md shadow-md hover:shadow-lg transition-all duration-75 bg-white">
 						<Link href="/posts">
-							<h3 className="cursor-pointer hover:underline">
+							<h2 className="cursor-pointer hover:underline text-3xl font-bold mb-6">
 								Posts
-							</h3>
+							</h2>
 						</Link>
-						<ul className="list-disc">
+						<ul>
 							{posts.length > 0 ? (
 								posts.map((post) => (
-									<li
-										key={post.filePath}
-									>
+									<li key={post.filePath} className="mb-4">
 										<PostPreview {...post} />
 									</li>
 								))
@@ -68,21 +74,21 @@ export default function Index({ posts = [], notes = [] }) {
 							)}
 						</ul>
 						<Link href={"/posts"}>
-							<p className="cursor-pointer hover:underline text-right text-md text-gray-500">
+							<p className="cursor-pointer hover:underline text-right font-medium">
 								...View All Posts
 							</p>
 						</Link>
-					</div>
-					<div>
+					</section>
+					<section className="max-w-3xl mx-auto p-8 pt-4 rounded-md shadow-md hover:shadow-lg transition-all duration-75 bg-white">
 						<Link href={"/notes"}>
-							<h3 className="cursor-pointer hover:underline">
+							<h2 className="cursor-pointer hover:underline text-3xl font-bold mb-6">
 								Notes
-							</h3>
+							</h2>
 						</Link>
-						<ul className="list-disc">
+						<ul>
 							{notes.length > 0 ? (
 								notes.map((note) => (
-									<li key={note.filePath} className="mb-8">
+									<li key={note.filePath} className="mb-4">
 										<NotePreview {...note} />
 									</li>
 								))
@@ -91,11 +97,11 @@ export default function Index({ posts = [], notes = [] }) {
 							)}
 						</ul>
 						<Link href={"/notes"}>
-							<p className="cursor-pointer hover:underline text-right text-md text-gray-500">
+							<p className="cursor-pointer hover:underline text-right font-medium">
 								...View All Notes
 							</p>
 						</Link>
-					</div>
+					</section>
 				</div>
 			</div>
 		</Layout>

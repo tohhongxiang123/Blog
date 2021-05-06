@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Footer from './Footer'
 import TopNavBar from './TopNavBar'
 
-export default function Layout({ children, title = "Blog" }) {
+export default function Layout({ children, title = "Blog", enableFooter=true }) {
 	return (
 		<div className={"h-screen overflow-y-hidden flex flex-col"}>
 			<Head>
@@ -14,18 +15,21 @@ export default function Layout({ children, title = "Blog" }) {
 				/>
 				<link
 					rel="stylesheet"
-					href="https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css"
+					href="https://unpkg.com/prismjs@0.0.1/themes/prism.css"
 					as="script"
 				/>
 				<title>{title}</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<TopNavBar>
-				<Link href={"/posts"}>Posts</Link>
-				<Link href={"/notes"}>Notes</Link>
-				<Link href={"/about"}>About</Link>
+				<Link href={"/posts"}><a className="mb-4 hover:underline">Posts</a></Link>
+				<Link href={"/notes"}><a className="mb-4 hover:underline">Notes</a></Link>
+				<Link href={"/about"}><a className="mb-4 hover:underline">About</a></Link>
 			</TopNavBar>
-			<main className="max-w-screen overflow-y-auto w-full">{children}</main>
+			<main className="max-w-screen overflow-y-auto w-full" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
+				{children}
+				{enableFooter && <Footer />}
+			</main>
 		</div>
 	)
 }

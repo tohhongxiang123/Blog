@@ -9,11 +9,11 @@ export default function NotePreview({ filePath, data, ...props }) {
                 href={`/${filePath}`}
             >
                 <div className="flex flex-col sm:flex-row sm:justify-between items-baseline">
-                    <a className="cursor-pointer"><strong>{data.title}</strong></a>
+                    <a className="cursor-pointer hover:underline"><strong>{data.title}</strong></a>
                     {data.date && <small className="flex-shrink-0">{formatDate(data.date)}</small>}
                 </div>
             </Link>
-            <p><small>{filePath.replace(/\\/g, ' > ')}</small></p>
+            <p className="opacity-90"><small>{filePath.replace(/\\/g, ' > ')}</small></p>
         </div>
     )
 }

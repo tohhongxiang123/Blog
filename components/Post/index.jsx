@@ -1,6 +1,5 @@
 import hydrate from 'next-mdx-remote/hydrate'
 import dynamic from 'next/dynamic'
-import styles from './index.module.scss'
 import { formatDate } from '../../utils/convertDate'
 
 const components = {
@@ -10,7 +9,7 @@ const components = {
 export default function PostPage({ source, frontMatter, ...props }) {
 	const content = hydrate(source, { components })
 	return (
-		<div {...props} className={`${props.className} max-w-6xl mx-auto`}>
+		<div {...props} className={`max-w-3xl mx-auto ${props.className}`}>
 			<header>
 				{frontMatter.description && (
 					<p>{frontMatter.description}</p>
@@ -19,8 +18,7 @@ export default function PostPage({ source, frontMatter, ...props }) {
 					<p><small>Last Updated: {formatDate(frontMatter.date)}</small></p>
 				)}
 			</header>
-			{(frontMatter.date || frontMatter.description) && <hr className={"opacity-30"} />}
-			<main className={styles.markdownBody}>{content}</main>
+			<main className={`markdown-body`}>{content}</main>
 		</div>
 	)
 }
