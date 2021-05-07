@@ -5,7 +5,7 @@ import TopNavBar from './TopNavBar'
 
 export default function Layout({ children, title = "Blog", enableFooter=true }) {
 	return (
-		<div className={"h-screen overflow-y-hidden flex flex-col"}>
+		<div className="flex flex-col h-screen overflow-y-hidden">
 			<Head>
 				<link
 					rel="stylesheet"
@@ -24,12 +24,13 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 			<TopNavBar>
 				<Link href={"/posts"}><a className="mb-4 hover:underline">Posts</a></Link>
 				<Link href={"/notes"}><a className="mb-4 hover:underline">Notes</a></Link>
+				<Link href={"/projects"}><a className="mb-4 hover:underline">Projects</a></Link>
 				<Link href={"/about"}><a className="mb-4 hover:underline">About</a></Link>
 			</TopNavBar>
-			<main className="max-w-screen overflow-y-auto w-full" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
+			<main className="flex-grow overflow-y-auto" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
 				{children}
-				{enableFooter && <Footer />}
 			</main>
+			{enableFooter && <Footer />}
 		</div>
 	)
 }
