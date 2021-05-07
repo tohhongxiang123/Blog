@@ -13,8 +13,12 @@ export default function Index({ posts = [], notes = [] }) {
 	return (
 		<Layout title={"Home"}>
 			<div>
-				<WaveContainer top={false} className="z-10 -mb-16 sm:-mb-32 md:-mb-48 lg:-mb-64">
-					<div className="p-8 pt-32 text-center flex flex-col">
+				<WaveContainer
+					top={false}
+					className="z-10 -mb-16 sm:-mb-32 md:-mb-48 lg:-mb-64 xl:-mb-72 2xl:-mb-96"
+				>
+					<div className="p-8 pt-32 text-center flex flex-col items-center">
+						<img src="code_thinking.svg" width={512} height={512} className="mb-8" alt="logo" />
 						<h1 className="text-7xl font-bold mb-4">
 							Toh Hong Xiang
 						</h1>
@@ -27,14 +31,16 @@ export default function Index({ posts = [], notes = [] }) {
 									href="https://github.com/tohhongxiang123"
 									target="_blank"
 									rel="noopener noreferrer"
+									className="flex flex-col text-center items-center opacity-60 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75 cursor-pointer"
 								>
 									<img
-										className="opacity-60 hover:opacity-100 transition-all duration-75 cursor-pointer m-4"
+										className="m-4 mb-0"
 										src="/icons/github.svg"
 										width={64}
 										height={64}
 										alt="Github"
 									/>
+									<p className="font-semibold">Github</p>
 								</a>
 							</li>
 							<li>
@@ -42,14 +48,34 @@ export default function Index({ posts = [], notes = [] }) {
 									href="https://www.linkedin.com/in/toh-hong-xiang-31551118b/"
 									target="_blank"
 									rel="noopener noreferrer"
+									className="flex flex-col text-center items-center opacity-60 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75 cursor-pointer"
 								>
 									<img
-										className="opacity-60 hover:opacity-100 transition-all duration-75 cursor-pointer m-4"
+										className="m-4 mb-0"
 										src="/icons/linkedin.svg"
 										width={64}
 										height={64}
 										alt="LinkedIn"
 									/>
+									<p className="font-semibold">LinkedIn</p>
+								</a>
+							</li>
+							<li>
+								<a
+									href="resume.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex flex-col text-center items-center opacity-60 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75 cursor-pointer"
+									download
+								>
+									<img
+										className="m-4 mb-0"
+										src="/icons/resume.svg"
+										width={64}
+										height={64}
+										alt="Resume"
+									/>
+									<p className="font-semibold">Resume</p>
 								</a>
 							</li>
 						</ul>
@@ -59,7 +85,7 @@ export default function Index({ posts = [], notes = [] }) {
 					<section className="relative z-10 max-w-3xl mx-auto mb-8 p-8 pt-4 rounded-md shadow-md hover:shadow-lg transition-all duration-75 bg-white">
 						<Link href="/posts">
 							<h2 className="cursor-pointer hover:underline text-3xl font-bold mb-6">
-								Posts
+								Recent Posts
 							</h2>
 						</Link>
 						<ul>
@@ -82,7 +108,7 @@ export default function Index({ posts = [], notes = [] }) {
 					<section className="max-w-3xl mx-auto p-8 pt-4 rounded-md shadow-md hover:shadow-lg transition-all duration-75 bg-white">
 						<Link href={"/notes"}>
 							<h2 className="cursor-pointer hover:underline text-3xl font-bold mb-6">
-								Notes
+								Recent Notes
 							</h2>
 						</Link>
 						<ul>
