@@ -2,8 +2,30 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Footer from './Footer'
 import TopNavBar from './TopNavBar'
+import { useRouter } from 'next/router'
 
+const pages = [
+	{
+		name: 'Posts',
+		path: '/posts'
+	},
+	{
+		name: 'Notes',
+		path: '/notes'
+	},
+	{
+		name: 'Projects',
+		path: '/projects'
+	},
+	{
+		name: 'About',
+		path: '/about'
+	},
+]
 export default function Layout({ children, title = "Blog", enableFooter=true }) {
+	const router = useRouter()
+
+
 	return (
 		<div className="flex flex-col h-screen overflow-y-hidden">
 			<Head>
@@ -22,10 +44,9 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<TopNavBar>
-				<Link href={"/posts"}><a className="mb-4 hover:underline">Posts</a></Link>
-				<Link href={"/notes"}><a className="mb-4 hover:underline">Notes</a></Link>
-				<Link href={"/projects"}><a className="mb-4 hover:underline">Projects</a></Link>
-				<Link href={"/about"}><a className="mb-4 hover:underline">About</a></Link>
+				{pages.map(page => (
+					<Link key={page.path} href={page.path}><a className={`mb-4 hover:underline ${router.asPath.startsWith(page.path) ? 'font-semibold' : ''}`}>{page.name}</a></Link>
+				))}
 			</TopNavBar>
 			<main className="flex-grow overflow-y-auto relative" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
 				{children}
