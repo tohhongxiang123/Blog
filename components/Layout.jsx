@@ -15,7 +15,7 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 				/>
 				<link
 					rel="stylesheet"
-					href="https://unpkg.com/prismjs@0.0.1/themes/prism.css"
+					href="https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css"
 					as="script"
 				/>
 				<title>{title}</title>
@@ -27,7 +27,7 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 				<Link href={"/projects"}><a className="mb-4 hover:underline">Projects</a></Link>
 				<Link href={"/about"}><a className="mb-4 hover:underline">About</a></Link>
 			</TopNavBar>
-			<main className="flex-grow overflow-y-auto" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
+			<main className="flex-grow overflow-y-auto relative" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
 				{children}
 			</main>
 			{enableFooter && <Footer />}

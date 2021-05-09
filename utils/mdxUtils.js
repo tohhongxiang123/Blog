@@ -5,8 +5,8 @@ import matter from 'gray-matter'
 import renderToString from 'next-mdx-remote/render-to-string'
 import rehypeKatex from 'rehype-katex'
 import math from 'remark-math'
-import html from 'remark-html';
-import prism from 'remark-prism';
+import html from 'remark-html'
+import prism from 'remark-prism'
 
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const getFilesInDirectory = (directory) => fs

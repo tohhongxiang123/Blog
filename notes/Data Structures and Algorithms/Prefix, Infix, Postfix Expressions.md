@@ -3,25 +3,25 @@
 # Infix
 The most readable expression, because that is what expressions are usually written in
 
-- A + B
-- B * C
-- X - Y
+- `A + B`
+- `B * C`
+- `X - Y`
 
 > An infix expression is where the operator is in the middle of the 2 operands
 
 # Prefix
 > A prefix expression is where the operator is on the left of the 2 operands
 
-- + A B
-- * B C
-- - X Y
+- `+ A B`
+- `* B C`
+- `- X Y`
 
 # Postfix
 > A postfix expression is where the operator is on the right side of the 2 operands
 
-- A B +
-- B C *
-- X Y -
+- `A B +`
+- `B C *`
+- `X Y -`
 
 # Advantages of Prefix/Postfix expressions
 
@@ -29,39 +29,39 @@ Writing in prefix/postfix makes the **order of precedence** obvious for computer
 
 # Writing Compound Expressions
 
-Consider A + B * C
+Consider `A + B * C`
 
-We know that the order of precedence comes as (A + (B * C)). 
+We know that the order of precedence comes as `(A + (B * C))`. 
 
-1. We multiply B * C first
+1. We multiply `B * C` first
 2. We add A to that result
 
-Hence, A + B * C = + A * B C (prefix) = A B C * + (postfix)
+Hence, `A + B * C = + A * B C` (prefix) `= A B C * +` (postfix)
 
-How about (A + B) * C?
+How about `(A + B) * C?`
 
-1. We add A + B
+1. We add `A + B`
 2. We multiply C
 
-Hence, (A + B) * C = * + A B C (prefix) = A B + C * (Postfix)
+Hence, `(A + B) * C = * + A B C` (prefix) `= A B + C *` (Postfix)
 
 # How to Systematically Convert from Infix to Prefix/Postfix?
 
-Consider the expression (A + B) * C + D. Using order of precedence, we can fully parenthesise the expression
+Consider the expression `(A + B) * C + D`. Using order of precedence, we can fully parenthesise the expression
 
-(((A + B) * C) + D)
+`(((A + B) * C) + D)`
 
 ### Prefix
 - Move the operator to its corresponding left bracket
-- (A + B) = + A B
-- ((A + B) * C) = ((+ A B) * C) = * + A B C
-- (((A + B) * C) + D) = ((* + A B C) + D) = + * + A B C D
+- `(A + B) = + A B`
+- `((A + B) * C) = ((+ A B) * C) = * + A B C`
+- `(((A + B) * C) + D) = ((* + A B C) + D) = + * + A B C D`
 
 ### Postfix
 - Move the operator to its corresponding right bracket
-- (A + B) = A B +
-- ((A + B) * C) = ((A B +) * C) = A B + C *
-- (((A + B) * C) + D) = ((A B + C *) + D) = A B + C * D +
+- `(A + B) = A B +`
+- `((A + B) * C) = ((A B +) * C) = A B + C *`
+- `(((A + B) * C) + D) = ((A B + C *) + D) = A B + C * D +`
 
 # General Conversion from Infix to Postfix
 

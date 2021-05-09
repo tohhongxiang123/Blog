@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@svgr/webpack": "^5.5.0",
+        "@tailwindcss/typography": "^0.4.0",
         "@zeit/next-css": "^1.0.1",
         "date-fns": "^2.21.1",
         "framer-motion": "^2.9.5",

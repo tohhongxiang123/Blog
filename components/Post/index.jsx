@@ -9,7 +9,7 @@ const components = {
 export default function PostPage({ source, frontMatter, ...props }) {
 	const content = hydrate(source, { components })
 	return (
-		<div {...props} className={`max-w-3xl mx-auto ${props.className}`}>
+		<div {...props} className={`prose mx-auto ${props.className}`}>
 			<header>
 				{frontMatter.description && (
 					<p>{frontMatter.description}</p>
@@ -18,7 +18,7 @@ export default function PostPage({ source, frontMatter, ...props }) {
 					<p><small>Last Updated: {formatDate(frontMatter.date)}</small></p>
 				)}
 			</header>
-			<main className={`markdown-body`}>{content}</main>
+			<article>{content}</article>
 		</div>
 	)
 }
