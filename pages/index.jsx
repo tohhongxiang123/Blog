@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import NotePreview from "../components/NotePreview";
 import PostPreview from "../components/PostPreview";
 import WaveContainer from "../components/WaveContainer";
+import ImageWithLabel from "../components/ImageWithLabel"
 import {
 	getFileContent,
 	getFilesInDirectory,
@@ -18,7 +19,13 @@ export default function Index({ posts = [], notes = [] }) {
 					className="z-10 -mb-16 sm:-mb-32 md:-mb-48 lg:-mb-64 xl:-mb-72 2xl:-mb-96"
 				>
 					<div className="p-8 pt-32 text-center flex flex-col items-center">
-						<img src="code_thinking.svg" width={512} height={512} className="mb-8" alt="logo" />
+						<img
+							src="code_thinking.svg"
+							width={512}
+							height={512}
+							className="mb-8"
+							alt="logo"
+						/>
 						<h1 className="text-7xl font-bold mb-4">
 							Toh Hong Xiang
 						</h1>
@@ -31,33 +38,13 @@ export default function Index({ posts = [], notes = [] }) {
 									href="https://github.com/tohhongxiang123"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex flex-col text-center items-center opacity-60 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75 cursor-pointer"
+									className="cursor-pointer"
 								>
-									<img
-										className="m-4 mb-0"
-										src="/icons/github.svg"
-										width={64}
-										height={64}
-										alt="Github"
+									<ImageWithLabel
+										src={"icons/github.svg"}
+										label={"Github"}
+										className="opacity-80 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75"
 									/>
-									<p className="font-semibold">Github</p>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/toh-hong-xiang-31551118b/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex flex-col text-center items-center opacity-60 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75 cursor-pointer"
-								>
-									<img
-										className="m-4 mb-0"
-										src="/icons/linkedin.svg"
-										width={64}
-										height={64}
-										alt="LinkedIn"
-									/>
-									<p className="font-semibold">LinkedIn</p>
 								</a>
 							</li>
 							<li>
@@ -65,17 +52,42 @@ export default function Index({ posts = [], notes = [] }) {
 									href="resume.pdf"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex flex-col text-center items-center opacity-60 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75 cursor-pointer"
+									className="cursor-pointer"
 									download
 								>
-									<img
-										className="m-4 mb-0"
-										src="/icons/resume.svg"
-										width={64}
-										height={64}
-										alt="Resume"
+									<ImageWithLabel
+										src={"icons/resume.svg"}
+										label={"Resume"}
+										className="opacity-80 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75"
 									/>
-									<p className="font-semibold">Resume</p>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/toh-hong-xiang-31551118b/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="cursor-pointer"
+								>
+									<ImageWithLabel
+										src={"icons/linkedin.svg"}
+										label={"LinkedIn"}
+										className="opacity-80 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="mailto:tohhongxiang@gmail.com"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="cursor-pointer"
+								>
+									<ImageWithLabel
+										src={"icons/gmail.svg"}
+										label={"Email"}
+										className="opacity-80 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75"
+									/>
 								</a>
 							</li>
 						</ul>
