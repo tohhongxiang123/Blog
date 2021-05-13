@@ -14,6 +14,7 @@ module.exports = {
     },
     env: {
         NOTES_PATH: 'notes',
-        POSTS_PATH: 'posts'
+        POSTS_PATH: 'posts',
+        PROJECTS_PATH: 'projects'
     }
 }

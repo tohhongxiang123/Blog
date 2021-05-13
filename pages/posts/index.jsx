@@ -1,8 +1,6 @@
 import React from "react";
 import { getFileContent, getFilesInDirectory } from "../../utils/mdxUtils";
-import Link from "next/link";
 import Layout from "../../components/Layout";
-import { formatDate } from "../../utils/convertDate";
 import PostPreview from "../../components/PostPreview";
 
 export default function PostList({ posts = [] }) {
