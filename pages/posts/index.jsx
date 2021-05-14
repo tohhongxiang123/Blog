@@ -7,7 +7,7 @@ export default function PostList({ posts = [] }) {
 	return (
 		<Layout title="Posts">
 			<div className="max-w-5xl mx-auto p-8">
-				<h3>Posts</h3>
+				<h3 className="text-3xl font-bold mb-4">Posts</h3>
 				<ul className="list-disc">
 					{posts.map((post) => (
 						<li key={post.filePath}>
