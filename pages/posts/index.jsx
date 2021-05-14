@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link'
 import { getFileContent, getFilesInDirectory } from "../../utils/mdxUtils";
 import Layout from "../../components/Layout";
 import PostPreview from "../../components/PostPreview";
@@ -15,6 +16,9 @@ export default function PostList({ posts = [] }) {
 						</li>
 					))}
 				</ul>
+			</div>
+			<div className="max-w-5xl mx-auto p-8 text-right">
+				<Link href="/"><a className="font-medium rounded-md py-2 px-4 hover:bg-gray-100">🠔 Back</a></Link>
 			</div>
 		</Layout>
 	);
