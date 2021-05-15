@@ -1,9 +1,14 @@
-import '../styles/reset.scss'
-import '../styles/tailwind.css'
-import '../styles/markdown.css'
+import "../styles/reset.scss";
+import "../styles/tailwind.css";
+import "../styles/markdown.css";
+import { AnimateSharedLayout } from "framer-motion";
 
 function MyApp({ Component, pageProps }) {
-	return <Component {...pageProps} />
+	return (
+		<AnimateSharedLayout>
+			<Component {...pageProps} />
+		</AnimateSharedLayout>
+	);
 }
 
 // Only uncomment this method if you have blocking data requirements for
@@ -18,4 +23,4 @@ function MyApp({ Component, pageProps }) {
 //   return { ...appProps }
 // }
 
-export default MyApp
+export default MyApp;
