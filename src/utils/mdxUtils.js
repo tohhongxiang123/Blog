@@ -65,11 +65,11 @@ export function recursivelyGetFilesInDirectory(directory) {
 
 export function getFilesWithStructure(directory) {
     const currentFileName = directory.replace(/\\/g, path.sep).split(path.sep)[directory.replace(/\\/g, path.sep).split(path.sep).length - 1]
-    const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [] }
 
     // sort "Chapter 10" after "Chapter 2"
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })
     const currentFullPath = path.join(process.cwd(), directory)
+    const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [], lastModified: fs.statSync(path.join(currentFullPath)).birthtime.toISOString() }
     if (fs.lstatSync(path.join(currentFullPath)).isDirectory()) {
         result.children = fs.readdirSync(directory).sort(collator.compare).map(fileOrFolderName => getFilesWithStructure(path.join(directory, fileOrFolderName)))
     }

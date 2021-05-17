@@ -44,7 +44,7 @@ export async function getStaticProps() {
 	);
 	const notesStructure = getFilesWithStructure(
 		process.env.NOTES_PATH
-	).children;
+	).children.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() > 0 ? 1 : -1);  // latest comes first
 
 	return {
 		props: {

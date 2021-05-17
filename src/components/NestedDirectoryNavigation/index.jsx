@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ArrowRight from '../../public/icons/arrow_right.svg'
-import ArrowDown from '../../public/icons/arrow_down.svg'
+import ArrowRight from '../../../public/icons/arrow_right.svg'
+import ArrowDown from '../../../public/icons/arrow_down.svg'
 
 const sep = /\\|\//g // possible separators
 export default function NestedDirectoryNavigation({ children, name, path, slug }) {
