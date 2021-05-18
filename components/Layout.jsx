@@ -42,13 +42,14 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 				/>
 				<title>{title}</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<meta name="description" content="Toh Hong Xiang's personal Blog and portfolio" />
 			</Head>
 			<TopNavBar>
 				{pages.map(page => (
 					<Link key={page.path} href={page.path}><a className={`mb-4 hover:underline ${router.asPath.startsWith(page.path) ? 'font-semibold' : ''}`}>{page.name}</a></Link>
 				))}
 			</TopNavBar>
-			<main className="flex-grow overflow-y-auto relative" style={{ background: 'url("background.svg") no-repeat', backgroundSize: 'cover' }}>
+			<main className="flex-grow overflow-y-auto relative">
 				{children}
 			</main>
 			{enableFooter && <Footer />}

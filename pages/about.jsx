@@ -10,7 +10,7 @@ export default function About() {
 					<h1 className="text-center text-5xl lg:text-7xl font-bold mb-12">
 						Toh Hong Xiang
 					</h1>
-					<ul className="list-inside p-0 m-0 flex gap-4">
+					<ul className="list-inside p-0 m-0 flex flex-wrap items-center justify-center gap-4">
 						<li>
 							<a
 								href="https://github.com/tohhongxiang123"

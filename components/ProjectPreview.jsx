@@ -25,7 +25,7 @@ export default function ProjectPreview({
                     {technologies.map(tech => <li key={tech}><img src={`/icons/${tech}.svg`} width={48} height={48} alt={tech} /></li>)}
                 </ul>}
                 <div className="flex justify-center gap-8">
-                    <a
+                    {code && <a
                         href={code}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -33,8 +33,8 @@ export default function ProjectPreview({
                         <span className="inline-block bg-gray-200 hover:bg-gray-300 rounded-md px-4 py-2 font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
                             Code
                         </span>
-                    </a>
-                    <a
+                    </a>}
+                    {demo && <a
                         href={demo}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -42,7 +42,7 @@ export default function ProjectPreview({
                         <span className="inline-block bg-gray-200 hover:bg-gray-300 rounded-md px-4 py-2 font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
                             Demo
                         </span>
-                    </a>
+                    </a>}
                 </div>
 			</div>
 		</div>

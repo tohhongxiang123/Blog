@@ -66,9 +66,8 @@ export default function NavBar({ children = [], ...props }) {
 				))}
 			</ul>
 			<ul
-				className={`${
-					isOpen ? "opacity-100 static" : "opacity-0 absolute"
-				} transition-all duration-100 ease-in-out sm:hidden pt-4 m-0 z-10`}
+				className={`${isOpen ? "opacity-100" : "opacity-0"} transform ${isOpen ? "translate-y-0" : "-translate-y-96"}
+				absolute bg-white w-full top-0 left-0 my-12 p-8 shadow-md transition-all z-10 duration-100 ease-in-out sm:hidden pt-4 m-0`}
 			>
 				{children.map((child, index) => (
 					<li key={index}>{child}</li>
