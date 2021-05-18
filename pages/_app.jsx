@@ -1,14 +1,9 @@
 import "../styles/reset.scss";
 import "../styles/tailwind.css";
 import "../styles/markdown.css";
-import { AnimateSharedLayout } from "framer-motion";
 
 function MyApp({ Component, pageProps }) {
-	return (
-		<AnimateSharedLayout>
-			<Component {...pageProps} />
-		</AnimateSharedLayout>
-	);
+	return <Component {...pageProps} />;
 }
 
 // Only uncomment this method if you have blocking data requirements for

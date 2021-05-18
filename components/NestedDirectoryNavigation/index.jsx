@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ArrowRight from '../../../public/icons/arrow_right.svg'
-import ArrowDown from '../../../public/icons/arrow_down.svg'
+import ArrowRight from '../../public/icons/arrow_right.svg'
+import ArrowDown from '../../public/icons/arrow_down.svg'
 
 const sep = /\\|\//g // possible separators
 export default function NestedDirectoryNavigation({ children, name, path, slug }) {
@@ -21,7 +21,7 @@ export default function NestedDirectoryNavigation({ children, name, path, slug }
                 <p className={"m-0"}><strong>{name}</strong></p>
                 <button className={"focus:outline-none border-none fill-current"}>{isOpen ? <ArrowDown /> : <ArrowRight />}</button>
             </div>
-            {isOpen && <ul className={"m-0 pl-4"}>
+            {isOpen && <ul className={"ml-2 pl-4"}>
                 {children.map(child => (
                     <li key={child.path} className={"m-0"}><NestedDirectoryNavigation {...child} slug={slug} /></li>
                 ))}

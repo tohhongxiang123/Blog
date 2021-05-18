@@ -20,7 +20,6 @@ export default function PostPage({ source = '', frontMatter = {} }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-	console.log(path.join(process.env.POSTS_PATH, params.slug))
 	const { content, data } = getFileContent(path.join(process.env.POSTS_PATH, params.slug))
 
 	const mdxSource = await renderContentWithPlugins({ content, data, components })
