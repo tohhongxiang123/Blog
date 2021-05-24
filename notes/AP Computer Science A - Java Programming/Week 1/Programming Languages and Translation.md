@@ -66,3 +66,9 @@ and runs faster because it has been pre-compiled.
 
 Which language you choose is based on what you want to do, because each has its own advantages and disadvantages for particular tasks.
 
+# Extra Resources
+
+- [How do computers read code?](https://www.youtube.com/watch?v=QXjU9qTsYCc)
+- [#67 Python Tutorial for Beginners | is Python Compiled or Interpreted Language?](https://www.youtube.com/watch?v=0BhSWyDEDC4)
+- [Compiled vs Interpreted Programming Languages - C++, Rust, Go, Haskell, C#, Java, Python, Javascript](https://www.youtube.com/watch?v=y6VvxGHCxa4)
+
