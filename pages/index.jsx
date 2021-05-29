@@ -8,6 +8,9 @@ import {
 	getFilesInDirectory,
 	recursivelyGetFilesInDirectory,
 } from "../utils/mdxUtils";
+import dynamic from "next/dynamic";
+
+const ParticlesBg = dynamic(() => import("particles-bg"), { ssr: false });
 
 export default function Index({ posts = [], notes = [] }) {
 	return (
@@ -83,6 +86,12 @@ export default function Index({ posts = [], notes = [] }) {
 						</a>
 					</li>
 				</ul>
+				<ParticlesBg
+					type="cobweb"
+					num={50}
+					color={"#AFAFAF"}
+					bg={true}
+				/>
 			</div>
 			<div className="flex flex-col items-center justify-center divide-x divide-gray-300">
 				<div className="w-full max-w-2xl p-8 rounded-md">
