@@ -1,30 +1,37 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Footer from './Footer'
-import TopNavBar from './TopNavBar'
-import { useRouter } from 'next/router'
+import Head from "next/head";
+import Link from "next/link";
+import Footer from "./Footer";
+import TopNavBar from "./TopNavBar";
+import { useRouter } from "next/router";
 
 const pages = [
 	{
-		name: 'Posts',
-		path: '/posts'
+		name: "Posts",
+		path: "/posts",
 	},
 	{
-		name: 'Notes',
-		path: '/notes'
+		name: "Notes",
+		path: "/notes",
 	},
 	{
-		name: 'Projects',
-		path: '/projects'
+		name: "Projects",
+		path: "/projects",
 	},
 	{
-		name: 'About',
-		path: '/about'
+		name: "About",
+		path: "/about",
 	},
-]
-export default function Layout({ children, title = "Blog", enableFooter=true }) {
-	const router = useRouter()
-
+	{
+		name: "Portfolio",
+		path: "/portfolio",
+	},
+];
+export default function Layout({
+	children,
+	title = "Blog",
+	enableFooter = true,
+}) {
+	const router = useRouter();
 
 	return (
 		<div className="flex flex-col h-screen overflow-y-hidden">
@@ -41,12 +48,28 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 					as="script"
 				/>
 				<title>{title}</title>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta name="description" content="Toh Hong Xiang's personal Blog and portfolio" />
+				<meta
+					name="viewport"
+					content="initial-scale=1.0, width=device-width"
+				/>
+				<meta
+					name="description"
+					content="Toh Hong Xiang's personal Blog and portfolio"
+				/>
 			</Head>
 			<TopNavBar>
-				{pages.map(page => (
-					<Link key={page.path} href={page.path}><a className={`mb-4 hover:underline ${router.asPath.startsWith(page.path) ? 'font-semibold' : ''}`}>{page.name}</a></Link>
+				{pages.map((page) => (
+					<Link key={page.path} href={page.path}>
+						<a
+							className={`mb-4 hover:underline ${
+								router.asPath.startsWith(page.path)
+									? "font-semibold"
+									: ""
+							}`}
+						>
+							{page.name}
+						</a>
+					</Link>
 				))}
 			</TopNavBar>
 			<main className="flex-grow overflow-y-auto relative">
@@ -54,5 +77,5 @@ export default function Layout({ children, title = "Blog", enableFooter=true }) 
 			</main>
 			{enableFooter && <Footer />}
 		</div>
-	)
+	);
 }
