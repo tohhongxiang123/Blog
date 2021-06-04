@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { getFileContent, getFilesInDirectory } from "../utils/mdxUtils";
 
 const pages = [
 	{
@@ -21,7 +22,7 @@ const pages = [
 	},
 ];
 
-export default function temp() {
+export default function temp({ projects = [] }) {
 	const router = useRouter();
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -239,10 +240,60 @@ export default function temp() {
 				</p>
 			</section>
 			<section className="min-h-screen flex flex-col py-16 px-4 gap-4 max-w-3xl">
-				<h2 className="text-5xl md:text-8xl font-bold text-center break-words md:mb-8">
+				<h2 className="text-5xl md:text-8xl font-bold text-center break-words mb-4 md:mb-8">
 					My Projects
 				</h2>
+				<ul className="flex flex-col gap-8 items-center max-w-2xl mx-auto">
+					{projects.map(({ data }) => (
+						<li key={data.title}>
+							{/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+							<div className="relative mb-8 flex lg:flex-row flex-col">
+								<img
+									src={data.screenshot}
+									alt={data.title}
+									className="filter brightness-75 w-full h-full"
+								/>
+								<div className="lg:bg-black lg:bg-opacity-70 p-4 top-0 right-0 flex flex-col items-center justify-center
+									rounded-md mt-0 lg:mt-16 ml-0 lg:-ml-16 z-10"
+								>
+									<h3 className="font-bold text-xl sm:text-3xl text-center">
+										{data.title}
+									</h3>
+									<p className="font-light text-normal sm:text-lg tracking-wide opacity-90 text-center leading-3">
+										<small>{data.description}</small>
+									</p>
+									<div className="py-4 flex gap-4">
+										<button className="bg-gray-700 hover:bg-gray-800 font-bold py-2 px-4 rounded-md inline-flex items-center hover:shadow-lg">
+											Code
+										</button>
+										<button className="font-bold py-2 px-4 rounded-md inline-flex items-center">
+											Demo
+										</button>
+									</div>
+								</div>
+							</div>
+						</li>
+					))}
+				</ul>
 			</section>
 		</div>
 	);
+}
+
+export async function getStaticProps() {
+	const projects = getFilesInDirectory(process.env.PROJECTS_PATH).map(
+		(filePath) => {
+			const { content, data } = getFileContent(filePath);
+
+			return {
+				content,
+				data,
+				filePath,
+			};
+		}
+	);
+
+	return {
+		props: { projects },
+	};
 }
