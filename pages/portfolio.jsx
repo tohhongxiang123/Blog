@@ -47,7 +47,7 @@ export default function temp({ projects = [] }) {
 
 	return (
 		<div className="flex flex-col items-center bg-gray-800 min-h-screen text-white overflow-x-hidden relative">
-			<nav className="px-6 sm:px-16 py-4 flex items-center sm:justify-around justify-between gap-x-4 w-full fixed top-0 z-10 bg-gray-800 bg-opacity-90">
+			<nav className="px-6 sm:px-16 py-4 flex items-center sm:justify-around justify-between gap-x-4 w-full fixed top-0 z-20 bg-gray-800 bg-opacity-90">
 				<div>
 					<Link href="/">
 						<a className="text-2xl font-bold tracking-wide">THX.</a>
@@ -243,7 +243,7 @@ export default function temp({ projects = [] }) {
 				<h2 className="text-5xl md:text-8xl font-bold text-center break-words mb-4 md:mb-8">
 					My Projects
 				</h2>
-				<ul className="flex flex-col gap-8 items-center max-w-2xl mx-auto">
+				<ul className="flex flex-col gap-8 items-center max-w-4xl mx-auto">
 					{projects.map(({ data }) => (
 						<li key={data.title}>
 							{/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
@@ -253,8 +253,9 @@ export default function temp({ projects = [] }) {
 									alt={data.title}
 									className="filter brightness-75 w-full h-full"
 								/>
-								<div className="lg:bg-black lg:bg-opacity-70 p-4 top-0 right-0 flex flex-col items-center justify-center
-									rounded-md mt-0 lg:mt-16 ml-0 lg:-ml-16 z-10"
+								<div
+									className="lg:bg-black lg:bg-opacity-70 p-4 top-0 right-0 inline-flex flex-col items-around justify-center
+									rounded-md mt-0 lg:mt-16 ml-0 lg:-ml-16 z-10 w-1/3"
 								>
 									<h3 className="font-bold text-xl sm:text-3xl text-center">
 										{data.title}
@@ -263,12 +264,22 @@ export default function temp({ projects = [] }) {
 										<small>{data.description}</small>
 									</p>
 									<div className="py-4 flex gap-4">
-										<button className="bg-gray-700 hover:bg-gray-800 font-bold py-2 px-4 rounded-md inline-flex items-center hover:shadow-lg">
+										<a
+											href={data.code}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="bg-gray-700 hover:bg-gray-800 font-bold py-2 px-4 rounded-md inline-flex items-center hover:shadow-lg"
+										>
 											Code
-										</button>
-										<button className="font-bold py-2 px-4 rounded-md inline-flex items-center">
+										</a>
+										<a
+											href={data.demo}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="font-bold py-2 px-4 rounded-md inline-flex items-center"
+										>
 											Demo
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>

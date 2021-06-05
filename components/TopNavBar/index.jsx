@@ -16,7 +16,7 @@ export default function NavBar({ children = [], ...props }) {
 			<ul className="grid grid-cols-1 grid-flow-col gap-4">
 				<li>
 					<strong>
-						<Link href={"/"}>Home</Link>
+						<Link href={"/"}>THX.</Link>
 					</strong>
 				</li>
 				<li className="block sm:hidden">
