@@ -247,15 +247,15 @@ export default function temp({ projects = [] }) {
 					{projects.map(({ data }) => (
 						<li key={data.title}>
 							{/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-							<div className="relative mb-8 flex lg:flex-row flex-col">
+							<div className="relative mb-8 flex flex-col items-center">
 								<img
 									src={data.screenshot}
 									alt={data.title}
 									className="filter brightness-75 w-full h-full"
 								/>
 								<div
-									className="lg:bg-black lg:bg-opacity-70 p-4 top-0 right-0 inline-flex flex-col items-around justify-center
-									rounded-md mt-0 lg:mt-16 ml-0 lg:-ml-16 z-10 w-1/3"
+									className="p-4 top-0 right-0 inline-flex flex-col items-center justify-center
+									mt-0 z-10"
 								>
 									<h3 className="font-bold text-xl sm:text-3xl text-center">
 										{data.title}
