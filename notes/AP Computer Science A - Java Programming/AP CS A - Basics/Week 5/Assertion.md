@@ -44,3 +44,7 @@ if (Math.abs(x - y) < epsilon) {
 2. Replace floating point variables with integers (For money, perform calculations with cents instead of dollars)
 
 If numbers are bigger than what primitive types can handle, use the `BigDecimal` class
+
+# Enabling assertions in Intellij
+
+- Assertions are not enabled by default in IntelliJ. To enable assertions, follow the instructions [here](https://se-education.org/guides/tutorials/intellijUsefulSettings.html)
