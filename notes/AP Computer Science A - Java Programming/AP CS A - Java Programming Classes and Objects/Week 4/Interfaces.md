@@ -466,3 +466,13 @@ public class KarateKid implements Comparable<KarateKid> {
     }
 }
 ```
+
+# Summary
+
+- An interface declaration looks like a class declaration except
+  - Methods have no bodies (**abstract**)
+  - All fields are implicitly `public static final`
+- Classes that implement an interface
+  - Must provide the method bodies declared
+  - Get access to the fields declared
+- Interface variables allow methods to access "interface methods" of an object without knowing the actual class of the object
