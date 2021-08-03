@@ -41,10 +41,10 @@ export async function getStaticProps() {
 				filePath,
 			};
 		}
-	);
+	).sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 	const notesStructure = getFilesWithStructure(
 		process.env.NOTES_PATH
-	).children.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() > 0 ? 1 : -1);  // latest comes first
+	).children.sort((a, b) => new Date(a.lastModified) - new Date(b.lastModified));  // latest comes first
 
 	return {
 		props: {
