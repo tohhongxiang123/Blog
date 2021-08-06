@@ -2,11 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import { execSync } from 'child_process'
 import matter from 'gray-matter'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
 import rehypeKatex from 'rehype-katex'
 import math from 'remark-math'
 import html from 'remark-html'
 import prism from 'remark-prism'
+import mermaid from 'remark-mermaid'
 
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const getFilesInDirectory = (directory) => fs
@@ -77,11 +78,10 @@ export function getFilesWithStructure(directory) {
     return result
 }
 
-export async function renderContentWithPlugins({ content, data, components }) {
-    return await renderToString(content, {
-        components,
+export async function renderContentWithPlugins({ content, data }) {
+    return await serialize(content, {
         mdxOptions: {
-            remarkPlugins: [math, html, prism],
+            remarkPlugins: [() => mermaid({ simple: true }), math, html, prism],
             rehypePlugins: [rehypeKatex],
         },
         scope: data,

@@ -32,7 +32,6 @@ export default function Layout({
 	enableFooter = true,
 }) {
 	const router = useRouter();
-
 	return (
 		<div className="flex flex-col h-screen overflow-y-hidden">
 			<Head>
