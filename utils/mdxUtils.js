@@ -53,7 +53,7 @@ export function recursivelyGetFilesInDirectory(directory) {
     const currentFolderResults = fs.readdirSync(currentFullPath).sort(collator.compare)
 
     currentFolderResults.forEach(fileOrFolderName => {
-        if (fs.lstatSync(path.join(currentFullPath, fileOrFolderName)).isDirectory()) {
+        if (fs.statSync(path.join(currentFullPath, fileOrFolderName)).isDirectory()) {
             results.push(...recursivelyGetFilesInDirectory([directory, fileOrFolderName].join('/')))
         } else {
             results.push([directory, fileOrFolderName].join('/'))
@@ -63,14 +63,24 @@ export function recursivelyGetFilesInDirectory(directory) {
     return results
 }
 
+function getLastModified(directory) {
+    const directoryStats = fs.statSync(directory)
+    if (!directoryStats.isDirectory()) {
+        return directoryStats.mtime.getTime()
+    }
+
+    return Math.max(directoryStats.birthtime.getTime(), ...fs.readdirSync(directory).map(fileOrFolderName => getLastModified(path.join(directory, fileOrFolderName))))
+}
+
 export function getFilesWithStructure(directory) {
+    // get the current file of the full directory
     const currentFileName = directory.replace(/\\/g, path.sep).split(path.sep)[directory.replace(/\\/g, path.sep).split(path.sep).length - 1]
 
     // sort "Chapter 10" after "Chapter 2"
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })
     const currentFullPath = path.join(process.cwd(), directory)
-    const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [], lastModified: fs.statSync(path.join(currentFullPath)).birthtime.toISOString() }
-    if (fs.lstatSync(path.join(currentFullPath)).isDirectory()) {
+    const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [], lastModified: getLastModified(directory) }
+    if (fs.statSync(path.join(currentFullPath)).isDirectory()) {
         result.children = fs.readdirSync(directory).sort(collator.compare).map(fileOrFolderName => getFilesWithStructure(path.join(directory, fileOrFolderName)))
     }
 

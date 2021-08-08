@@ -22,7 +22,7 @@ export async function getStaticProps({ params }) {
     const { content, data } = getFileContent(path.join(process.env.NOTES_PATH, ...params.slug.map(partialSlug => decodeURI(partialSlug))))
     const mdxSource = await renderContentWithPlugins({ content, data, components })
 
-    const notesStructure = getFilesWithStructure(process.env.NOTES_PATH).children.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() > 0 ? 1 : -1) // latest first
+    const notesStructure = getFilesWithStructure(process.env.NOTES_PATH).children.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified)) // latest first
     return {
         props: {
             source: mdxSource,
