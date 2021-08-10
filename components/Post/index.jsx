@@ -10,6 +10,10 @@ const components = {
 
 export default function PostPage({ source, frontMatter, ...props }) {
 	useEffect(() => {
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: 'forest'
+		})
 		mermaid.init();
 	}, [source, frontMatter])
 	return (
