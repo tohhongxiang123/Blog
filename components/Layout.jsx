@@ -55,6 +55,7 @@ export default function Layout({
 					name="description"
 					content="Toh Hong Xiang's personal Blog and portfolio"
 				/>
+				<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 			</Head>
 			<TopNavBar>
 				{pages.map((page) => (
