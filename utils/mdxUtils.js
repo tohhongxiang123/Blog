@@ -91,7 +91,9 @@ export function getFilesWithStructure(directory) {
 export async function renderContentWithPlugins({ content, data }) {
     return await serialize(content, {
         mdxOptions: {
-            remarkPlugins: [() => mermaid({ simple: true }), math, html, prism],
+            remarkPlugins: [
+                () => mermaid({ simple: true }), 
+                math, html, prism],
             rehypePlugins: [rehypeKatex],
         },
         scope: data,
