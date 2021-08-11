@@ -270,6 +270,10 @@ $$
 
 The surface tension is the force per unit length of the membrane
 
+$$
+\sigma = \frac{F}{L}
+$$
+
 ## Surface Tension for half-drop of rain
 
 Consider a half-drop of rain
@@ -285,13 +289,13 @@ For the raindrop to not break, the surface of the raindrop must exert and equal 
 The force exerted due to a difference in pressure is:
 
 $$
-F_{ext} A = \Delta p \pi r^2
+F = \text{Pressure difference} * \text{Area} = (\Delta p) (\pi r^2)
 $$
 
 The force exerting back is now given by
 
 $$
-\sigma 2 \pi r
+F = \text{Force per unit Length} * \text{Length} = \text{Surface Tension} * \text{Length of surface} = \sigma (2 \pi r)
 $$
 
 Note that the length of the membrane is the circumference of the hemisphere. Because the water has "tension" with the sides of the circle.
@@ -301,6 +305,33 @@ Hence,
 $$
 \Delta p \pi r^2 = \sigma 2 \pi r \\
 \sigma = \frac{1}{2} \Delta p r
+$$
+
+## Surface Tension of a Spherical Bubble
+
+Using surface tension, we know that the force by surface tension is given as
+
+$$
+F_{ST} = \sigma L = \sigma (2) (2 \pi r)
+$$
+
+where $\sigma$ is the surface tension of the bubble, and $L$ is the length in which the force acts upon. It is twice the circumference of the bubble because both the top and bottom hemispheres exert a force on the bubble's cross sectional area.
+
+Also, since $P = \frac{F}{A}$, 
+
+$$
+F = PA = \Delta p A
+$$
+
+wher $\Delta p$ is the difference in pressure inside and outside the bubble, while $A$ is the cross-sectional area of the bubble
+
+Equating both together,
+
+$$
+\begin{aligned}
+\sigma (2) (2 \pi r) &= \Delta p A \\
+\sigma &= \frac{\Delta p r}{4}
+\end{aligned}
 $$
 
 ## Surface Tension due to Water Rising In a Small Open Glass Test Tube
@@ -328,7 +359,7 @@ Equating the 2 forces together
 $$
 \begin{aligned}
 2 \pi r \sigma \cos \theta &= \rho g h \pi r^2 \\
-h &= \frac{2 \sigma \cos \theta}{\rho g r}
+\cos \theta &= \frac{\rho g h r}{2 \sigma}
 \end{aligned}
 $$
 
@@ -340,6 +371,11 @@ When mercury is in contact with a glass tube, its level will be depressed.
 
 Such liquids are called **non-wetting liquids**. Non-wetting liquids usually have an angle of contact $> 90^o$. For mercury, $\theta = 130 ^o$
 
+# Resources
+- http://hyperphysics.phy-astr.gsu.edu/hbase/surten2.html#c2
+- https://www.vedantu.com/question-answer/explain-why-a-the-angle-of-contact-of-mercury-class-12-physics-cbse-5f4d819ad1fa823ca52dcb8e
+- https://www.youtube.com/watch?v=3neMFDsLr6U
+- https://www.youtube.com/watch?v=iElz6l1E8fc
 
 
 
