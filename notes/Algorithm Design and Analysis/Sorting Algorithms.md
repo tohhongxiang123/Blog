@@ -147,8 +147,10 @@ Merge sort is a divide-and-conquer algorithm. It divides the input array into 2 
 4. While both pointers have not reached the end of their respective arrays:
     1. If the element pointed to by the lower pointer is lower than the element pointed to by the upper pointer
         1. Insert lower element into temporary array
+        2. Move lower pointer up by 1
     2. Else
         1. Insert upper element into temporary array
+        2. Move upper pointer up by 1
 5. Once complete, add the remaining elements of the lower array into the temporary array
 6. Add the remaining elements of the upper array into the temporary array
 7. Copy the temporary array back into the original array
@@ -263,3 +265,7 @@ Pros
 
 Cons
 - Difficult to implement for contiguous data storage (such as arrays) without auxiliary storage (requires data movements during merging)
+
+## Read More about MergeSort
+- https://en.wikipedia.org/wiki/Merge_sort
+- https://www.programiz.com/dsa/merge-sort
