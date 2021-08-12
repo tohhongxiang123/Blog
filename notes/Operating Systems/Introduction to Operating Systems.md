@@ -2,15 +2,18 @@
 
 # What is an Operating System?
 
-> An operating system is a program that acts as an intermediary between the **user** and **computer hardware**
+> An operating system is a program that manages the computer's hardware. It provides a basis for application programs, and acts as an intermediary between the **user** and **computer hardware**
 
-- 2 major goals
-    - User convenience
-    - Efficient hardware utilisation
+Operating systems aim to achieve 2 major goals:
+
+1. User **convenience**
+2. **Efficient** hardware utilisation
 
 # Computer System Components
 
-1. **Hardware** - Provide basic computing resources (CPU, memory, IO)
+A computer system is made up of multiple components. Those are
+
+1. **Hardware** - Provide basic computing resources for the system (CPU, memory, IO)
 2. **Operating System** - Controls and coordinates the use of hardware among various applications for various users
 3. **Application programs** - Defines the way system resources are used to solve problems for users (Compilers, Database systems, Video games, Business Programs)
 4. **Users** - People, other machines, other computers
@@ -31,42 +34,114 @@ graph TD
 - **Control Program**: Controls the execution of user programs and operations of IO devices
 - **Kernel**: The one "core" program that is always ready to accept new commands from the user or the hardware
 
-# Types of Computing Systems
+# Computer System Operation
+
+- A modern day computer system consists of one or more CPUs and multiple device controllers connected along a common bus which provides access to shared memory
+- Each device controller is in charge of a specific type of device (Disk drives, audio devices, video displays)
+- CPU and device controllers can execute concurrently, but this makes them compute for usage of the common bus and shared memory
+    - A memory controller is used to coordinate both of them to synchronise access to the memory
+
+```mermaid
+    graph LR
+    CPU --> CommonBus(Common Bus)
+    DiskController(Disk Controller) --> CommonBus
+    USBController(USB Controller) --> CommonBus
+    GraphicsAdapter(Graphics Adapter) --> CommonBus
+    Disk1(Disk 1) --> DiskController
+    Disk2(Disk 2) --> DiskController
+    Mouse --> USBController
+    Keyboard --> USBController
+    Printer --> USBController
+    Monitor --> GraphicsAdapter
+    CommonBus --> Memory
+```
+
+- Operating systems are **interrupt-driven**
+    - Operating systems usually wait for an event to occur, which is signalled by an **interrupt** or a **trap**
+    - An interrupt can come from either the hardware or the software, and this interrupt is sent to the CPU
+        - For example, the printer signals that it is ready, or a software signals that an error has occurred
+    - A **trap** is a CPU generated interrupt, caused by software error or request
+        - E.g. unhandled exceptions in user program
+    - When the CPU is interrupted, CPU stops what it is doing
+    - The operating system preserves the state of the CPU by storing registers and the program counter (called a **context switch**)
+    - Then it determines which type of interrupt has occured
+    - Based on the interrupt type, it identifies the appropriate **interrupt service routine** (ISR) to execute
+        - Obtained from **interrupt vector table**, a place to store ISRs to be executed
+    - Once ISR completes execution, CPU returns to continue the interrupted computation
+- If the OS is not interrupt driven, it would be required to constantly poll for task/event completion, which is inefficient.
+
+# Operating System Structures
+
+- In general, the operating system keeps several jobs in memory simultaneously
+- Since the main memory is too small to keep every single job, the jobs are initially kept on the disk in a **job pool**, which consists of all processes residing on disk awaiting allocation in main memory
+- The set of jobs within the main memory is a subset of the jobs in the job pool
+- The OS picks and executes one of the jobs in memory
+- Eventually, the job may have to wait for some task, such as an IO operation to complete
+- In non-multiprogrammed systems (e.g. batch systems), the CPU would remain idle
+- However in multiprogrammed systems, the operating system will **switch** to execute another job, **maximising utilisation of CPU**
+- In turn the second job may need to wait for another task, and the OS will switch to execute another job again
+- Eventually the first job finishes waiting and gets the CPU back, and can continue with execution
+
+A few examples of operating system structures include:
 
 - Batch Systems
-- Multiprogrammed and Time-sharing systems
-    - Desktop systems
+- Multiprogrammed
+- Time-sharing systems
 - Embedded and Cyber-physical systems
-    - Real-time systems
-    - Handheld systems
 
 ## Simple Batch Systems
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/Time-Share.jpeg)
+
+Computerized batch processing is the running of "jobs that can run without end user interaction, or can be scheduled to run as resources permit."
+
 - Reduce setup times by **batching** similar jobs
+- To setup each job, there is an initial cost (more time required). Hence by setting up similar jobs together, we reduce the cost
 - Automatic job sequencing: automatically transfers control from one job to another
 - Simple memory layout: Only 1 user job in the memory at any given time
 - Not efficient: When job waits for IO, CPU is idle
 
-## Multiprogrammed (Time-Sharing) Systems
+## Multi-Programming System
+
+Multi-programming systems allow **multiple programs to be executed at the same time** by monitoring their states and switching in between processes.
+
+- When a job is waiting for the IO, the CPU is idle
+- CPU then swaps to another job in memory, so it does not remain idle
+- Everytime a job requires waiting, the CPU will go on to execute another job instead
+- CPU utilisation is maximised, and CPU will keep running as long as there is at least 1 job to run
+
+## Time Sharing Systems
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20200426074318/Multiprogramming-300x258.png)
+
+In computing, time-sharing is the **sharing of a computing resource among many users at the same time** by means of multiprogramming and multi-tasking
+
 - Several jobs are kept in the main memory at the same time, and CPU is multiplexed among them
-- A job is swaped in and out of memory to the hard disk
+- A job is swapped in and out of memory to the hard disk
 - System is highly interactive - supports multiple online users
 - E.g. desktops, servers
 
 ### OS Features required for Multi-Programming
+
 - Memory management: To allocate memory for multiple jobs
 - CPU scheduling: To choose among several jobs ready to run
 - IO device scheduling: To allocate IO devices to jobs
 
 ### Desktop Systems
+
 - Personal computers: Computer systems dedicated to a single user
 - Several IO devices: Keyboard, mouse, printer etc.
 - User convenience and responsiveness is the main focus
 - May run several different types of operating systems (Windows, Linux, MacOS etc.)
 
 ## Embedded and Cyber-Physical Systems
+
+![](https://addi-data.com/wp-content/uploads/cyberphysical-systems.png)
+
 - Physical systems whose operations are monitored and controlled by a reliable computing and communication core
 - Resource-constrained: Low power, small memory, low bandwidth etc.
 - Domain-specific OSes: Real-time, handheld, automotive etc.
+- E.g. Central heating systems, GPS systems, dishwashers etc.
 
 ### Real-time Systems
 - Used as a control device in a dedicated application such as industrial controls, automotives, medical devices etc.
@@ -82,6 +157,8 @@ graph TD
 
 # Multiprocessor Systems
 
+![](https://ecomputernotes.com/images/Multiprocessing-System.jpg)
+
 > Multiprocessor systems are systems with more than 1 CPU, or CPU with multiple cores (Also called multi-core systems)
 
 - Tightly coupled system: Communication usually takes place through shared memory
@@ -91,35 +168,10 @@ graph TD
     - Increased reliability due to redundancy
 
 # Computer System Architecture
+
 - Computer-System Operation
 - Storage hierarchy
 - Hardware protection
-
-# Computer-System Operation
-
-- IO devices and CPU can execute concurrently
-- Each device controller is in charge of a particular device type
-- Each device controller has a local buffer
-- Device controller moves data between local buffer and memory
-- Device controller informs CPU that it has finished operations by causing an **interrupt**
-
-## Common Functions of an Interrupt
-
-- Interrupts transfer control to the interrupt service routine (ISR) generally through the interrupt vector: which contains the address for all ISRs
-- Incoming interrupts are disabled while processing the current interrupt, to prevent loss of interrupts
-- A trap is a CPU generated interrupt, caused by software error or request
-    - E.g. unhandled exceptions in user program
-- An OS is typically **interrupt driven**
-    - If the OS is not interrupt driven, it would be required to constantly poll for task/event completion, which is inefficient.
-
-## Interrupt Handling
-
-- The operating system preserves the state of the CPU by storing registers and the program counter
-    - Also called a **context switch**
-- Then it determines which type of interrupt has occured
-    - Separate segments of code determine what action should be taken for each type of interrupt
-- Based on the interrupt type, it identifies the appropriate **ISR** to execute
-    - Obtained from **interrupt vector table**
 
 ## Direct Memory Access (DMA)
 
@@ -157,15 +209,28 @@ Hardware protection is vulnerability protection that comes in the form of a phys
 - Provides hardware protection by differentiating between at least 2 modes of operations
     1. User mode: Execution of user process
     2. Monitor mode (Supervisor mode or system mode or kernel mode): Execution of operating system processes
-- Mode bit added to computer hardware to indicate the current mode: monitor (0) or user (1)
-- When an interrupt or trap occurs, hardware switches to monitor mode
-- Privileged instructions can only be used in monitor mode
+- A **mode bit** added to computer hardware to indicate the current mode: monitor (0) or user (1)
+- Mode bit allows us to distinguish between tasks executed on behalf of the OS, or tasks executed on behalf of the user
+- When a user performs a task, and the computer system is executing on behalf of the user application, it is on user mode
+- When an interrupt or trap occurs, or if a user application requests a service from the operating system (via a system call), hardware switches to monitor mode
 
 ```mermaid
-stateDiagram-v2
-    Monitor --> User: Set user mode
-    User --> Monitor: Interrupt/trap
+graph TB
+    subgraph User Mode
+    ProcessExecution(Process execution) --> SystemCall(System call)
+    ReturnFromSystemCall(Return from system call)
+    end
+    subgraph Monitor Mode
+    SystemCall -- Mode bit from 0 to 1 --> ExecuteSystemCall(Execute system call)
+    ExecuteSystemCall -- Mode bit from 1 to 0 --> ReturnFromSystemCall
+    end
 ```
+
+- Dual mode prevents errant users from causing harm to the operating system
+- We designate some instructions that may cause harm to the computer as **privileged instructions** 
+- Privileged instructions can only be executed in monitor mode
+    - A privileged instruction is a 
+    - If a privileged instruction is attempted to be executed in user mode, the hardware does not run the instruction, instead treating it as an **illegal** operation and **traps** it to the OS
 
 ### Kernel Mode vs root/admin
 
@@ -214,3 +279,5 @@ stateDiagram-v2
 # Further Resources
 - https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/8_MainMemory.html
 - https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/2_Structures.html
+- https://www.geeksforgeeks.org/types-of-operating-systems/
+- Operating System Concepts, 8th Edition - Silberschatz, Galvin, Gagne
