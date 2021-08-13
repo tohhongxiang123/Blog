@@ -15,14 +15,19 @@ const components = {
 
 export default function PostPage({ source, frontMatter, ...props }: PostPageProps) {
 	useEffect(() => {
-		mermaid.initialize({ startOnLoad: true });
-	}, []);
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: 'forest'
+		})
+		mermaid.init();
+	}, [source, frontMatter])	
 	return (
 		<div {...props} className={`prose mx-auto ${props.className}`}>
 			<header>
 				{frontMatter.description && (
 					<p>{frontMatter.description}</p>
 				)}
+				
 				{frontMatter.date && (
 					<p><small>Last Updated: {formatDate(frontMatter.date)}</small></p>
 				)}

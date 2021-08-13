@@ -110,7 +110,9 @@ export function getFilesWithStructure(directory: string) {
 export async function renderContentWithPlugins({ content, data }: { content: string, data: { [key: string]: string }}) {
     return await serialize(content, {
         mdxOptions: {
-            remarkPlugins: [() => mermaid({ simple: true }), math, html, prism],
+            remarkPlugins: [
+                () => mermaid({ simple: true }), 
+                math, html, prism],
             rehypePlugins: [rehypeKatex],
         },
         scope: data,

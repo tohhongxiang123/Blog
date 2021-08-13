@@ -66,11 +66,10 @@ export default function Layout({
 				{pages.map((page) => (
 					<Link key={page.path} href={page.path}>
 						<a
-							className={`mb-4 hover:underline ${
-								router.asPath.startsWith(page.path)
-									? "font-semibold"
-									: ""
-							}`}
+							className={`mb-4 hover:underline ${router.asPath.startsWith(page.path)
+								? "font-semibold"
+								: ""
+								}`}
 						>
 							{page.name}
 						</a>

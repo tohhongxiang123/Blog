@@ -1,0 +1,382 @@
+# Introduction to Fluid Mechanics
+
+# What is Fluid Mechanics?
+
+- Principles of mechanics applied to fluid motion
+  - Conservation laws: mass, energy, momentum
+  - Newton's laws of motion
+  - Thermodynamic laws for gases
+- Main areas of fluid mechanics
+  - Fluid statics: Study of fluids at rest
+  - Fluid kinematics: Study of fluid motion without considering forces
+  - Fluid dynamics: Study of relation between motions and forces
+  - Hydraulics: Applications of Fluid Mechanics to practical designs of open channel flows
+
+Examples of fluid mechanics being used include
+- Water Supply: Dams, Reservoirs, Treatment and Distribution Network Systems
+- Storm drainage and Irrigation systems
+- Environmental Hydraulics: Sewerage systems, Pollutant dispersion 
+
+# What is a Fluid?
+
+> In physics, a fluid is a liquid, gas, or other material that continually deforms (flows) under an applied shear stress, or external force.
+
+Both liquids and gases are fluids, while solids are not
+
+## Difference between solid and fluid (liquid and gas)
+
+| Solid                                | Liquid                                                 | Gas                                               |
+| ------------------------------------ | ------------------------------------------------------ | ------------------------------------------------- |
+| Densely packed molecules             | Less densely packed molecules                          | Least densely packed molecules                    |
+| Large intermolecular cohesive forces | Smaller intermolecular cohesive forces                 | Negligible intermolecular cohesive forces         |
+| Not easily deformed                  | Easily deformed                                        | Easily deformed                                   |
+| Incompressible                       | Not easily compressed                                  | Easily compressed                                 |
+| Will not fill up a container         | Can be poured into containers or forced through a tube | Can fill the volume of any container where placed |
+
+## Response to a Shearing Force
+
+![Shearing force](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Simple_shear_in_2D.svg/1200px-Simple_shear_in_2D.svg.png)
+
+| Solid                                                      | Fluid                                              |
+| ---------------------------------------------------------- | -------------------------------------------------- |
+| Magnitude of shear strain = function of shear stress       | Rate of shear strain = function of shear stress    |
+| Deforms initially, but not continuously under shear stress | Deform continuously (flow) when under shear stress |
+| Body recovers when stress is removed                       | Body does not recover when stress is removed       |
+
+# Difference between Liquids and Gases
+
+| Liquids                                                            | Gases                                |
+| ------------------------------------------------------------------ | ------------------------------------ |
+| Practically incompressible (except subjected to extreme pressures) | Highly compressible                  |
+| Has finite volume at given temperature and pressure                | Always expands to fill the container |
+
+# How to Describe a Fluid's Behavior
+
+When describing the behavior of fluids, it is not practical to observe individiual molecules
+
+- For gases at normal pressures and temperatures, the molecule spacing is $10^{-6}$ mm
+- For liquids, the molecule spacing is $10^{-7}$ mm
+- The number of molecules per cubic mm is in the order of $10^{18}$ for gases and $10^{21}$ for liquids
+
+Instead, we choose a point in the fluid to analyse. By choosing a point in a fluid, we take the average of fluid quantities over a tiny volume that contain a large number of molecules
+
+Distance between molecules < Size of Point dimension < Physical dimension of the system
+
+# Force, Length, Time (FLT) System
+
+Sometimes we use the FLT system to describe fluids. Compared to the mass, length, time (MLT) system used to describe other objects.
+
+Newton's law states that
+
+$$
+F = MA = M(L/T^2)
+$$
+
+| Derived Dimensions   | FLT system    | MLT system    |
+| -------------------- | ------------- | ------------- |
+| Acceleration         | $LT^{-2}$     | $LT^{-2}$     |
+| Angle                | $F^0 L^0 T^0$ | $M^0 L^0 T^0$ |
+| Angular Acceleration | $T^{-2}$      | $T^{-2}$      |
+| Density              | $FL^{-4}T^2$  | $ML^{-3}$     |
+
+These 2 systems are interchangeable.
+
+# International System of Units (SI Units)
+
+Units of basic dimensions
+- Length: metre (m)
+- Time: second (s)
+- Mass: kilogram (kg)
+- Temperature: Kelvin (K)
+
+Units of derived dimensions
+- Force: Newton (N) $1 N = (1 kg)/(1 ms^-2)$
+- Work: Joule (J) $1 J = 1 N.m$
+- Power: Watt (W) $1 W = 1 J/s = 1 N m/s$
+
+etc.
+
+## Major Parameters in Fluid Mechanics
+
+- $L$, physical **length** of the flow
+- $V$, **velocity** of the flow
+- $p$, **pressure** of the fluid
+
+- $\rho$, **density** of the fluid, mass per unit volume
+- $\frac{1}{\rho}$, **specific volume**, volume per unit mass
+
+![](https://wtamu.edu/~cbaird/sq/images/water_ice.png)
+
+- $\gamma$, **specific weight** or **weight density**, weight per unit volume
+    - $\gamma = \rho g$, where $\rho$ is the density of the fluid, and $g$ is acceleration due to gravity
+    - Note how $\rho = \frac{m}{v}$ and $W = mg$, hence $\gamma = \frac{mg}{v} = \frac{W}{v}$, weight per unit volume
+- $SG$, **specific gravity**, ratio of fluid density to water density at $4^oC$.
+    - $SG = \frac{\rho}{\rho_{H_2O @ 4 ^o C}}$
+    - Note that $\rho$ is the density of the fluid being analysed
+
+Both $\rho$ and $\gamma$ measure the "heaviness" of the fluid.
+
+# Viscosity
+
+Viscosity is the measure of the "fluidity" of a fluid
+
+> Viscosity is a quantity expressing the magnitude of internal friction in a fluid, as measured by the force per unit area resisting uniform flow.
+
+Newton's law of viscosity states that
+
+$$
+\tau = \mu \frac{du}{dy}
+$$
+
+Where $\tau$ is the shear force per unit area, $\mu$ is the viscosity of the fluid, and $\frac{du}{dy}$ is the rate of shear deformation.
+
+## Derivation of Newton's Law of Viscosity
+
+A fluid is placed between 2 wide parallel plates a distance $y$ from each other. The lower plate is fixed, while the upper plate, which has a contact surface area $A$, is exerting a constant tangential force $P$ on the top surface of the fluid.
+
+![](https://i.stack.imgur.com/J9oog.png)
+
+- Tangential force applied on the upper plate = $P$
+- Area of upper fluid contacting the fluid = $A$
+- Shear force per unit area = $\frac{P}{A} = \tau$
+
+Now we shall let $\delta \beta$ be the angle between the y dimension and the velocity gradient. This is known as the **shearing strain**.
+
+![](https://www.materials.unsw.edu.au/sites/default/files/styles/large/public/images/Shear%20strain.png?itok=1u7QjKPu)
+
+> Shear strain is measured as the displacement of the surface $W$ that is in direct contact with the applied shear stress from its original position.
+
+$$
+\gamma = \frac{W}{L} = \tan \theta \approx \theta \text{ for small $\theta$}
+$$
+
+- Shearing strain = $\delta \beta$.
+- Given a small time interval $\delta t$
+- Rate of shear strain = $\frac{\delta \beta}{\delta t}$
+
+Since $\delta \beta$ is the angle between the y dimension and the velocity gradient, we can use trigonometry and state
+
+$$
+\tan(\delta \beta) = \frac{U \delta t}{y}
+$$
+
+Remember that $U$ is a velocity, hence $U \delta t$ is the distance travelled by the top part of the fluid in contact with the plate.
+
+Also, since the angle $\delta \beta$ is small, we can use small angle approximation to say $\tan(\delta \beta) = \delta \beta$
+
+Hence we can say that
+
+$$
+\begin{aligned}
+\delta \beta &= \frac{U \delta t}{y} \\
+\frac{\delta \beta}{\delta t} &= \frac{U}{y}
+\end{aligned}
+$$
+
+Note that:
+- At $y = b$, velocity of fluid particle = speed of upper plate = $U$
+- At $y = 0$, velocity of fluid particle = speed of lower plate = $0$, known as the **"no-slip" condition**
+
+It is experimentally observed that
+
+$$
+\tau \propto \frac{\delta \beta}{\delta t}
+$$
+
+Using $\mu$ to denote the constant of proportionality,
+
+$$
+\tau = \mu \frac{\delta \beta}{\delta t} =  \mu \frac{U}{y} = \mu \frac{du}{dy}
+$$
+
+This is newton's law of viscosity. $\frac{du}{dy}$ is **dynamic viscosity** (or absolute viscosity), in Pa.s or $kgm^{-1}s^{-1}$
+
+# Newtonian vs Non-newtonian Fluids
+
+> A Newtonian fluid is a fluid in which the viscous stresses arising from its flow, at every point, are linearly correlated to the local strain rate — the rate of change of its deformation over time.
+
+Newtonian fluids have **constant** $\mu$ at a given temperature, while non-newtonian fluids have $\mu$ **varying** with rate of shear strain
+
+![](https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Dilatant-pseudoplastic.svg/220px-Dilatant-pseudoplastic.svg.png)
+
+Examples of newtonian fluids include
+- Water
+- Oil
+- Air
+
+Examples of non-newtonian fluids include
+- Toothpaste
+- Latex paint
+- Water and corn starch mixture
+
+## Kinematic Viscosity
+
+> Kinematic viscosity is the dynamic viscosity of a fluid per unit density.
+
+Kinematic viscosity is defined as
+
+$$
+\nu = \frac{\mu}{\rho}
+$$
+where $\mu$ is the dynamic viscosity, and $\rho$ is the density of the fluid.
+
+Units of $\nu$ = $m^2s^{-1}$
+
+## Difference between dynamic and kinematic viscosity
+
+Dynamic viscosity is the measurement of the fluid's internal resistance to flow, while kinematic viscosity is the ratio of dynamic viscosity to its density.
+
+Fluids with similar dynamic viscosities may have different kinematic viscosities depending on density and vice versa.
+
+# Application for Newton's Law of Viscosity
+
+$$
+\tau = \mu \frac{du}{dy} \\
+\frac{F}{A} = \mu \frac{du}{dy}
+$$
+
+From the equation above, we can find the viscosity $\mu$ of the fluid, or the shear force $F$ acting on the fluid
+
+# Compressibility of Fluids
+
+- When pressure increases from $p$ to $p + dp$, volume reduces from $V$ to $V + dV$ ($dV$ is negative)
+- To describe compressibility, we use **bulk modulus**, which is defined as
+
+$$
+E_v = -\frac{dp}{dV / V}
+$$
+
+$E_v$ is the bulk modulus of the fluid, $dp$ is change in pressure, $dV$ is the change in volume, $V$ is the overall volume. Compressibility is defined as $C = \frac{1}{E_v}$
+
+Now, looking at density, we know that $\rho = \frac{M}{V}$. By differentiating density with respect to volume, 
+
+$$
+\begin{aligned}
+d \rho &= - \frac{M}{V^2} dV \\
+&=  - \rho \frac{dV}{V} \\
+\frac{d \rho}{\rho} &= - \frac{dV}{V}
+\end{aligned}
+$$
+
+Hence we can conclude, that 
+
+$$
+E_v = -\frac{dp}{dV / V} = \frac{dp}{d\rho / \rho}
+$$
+
+# Surface Tension
+
+> Surface tension is the tension of the surface film of a liquid caused by the attraction of the particles in the surface layer by the bulk of the liquid, which tends to minimize surface area.
+
+The surface tension is the force per unit length of the membrane
+
+$$
+\sigma = \frac{F}{L}
+$$
+
+## Surface Tension for half-drop of rain
+
+Consider a half-drop of rain
+
+![](https://www.calculatorsoup.com/images/hemisphere001.gif)
+
+We shall look at the surface tension on the flat half of the hemisphere. Imagine a raindrop on a flat surface.
+
+The hemisphere has radius $r$. Let the difference in pressure between the inside and outside of the raindrop be $\Delta p$.
+
+For the raindrop to not break, the surface of the raindrop must exert and equal and opposite force to the pressure difference.
+
+The force exerted due to a difference in pressure is:
+
+$$
+F = \text{Pressure difference} * \text{Area} = (\Delta p) (\pi r^2)
+$$
+
+The force exerting back is now given by
+
+$$
+F = \text{Force per unit Length} * \text{Length} = \text{Surface Tension} * \text{Length of surface} = \sigma (2 \pi r)
+$$
+
+Note that the length of the membrane is the circumference of the hemisphere. Because the water has "tension" with the sides of the circle.
+
+Hence,
+
+$$
+\Delta p \pi r^2 = \sigma 2 \pi r \\
+\sigma = \frac{1}{2} \Delta p r
+$$
+
+## Surface Tension of a Spherical Bubble
+
+Using surface tension, we know that the force by surface tension is given as
+
+$$
+F_{ST} = \sigma L = \sigma (2) (2 \pi r)
+$$
+
+where $\sigma$ is the surface tension of the bubble, and $L$ is the length in which the force acts upon. It is twice the circumference of the bubble because both the top and bottom hemispheres exert a force on the bubble's cross sectional area.
+
+Also, since $P = \frac{F}{A}$, 
+
+$$
+F = PA = \Delta p A
+$$
+
+wher $\Delta p$ is the difference in pressure inside and outside the bubble, while $A$ is the cross-sectional area of the bubble
+
+Equating both together,
+
+$$
+\begin{aligned}
+\sigma (2) (2 \pi r) &= \Delta p A \\
+\sigma &= \frac{\Delta p r}{4}
+\end{aligned}
+$$
+
+## Surface Tension due to Water Rising In a Small Open Glass Test Tube
+
+Attraction between the tube wall and water molecules is stronger than attraction between water molecules, hence the water is pulled **up** the walls. Such liquids are called **wetting liquids**.
+
+![](https://www.concepts-of-physics.com/mechanics/media/capillary-rise.svg)
+
+Consider a glass tube with radius $r$ and the height of water from the bottom of the tube to the bottom of the meniscus be $h$. Let $\theta$ be the angle between the wall of the tube and the tangent to the surface of the meniscus at the point of contact with the wall.
+
+The length of the surface tension force is $2 \pi r$. Since the water is contacting the glass surface at an angle $\theta$, the vertical component of the force is $\sigma \cos \theta$. Hence the total force acting directly upwards is
+
+$$
+F = \text{Length} * \text{Force per unit length} = (2 \pi r) (\sigma \cos \theta)
+$$
+
+The force acting on the surface of the water is given by
+
+$$
+F = p A = (\rho g h) (\pi r^2)
+$$
+
+Equating the 2 forces together
+
+$$
+\begin{aligned}
+2 \pi r \sigma \cos \theta &= \rho g h \pi r^2 \\
+\cos \theta &= \frac{\rho g h r}{2 \sigma}
+\end{aligned}
+$$
+
+Note: For water in contact with clean glass, $\theta = 0$
+
+## Mercury depresses in a small open glass tube
+
+When mercury is in contact with a glass tube, its level will be depressed.
+
+Such liquids are called **non-wetting liquids**. Non-wetting liquids usually have an angle of contact $> 90^o$. For mercury, $\theta = 130 ^o$
+
+# Resources
+- http://hyperphysics.phy-astr.gsu.edu/hbase/surten2.html#c2
+- https://www.vedantu.com/question-answer/explain-why-a-the-angle-of-contact-of-mercury-class-12-physics-cbse-5f4d819ad1fa823ca52dcb8e
+- https://www.youtube.com/watch?v=3neMFDsLr6U
+- https://www.youtube.com/watch?v=iElz6l1E8fc
+
+
+
+
