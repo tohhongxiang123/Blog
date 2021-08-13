@@ -6,7 +6,7 @@ import PostPreview from "../../components/PostPreview";
 
 export default function PostList({ posts = [] }) {
 	return (
-		<Layout title="Posts">
+		<Layout title="Posts" description="A list of blog posts by Toh Hong Xiang">
 			<div className="max-w-5xl mx-auto p-8">
 				<h3 className="text-3xl font-bold mb-4">Posts</h3>
 				<ul className="list-disc">

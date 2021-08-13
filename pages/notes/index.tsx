@@ -10,7 +10,7 @@ import NotePreview from "../../components/NotePreview";
 
 export default function index({ notes = [], notesStructure = [] }) {
 	return (
-		<NotesLayout title={"Notes"} notesStructure={notesStructure}>
+		<NotesLayout title={"Notes"} notesStructure={notesStructure} description="All notes written by Toh Hong Xiang">
 			<div className="p-4 max-w-2xl mx-auto flex flex-col">
 				<h1 className="font-bold text-3xl">All notes</h1>
 				<ul className="pt-4">

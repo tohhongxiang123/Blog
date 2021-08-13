@@ -7,7 +7,8 @@ import { useRouter } from "next/router";
 export interface LayoutProps {
 	children: React.ReactElement | React.ReactElement[],
 	title?: string,
-	enableFooter?: boolean
+	description?: string,
+	enableFooter?: boolean,
 }
 
 const pages = [
@@ -36,7 +37,8 @@ export default function Layout({
 	children,
 	title = "Blog",
 	enableFooter = true,
-}) {
+	description = '',
+}: LayoutProps) {
 	const router = useRouter();
 	return (
 		<div className="flex flex-col h-screen overflow-y-hidden">
@@ -52,15 +54,12 @@ export default function Layout({
 					href="https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css"
 					as="script"
 				/>
-				<title>{title}</title>
+				<title>{title ? `THX - ${title}` : "THX"}</title>
 				<meta
 					name="viewport"
 					content="initial-scale=1.0, width=device-width"
 				/>
-				<meta
-					name="description"
-					content="Toh Hong Xiang's personal Blog and portfolio"
-				/>
+				<meta key="description" property="description" name="description" content={description} />
 			</Head>
 			<TopNavBar>
 				{pages.map((page) => (

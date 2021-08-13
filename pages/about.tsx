@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 export default function About() {
 	return (
-		<Layout>
+		<Layout title="About" description={"All about Toh Hong Xiang"}>
 			<div className="p-4">
 				<section className="flex flex-col justify-center items-center p-16 pb-32 border-gray-300 border-b border-solid">
 					<h1 className="text-center text-5xl lg:text-7xl font-bold mb-12">

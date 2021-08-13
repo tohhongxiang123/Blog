@@ -5,7 +5,7 @@ import Post from '../../components/Post'
 
 export default function PostPage({ source = '', frontMatter = {} }: { source: string, frontMatter: { [key: string]: string } }) {
 	return (
-		<Layout title={frontMatter.title}>
+		<Layout title={frontMatter.title} description={`Learn more about ${frontMatter.title}`}>
 			<div className={"p-8"}>
 				<Post {...{ source, frontMatter }} />
 			</div>

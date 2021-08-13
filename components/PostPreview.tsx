@@ -11,7 +11,7 @@ export default function PostPreview({ filePath, data, ...props }: PostPreviewPro
 	return (
 		<div className="flex flex-col sm:flex-row sm:justify-between items-baseline" {...props}>
 			<Link as={`/${filePath}`} href={`/posts/[slug]`}>
-				<a className="hover:underline font-medium">{data.title}</a>
+				<a className="hover:underline text-xl">{data.title}</a>
 			</Link>
 			<small className="flex-shrink-0">
 				{formatDate(data.date)}

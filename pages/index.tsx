@@ -14,7 +14,7 @@ const ParticlesBg = dynamic(() => import("particles-bg"), { ssr: false });
 
 export default function Index({ posts = [], notes = [] }) {
 	return (
-		<Layout title={"Home"}>
+		<Layout title={"Home"} description="Personal portfolio, blog and note-keeping page for Toh Hong Xiang">
 			<div className="p-8 py-16 text-center flex flex-col items-center">
 				<img
 					src="code_thinking.svg"

@@ -10,7 +10,7 @@ interface PostPageProps {
 }
 export default function PostPage({ source = '', frontMatter = {}, notesStructure = [] }: PostPageProps) {
     return (
-        <NotesLayout title={frontMatter.title} notesStructure={notesStructure}>
+        <NotesLayout title={frontMatter.title} notesStructure={notesStructure} description={`Learn more about ${frontMatter.title}`}>
             <div className={"p-8"}>
                 <Post {...{ source, frontMatter }} />
             </div>

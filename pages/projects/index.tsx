@@ -9,7 +9,7 @@ const ParticlesBg = dynamic(() => import("particles-bg"), { ssr: false });
 
 export default function projects({ projects }) {
 	return (
-		<Layout title={"Projects"}>
+		<Layout title={"Projects"} description="Find out more about the projects done by Toh Hong Xiang">
 			<div className="p-12">
 				<h1 className="text-5xl font-bold text-center mb-8">
 					Projects
