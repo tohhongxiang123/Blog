@@ -35,7 +35,7 @@ export default function projects({ projects }) {
 					top: 0,
 					left: 0,
 					minHeight: "100%",
-				}}
+				} as any}
 			/>
 		</Layout>
 	);

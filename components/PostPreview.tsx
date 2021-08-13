@@ -2,7 +2,12 @@ import React from "react"
 import Link from 'next/link'
 import { formatDate } from '../utils/convertDate'
 
-export default function PostPreview({ filePath, data, ...props }) {
+interface PostPreviewProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+	filePath: string,
+	data: { [key:string]: string }
+}
+
+export default function PostPreview({ filePath, data, ...props }: PostPreviewProps) {
 	return (
 		<div className="flex flex-col sm:flex-row sm:justify-between items-baseline" {...props}>
 			<Link as={`/${filePath}`} href={`/posts/[slug]`}>

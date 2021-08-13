@@ -1,5 +1,14 @@
 import React from "react";
 
+interface ProjectPreviewProps {
+    title: string,
+    description: string,
+    code: string,
+    demo: string,
+    screenshot: string,
+    technologies: string[]
+}
+
 export default function ProjectPreview({
 	title,
 	description,
@@ -7,7 +16,7 @@ export default function ProjectPreview({
 	demo,
 	screenshot,
     technologies = []
-}) {
+}: ProjectPreviewProps) {
 	return (
 		<div className="w-full max-w-md shadow-md hover:shadow-lg mb-8 rounded bg-white">
 			<div

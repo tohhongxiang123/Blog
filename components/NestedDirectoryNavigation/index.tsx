@@ -3,9 +3,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ArrowRight from '../../public/icons/arrow_right.svg'
 import ArrowDown from '../../public/icons/arrow_down.svg'
+import { PostStructure } from '../../utils/mdxUtils'
 
+interface NestedDirectoryNavigationProps {
+    children: PostStructure[],
+    name: string,
+    path: string
+}
 const sep = /\\|\//g // possible separators
-export default function NestedDirectoryNavigation({ children, name, path, slug }) {
+export default function NestedDirectoryNavigation({ children, name, path }: NestedDirectoryNavigationProps) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(checkIfOpen({ path, children }, decodeURIComponent(router.asPath)))
     const isActive = arrayEquals(path.split(sep).filter(Boolean), decodeURIComponent(router.asPath).split(sep).filter(Boolean))
@@ -23,7 +29,7 @@ export default function NestedDirectoryNavigation({ children, name, path, slug }
             </div>
             {isOpen && <ul className={"ml-2 pl-4"}>
                 {children.map(child => (
-                    <li key={child.path} className={"m-0"}><NestedDirectoryNavigation {...child} slug={slug} /></li>
+                    <li key={child.path} className={"m-0"}><NestedDirectoryNavigation {...child} /></li>
                 ))}
             </ul>}
         </div>

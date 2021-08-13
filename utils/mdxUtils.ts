@@ -10,14 +10,19 @@ import prism from 'remark-prism'
 import mermaid from 'remark-mermaid'
 
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
-export const getFilesInDirectory = (directory) => fs
+export const getFilesInDirectory = (directory: string) => fs
     .readdirSync(path.join(process.cwd(), directory))
     // Only include md(x) files
     .filter((path) => /\.mdx?$/.test(path))
     .map(p => [directory, p].join('/'))
 
-
-export function getFileContent(slug) {
+export type Post = {
+    data: {
+        [key: string]: string
+    },
+    content: string
+}
+export function getFileContent(slug: string) : Post {
     const postFilePath = decodeURI(slug)
     const source = fs.readFileSync(postFilePath)
 
@@ -44,8 +49,8 @@ export function getFileContent(slug) {
     return { content, data }
 }
 
-export function recursivelyGetFilesInDirectory(directory) {
-    const results = [];
+export function recursivelyGetFilesInDirectory(directory: string) {
+    const results : string[] = [];
 
     const currentFullPath = path.join(process.cwd(), directory)
 
@@ -64,23 +69,37 @@ export function recursivelyGetFilesInDirectory(directory) {
     return results
 }
 
-function getLastModified(directory) {
+function getLastModified(directory: string) {
     const directoryStats = fs.statSync(directory)
     if (!directoryStats.isDirectory()) {
-        return directoryStats.mtime.getTime()
+        return directoryStats.mtime.toISOString()
     }
 
-    return Math.max(directoryStats.birthtime.getTime(), ...fs.readdirSync(directory).map(fileOrFolderName => getLastModified(path.join(directory, fileOrFolderName))))
+    const lastModifiedTime = Math.max(directoryStats.birthtime.getTime(), ...fs.readdirSync(directory).map(fileOrFolderName => new Date(getLastModified(path.join(directory, fileOrFolderName))).getTime()))
+    return new Date(lastModifiedTime).toISOString()
 }
 
-export function getFilesWithStructure(directory) {
+export type PostStructure = {
+    name: string,
+    path: string,
+    children: PostStructure[],
+    lastModified: string // date string
+}
+
+export function getFilesWithStructure(directory: string) {
     // get the current file of the full directory
     const currentFileName = directory.replace(/\\/g, path.sep).split(path.sep)[directory.replace(/\\/g, path.sep).split(path.sep).length - 1]
 
     // sort "Chapter 10" after "Chapter 2"
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })
     const currentFullPath = path.join(process.cwd(), directory)
-    const result = { name: currentFileName.replace(/\.(mdx|md)$/, ''), path: directory, children: [], lastModified: getLastModified(directory) }
+
+    const result : PostStructure = { 
+        name: currentFileName.replace(/\.(mdx|md)$/, ''), 
+        path: directory, 
+        lastModified: getLastModified(directory),
+        children: [], 
+    }
     if (fs.statSync(path.join(currentFullPath)).isDirectory()) {
         result.children = fs.readdirSync(directory).sort(collator.compare).map(fileOrFolderName => getFilesWithStructure(path.join(directory, fileOrFolderName)))
     }
@@ -88,7 +107,7 @@ export function getFilesWithStructure(directory) {
     return result
 }
 
-export async function renderContentWithPlugins({ content, data }) {
+export async function renderContentWithPlugins({ content, data }: { content: string, data: { [key: string]: string }}) {
     return await serialize(content, {
         mdxOptions: {
             remarkPlugins: [() => mermaid({ simple: true }), math, html, prism],

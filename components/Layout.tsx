@@ -4,6 +4,12 @@ import Footer from "./Footer";
 import TopNavBar from "./TopNavBar";
 import { useRouter } from "next/router";
 
+export interface LayoutProps {
+	children: React.ReactElement | React.ReactElement[],
+	title?: string,
+	enableFooter?: boolean
+}
+
 const pages = [
 	{
 		name: "Posts",

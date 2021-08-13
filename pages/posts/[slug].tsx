@@ -1,15 +1,9 @@
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { getFileContent, getFilesInDirectory, renderContentWithPlugins } from '../../utils/mdxUtils'
 import path from 'path'
 import Post from '../../components/Post'
 
-const components = {
-	TestComponent: dynamic(() => import('../../components/TestComponent')),
-}
-
-export default function PostPage({ source = '', frontMatter = {} }) {
+export default function PostPage({ source = '', frontMatter = {} }: { source: string, frontMatter: { [key: string]: string } }) {
 	return (
 		<Layout title={frontMatter.title}>
 			<div className={"p-8"}>
@@ -22,7 +16,7 @@ export default function PostPage({ source = '', frontMatter = {} }) {
 export const getStaticProps = async ({ params }) => {
 	const { content, data } = getFileContent(path.join(process.env.POSTS_PATH, params.slug))
 
-	const mdxSource = await renderContentWithPlugins({ content, data, components })
+	const mdxSource = await renderContentWithPlugins({ content, data })
 
 	return {
 		props: {

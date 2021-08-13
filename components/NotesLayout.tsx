@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
+import { PostStructure } from '../utils/mdxUtils'
 import Footer from './Footer'
-import Layout from './Layout'
+import Layout, { LayoutProps } from './Layout'
 import NestedDirectoryNavigation from './NestedDirectoryNavigation'
 
-export default function _NotesLayout({ children, notesStructure = [], ...props }) {
+interface NotesLayoutProps extends LayoutProps {
+    children: React.ReactElement | React.ReactElement[],
+    notesStructure: PostStructure[]
+}
+
+export default function _NotesLayout({ children, notesStructure = [], ...props }: NotesLayoutProps) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
     return (

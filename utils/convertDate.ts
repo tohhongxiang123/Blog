@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 
-function formatDate(dateString) {
+function formatDate(dateString: string | number | Date) {
     return format(new Date(dateString), "dd MMM yyyy")
 }
 

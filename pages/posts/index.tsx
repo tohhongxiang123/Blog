@@ -1,6 +1,6 @@
 import React from "react";
 import Link from 'next/link'
-import { getFileContent, getFilesInDirectory } from "../../utils/mdxUtils";
+import { getFileContent, getFilesInDirectory, Post } from "../../utils/mdxUtils";
 import Layout from "../../components/Layout";
 import PostPreview from "../../components/PostPreview";
 
