@@ -243,8 +243,10 @@ From the equation above, we can find the viscosity $\mu$ of the fluid, or the sh
 - To describe compressibility, we use **bulk modulus**, which is defined as
 
 $$
-E_v = -\frac{dp}{dV / V}
+E_v = -\frac{dp}{dV / V} = -V \frac{dp}{dV}
 $$
+
+> Bulk modulus is the relative change in volume of a body produced by a unit compressive force acting uniformly over its surface
 
 $E_v$ is the bulk modulus of the fluid, $dp$ is change in pressure, $dV$ is the change in volume, $V$ is the overall volume. Compressibility is defined as $C = \frac{1}{E_v}$
 
@@ -342,6 +344,8 @@ Attraction between the tube wall and water molecules is stronger than attraction
 
 Consider a glass tube with radius $r$ and the height of water from the bottom of the tube to the bottom of the meniscus be $h$. Let $\theta$ be the angle between the wall of the tube and the tangent to the surface of the meniscus at the point of contact with the wall.
 
+![](https://thefactfactor.com/wp-content/uploads/2019/11/Capillary-Action-05.png)
+
 The length of the surface tension force is $2 \pi r$. Since the water is contacting the glass surface at an angle $\theta$, the vertical component of the force is $\sigma \cos \theta$. Hence the total force acting directly upwards is
 
 $$
@@ -366,6 +370,8 @@ $$
 Note: For water in contact with clean glass, $\theta = 0$
 
 ## Mercury depresses in a small open glass tube
+
+![](https://2.bp.blogspot.com/--PmMvR4A014/WZQhCDsRe5I/AAAAAAAAIZU/qAR9jLVi0f4U9YrbT3-ZqqLfTsOFtQA3gCLcBGAs/s1600/what%2Bis%2Bcapillarity%2Bimages2.png)
 
 When mercury is in contact with a glass tube, its level will be depressed.
 
