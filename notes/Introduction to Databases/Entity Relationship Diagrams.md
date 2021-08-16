@@ -141,6 +141,100 @@ Note: A relationship can have attributes
 
 - We can record the start date that an employee manages a department
 
+# Constraints
+
+- Some conditions that entity sets and relationships should satisfy
+- We will focus on 3 types of constraints
+    1. Key constraints
+    2. Referential integrity constraints
+    3. Degree constraints
+
+## Key Constraints (UNIQUE)
+
+![](/key_constraints.png)
+
+- One or more attributes that are underlined
+- They uniquely represent each entity in the entity set
+- E.g. the name uniquely represents the person - Each person must have a unique name
+
+![](multiple_key_constraints.png)
+
+- Multiple key constraints:
+    - One or more attributes that are underlined
+    - Each product has a unique <name, category> combination
+    - But there can be products with the same name, or same category, but not both
+    - E.g. name = "apple", category = "fruit" with name = "apple", category = "phone"
+
+Rule: Every entity set should have a key, so that we can uniquely refer to every entity
+
+# Referential Integrity
+
+![](/referential_integrity.png)
+
+- One company makes multiple products
+- One product is made by one company
+- Can there be a product made by 0 companies? 
+    - No, every product must be involved in the "make" relationship
+    - Referential integrity constraint
+- We represent it with a round arrow rather than a pointed arrow
+
+## What if every company should make at least 1 product?
+
+- No arrow, but we indicate with degree constraints
+- In general, referential integrity constraint can only be used on one side of a 
+    - Many-to-one relationship
+    - One-to-one relationship
+
+# Degree Constraints
+
+![](/degree_constraints.png)
+
+- Each company should make at least 1 product
+- Degree constraints are not easy to enforce in DBMS
+- Key and referential integrity can be easily enforced
+
+# Subclasses
+
+![](../../public/subclasses.png)
+
+- PhDs are a special type of Student
+- Subclass: special type
+- Connection between subclass and superclass represented by a `isa` relationship, represented with a triangle
+- Key of subclass == Key of superclass
+- E.g. key of PhD == Students.ID
+
+![](../../public/multiple_subclasses.png)
+
+- An entity can have multiple subclasses
+
+# Weak Entity Sets
+
+- Weak entity sets are a special type of entity set that
+    - cannot be uniquely identified by its own attributes
+    - needs attributes from other entities to identify themselves
+    - E.g. Madison in Wisconsin, and Madison in Kansas
+
+
+![](../../public/weak_entity_sets.png)
+
+- Problem: There are cities with identical names
+- Observation: `Cities` in the same state have different names
+- Solution: Make `Cities` a **weak entity set** associated with the entity set `States`
+- The relationship **in** is called the supporting relationship of `Cities`
+- Weak entity sets: Double-line rectangle
+- Supporting relationship: Double-line diamond
+- The keys of `Cities`: `States.name` and `Cities.name`
+
+> Note: Subclasses are not weak entities. `PhD`s are a special kind of `Student`. A `city` is not a special type of `State`
+
+# Summary
+
+- Rectangle: Entity
+- Oval: Attribute
+- Line: Many to many (Students -- Classes means a student can have many classes, a class can have many students)
+- Sharp arrow: At most one (Company <-- Product means product must have exactly 1 company)
+- Curved arrow: At least one (Company c-- Product means each product must have at least 1 company)
+
 # Resources
 - https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning
 - https://beginnersbook.com/2015/04/e-r-model-in-dbms/
