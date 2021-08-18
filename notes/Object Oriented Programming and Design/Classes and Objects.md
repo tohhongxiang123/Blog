@@ -1,164 +1,259 @@
 # Classes and Objects
 
-# Object
+In computer science, an object can be a variable, a data structure, a function, or a method, and as such, is a value in memory referenced by an identifier.
 
-- Each object has attributes and behaviors
-- E.g. Person
-- Person has attributes: height, weight, gender, age, wealth etc.
-- Person has behaviors: eat, study, sleep
+E.g.
 
-`Person` is a **Class**. Obama is an **Object** (Instance) of a `Person` Class
+```java
+Person BillGates = new Person();
+Person JohnCena = new Person();
+```
 
-# Components of Object-Oriented Model
+## Object State
+- Made up of different attributes (or properties)
+- E.g.
+	- Person's name
+	- Person's age
 
-- Objects
-  - An entity that contains both **attributes** that describe the state of a real-world object and the **actions** that are associated with the object
-- Messages
-  - Requests from one object to another for the receiving object to produce some desired result
-- Methods
-  - Descriptions of operations/actions that an object performs when it receives a message
-- Classes
-  - Template for objects which consists of methods and attributes that belong to the object
+## Object Behavior
+- Actions an object can perform
+- E.g.
+	- Person can walk
+	- Person can talk
 
-# Concepts of OOP
-- Abstraction
-- Encapsulation/Information hiding
-- Inheritance
-- Polymorphism
+# What is a Class?
+- Class defines the blueprint/structure of an object. Each class contains
+	- Attributes
+	- Methods
+- To create an object we need to define a class for it
+- We can use Unified Modelling Language (UML)
 
-# Abstraction
+```mermaid
+classDiagram
+	class Person {
+		-String name
+		-char gender
+		-int age
+		-double height
 
-> An abstraction denotes the essential characteristics of an object that distinguish it from all other kinds of objects and this provide crisply defined conceptual boundaries relative to the perspective of the viewer
+		+void eat()
+		+void sleep()
+		+void rave()
+		+void repeat()
+	}
+```
 
-Abstraction focuses on the idea rather than the specifics of an event. For example, a coffee machine is an abstraction. We do not need to know how coffee is made, we just need to provide the ingredients. The coffee machine abstracts away the specifics of making coffee.
+An object is a **specific instance** of a class. Each object has its own state and behaviors
+
+```java
+billGates.name = "Bill Gates";
+johnCena.name = "John Cena";
+```
+
+# Class Definition
+
+```java
+public class Person {
+	// properties
+	private int age;
+	String name;
+
+	// constructor
+	Person(int age, String name) {
+		this.name = name;
+		this.age = age;
+	}
+
+	// methods
+	void walk() {
+		System.out.println("I'm walking over here");
+	}
+}
+```
+
+```mermaid
+classDiagram
+class Person {
+	-int age
+	+String name
+
+	+void walk()
+}
+```
+
+Note: `+` in the UML class diagram means public, while `-` means private
+
+# Creating Objects
+
+```java
+Person p = new Person(32, "John Cena");
+Rectangle r = new Rectangle(1, 6);
+Scanner s = new Scanner(System.in);
+```
+
+## Constructors
+
+- Called when creating `new` objects
+- If no constructors are written, java has a default blank constructor without arguments
+
+# Dot Notation
+
+- Used to make a specific object do something, or to access the attribute of a specific object
+
+```java
+System.out.println(johnCena.name);
+bankAccount.withdraw(100);
+mySquare.displayToScreen();
+```
+
+# this
+
+- `this` refers to the object itself with which you call the method from
+
+```java
+public class Rectangle {
+	double width;
+	double height;
+
+	public double getArea() {
+		return this.width * this.height;
+	}
+	public double getPerimeter() {
+		return this.width * 2 + this.height * 2;
+	}
+
+	public void print() {
+		System.out.println("Area: " + this.getArea() + " Perimeter: " + this.getPerimeter());
+	}
+}
+```
+
+# Accessors and Mutators
+
+- Accessors are responsible for accessing and returning attribute values
+- Mutators are responsible for changing attribute values
+
+```java
+class BankAccount {
+	private double balance;
+
+	// accessor
+	public double getBalance() {
+		return this.balance;
+	}
+}
+```
+
+- Because `BankAccount` has an accessor but no mutator, and `balance` is a private variable, we cannot change `balance` from the outside, protecting it
+
+```java
+class Person {
+	private String name;
+
+	// accessor
+	public String getName() {
+		return this.name;
+	}
+
+	// mutator
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+```
+
+- `getName` is an accessor which gets the name of `Person`, while `setName` is a mutator which sets a new value to `Person.name`
+
+# static
+
+- A `static` variable is a variable that is related to the entire class, rather than an individual instance
+- Static variables are shared among all instances of a class. If it changes in 1 instance, it changes in all of them
+- Static methods are methods that do not depend on an individual instance of a class
+
+```java
+class Person {
+	private String name;
+	public static double PI;
+	public static int numberOfPeople;
+
+	// ...
+
+	public static int getNumberOfPeople() {
+		return numberOfPeople;
+	}
+}
+```
+
+- The value of `PI` is shared among all `Person` instances
+- When accessing static variables/methods, we do not need to use an individual instance, but we can use the class itself
+
+```java
+public class Main {
+	public static void main(String[] args) {
+		Person p = new Person();
+		Person q = new Person();
+
+		p.name;
+		q.name;
+
+		Person.PI;
+		Person.getNumberOfPeople();
+	}
+}
+```
+
+> Static methods cannot access non-static members of a class
+
+# final
+
+- To declare a variable whose value cannot change, we use `final`
+
+```java
+public static final double PI = 3.1415;
+```
 
 # Encapsulation and Information Hiding
 
-> Encapsulation refers to the bundling of data along with methods that operate on that data into a single unit
+- Encapsulation: Build a barrier to protect an object's private data. Access to private data can be done through public methods (get and set) to limit other user's access to the data and control their access
+	- Users of a class only need to know what the class does, and how to call the methods that perform the task
+- Information hiding: Hides the details of implementation away from users
 
-Encapsulation builds a barrier to protect an object's private data. Access to private data can be done through public methods of the object's class (getters and setters)
+# Object Composition
 
-Information hiding hides the details or implementation of the class from the user
-- When you sort a list, you can call `Array.sort()`, and not need to know how to actually sort the array.
-- There are many actions required for a car to make the wheels turn. However, we can just turn the steering wheel and the car will turn for you.
+- An object can include other objects as attributes, this is called object composition
+- Class can contain object references to other classses
+- Object references are of reference data types
+- **has-a** relationship
 
-With encapsulation and information hiding, the user of a class only need to know **what** a class does and **how** to call the methods that perform the task. User does not need to know the **implementation details** for the methods.
+```java
+public class Student {
+	private String name;
+	private int age;
+	private char gender;
+	private Course[] courses = new Course[10];
+	private Professor mentor;
+}
 
-# Inheritance
+public class Course {
+	private int id;
+	private String name;
+}
 
-> Inheritance is a mechanism that defines a new class which inherits the properties and behaviors of a parent class
-
-- **Superclass** or **Base** Class (**Parent**)
-  - The class from which another class inherits structures and/or behaviors
-- **Subclass** or **Derived** Class (**Child**)
-  - A class that inherits from one or more classes
-  - Any inherited behaviors may be redefined in the subclass, overriding the inherited definition
-- Can create new classes without extensive duplication of code
-- Reuse parent's code
-
-```mermaid
-classDiagram
-    Employee <|--  SalariedEmployee
-    Employee <|-- HourlyEmployee
-
-    class Employee {
-        +String firstName
-        +String lastName
-        +String socialSecurityNumber
-        +getEarnings()
-    }
-
-    class SalariedEmployee {
-        +double weeklySalary
-        +getOvertimePay()
-    }
-
-    class HourlyEmployee {
-        +double wagePerHour
-        +double hours
-
-        +getEarnings()
-    }
+public class Professor {
+	private String name;
+}
 ```
 
-Every `Employee` will have the attributes
-- `firstName`
-- `lastName`
-- `socialSecurityNumber`
-  
-And a method
-- `getEarnings()`
+# String
 
-Now we don't have to repeat for `SalariedEmployee` and `HourlyEmployee` since they both inherit from `Employee`.
+- `java.lang.String`
+- A series of characters in double quotes `"Hello world"`
+- In java, strings are always created as objects `String var_name;`
+- String is immutable (cannot be changed)
 
-However, to differentiate between the `SalariedEmployee` and `HourlyEmployee`, we have different variables and methods
+# Java Naming Conventions
 
-- SalariedEmployee has a new attribute `weeklySalary`, and a new method `getOvertimePay()`
-- HourlyEmployee has 2 new attributes `wagePerHour` and `hours`, while it overrides the inherited `getEarnings()` method
-
-# Multiple Inheritance
-
-- A class can inherit from more than one superclass
-- However the problem arises on which property/method to inherit if they are present in more than 1 superclass
-  - User specified precedence (Smalltalk)
-  - Rename one property/method
-  - Accept both if signatures are different
-    - `print(String s)` and `print(char c)` have different signatures
-
-```mermaid
-classDiagram
-    StudentEmployee --> Student
-    StudentEmployee --> Employee
-
-    class Student {
-        String name
-        String address
-        int age
-
-        getExamResults()
-    }
-
-    class Employee {
-        String name
-        String address
-        int salary
-        int age
-
-        getEarnings()
-    }
-```
-
-# Polymorphism
-
-> Polymorphism is the condition of occurring in several different forms
-
-- Poly: Many, Morph: Forms/Transformations. Hence polymorphism means "many forms"
-- Same message can be sent to different object
-  - Each object performs operations appropriate to its class
-  - Do similar things differently
-- Sending object does not need to know class of receiving object or how the object will respond
-- E.g. `account.getBalance()`, the `account` could be a `SavingsAccount`, `DepositAccount`, `AdminAccount` etc.
-  - Even though they are all different classes, they can perform the same `getBalance()` action
-
-```mermaid
-classDiagram
-    Animal <-- Bird
-    Animal <-- Fish
-    Animal <-- Cat
-
-    class Animal {
-        move()
-    }
-
-    class Bird {
-        move()
-    }
-    class Fish {
-        move()
-    }
-    class Cat {
-        move()
-    }
-```
-
-Each subclass of `Animal` implements its own `move()`. Even though each `Animal` is different, we can call `animal.move()` and each animal will move accordingly. 
+- Lowercase for package names (`package.com.packagename`)
+- Uppercase, separated by underscores for constants (`public static final int HOURS_IN_DAY`, `final double PI`, `final int MAX_NUMBER_OF_PAGES`)
+- Camel case for class names (`class HappyPerson`, `class BankAccount`)
+- Pascal case for variable and method names (`int numberOfChildren`, `double bankBalance`, `String myMessage`)
