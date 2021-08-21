@@ -1,6 +1,6 @@
 # Exceptions
 
-Occurs when an error occurs.
+An error that occurs within a program at runtime.
 
 # What to do when an error occurs?
 - Old style: return "error code"
@@ -10,6 +10,8 @@ Occurs when an error occurs.
   - E.g. `open("file.txt")` in C returns a file descriptor that allows reading from a file
   - Returns -1 (invalid file descriptor) if open fails
   - Programmer must remember to check for -1
+- Prone to forgetting to check for errors and causing entire program to crash
+- In java, we can throw errors and catch them to be handled accordingly, without having the program fully crash on us
 
 # Java Approach - Exceptions
 
@@ -38,6 +40,8 @@ try {
 
 Note: `Exception` is a class name, not a reserved word. `e` is an object reference to the exception that was thrown.
 
+Note that the code that causes the exception must be in the try block when the error happens. If it is not, it will not be caught by the `catch` block, and instead cause the entire program to crash.
+
 Instead of catching an exception and dealing with it, a method can declare that it will just throw an exception without catching it by declaring it as such:
 
 ```java
@@ -45,6 +49,8 @@ public void doSomething(int x) throws Exception {
     // statements that might throw an exception
 }
 ```
+
+In this case, we leave it to the user to handle the exception accordingly rather than having the function handle the exception.
 
 A method can also re-throw an `Exception`
 
@@ -88,14 +94,14 @@ classDiagram
 We are not expected to catch unchecked exceptions
 
 - `RuntimeException` class and its subclasses are **unchecked exceptions**
-  - No need to check for them (No need to include try catch block or declare that method throws an unchecked exception)
-  - Typically no recovery is possible; program crashes
-  - Generally indicate program or JVM error (null pointer, arithmetic, invalid array index etc)
-  - Problem with program logic, must change code to fix
+    - No need to check for them (No need to include try catch block or declare that method throws an unchecked exception)
+    - Typically no recovery is possible; program crashes
+    - Generally indicate program or JVM error (null pointer, arithmetic, invalid array index etc)
+    - Problem with program logic, must change code to fix
 - All other exceptions are **checked**
-  - Generally indicate "user" error (e.g. file not found)
-  - Must check for them (try-catch or throws)
-  - Typically recoverable (E.g. prompt user again)
+    - Generally indicate "user" error (e.g. file not found)
+    - Must check for them (try-catch or throws)
+    - Typically recoverable (E.g. prompt user again)
 
 
 ```java
@@ -246,7 +252,8 @@ public class FindStudent {
 
 - Possible to catch multiple exceptions from a single try
 - Catches must be ordered from lowest subclass to highest superclass
-  - Similar to multiple if else statements, only the first matching try-catch block will run
+    - If we put the most general class `Exception` in the first catch block, since all other exceptions extend `Exception`, the first catch block is matched and will run
+    - Similar to multiple if else statements, only the first matching try-catch block will run
   
 ```java
 try {
