@@ -2,31 +2,31 @@
 
 Merge sort is a divide-and-conquer algorithm. It divides the input array into 2 halves, calls itself on the 2 halves, and then merges the 2 sorted halves. It consists of 2 important functions
 
-1. `mergeSort(int arr[], int lower, int higher)` - the main sorting algorithm
-2. `merge(int arr[], int lower, int middle, int higher)` - a function that helps merge the 2 halves generated within `mergeSort`
+1. `mergeSort(int arr[], int startIndex, int endIndex)` - the main sorting algorithm
+2. `merge(int arr[], int startIndex, int middle, int endIndex)` - a function that helps merge the 2 halves generated within `mergeSort`
 
 Merge sort is stable
 - Relative order of elements of the same value remain the same before and after the sorting
 
 `mergeSort` does the following:
-1. If lower >= higher, the program is complete
+1. If startIndex >= endIndex, the program is complete
 2. Get the middle of the array
-3. `mergeSort` the lower half of the array (`mergeSort(arr, lower, middle)`)
-4. `mergeSort` the upper half of the array (`mergeSort(arr, middle + 1, higher)`)
-5. Merge the 2 halves together (`merge(arr, lower, middle, higher)`)
+3. `mergeSort` the lower half of the array (`mergeSort(arr, startIndex, middleIndex)`)
+4. `mergeSort` the upper half of the array (`mergeSort(arr, middleIndex + 1, endIndex)`)
+5. Merge the 2 halves together (`merge(arr, startIndex, middleIndex, endIndex)`)
 
 ```
-void mergeSort(int arr[], int lower, int higher) {
-    if (lower >= higher) return;
-    int middle = (lower + higher) / 2;
-    mergeSort(arr, lower, middle);
-    mergeSort(arr, middle + 1, higher);
-    merge(arr, lower, middle, higher);
+void mergeSort(int arr[], int startIndex, int endIndex) {
+    if (startIndex >= endIndex) return;
+    int middleIndex = (startIndex + endIndex) / 2;
+    mergeSort(arr, startIndex, middleIndex);
+    mergeSort(arr, middleIndex + 1, endIndex);
+    merge(arr, startIndex, middleIndex, endIndex);
 }
 ```
 
 `merge` does the following:
-1. Create a temporary array to store all the elements required (`numberOfElements = higher - lower + 1`)
+1. Create a temporary array to store all the elements required (`numberOfElements = endIndex - startIndex + 1`)
 2. Create a pointer to the start of the lower array
 3. Create a pointer to the start of the upper array
 4. While both pointers have not reached the end of their respective arrays:
@@ -52,53 +52,53 @@ void printArr(int arr[], int size) {
 }
 
 
-void merge(int arr[], int lower, int middle, int higher) {
-    int temporaryArray[higher - lower + 1]; // create array to copy elements into
+void merge(int arr[], int startIndex, int middleIndex, int endIndex) {
+    int temporaryArray[endIndex - startIndex + 1]; // create array to copy elements into
 
-    int leftPointer = lower; // create a pointer to the start of the lower array
-    int rightPointer = middle + 1; // create a pointer to the start of the upper array
+    int leftPointer = startIndex; // create a pointer to the start of the left array
+    int rightPointer = middleIndex + 1; // create a pointer to the start of the right array
     int numberOfMergedElements = 0; // keep track of how many items in temporaryArray
 
-    while (leftPointer <= middle && rightPointer <= higher) { // traverse through left and right halves
-        if (arr[leftPointer] < arr[rightPointer]) { // if element in lower half smaller
+    while (leftPointer <= middleIndex && rightPointer <= endIndex) { // traverse through left and right halves
+        if (arr[leftPointer] < arr[rightPointer]) { // if element pointed to in the left half is smaller
             temporaryArray[numberOfMergedElements] = arr[leftPointer]; // copy to temp array
             leftPointer++;
         } else {
-            temporaryArray[numberOfMergedElements] = arr[rightPointer]; // else copy upper half element to temp array
+            temporaryArray[numberOfMergedElements] = arr[rightPointer]; // else copy right half element to temp array
             rightPointer++;
         }
 
         numberOfMergedElements++;
     }
 
-    // add remaining elements in lower half
-    while (leftPointer <= middle) {
+    // add remaining elements in left half
+    while (leftPointer <= middleIndex) {
         temporaryArray[numberOfMergedElements] = arr[leftPointer];
         numberOfMergedElements++;
         leftPointer++;
     }
 
-    // add remaining elements in upper half
-    while (rightPointer <= higher) {
+    // add remaining elements in right half
+    while (rightPointer <= endIndex) {
         temporaryArray[numberOfMergedElements] = arr[rightPointer];
         numberOfMergedElements++;
         rightPointer++;
     }
 
-    for (int i = lower; i <= higher; i++) { // copy array
-        arr[i] = temporaryArray[i - lower];
+    for (int i = startIndex; i <= endIndex; i++) { // copy array
+        arr[i] = temporaryArray[i - startIndex];
     }
 }
 
-void mergeSort(int arr[], int lower, int higher) {
-    if (lower >= higher) {
+void mergeSort(int arr[], int startIndex, int endIndex) {
+    if (startIndex >= endIndex) {
         return;
     }
 
-    int middle = (higher + lower) / 2; // get the middle of the array
-    mergeSort(arr, lower, middle); // mergeSort bottom half of array
-    mergeSort(arr, middle + 1, higher); // mergeSort top half of array
-    merge(arr, lower, middle, higher); // merge both halves together
+    int middleIndex = (endIndex + startIndex) / 2; // get the middle index of the array
+    mergeSort(arr, startIndex, middleIndex); // mergeSort left half of array
+    mergeSort(arr, middleIndex + 1, endIndex); // mergeSort right half of array
+    merge(arr, startIndex, middleIndex, endIndex); // merge both halves together
 }
 
 int main()
@@ -106,7 +106,7 @@ int main()
     int arr[] = { 5, 4, 3, 7, 6 };
     int size = 5;
     printArr(arr, size);
-    mergeSort(arr, 0, size);
+    mergeSort(arr, 0, size - 1);
     printArr(arr, size);
     return 0;
 }
@@ -119,15 +119,15 @@ int main()
 - To merge the 2 lists together, we require at most $n-1$ comparisons
 
 ```c
-void mergeSort(int arr[], int lower, int higher) {
-    if (lower >= higher) {
+void mergeSort(int arr[], int startIndex, int endIndex) {
+    if (startIndex >= endIndex) {
         return; // W(1)
     }
 
-    int middle = (higher + lower) / 2;
-    mergeSort(arr, lower, middle); // W(n/2)
-    mergeSort(arr, middle + 1, higher); // W(n/2)
-    merge(arr, lower, middle, higher); // Worst case: n - 1
+    int middle = (endIndex + startIndex) / 2;
+    mergeSort(arr, startIndex, middle); // W(n/2)
+    mergeSort(arr, middle + 1, endIndex); // W(n/2)
+    merge(arr, startIndex, middle, endIndex); // Worst case: n - 1
 }
 ```
 
