@@ -1,4 +1,4 @@
-# ArrayList<T>
+# ArrayList
 
 - Like an array, but grows when elements are added
 
