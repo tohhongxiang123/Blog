@@ -397,10 +397,31 @@ int main()
 
 The best, worst and average time complexity for heap sort is $O(n \log n)$.
 
-Let us consider the worst case now.
+Heapsort consists of 2 major parts - Building the max heap, and then extracting the max elements out of the max heap. Considering the worst case:
 
-For building a max heap, the worst case is when all elements have to be pushed from the root to the bottom of the tree. Each element has to be pushed down the entire height of the tree ($\log n$). When we `buildMaxHeap`, note that we only had to heapify `n/2` elements, because we are only heapifying non-leaf nodes. Hence, the worst case for building a max heap is $\frac{n}{2} \log n \approx n \log n$.
+For building a max heap, the worst case is when all elements have to be pushed from the root to the bottom of the tree. Each element has to be pushed down the entire height of the tree ($\log n$). When we `buildMaxHeap`, note that we only had to heapify `n/2` elements, because we are only heapifying non-leaf nodes. 
 
-For sorting, we exchange the root element, and then we heapify the root element. For each element, the worst case is $\log n$ time because we must bring the element from the root to the leaf. Since we do this for $n$ elements, the overall runtime for this step is $n \log n$.
+Consider a single node, and its 2 children. To find the largest node, we have to make 2 comparisons (3 nodes requires 2 comparisons to figure out which node is the largest). Then, we swap the root node with its largest child, and repeat the process. This means, for every swap we do, we take 2 comparisons. And the number of swaps for a single node, is the number of layers the node traverses down.
 
-Hence, the total runtime for heap sort is $n \log n + n \log n = O(n \log n)$ runtime
+Let us consider a complete binary tree with $n = 2^k$ nodes. For the $i^{th}$ layer (with the top layer being the $0^{th}$ layer), we have $2^i$ nodes. Since we have k levels, any node on the $i^{th}$ level will have to move down $k-i$ levels. Hence for a single node, the worst case requires $2(k-i)$ comparisons, and in total, the number of comparisons required is
+
+$$
+\sum_{i=1}^{k} i 2^{k - i} = O(n)
+$$
+
+More regarding the math above can be found from [this analysis of heapsort](http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf) and [how to calculate an arithmetic-geometric progression](https://brilliant.org/wiki/arithmetic-geometric-progression/). Hence `buildMaxHeap` runs in $O(n)$ time
+
+For sorting, we exchange the root element, and then we heapify the root element. For the $i^{th}$ element, the worst case is $\log i$ time. At the $i^{th}$ element (from the bottom, note how heapsort always swaps the root with the last element, and then bubbles the last element back down), we have $i$ elements in the tree, hence the tree's height is $\log i$. Each time before we swap, we do 2 comparisons to find the max node. Since we do this for $n$ elements, the overall runtime for this step is
+
+$$
+\sum_{i=0}^{n} 2 \log i = O(n \log n)
+$$
+
+Note how this is similar to $\log n!$, which can be approximated with [Stirling's approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation)
+Hence, the total runtime for heap sort is $n + n \log n = O(n \log n)$ runtime
+
+# Resources
+- https://www.programiz.com/dsa/heap-sort
+- https://www.youtube.com/watch?v=k72DtCnY4MU
+- http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+- https://en.wikipedia.org/wiki/Stirling%27s_approximation
