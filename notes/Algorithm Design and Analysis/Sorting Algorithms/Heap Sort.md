@@ -92,17 +92,17 @@ void delete(BinaryHeap *b) {
     int rightChildIndex = 2 * currentIndex + 2; // index of right child of current element
     
     while (1) {
-        int smallestIndex = -1; // index of child who is smaller than parent
+        int smallestIndex = currentIndex; // index of child who is smaller than parent
 
         // check if any child is smaller than the parent
-        if (leftChildIndex < b->currentSize && b->heap[currentIndex] > b->heap[leftChildIndex]) {
+        if (leftChildIndex < b->currentSize && b->heap[smallestIndex] > b->heap[leftChildIndex]) {
             smallestIndex = leftChildIndex;
-        } else if (rightChildIndex < b->currentSize && b->heap[currentIndex] > b->heap[rightChildIndex]) {
+        } else if (rightChildIndex < b->currentSize && b->heap[smallestIndex] > b->heap[rightChildIndex]) {
             smallestIndex = rightChildIndex;
         }
         
         // if no child is smaller than the parent
-        if (smallestIndex == -1) {
+        if (smallestIndex == currentIndex) {
             // done
             break;
         } else {
@@ -125,7 +125,7 @@ int peek(BinaryHeap *b) {
 }
 ```
 
-## Overall Code for Binary Heap
+## Overall Code for Implementation of Binary Heap
 
 ```c
 #include <stdio.h>
@@ -177,17 +177,17 @@ void delete(BinaryHeap *b) {
     int rightChildIndex = 2 * currentIndex + 2; // index of right child of current element
     
     while (1) {
-        int smallestIndex = -1; // index of child who is smaller than parent
+        int smallestIndex = currentIndex; // index of child who is smaller than parent
 
         // check if any child is smaller than the parent
-        if (leftChildIndex < b->currentSize && b->heap[currentIndex] > b->heap[leftChildIndex]) {
+        if (leftChildIndex < b->currentSize && b->heap[smallestIndex] > b->heap[leftChildIndex]) {
             smallestIndex = leftChildIndex;
-        } else if (rightChildIndex < b->currentSize && b->heap[currentIndex] > b->heap[rightChildIndex]) {
+        } else if (rightChildIndex < b->currentSize && b->heap[smallestIndex] > b->heap[rightChildIndex]) {
             smallestIndex = rightChildIndex;
         }
         
         // if no child is smaller than the parent
-        if (smallestIndex == -1) {
+        if (smallestIndex == currentIndex) {
             // done
             break;
         } else {
@@ -233,3 +233,174 @@ int main()
     return 0;
 }
 ```
+
+# Heap Sort
+
+Heap sort uses a heap to sort an array. It converts the array into a max heap first, and then uses the max heap to sort out the final array.
+
+The procedure of the heap sort is as follows:
+
+1. From the unsorted array, build a max heap
+2. Swap the root of the max heap (which is the max element) with the final element in the heap
+3. Remove the final element from the heap
+4. Restore the heap from the root element again
+5. Repeat until all items in the heap is sorted
+
+## How to "Heapify" a tree
+
+Starting from a complete binary tree, we can convert it into a max heap by running `heapify` on all non-leaf elements of the heap
+
+```
+heapify(array, currentElement) {
+    largestElement = largest(currentElement, leftChild, rightChild)
+
+    if largestElement != currentElement:
+        swap(currentElement, largestElement)
+        heapify(array, largestElement)
+
+}
+```
+
+```c
+void heapify(int heap[], int heapSize, int rootIndex) {
+    // converts the heap into a max heap
+    int leftChildIndex = 2 * rootIndex + 1;
+    int rightChildIndex = 2 * rootIndex + 2;
+    
+    // search for the largest element's index
+    int largestElementIndex = rootIndex;
+    if (leftChildIndex < heapSize && heap[leftChildIndex] > heap[largestElementIndex]) {
+        largestElementIndex = leftChildIndex;
+    }
+    if (rightChildIndex < heapSize && heap[rightChildIndex] > heap[largestElementIndex]) {
+        largestElementIndex= rightChildIndex;
+    }
+    
+    // if the largest element is not the root, swap and continue heapifying the swapped element
+    if (largestElementIndex != rootIndex) {
+        swap(&heap[rootIndex], &heap[largestElementIndex]);
+        heapify(heap, heapSize, largestElementIndex);
+    }
+}
+```
+
+## Building a max-heap from any tree
+
+To build a max-heap from any tree, we can start heapifying each sub-tree from the bottom up, and end up with a max heap once we reach the root element. For a complete tree, the index of the first non-leaf node is `n/2-1`. We do not need to heapify leaf-nodes because they have no children. Hence,
+
+```
+// build max heap
+for (int i = n/2-1; i >= 0; i--) {
+    heapify(arr, n, i);
+}
+```
+
+```c
+void buildMaxHeap(int heap[], int heapSize) {
+    // heapify from the first non-leaf node
+    for (int i = heapSize / 2 - 1; i >= 0; i--) {
+        heapify(heap, heapSize, i);
+    }
+}
+```
+
+## Sorting the Array
+
+Now to sort the array,
+
+1. We swap the root element (largest element) with the last element of the array
+2. We reduce the heap size by 1
+3. We re-heapify the root element again so we have the highest element at the root
+4. Repeat until list is sorted
+
+```c
+void heapSort(int arr[], int size) {
+    buildMaxHeap(arr, size); // build a max heap from the array
+    
+    // actually sort the heap
+    for (int i = size - 1; i > 0; i--) {
+        swap(&arr[i], &arr[0]); // swap the last element with the root since it is the largest
+        heapify(arr, i, 0); // now heapify the remaining elements (excluding the largest one we just swapped)
+    }
+}
+```
+
+## Overall Code for HeapSort
+
+```c
+#include <stdio.h>
+
+void printArray(int a[], int size) {
+    for (int i = 0; i < size; i++){
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void heapify(int heap[], int heapSize, int rootIndex) {
+    // converts the heap into a max heap
+    int leftChildIndex = 2 * rootIndex + 1;
+    int rightChildIndex = 2 * rootIndex + 2;
+    
+    // search for the largest element's index
+    int largestElementIndex = rootIndex;
+    if (leftChildIndex < heapSize && heap[leftChildIndex] > heap[largestElementIndex]) {
+        largestElementIndex = leftChildIndex;
+    }
+    if (rightChildIndex < heapSize && heap[rightChildIndex] > heap[largestElementIndex]) {
+        largestElementIndex= rightChildIndex;
+    }
+    
+    // if the largest element is not the root, swap and continue heapifying the swapped element
+    if (largestElementIndex != rootIndex) {
+        swap(&heap[rootIndex], &heap[largestElementIndex]);
+        heapify(heap, heapSize, largestElementIndex);
+    }
+}
+
+void buildMaxHeap(int heap[], int heapSize) {
+    // heapify from the first non-leaf node
+    for (int i = heapSize / 2 - 1; i >= 0; i--) {
+        heapify(heap, heapSize, i);
+    }
+}
+
+void heapSort(int arr[], int size) {
+    buildMaxHeap(arr, size); // build a max heap from the array
+    
+    for (int i = size - 1; i > 0; i--) {
+        swap(&arr[i], &arr[0]); // swap the last element with the root since it is the largest
+        heapify(arr, i, 0); // now heapify the remaining elements (excluding the largest one we just swapped)
+    }
+}
+
+int main()
+{
+    int a[] = { 1, 12, 9, 5, 6, 10 };
+    int size = 6;
+    printArray(a, size);
+    heapSort(a, size);
+    printArray(a, size);
+    
+
+    return 0;
+}
+```
+
+## Time Complexity Analysis of HeapSort
+
+The best, worst and average time complexity for heap sort is $O(n \log n)$.
+
+Let us consider the worst case now.
+
+For building a max heap, the worst case is when all elements have to be pushed from the root to the bottom of the tree. Each element has to be pushed down the entire height of the tree ($\log n$). When we `buildMaxHeap`, note that we only had to heapify `n/2` elements, because we are only heapifying non-leaf nodes. Hence, the worst case for building a max heap is $\frac{n}{2} \log n \approx n \log n$.
+
+For sorting, we exchange the root element, and then we heapify the root element. For each element, the worst case is $\log n$ time because we must bring the element from the root to the leaf. Since we do this for $n$ elements, the overall runtime for this step is $n \log n$.
+
+Hence, the total runtime for heap sort is $n \log n + n \log n = O(n \log n)$ runtime
