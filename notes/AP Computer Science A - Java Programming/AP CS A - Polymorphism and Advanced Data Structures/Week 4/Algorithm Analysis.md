@@ -62,19 +62,4 @@ for (int i = 0; i < n; i++) {
 
 The code above runs in $O(n^2)$
 
-# Bubble Sort
-
-- Compare neighbors
-- If left element greater than right element, swap
-
-```
-temp = arr[x];
-arr[x] = arr[x+1];
-arr[x+1] = temp;
-```
-
-- Advance counter to next pair
-- One pass (from start to end) is n - 1 comparisons
-- Repeat for n passes
-- $O(n^2)$
 
