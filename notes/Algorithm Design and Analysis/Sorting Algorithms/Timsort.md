@@ -282,13 +282,24 @@ It takes about 40-60 elements before merge sort uses less comparisons than inser
 Let us set $S = 40$ as the threshold from using merge to insertion sort.
 
 ```c
-int timSort(int arr[], int size) {
-    int THRESHOLD = 40;
-    if (size < THRESHOLD) {
-        insertionSort(arr, size);
+int timSort(int arr[], int startIndex, int endIndex) {
+    int size = endIndex - startIndex + 1;
+    int threshold = 40;
+    if (size <= 1) return 1;
+    if (size < threshold) {
+        return insertionSort(arr, size); // insertion sort runs better
     } else {
-        mergeSortUtil(arr, size);
+        int count = 0;
+        int middleIndex = (startIndex + endIndex) / 2;
+        count += timSort(arr, startIndex, middleIndex);
+        count += timSort(arr, middleIndex + 1, endIndex);
+        count += merge(arr, startIndex, middleIndex, endIndex);
+        return count;
     }
+}
+
+int timSortUtil(int arr[], int size) {
+    timSort(arr, 0, size - 1);
 }
 ```
 
@@ -393,14 +404,24 @@ int mergeSortUtil(int arr[], int size) {
     return mergeSort(arr, 0, size - 1);
 }
 
-int timSort(int arr[], int size) {
-    // hybrid sorting algorithm
-    int THRESHOLD = 40;
-    if (size < THRESHOLD) {
-        insertionSort(arr, size); // insertion sort runs better
+int timSort(int arr[], int startIndex, int endIndex) {
+    int size = endIndex - startIndex + 1;
+    int threshold = 40;
+    if (size <= 1) return 1;
+    if (size < threshold) {
+        return insertionSort(arr, size); // insertion sort runs better
     } else {
-        mergeSortUtil(arr, size); // merge sort runs better
+        int count = 0;
+        int middleIndex = (startIndex + endIndex) / 2;
+        count += timSort(arr, startIndex, middleIndex);
+        count += timSort(arr, middleIndex + 1, endIndex);
+        count += merge(arr, startIndex, middleIndex, endIndex);
+        return count;
     }
+}
+
+int timSortUtil(int arr[], int size) {
+    timSort(arr, 0, size - 1);
 }
 
 int returnCountFromRandomArray(int (*sortingAlg)(int[], int), int size) { // counts comparison required to sort an array of size
@@ -412,7 +433,7 @@ int returnCountFromRandomArray(int (*sortingAlg)(int[], int), int size) { // cou
     for (int i=0; i<size; i++) {
         array[i] = rand() % 1000; // random number from 0 to 999
     }
-    
+    free(array);
     return sortingAlg(array, size);
 }
 
@@ -434,6 +455,7 @@ double returnTimingFromRandomArray(int (*sortingAlg)(int[], int), int size) { //
     sortingAlg(array, size);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    free(array);
     return cpu_time_used * MILLISECONDS_PER_SECOND;
 }
 
@@ -452,11 +474,11 @@ int main()
         for (int j = 0; j < TIMES_TO_REPEAT; j++) {
             averageMergeSortCount += returnCountFromRandomArray(mergeSortUtil, i);
             averageInsertionSortCount += returnCountFromRandomArray(insertionSort, i);
-            averageTimSortCount += returnCountFromRandomArray(timSort, i);
+            averageTimSortCount += returnCountFromRandomArray(timSortUtil, i);
             
             averageMergeSortTiming += returnTimingFromRandomArray(mergeSortUtil, i);
             averageInsertionSortTiming += returnTimingFromRandomArray(insertionSort, i);
-            averageTimSortTiming += returnTimingFromRandomArray(timSort, i);
+            averageTimSortTiming += returnTimingFromRandomArray(timSortUtil, i);
         }
         
         averageMergeSortCount /= TIMES_TO_REPEAT;
@@ -472,6 +494,7 @@ int main()
         printf("Insertion sort: %.4f ms, %.4f comparisons, ", averageInsertionSortTiming, averageInsertionSortCount);
         printf("Tim sort: %.4f ms, %.4f comparisons\n", averageTimSortTiming, averageTimSortCount);
     }
+    printf("Done\n");
 }
 ```
 
