@@ -184,3 +184,33 @@ int main()
     return 0;
 }
 ```
+
+# Proof of Correctness
+
+1. Property of shortest path
+
+> Lemma 1: In a weighted graph $G$, suppose that a shortest path from $x$ to $z$ consists of a path $P$ from $x$ to $y$, followed by a path $Q$ from $y$ to $z$. Then $P$ is the shortest path from $x$ to $y$ and $Q$ is a shortest path from $y$ to $z$
+
+x -- P --> y -- Q --> z
+
+Proof by contradiction:
+
+Assume $P$ is not the shortest path from $x$ to $y$. Then there exists another path from $x$ to $y$, $P'$ which is shorter than $P$. As a result, the path $P'Q$ is shorter than the path $PQ$.
+
+However, we have already known that $PQ$ should be the shortest path. This is a contradiction. Therefore, $P$ is the shortest path from $x$ to $y$. (Similarly for $Q$)
+
+> Theorem D1: Let $G = (V, E, W)$ be a weighted graph with nonnegative weights .Let $S$ be a subset of $V$ and let $s$ be a member of $S$. Assume that $d[y]$ is the shortest distance in $G$ from $s$ to $y$, for each $y$ in $S$. Let $z$ be the next vertex chosen to go into $S$. If the edge $(y, z)$ is chosen to minimise $d[y] + W(y, z)$ over all edges with one vertex in $S$ and one vertex in $V - S$, then the path consisting of a shortest path from $s$ to $y$ followed by the edge $(y, z)$ is the shortest path from $s$ to $z$
+
+Proof: We will show that there is no other path from $s$ to $z$ that is shorter
+
+$$
+\begin{aligned}
+P&: s \rightarrow y \rightarrow z (\text{Shortest path for $z$}) \\
+W(P) &= d[y] + W(y, z) \\ \\
+P' &: s \rightarrow y \rightarrow u \rightarrow \cdots \rightarrow z (\text{An alternative shortest path}) \\
+W(P') &= d[y] + W(y, u) + \text{distance from $u$ to $z$} \\ \\
+\end{aligned}
+$$
+
+We note that $W(y, u) \geq W(y, z)$ because we chose $(y, z)$ such that we minimised $d[y] + W(y, z)$
+However, since $d[y] + W(y, u) \geq d[y] + W(y, z)$, and the distance from $u$ to $z$ is nonnegative, therefore $W(P) \leq W(P')$

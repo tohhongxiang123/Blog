@@ -498,6 +498,20 @@ int main()
 }
 ```
 
+# Analysis
+
+In the worst case, `hybridSort` runs in $O \left(nS + n \lg \frac{n}{s} \right)$
+
+![](https://i.stack.imgur.com/4H8eH.jpg)
+
+At the bottom of the tree, each list has a size $S$, and there are $\frac{n}{S}$ lists. The worst case for insertion sort is $O(n^2)$ for an array of size $n$.
+
+Hence, at the bottom, the total time complexity is $\frac{n}{S} * S^2 = O(nS)$
+
+There are $\log \frac{n}{S}$ levels, and in total, at each level, `merge` runs in $O(n)$ time.
+
+Therefore, the total time complexity is $O\left(nS + n \log \frac{n}{S} \right)$
+
 # Resources
 
 - https://en.wikipedia.org/wiki/Timsort
