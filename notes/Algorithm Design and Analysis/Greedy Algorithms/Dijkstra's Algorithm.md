@@ -1,9 +1,9 @@
-# Djikstra's Algorithm
+# Dijkstra's Algorithm
 
-A single source shortest path algorithm for graphs with **non-negative edge weights**. Typically, djikstra's algorithm runs in $O(E \log V)$ where $E$ is the number of edges and $V$ is the number of vertices
+A single source shortest path algorithm for graphs with **non-negative edge weights**. Typically, Dijkstra's algorithm runs in $O(E \log V)$ where $E$ is the number of edges and $V$ is the number of vertices
 
 - The graph must only contain non-negative edges, to ensure that once a node has been visited, its optimal distance cannot be improved
-- This allows Djikstra's algorithm to act in a greedy manner by always selecting the next most promising node
+- This allows Dijkstra's algorithm to act in a greedy manner by always selecting the next most promising node
 
 # Algorithm
 
@@ -185,6 +185,47 @@ int main()
 }
 ```
 
+# Time Complexity
+
+Consider the following pseudocode for dijkstra's algorithm:
+
+```
+PriorityQueue unvisitedSet;
+
+for vertex v in graph: // O(|V|)
+    distance[v] = INFINITY; // O(1)
+    prev[v] = UNDEFINED; // O(1)
+    add v to Q; // O(1)
+
+while unvisitedSet is not empty: // O(|V|)
+    currentNode = vertex in unvisitedSet with minimum distance; // O(1) for min-heap, O(|V|) for array
+
+    remove currentNode from unvisitedSet; // O(log|V|) for min-heap, O(|V|) for array, O(1) for linked list
+
+    for each neighbor of currentNode: // O(|N|) (Number of neighbors)
+        alternativeDistance = distance[currentNode] + length(currentNode, neighborNode); // O(1)
+        if alternativeDistance < distance[neighborNode]:
+            distance[neighborNode] = alternativeDistance; // min-heap requires O(log|V|) because you have to fix heap, O(1) for array
+            prev[neighborNode] = currentNode;
+
+return distance[], prev[]
+```
+
+Note that $|V||N| = |E|$ (Number of nodes * number of neighbors per node = number of edges)
+Time complexity:
+
+
+For a min-heap:
+$$
+O(|V|) + O(|V|(\log |V| + |N|\log|V|)) = O((|E| + |V|)\log|V|)
+$$
+
+For a simple array:
+
+$$
+O(|V|) + O(|V|(|V| + |V| + |N|)) = O(|V|^2 + |E|)
+$$
+
 # Proof of Correctness
 
 1. Property of shortest path
@@ -214,3 +255,8 @@ $$
 
 We note that $W(y, u) \geq W(y, z)$ because we chose $(y, z)$ such that we minimised $d[y] + W(y, z)$
 However, since $d[y] + W(y, u) \geq d[y] + W(y, z)$, and the distance from $u$ to $z$ is nonnegative, therefore $W(P) \leq W(P')$
+
+# Resources
+
+- https://stackoverflow.com/questions/26547816/understanding-time-complexity-calculation-for-dijkstra-algorithm
+- https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
