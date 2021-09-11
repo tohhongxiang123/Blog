@@ -240,6 +240,8 @@ Assume $P$ is not the shortest path from $x$ to $y$. Then there exists another p
 
 However, we have already known that $PQ$ should be the shortest path. This is a contradiction. Therefore, $P$ is the shortest path from $x$ to $y$. (Similarly for $Q$)
 
+2. Proof that the greedy choice is optimal
+
 > Theorem D1: Let $G = (V, E, W)$ be a weighted graph with nonnegative weights .Let $S$ be a subset of $V$ and let $s$ be a member of $S$. Assume that $d[y]$ is the shortest distance in $G$ from $s$ to $y$, for each $y$ in $S$. Let $z$ be the next vertex chosen to go into $S$. If the edge $(y, z)$ is chosen to minimise $d[y] + W(y, z)$ over all edges with one vertex in $S$ and one vertex in $V - S$, then the path consisting of a shortest path from $s$ to $y$ followed by the edge $(y, z)$ is the shortest path from $s$ to $z$
 
 Proof: We will show that there is no other path from $s$ to $z$ that is shorter
@@ -255,6 +257,24 @@ $$
 
 We note that $W(y, u) \geq W(y, z)$ because we chose $(y, z)$ such that we minimised $d[y] + W(y, z)$
 However, since $d[y] + W(y, u) \geq d[y] + W(y, z)$, and the distance from $u$ to $z$ is nonnegative, therefore $W(P) \leq W(P')$
+
+3. Proof by induction
+
+> Given a directed weighted graph $G$ with nonnegative weights a source vertex $s$, Dikstra's algorithm computes the shortest distance from $s$ to each vertex of $G$ reachable from $s$
+
+Basis:
+
+The algorithm assigns $d[s] = 0$ when the source vertex $s$ is added to $S$. Since all distances are nonnegative, $d[s]$ is the shortest distance from $s$ to $s$ when $S$ has the first vertex in it
+
+Inductive hypothesis:
+
+Assume the theorem is true when $S$ has $k$ vertices. That is, assume $v_0, v_1, ..., v_{k-1}$ are added, where $d[v_i]$ is the shortest distance to vertex $v_i$.
+
+When $v_k$ is chosen by Dijkstra's algorithm, it means that the edge $(v_i, v_k)$, where $i \in \{\0, 1, 2, ..., k-1}$ is chosen to minimise $d[v_i] + W(v_i, v_k)$ among all edges with one vertex in $S$ and one vertex not in $S$
+
+By theorem d1, $d[v_k]$ is the shortest distance from source to $v_k$, hence the theorem is true when $S$ has $k + 1$ vertices
+
+
 
 # Resources
 
