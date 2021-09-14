@@ -240,6 +240,27 @@ By lemma 1, if $T$ and $T_{min}$ both hold the MST property, they have the same 
 
 Therefore, $T$ is an MST if $T$ supports the MST property
 
+# Theorem 2
+
+> Lemma 2: Let $G = (V, E, W)$ be a connected weighted graph; Let $T_k$ be the tree with $k$ vertices constructed by Prim’s Algorithm, for $k = 1, 2, \cdots, n$; and let $G_k$ be the subgraph induced by the vertices of $T_k$. Then $T_k$ has the MST property in $G_k$. 
+
+> Theorem 2: Prim's algorithm outputs a minimum spanning tree
+
+Proof:
+
+We know that Prim's algorithm outputs a tree $T_n$. From lemma 2, $T_n$ has the MST property. Hence, by theorem 1, $T_n$ is a minimum spanning tree
+
+# Time Complexity
+
+Similarly to Djikstra's algorithm,
+
+If an adjacency matrix was used, with a normal linear search to find the minimum vertex not within the spanning tree, it will take $O(V^2)$,
+
+Using a binary heap and an adjacency list will reduce this to $O((V + E) \log V)$
+
+When the matrix is dense, the best performance occurs when an adjacency matrix with normal linear search is used, with $O(V^2)$
+
+When the matrix is sparse, the best performance occurs with the binary heap, giving $O(E \log V)$
 
 
 

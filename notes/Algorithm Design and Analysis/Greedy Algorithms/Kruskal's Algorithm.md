@@ -232,6 +232,78 @@ int main()
 }
 ```
 
+# Proof of Correctness
+
+> Lemma: Let $F$ be a forest; that is any undirected acyclic graph. Let $e = (v, w)$ be an edge that is not in $F$. There is a cycle consisting of $e$ and the edges in $F$ if and only if $v$ and $w$ are in the same connected component of $F$
+
+> Theorem: Let $G = (V, E, W)$ be a weighted undirected graph, and let $F \subseteq E$. If $F$ is contained in a minimum spanning tree collection for $G$ and if $e$ is an edge of minimum weight in $E - F$ such that $F \cup \{ e \}$ has no cycles,
+
+then $F \cup \{ e \}$ is contained in a minimum spanning tree collection for $G$
+
+# Time Complexities
+
+To find out what the time complexity is for kruskal's algorithm, first off we shall consider the time complexity for `find` and `unify` in the Union-Find algorithm
+
+## Time Complexities of `find` and `unify`
+
+> Lemma 1: If `union(t, u)` is implemented in such a way: the tree with root `u` is attached as a subtree of `t` if and only if the tree with root `u` has lesser nodes than the tree with root `t`. Then, after any sequence of union operations,any tree that has $k$ nodes has its height at most $\lfloor \log k \rfloor$
+
+## Proof by Induction
+
+Base case: $k = 1 \implies h = \log 1 = 0$
+
+Inductive step: Assume all trees with $m$ nodes has height $h \leq \lfloor \log x \rfloor$ when $m < k$ (Strong induction)
+
+Consider a tree formed by $k_1 + k_2 = k$ nodes from tree $T_1$ and $T_2$. $h_1$ is the height of $T_1$ and $h_2$ is the height of $T_2$
+
+WLOG, let $h_2 \leq h_1$. We know that after the union, the new tree has height that is equal to
+
+1. $h_1$
+2. $h_2 + 1$
+
+We know that 
+
+$$
+h_1 \leq \lfloor \log k_1 \rfloor \leq \lfloor \log k \rfloor
+$$
+
+, and
+
+$$
+\begin{aligned}
+h_2 + 1 &\leq \lfloor \log k_2 \rfloor + 1 &(\text{Inductive step}) \\
+&= \lfloor \log k_2 + 1 \rfloor \\
+&= \lfloor \log k_2 + \log 2 \rfloor &(\log 2 = 1)  \\
+&= \lfloor \log 2k_2 \rfloor \\
+&\leq \lfloor \log( k_1 + k_2) \rfloor &(h_2 \leq h_1 \implies k_2 \leq k_1) \\
+&= \lfloor \log k \rfloor &(k_1 + k_2 = k)
+\end{aligned}
+$$
+
+Hence by induction, the tree with $k$ nodes will have height at most $\lfloor \log k \rfloor$
+
+From this lemma, we can conclude that both `find` and `unify` on a tree of $n$ elements will run in $O(\log n)$ time.
+
+## Time Complexity of Kruskal's Algorithm
+
+On a graph $G = (V, E, W)$
+
+1. We initialise `ids` and `sizes` for union-find accordingly - $O(V)$
+2. We initialise `mstForest`, which is an array of edges that are in the MST 
+3. We sort the edges from the lowest weight to the highest weight - $O(E \log E)$
+4. We start with the edge with lowest weight, for all edges: - $O(E)$
+    1. We look at the 2 vertices that are connected by the edge, `u` and `v`
+    2. If `u` and `v` belong to the same cluster (`find(u) == find(v)`), this means that including this new edge in the MST will create a cycle, hence we ignore - $O(\log V)$
+    3. Else, we add this edge to the MST, and unify the 2 clusters of `u` and `v` together - $O(\log V)$
+
+Hence, the overall time complexity is $O(E\log V + E \log E)$
+
+If the graph is dense, note that the time complexity is then $O(E \log E) = O(V^2 \log V)$, and if the graph is sparse ($E < V$), then the time complexity is $O(E \log V)$. 
+
+Comparatively, on a dense graph, Prim's algorithm runs in $O(V^2)$ and on a sparse graph, Prim's algorithm runs in $O(E \log V)$.
+
+Hence, on a dense graph, Prim's algorithm performs better ($O(V^2)$) and on a sparse graph, Kruskal's algorithm performs better ($O(E \log V)$)
+
 # Resources
 
 - https://www.youtube.com/watch?v=JZBQLXgSGfs
