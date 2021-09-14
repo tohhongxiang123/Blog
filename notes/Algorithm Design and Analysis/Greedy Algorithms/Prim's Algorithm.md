@@ -1,6 +1,6 @@
 # Prim's Algorithm for Minimum Spanning Tree
 
-A minimum spanning tree is a connected, acyclic subgraph containing all the vertices of a graph with a minimum weight. The weight of a tree refers to the sum of the weights of all the edges in the tree.
+A minimum spanning tree is a connected, acyclic subgraph containing **all the vertices of a graph** with a **minimum summed edge weight**. The weight of a tree refers to the sum of the weights of all the edges in the tree.
 
 # Main Idea of Prim's Algorithm
 
@@ -11,6 +11,37 @@ A minimum spanning tree is a connected, acyclic subgraph containing all the vert
 - In every iteration of Prim's algorithm, a new vertex $u$ from $P$ will be connected to the tree $T$. The vertex $u$ will be deleted from the set $P$. The vertices adjacent to $u$ that are not already in $P$ will be added to $P$
 - When all vertices are connected to $T$, $P$ will be empty, which signals the end of the algorithm
 - The new vertex in every iteration will be chosen greedily - Among all vertices adjacent to $T$ but themselves are not in $T$, we choose the one with the minimum cost
+
+# Pseudocode
+
+```
+Initialise empty priority queue Q;
+
+For each vertex v {
+    distances[v] = INFINITY; // distance is infinity
+    isVisited[v] = 0; // all vertices are not visited
+    predecessors[v] = -1; // each vertice has no parent
+}
+
+distances[start] = 0;
+isVisited[start] = 0;
+
+Q.insertWithPriority(start, distances[start]);
+while Q is not empty:
+    currentNode = Q.getMinimum();
+    Q.removeMinimum();
+    isVisited[currentNode] = 1;
+
+    for all nodes neigborNode adjacent to currentNode:
+        if isVisited[neigborNode]:
+            continue;
+        
+        newWeight = graph[currentNode][neigborNode]
+        if newWeight < distances[neighborNode]:
+            distances[neighborNode] = newWeight;
+            predecessors[neighborNode] = currentNode;
+            Q.decreasePriority(neighborNode, newWeight);
+```
 
 # Code
 
@@ -157,11 +188,65 @@ This is saying that, for any minimum spanning tree $T$, if we added another edge
 
 ## Lemma 1
 
-> In a connected weighted graph $G = (V, E, W)$, if $T_1$ and $T_2$ are 2 spanning trees that have the MST proprty, then they have the same total weight
+> In a connected weighted graph $G = (V, E, W)$, if $T_1$ and $T_2$ are 2 spanning trees that have the MST property, then they have the same total weight
 
 Proof by induction on $k$, the number of edges in $T_1$ but not in $T_2$ (there are also $k$ edges in $T_2$ but not in $T_1$)
 
 Basis:
 
 $k = 0$, which means that all edges in $T_1$ are in $T_2$. Therefore $T_1 = T_2$, they have the same weight
+
+Inductive: For $k > 0$, assume that the hypothesis holds for $j$ differing elements where $0 \leq j < k$
+
+Let $uv$ be the minimum differing weight edge between the differing edges ($uv$ is in $T_2$ but not $T_1$)
+
+Consider the path in $T_1$ that connects $u$ and $v$
+
+Suppose that path in $T_1$ is $w_0, w_1, ..., w_p$, where $w_0 = u$ and $w_p = v$. This path must contain some edge that is different from $T_2$
+
+Let $w_i w_{i+1}$ be this differing edge
+
+By MST property of $T_1$, $w_i w_{i+1}$ cannot be greater than $uv$'s weight
+
+However, since $uv$ was chosen to be the minimum weight among differing edges, $w_i w_{i+1}$ cannot weigh less than $uv$
+
+Thus, $W(w_i w_{i+1}) = W(uv)$
+
+Add $uv$ to $T_1$, which creates a cycle. Remove $w_i w_{i+1}$, leaving a tree $T_1'$, which has the same weight as $T_1$
+
+But $T_1'$ and $T_2$ differ in only $k-1$ edges.
+
+By inductive hypothesis, $T_1'$ and $T_2$ have the same total weight, hence $T_1$ and $T_2$ have the same weight.
+
+# Theorem 1
+
+> In a connected weighted graph $G = (V, E, W)$, a tree $T$ is a minimum spanning tree if and only if it has the MST property
+
+Proof by contradiction (only if)
+
+Assume $T$ is a MST for $G$, but does not satisfy the MST property (There is some edge $uv$ in $T$ that creates a cycle, in which some other edge $xy$ has a weight larger that $uv$)
+
+By removing $xy$ and adding $uv$, we create a new spanning tree $T'$, whose total weight is less than the weight of $T$
+
+This contradicts the assumption that $T$ is an $MST$
+
+Hence, $T$ can only be a MST if it supports the MST property
+
+Proof by contradiction (if)
+
+Assume $T$ satisfies the MST property, but is not an MST. Assume that another tree $T_{min}$ is the MST for $G$. If $T_{min}$ is an MST, by the first half of the proof above, we know that $T_{min}$ holds the MST property
+
+By lemma 1, if $T$ and $T_{min}$ both hold the MST property, they have the same total weight.
+
+Therefore, $T$ is an MST if $T$ supports the MST property
+
+
+
+
+
+
+
+
+
+
 
