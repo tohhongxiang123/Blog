@@ -236,9 +236,7 @@ int main()
 
 > Lemma: Let $F$ be a forest; that is any undirected acyclic graph. Let $e = (v, w)$ be an edge that is not in $F$. There is a cycle consisting of $e$ and the edges in $F$ if and only if $v$ and $w$ are in the same connected component of $F$
 
-> Theorem: Let $G = (V, E, W)$ be a weighted undirected graph, and let $F \subseteq E$. If $F$ is contained in a minimum spanning tree collection for $G$ and if $e$ is an edge of minimum weight in $E - F$ such that $F \cup \{ e \}$ has no cycles,
-
-then $F \cup \{ e \}$ is contained in a minimum spanning tree collection for $G$
+> Theorem: Let $G = (V, E, W)$ be a weighted undirected graph, and let $F \subseteq E$. If $F$ is contained in a minimum spanning tree collection for $G$ and if $e$ is an edge of minimum weight in $E - F$ such that $F \cup \{ e \}$ has no cycles, then $F \cup \{ e \}$ is contained in a minimum spanning tree collection for $G$
 
 # Time Complexities
 
