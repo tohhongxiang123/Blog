@@ -130,16 +130,17 @@ This equality can be shown by taking $\log_b$ on both sides. And since the probl
 
 Let us look at each condition one by one
 
-1. If the cost of solving the subproblems at each level increases by a certain factor, the value of $f(n)$ will become polynomially smaller than $n^{\log_b a}$. Thus the cost of the algorithm will be oppressed by the cost of the last level. Hence the overall cost is now $\Theta(n^{\log_b a})$
-2. If the cost of solving the subproblems at each level is nearly equal, then $f(n) = \Theta(n^{\log_b a})$. Then the overall time complexity will be $f(n)$ times the number of layers, hence $\Theta(n^{\log_b a} \log n)$
+1. If the cost of solving the subproblems at each level increases by a certain factor, the value of $f(n)$ will become polynomially smaller than $n^{\log_b a}$. The time taken for solving the subproblem dominates the time taken to split/recombine the subproblems. (The recursion tree is leaf-heavy). Hence the overall cost is now $\Theta(n^{\log_b a})$
 
-Notably, if $k = 0$,
+2. If the cost of solving the subproblems at each level is nearly equal to solving the subproblem, then $f(n) = \Theta(n^{\log_b a})$. Then the overall time complexity will be $f(n)$ times the number of layers, hence $\Theta(n^{\log_b a} \log n)$
+
+    Notably, if $k = 0$,
 
 $$
 f(n) = \Theta(n^{\log_b a}) \implies T(n) = \Theta(n^{\log_b a} \log n)
 $$
 
-3. If the cost of solving each subproblem decreases per level, then $f(n)$ will become polynomially larger than $n^{\log_b a}$. Thus the cost of the algorithm will be oppressed by $f(n)$. Hence the overall cost is $\Theta(f(n))$
+3. If the cost of solving each subproblem decreases per level, then $f(n)$ will become polynomially larger than $n^{\log_b a}$. The time taken to split/recombine the problems dominate the time taken to solve each subproblem. Thus the cost of the algorithm will be oppressed by $f(n)$ (The tree is root-heavy). Hence the overall cost is $\Theta(f(n))$
 
 ## Limitations of Master Theorem
 
@@ -152,6 +153,8 @@ The master theorem cannot be used if
 - $a$ is not a constant
     - E.g. $a = 2n$ does not work
 - $a < 1$
+    - $T(n) = 0.5T(\frac{n}{2}) + 5n$
+    - Cannot have less than 1 subproblem
 
 # Resources
 
