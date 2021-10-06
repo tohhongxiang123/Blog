@@ -160,3 +160,4 @@ The master theorem cannot be used if
 
 - https://www.programiz.com/dsa/master-theorem
 - https://math.stackexchange.com/questions/262733/can-we-prove-a-log-bn-n-log-ba
+- https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/mm-proof.pdf

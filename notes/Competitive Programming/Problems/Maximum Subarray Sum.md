@@ -74,3 +74,9 @@ cout << best << "\n";
 ```
 
 This algorithm is [Kadane's Algorithm](https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d)
+
+# Resources
+
+- https://www.youtube.com/watch?v=2MmGzdiKR9Y
+- https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
+- https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
