@@ -18,10 +18,10 @@ If we multiply the matrices in different orders, we will get a different number 
 
 There are $(n-1)!$ ways to multiply the $n$ matrices. Since matrix multiplication is associative, the order of multiplication does not affect the result. However, it affects how many operations are required. 
 
-Let `optCost(d, i, j)` be the optimal cost of multiplying $A_i, A_{i + 1}, ..., A_{j}$, where $d = \{ d_0, d_1, ..., d_{n+1} \}$, where $A_i \in \R^{d_i \times d_{i + 1}}$. We know a few things.
+Let `optCost(dimensions, i, j)` be the optimal cost of multiplying $A_i, A_{i + 1}, ..., A_{j}$, where $dimensions = \{ d_0, d_1, ..., d_{n+1} \}$, where $A_i \in \R^{d_i \times d_{i + 1}}$. We know a few things.
 
-1. `optCost(d, i, j) = 0` if `j == i + 1`, because we are on a single matrix (Remember that the matrix $A_i$ has dimensions $d_i \times d_{i + 1}$)
-2. `optCost(d, i, j) = min(optCost(d, i, k) + optCost(d, k, j) + d[i] * d[k] * d[j])` for all `i + 1 <= k <= j - 1`, where the matrix $A_1 \in \R^{d_0 \times d_1}$ and $A_2 \in \R^{d_1 \times d_2}$
+1. `optCost(dimensions, i, j) = 0` if `j == i + 1`, because we are on a single matrix (Remember that the matrix $A_i$ has dimensions $d_i \times d_{i + 1}$)
+2. `optCost(dimensions, i, j) = min(optCost(dimensions, i, k) + optCost(dimensions, k, j) + dimensions[i] * dimensions[k] * dimensions[j])` for all `i + 1 <= k <= j - 1`, where the matrix $A_1 \in \R^{d_0 \times d_1}$ and $A_2 \in \R^{d_1 \times d_2}$
 3. We want to find `optCost(0, n)`
 
 ## Recursive Code
@@ -32,14 +32,14 @@ Let `optCost(d, i, j)` be the optimal cost of multiplying $A_i, A_{i + 1}, ..., 
 
 using namespace std;
 
-int optCost(int d[], int i, int j) {
+int optCost(int dimensions[], int i, int j) {
     if (j == i + 1) {
         return 0;
     }
 
     int min = INT_MAX;
     for (int k = i + 1; k < j; k++) {
-        int cost = optCost(d, i, k) + optCost(d, k, j) + d[i] * d[k] * d[j];
+        int cost = optCost(dimensions, i, k) + optCost(dimensions, k, j) + dimensions[i] * dimensions[k] * dimensions[j];
         if (cost < min) {
             min = cost;
         }
@@ -61,13 +61,15 @@ int main()
 
 ## Optimisation
 
-We want to avoid recomputing smaller values. Hence, we create a table to keep the values of the previous results. `dp[i][j]` keeps the minimum cost for `optCost(d, i, j)`. 
+We want to avoid recomputing smaller values. Hence, we create a table to keep the values of the previous results. `costs[i][j]` keeps the minimum cost for `optCost(dimensions, i, j)`. 
 
-To include a dp table, we modify `optCost` to now include a `dp` table for the function - `optCost(int[][] *dp, int[] d, int i, int j)`
+To include a costs table, we modify `optCost` to now include a `costs` table for the function - `optCost(int[][] *costs, int[] dimensions, int i, int j)`
 
 Another thing we might want to do is to get the actual sequence that gives the minimum operations. Hence we will use a matrix called `last`, used to extract out the order of operations for multiplying the matrices.
 
-Hence now the function we call is `optCost(int[][] *last, int[][] *dp, int[] d, int i, int j)`
+Hence now the function we call is `optCost(int[][] *last, int[][] *costs, int[] dimensions, int i, int j)`
+
+### Top-down Approach
 
 ```cpp
 #include <iostream>
@@ -76,34 +78,34 @@ Hence now the function we call is `optCost(int[][] *last, int[][] *dp, int[] d, 
 
 using namespace std;
 
-int optCost(vector< vector<int> > *last, vector< vector<int> > *dp, vector<int> d, int i, int j) {
+int optCost(vector< vector<int> > *last, vector< vector<int> > *costs, vector<int> dimensions, int i, int j) {
     if (j == i + 1) {
-        (*dp)[i][j] = 0;
-        return (*dp)[i][j];
+        (*costs)[i][j] = 0;
+        return (*costs)[i][j];
     }
     
-    if ((*dp)[i][j] != -1) {
-        return (*dp)[i][j];
+    if ((*costs)[i][j] != -1) {
+        return (*costs)[i][j];
     }
 
     int min = INT_MAX;
     for (int k = i + 1; k < j; k++) {
         int leftCost, rightCost;
-        if ((*dp)[i][k] != -1) {
-            leftCost = (*dp)[i][k];
+        if ((*costs)[i][k] != -1) {
+            leftCost = (*costs)[i][k];
         } else {
-            leftCost = optCost(last, dp, d, i, k);
-            (*dp)[i][k] = leftCost;
+            leftCost = optCost(last, costs, dimensions, i, k);
+            (*costs)[i][k] = leftCost;
         }
         
-        if ((*dp)[k][j] != -1) {
-            rightCost = (*dp)[k][j];
+        if ((*costs)[k][j] != -1) {
+            rightCost = (*costs)[k][j];
         } else {
-            rightCost = optCost(last, dp, d, k, j);
-            (*dp)[k][j] = rightCost;
+            rightCost = optCost(last, costs, dimensions, k, j);
+            (*costs)[k][j] = rightCost;
         }
         
-        int cost = (*dp)[i][k] + (*dp)[k][j] + d[i] * d[k] * d[j];
+        int cost = (*costs)[i][k] + (*costs)[k][j] + dimensions[i] * dimensions[k] * dimensions[j];
         
         if (cost < min) {
             min = cost;
@@ -111,7 +113,7 @@ int optCost(vector< vector<int> > *last, vector< vector<int> > *dp, vector<int> 
         }
     }
 
-    (*dp)[i][j] = min;
+    (*costs)[i][j] = min;
     return min;
 }
 
@@ -134,7 +136,7 @@ int main()
     
     int n = arr.size();
     
-    vector< vector<int> > dp;
+    vector< vector<int> > costs;
     vector< vector<int> > last;
     
     for (int i = 0; i < n; i++) {
@@ -144,11 +146,11 @@ int main()
             a.push_back(-1);
             b.push_back(-1);
         }
-        dp.push_back(a);
+        costs.push_back(a);
         last.push_back(b);
     }
  
-    cout << "Minimum number of multiplications is " << optCost(&last, &dp, arr, 0, n - 1) << endl;
+    cout << "Minimum number of multiplications is " << optCost(&last, &costs, arr, 0, n - 1) << endl;
 
     char firstArray = 'A';
     printOptimalOrder(last, 0, n - 1, &firstArray);
@@ -158,11 +160,99 @@ int main()
 }
 ```
 
+### Bottom-Up Approach
+
+```cpp
+#include <iostream>
+#include <climits>
+#include <vector>
+
+using namespace std;
+
+void printOptimalOrder(vector<vector<int>> last, int i, int j, char *name) {
+    if (i + 1 == j) {
+        cout << *name;
+        (*name)++;
+        return;
+    }
+    
+    cout << "(";
+    printOptimalOrder(last, i, last[i][j], name);
+    printOptimalOrder(last, last[i][j], j, name);
+    cout << ")";
+}
+
+int optCost(int dimensions[], int size) {
+    // intialise cost matrix (dp table) and last matrix
+    vector<vector<int>> cost;
+    vector<vector<int>> last;
+    for (int i = 0; i < size; i++) {
+        vector<int> a;
+        vector<int> b;
+        for (int j = 0; j < size; j++) {
+            a.push_back(-1);
+            b.push_back(-1);
+        }
+        
+        cost.push_back(a);
+        last.push_back(b);
+    }
+    
+    for (int i = 0; i < size; i++) {
+        cost[i][i + 1] = 0;
+    }
+    
+    for (int length = 2; length < size; length++) { // start from the 3rd dimension because this will include at least 2 matrices
+        for (int startIndex = 0; startIndex < size - length; startIndex++) {
+            int endIndex = startIndex + length;
+            cost[startIndex][endIndex] = INT_MAX;
+            
+            for (int partitionIndex = startIndex + 1; partitionIndex < endIndex; partitionIndex++) {
+                int costToMultiply = dimensions[startIndex] * dimensions[partitionIndex] * dimensions[endIndex];
+                int costBeforeMultiplying = cost[startIndex][partitionIndex] + cost[partitionIndex][endIndex];
+                int currentCost = costBeforeMultiplying + costToMultiply;
+                
+                if (currentCost < cost[startIndex][endIndex]) {
+                    cost[startIndex][endIndex] = currentCost;
+                    last[startIndex][endIndex] = partitionIndex;
+                }
+            }
+        }
+    }
+    
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            cout << last[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    // print 
+    char firstArrayName = 'A';
+    printOptimalOrder(last, 0, size - 1, &firstArrayName);
+    cout << endl;
+    
+    return cost[0][size - 1];
+}
+
+int main() {
+    int d[] = { 5, 4, 6, 2, 7 };
+    int size = sizeof(d) / sizeof(int);
+    
+    int minCost = optCost(d, size);
+    cout << minCost << endl;
+    return 0;
+}
+```
+
+
 # Time Complexity
 
 In the worst case, chain matrix multiplication using dynamic programming runs in $O(n^3)$
 
 # Resources
 
-- https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
+- https://www.geeksforgeeks.org/matrix-chain-multiplication-costs-8/
+- https://www.youtube.com/watch?v=prx1psByp7U
+- https://www.youtube.com/watch?v=eKkXU3uu2zk
 
