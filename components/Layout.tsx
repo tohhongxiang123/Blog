@@ -32,6 +32,10 @@ const pages = [
 		name: "Portfolio",
 		path: "/portfolio",
 	},
+	{
+		name: "Support",
+		path: "/support",
+	},
 ];
 export default function Layout({
 	children,
