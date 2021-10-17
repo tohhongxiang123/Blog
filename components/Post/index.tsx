@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { formatDate } from '../../utils/convertDate'
 import { MDXRemote } from 'next-mdx-remote'
-import mermaid from "mermaid";
 import { useEffect } from 'react';
+import mermaid from 'mermaid'
 
 interface PostPageProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	source: any,

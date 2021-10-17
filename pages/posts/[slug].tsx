@@ -1,7 +1,9 @@
 import Layout from '../../components/Layout'
 import { getFileContent, getFilesInDirectory, renderContentWithPlugins } from '../../utils/mdxUtils'
 import path from 'path'
-import Post from '../../components/Post'
+import dynamic from 'next/dynamic'
+
+const Post = dynamic(() => import('../../components/Post'), { ssr: false })
 
 export default function PostPage({ source = '', frontMatter = {} }: { source: string, frontMatter: { [key: string]: string } }) {
 	return (

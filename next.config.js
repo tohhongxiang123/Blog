@@ -16,5 +16,5 @@ module.exports = {
         NOTES_PATH: 'notes',
         POSTS_PATH: 'posts',
         PROJECTS_PATH: 'projects'
-    }
+    },
 }

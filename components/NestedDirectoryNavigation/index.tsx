@@ -18,7 +18,7 @@ export default function NestedDirectoryNavigation({ children, name, path }: Nest
 
     const rootClassNames = "flex justify-between items-center font-medium rounded-r-lg overflow-hidden py-2 px-4 cursor-pointer mb-0"
     if (children.length == 0) return (
-        <Link href={`/${path}`}><p className={`${rootClassNames} ${isActive ? 'opacity-100 bg-gray-400 bg-opacity-20' : 'opacity-80'} hover:opacity-100`}>{name}</p></Link>
+        <Link href={`/${path.replace(sep, '/')}`}><p className={`${rootClassNames} ${isActive ? 'opacity-100 bg-gray-400 bg-opacity-20' : 'opacity-80'} hover:opacity-100`}>{name}</p></Link>
     )
 
     return (
