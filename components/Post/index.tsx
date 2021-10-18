@@ -11,6 +11,9 @@ interface PostPageProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTM
 
 const components = {
 	TestComponent: dynamic(() => import('../TestComponent')),
+    img: ({ src, alt }) => {
+        return <img src={src.replace(/^(\/public)/, '')} alt={alt} />
+    }
 }
 
 export default function PostPage({ source, frontMatter, ...props }: PostPageProps) {

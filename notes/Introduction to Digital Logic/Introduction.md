@@ -11,7 +11,7 @@
     - Number of pizzas you can eat in one sitting
 
 A digital quantity changes in **discrete** steps, while an analog quantity changes gradually. Analog quantities can be represented by *sampling* and *quantisation*
-![Sampling vs Quantisation](/sampling_vs_quantisation.png)
+![Sampling vs Quantisation](/public/sampling_vs_quantisation.png)
 
 # [Quantisation](https://en.wikipedia.org/wiki/Quantization_(signal_processing))
 - Quantization, in mathematics and digital signal processing, is the process of mapping input values from a large set (often a continuous set) to output values in a (countable) smaller set, often with a finite number of elements.

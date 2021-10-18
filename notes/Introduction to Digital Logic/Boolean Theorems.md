@@ -96,8 +96,8 @@ $$
 - Hence, NAND gates can be used to implement **any** Boolean function
 - Similarly for NOR
 
-![NAND Gate Universality](/nand-gate-universality.jpg)
-![NOR Gate Universality](/nor-gate-universality.jpg)
+![NAND Gate Universality](/public/nand-gate-universality.jpg)
+![NOR Gate Universality](/public/nor-gate-universality.jpg)
 
 # Exclusive-OR (XOR) gate
 - XOR: X = AB' + A'B = A ⊕ B

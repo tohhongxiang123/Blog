@@ -1,6 +1,6 @@
 # Computer Organisation Overview
 
-![Computer System Block Diagram](/computer-system-block-diagram.png)
+![Computer System Block Diagram](/public/computer-system-block-diagram.png)
 
 # Sub systems in a Computer System
 - Processor Core

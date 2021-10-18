@@ -104,8 +104,9 @@ Let $a \geq 1, b > 1$, and $f(n)$ be an asymptotically positive function (For a 
 $$
 T(n) = \begin{cases}
 \Theta(n^{\log_b a}) & \text{if } \exists \epsilon \text{ st } f(n) = O(n^{\log_b a - \epsilon}) \\
-\Theta(n^{\log_b a} \log^{k+1} n) & \text{if } f(n) = \Theta(n^{\log_b a} \log^k n) \land k \geq 0\\
-\Theta(f(n)) & \text{if } \exists \epsilon \text{ st } f(n) = \Omega(n^{\log_b a + \epsilon})
+\Theta(n^{\log_b a} \log^{k+1} n) & \text{if } f(n) = \Theta(n^{\log_b a} \log^k n) \text{ and } k \geq 0\\
+\Theta(f(n)) & (\text{if } \exists \epsilon \text{ st } f(n) = \Omega(n^{\log_b a + \epsilon}) \text{ and } \\ 
+&a f\left( \frac{n}{b} \right) \leq c f(n) \text{ for some } c < 1)
 \end{cases}
 $$
 
@@ -142,6 +143,25 @@ $$
 
 3. If the cost of solving each subproblem decreases per level, then $f(n)$ will become polynomially larger than $n^{\log_b a}$. The time taken to split/recombine the problems dominate the time taken to solve each subproblem. Thus the cost of the algorithm will be oppressed by $f(n)$ (The tree is root-heavy). Hence the overall cost is $\Theta(f(n))$
 
+    The extra condition here is called the regularity condition, where $a f(n/b) \leq c f(n)$ for some $c < 1$ and for all sufficiently large $n$. The regularity condition ensures that $f(n)$ (the amount of work done at the root) must be at least as big as the sum of the work done in the next lower level ($a f(n/b)$). If regularity is not satisfied, we cannot guarantee that $f(n)$ will dominate the runtime
+
+    Consider the recurrence $T(n) = T(n/2) + \sin n, T(0) = T(1) = 1$. If we used the master theorem and ignore regularity, then $a = 1, b = 2, log_b(a) = 0, f(n) = \sin n$. We can see that $\sin n = \Omega(1)$, hence $T(n) = \Theta(\sin n)$
+
+    However, when we plot the graph, we can see that $T(n)$ does not follow the growth of $\sin n$. 
+    
+    ![Regularity fails](/public/regularity_condition_fails.png)
+    
+    This is regularity does not hold. Assume there exists $0 < c < 1$ such that $a f(n/b) \leq c f(n)$ for sufficiently large $n$. Substituting in the appropriate values,
+
+    $$
+    \begin{aligned}
+        \sin \frac{n}{2} &\leq c \sin n \\
+        \frac{1}{2 \cos \frac{n}{2}} &\leq c
+    \end{aligned}
+    $$
+
+    From the final equation, we can see that regularity cannot be satisfied. Hence, master's theorem case 3 requires that regularity is satisfied to be correct
+
 ## Limitations of Master Theorem
 
 The master theorem cannot be used if
@@ -161,3 +181,5 @@ The master theorem cannot be used if
 - https://www.programiz.com/dsa/master-theorem
 - https://math.stackexchange.com/questions/262733/can-we-prove-a-log-bn-n-log-ba
 - https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/mm-proof.pdf
+- https://cs.stackexchange.com/questions/4854/why-is-there-the-regularity-condition-in-the-master-theorem
+- https://cs.stackexchange.com/questions/28991/satisfying-all-the-conditions-of-case-3-of-the-master-method-except-the-regulari

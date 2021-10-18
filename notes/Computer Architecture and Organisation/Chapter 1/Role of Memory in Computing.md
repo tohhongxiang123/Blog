@@ -14,7 +14,7 @@ Programming in software
 
 # The Stored Program Concept
 
-![Von Neumann Architecture Diagram](/von-neumann-architecture.png)
+![Von Neumann Architecture Diagram](/public/von-neumann-architecture.png)
 Most modern day computer designs based on the von Neumann's stored program concept
 1. Both data and instructinos are stored in the same memory
 2. Contents of memory are addressable by location without regard to data type

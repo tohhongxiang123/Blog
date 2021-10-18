@@ -78,10 +78,10 @@ Ratio is named,ordered, proportionate interval between variables and can accommo
 | Total              | 500       | 1.00               |
 
 ### Bar Chart
-![Bar chart](/bar-chart.png)
+![Bar chart](/public/bar-chart.png)
 
 ### Pie Chart
-![Pie chart](/pie-chart.png)
+![Pie chart](/public/pie-chart.png)
 
 ### Stem and Leaf
 
