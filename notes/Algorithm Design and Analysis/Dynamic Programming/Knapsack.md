@@ -32,7 +32,6 @@ $$
 
 # Code
 
-
 ```cpp
 #include <iostream>
 
@@ -77,6 +76,76 @@ int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
             }
         }
     }
+
+    return overallProfits[capacity][numberOfElements];
+}
+```
+
+# Showing the items that go into the Knapsack
+
+1. From the profits table, we start at the last element `overallProfits[capacity][numberOfElements]`
+2. Let `c = capacity` and `i = numberOfElements - 1`. We are current considering the `i`th item at a capacity of `c`. If `overallProfits[c][i] != overallProfits[c][i - 1]`, this means that the current element we are looking at was included in the knapsack. We will print out the current item, then we move to `c = c - weights[i]` and consider the remaining `i-1` elements
+3. Repeat until all the items are considered, or the capacity reaches 0
+
+```cpp
+#include <iostream>
+
+using namespace std;
+int knapsack(int[], int[], int, int);
+
+int main() {
+    int p[] = {10, 40, 30, 50};
+    int w[] = {5, 4, 6, 3};
+    int n = 4;
+    int c = 10;
+
+    cout << knapsack(w, p, n, c) << endl;
+}
+
+// returns the maximum profits given an array of weights and profits for a specific capacity
+int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
+    // dp table
+    int overallProfits[capacity + 1][numberOfElements + 1];
+
+    for (int i = 0; i < capacity + 1; i++) {
+        overallProfits[i][0] = 0; // when there are 0 objects, profit is 0 regardless of capacity
+    }
+
+    for (int i = 0; i < numberOfElements + 1; i++) {
+        overallProfits[0][i] = 0; // when capacity is 0, profit is 0 regardless of number of objects
+    }
+
+    for (int currentCapacity = 1; currentCapacity <= capacity; currentCapacity++) {
+        for (int currentNumberOfElements = 1; currentNumberOfElements <= numberOfElements; currentNumberOfElements++) {
+            overallProfits[currentCapacity][currentNumberOfElements] = overallProfits[currentCapacity][currentNumberOfElements - 1];
+
+            if (weights[currentNumberOfElements - 1] <= currentCapacity) { // if we can fit a new item
+                // we check the profit if we include the item
+                int profitsIncludingNewElement = profits[currentNumberOfElements - 1] + 
+                    overallProfits[currentCapacity - weights[currentNumberOfElements - 1]][currentNumberOfElements - 1];
+                // if profits for including item > profits without including item
+                if (profitsIncludingNewElement > overallProfits[currentCapacity][currentNumberOfElements]) {
+                    // set that as the new overall profit
+                    overallProfits[currentCapacity][currentNumberOfElements] = profitsIncludingNewElement;
+                }
+            }
+        }
+    }
+    
+    // print out the contents of the knapsack
+    int remainingWeight = capacity;
+    cout << "Contents: " << endl;
+    for (int i = numberOfElements; i > 0; i--) {
+        if (remainingWeight <= 0) {
+            break;
+        }
+        
+        if (overallProfits[remainingWeight][i] != overallProfits[remainingWeight][i - 1]) {
+            cout << "Weight: " << weights[i - 1] << ", Profit: " << profits[i - 1] << endl;
+            remainingWeight -= weights[i - 1];
+        }
+    }
+    cout << endl;
 
     return overallProfits[capacity][numberOfElements];
 }
