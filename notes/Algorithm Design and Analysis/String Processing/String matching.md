@@ -125,3 +125,122 @@ int main()
     return 0;
 }
 ```
+
+# Boyer-Moore Algorithm
+
+- An efficient algorithm for string searching
+- The text being scanned is $T$ with $n$ characters
+- The pattern we are looking for is $P$ with $m$ characters
+- Process text $T[1..n]$ from left to right
+- Scan the pattern $P[1..m]$ from left to right
+- Preprocessing to generate 2 tables based on which to slide the pattern as much as possible after a mismatch
+- Performs very well with long patterns
+
+## Bad Character Rule
+
+Consider a mismatch at $T[j]$ and $P[k]$. If the character $T[j]$ does not appear in $P$ at all, we can move the start of $P$ to $j + 1$, and continue from there.
+
+```
+ANPANMAN
+BBBBBMANCCCCCCCCCC
+    ^ first mismatch
+
+     ANPANMAN
+BBBBBMANCCCCCCCCCC
+```
+
+We will then set $j := j + m$
+
+If the $T[j]$ character occurs on the left of $P[k]$, we line up $T[j]$ with the rightmost instance of $T[j]$ in $P$
+
+```
+ANBANMAN
+BBBBBMANCCCCCCCCCC
+    ^ first mismatch
+
+  ANBANMAN  
+BBBBBMANCCCCCCCCCC
+```
+
+We will set $j := j + m - i$, where $i$ is the index in $P$ where the next $T[j]$ occurs
+
+For example, consider text = "The big crackers" and pattern "crackers"
+
+```
+CRACKERS
+THE BIG CRACKERS
+       ^ first mismatch
+
+        CRACKERS
+THE BIG CRACKERS    
+```
+
+Since there is no " " character that occurs in $P$, we shift the start of $P$ to $j + 1$.
+
+Now, consider the text = "The crackers are" and pattern = "crackers"
+
+```
+CRACKERS
+THE CRACKERS ARE
+       ^ first mismatch
+
+    CRACKERS
+THE CRACKERS ARE
+```
+
+The first mismatch occurs at 'c', so we find the rightmost instance of 'c', and we slide the pattern over to align those 2 characters together. P slides 4 places to the right, and j = j + 8 - 4.
+
+To compute the jumps,
+
+```c
+void computeJumps(char[] P, int m, int alpha, int[] charJump) {
+    // alpha is the number of characters in the character set
+    char ch;
+    int k;
+
+    for (ch = 0; ch < alpha; ch++) {
+        // initially, assume all characters are not in the pattern
+        // this means we will slide the entire pattern across
+        charJump[ch] = m; 
+    }
+
+    for (k = 1; k <= m; k++) {
+        // if a character is in the pattern, we do not slide the entire pattern across
+        // we slide until we match the rightmost index of the pattern
+        charJump[P[k]] = m - k; // position from the end
+    }
+}
+```
+
+## Good Suffix Rule
+
+
+## Procedure
+
+For text `text`, pattern `pattern`, and 2 tables generated in preprocessing, `charJump` and `matchJump`
+
+```cpp
+int bmSearch(string text, string pattern, int[] charJump, int[] matchJump) {
+    int patternLength = pattern.length();
+    int stringLength = string.length();
+
+    int j = patternLength - 1;
+    int k = patternLength - 1;
+
+    while (j <= n) { // while we have not reached the end of the text
+        if (k < 1) {
+            return j; // if k reaches 0, match is found
+        }
+
+        if (text.at[j] == pattern.at[k]) { // if the current character we are looking at matches
+            j--;
+            k--;
+        } else {
+            j += max(charJump[text.at(j)], matchJump[k]);
+            k = patternLength;
+        }
+    }
+
+    return -1;
+}
+```
