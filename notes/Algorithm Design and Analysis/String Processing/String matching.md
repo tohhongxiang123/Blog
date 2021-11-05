@@ -128,92 +128,216 @@ int main()
 
 # Boyer-Moore Algorithm
 
-- An efficient algorithm for string searching
-- The text being scanned is $T$ with $n$ characters
-- The pattern we are looking for is $P$ with $m$ characters
-- Process text $T[1..n]$ from left to right
-- Scan the pattern $P[1..m]$ from left to right
-- Preprocessing to generate 2 tables based on which to slide the pattern as much as possible after a mismatch
-- Performs very well with long patterns
+Boyer-Moore is basically an improvement of the naive algorithm, by skipping as much as possible after a mismatch. For example
+
+```
+THERE WOULD HAVE BEEN A TIME FOR SUCH A WORD
+     WORD
+        ^
+```
+
+From here, we can see that `U` does not occur in our pattern `P`, hence we can skip the next 2 alignments
+
+```
+THERE WOULD HAVE BEEN A TIME FOR SUCH A WORD
+         WORD
+        ^
+```
+
+Just like the naive algorithm, we start from the leftmost side of the text, and try the compare the pattern with the text. However, unlike the naive algorithm, we will begin looking at characters from the back of the pattern instead, so that we can skip as much as possible
+
+Boyer-Moore uses 2 specific rules:
+1. Bad character rule
+2. Good suffix rule
 
 ## Bad Character Rule
 
-Consider a mismatch at $T[j]$ and $P[k]$. If the character $T[j]$ does not appear in $P$ at all, we can move the start of $P$ to $j + 1$, and continue from there.
+Upon mismatch, we will skip alignments until 
+- Mismatch becomes a match, or
+- P moves past mismatched character
 
 ```
-ANPANMAN
-BBBBBMANCCCCCCCCCC
-    ^ first mismatch
-
-     ANPANMAN
-BBBBBMANCCCCCCCCCC
+GCTTCTGCTACCTTTTGC
+CCTTTTGC
+    ^ first mismatch from the back
 ```
 
-We will then set $j := j + m$
-
-If the $T[j]$ character occurs on the left of $P[k]$, we line up $T[j]$ with the rightmost instance of $T[j]$ in $P$
+Our first mismatch occurs at the character `C` in the text. We will move P towards the right until the mismatch becomes a match (i.e. we reach the rightmost C to the left of the mistmatch)
 
 ```
-ANBANMAN
-BBBBBMANCCCCCCCCCC
-    ^ first mismatch
-
-  ANBANMAN  
-BBBBBMANCCCCCCCCCC
+GCTTCTGCTACCTTTTGC
+   CCTTTTGC
+    ^ matched again
 ```
 
-We will set $j := j + m - i$, where $i$ is the index in $P$ where the next $T[j]$ occurs
-
-For example, consider text = "The big crackers" and pattern "crackers"
+Now the new mismatch is the `G` from the back, mismatched with `A` in the text
 
 ```
-CRACKERS
-THE BIG CRACKERS
-       ^ first mismatch
-
-        CRACKERS
-THE BIG CRACKERS    
+GCTTCTGCTACCTTTTGC
+   CCTTTTGC
+         ^ first mismatch
 ```
 
-Since there is no " " character that occurs in $P$, we shift the start of $P$ to $j + 1$.
-
-Now, consider the text = "The crackers are" and pattern = "crackers"
+Since there are no `A`s in the pattern, we can safely move `P` past the mismatch
 
 ```
-CRACKERS
-THE CRACKERS ARE
-       ^ first mismatch
-
-    CRACKERS
-THE CRACKERS ARE
+GCTTCTGCTACCTTTTGC
+          CCTTTTGC
+         ^ first mismatch
 ```
 
-The first mismatch occurs at 'c', so we find the rightmost instance of 'c', and we slide the pattern over to align those 2 characters together. P slides 4 places to the right, and j = j + 8 - 4.
-
-To compute the jumps,
-
-```c
-void computeJumps(char[] P, int m, int alpha, int[] charJump) {
-    // alpha is the number of characters in the character set
-    char ch;
-    int k;
-
-    for (ch = 0; ch < alpha; ch++) {
-        // initially, assume all characters are not in the pattern
-        // this means we will slide the entire pattern across
-        charJump[ch] = m; 
-    }
-
-    for (k = 1; k <= m; k++) {
-        // if a character is in the pattern, we do not slide the entire pattern across
-        // we slide until we match the rightmost index of the pattern
-        charJump[P[k]] = m - k; // position from the end
-    }
-}
-```
+Finally, we have reached a full match
 
 ## Good Suffix Rule
 
+Let `t` be the substring matched by the inner loop. We will skip until
+- There are no mismatches between P and `t`, or
+- P moves past `t`
+
+```
+CGTGCCTACTTACTTACTTACTTACGCGAA
+CTTACTTAC
+      ^^^ t
+```
+
+We can see another occurrence of `TAC` within our pattern, hence we shift our pattern such that it aligns with the matched suffix
+
+```
+CGTGCCTACTTACTTACTTACTTACGCGAA
+    CTTACTTAC
+      ^^^^^^^ t
+```
+
+For this, we can see that our `CTTAC` in our pattern P matches `CTTAC`, the suffix in the text (even though it is not a full match). Hence we will shift until both `CTTAC`s match.
+
+```
+CGTGCCTACTTACTTACTTACTTACGCGAA
+        CTTACTTAC
+```
+
+## Using Both Rules Together
+
+We will use both the good-suffix and the bad-character rule within our algorithm, and we will use whichever skips more
+
+```
+GTTATAGCTGATCGCGGCGTAGCGGCGAA
+GTAGCGGCG
+        ^ first mismatch
+```
+
+We can see that `T` in the text is the first mismatch. We see that there is another `T` in the pattern we can shift to, hence by bad character rule, we shift to that `T` (7 spaces). The good suffix rule doesn't apply here because the suffix is only 1 character `T` (0 spaces).
+
+```
+GTTATAGCTGATCGCGGCGTAGCGGCGAA
+       GTAGCGGCG
+        ^ align T
+```
+
+Now we can see that `GCG` is a matched suffix, and `C` is our first mismatch. 
+
+```
+GTTATAGCTGATCGCGGCGTAGCGGCGAA
+       GTAGCGGCG
+            ^ first mismatch
+```
+
+By bad character rule, we align the next `C` in the pattern with the mismatched `C` in the text (1 space). By good suffix rule, we see that there is another `GCG` that occurs within the text, hence we align that other `GCG` with the text (3 spaces). Since good suffix rule skips more than the bad character rule, we skip by 3 spaces in total
+
+```
+GTTATAGCTGATCGCGGCGTAGCGGCGAA
+          GTAGCGGCG
+            ^ first mismatch
+```
+
+The bad-character rule makes us move 3 spaces, while the good suffix rule makes us skip 8. So in total we skip 8 
+
+```
+GTTATAGCTGATCGCGGCGTAGCGGCGAA
+                  GTAGCGGCG
+```
+
+And we now have a match
+
+## Preprocessing
+
+To make Boyer-Moore fast, we pre-process the pattern by building table so that we can easily calculate how far we can skip
+
+### Preprocessing for bad-character heuristic
+
+For a pattern $P$ and a character set $\Sigma$ (a set of all possible characters in the text $T$), we calculate **how many alignments we can skip**
+
+For example, let $\Sigma = \{ A, C, G, T \}$ and $P = TCGC$
+
+|     | T   | C   | G   | C   |
+| --- | --- | --- | --- | --- |
+| A   | 0   | 1   | 2   | 3   |
+| C   | 0   | -   | 0   | -   |
+| G   | 0   | 1   | -   | 0   |
+| T   | -   | 0   | 1   | 2   |
+
+The rows represent which is the mismatch in our text, and the columns represent the mismatch in our pattern
+
+For example, we currently had the following alignment
+
+```
+AATCAATAGC
+TCGC
+```
+
+Our first mismatch is `G` in P and `T` in our text. Hence, we check the row `T` and column `G`, and see that we can skip 1 alignment. This is equivalent to moving 2 spaces.
+
+```
+AATCAATAGC
+  TCGC
+```
+
+## Preprocessing Good Character Heuristic
+
+Consider the following alignment
+
+```
+ABAABABABCBA
+CABAB
+  ^ first mismatch
+```
+
+The suffix `AB` has matched, and mismatched at `B`. Hence we shift until we find the first occurrence of `AB` without `B` preceding, and we can see that `CAB` exists. Hence we shift by a total of 2
+
+```
+ABAABABABCBA
+  CABAB
+```
+
+Consider another alignment
+
+```
+ABCABABACBA
+CBAAB
+   ^ first mismatch
+```
+
+We matched the suffix `AB`, but there is no other suffix `AB` in the pattern, hence we shift by the length of the pattern (5)
+
+```
+ABCABABACBA
+     CBAAB
+```
+
+Consid
+
+Consider the pattern `ANPANMAN`, we want to calculate the good character heuristic for each possible mismatch
+
+1. Mismatch `N`
+    We mismatched the first character within the pattern. The good suffix length is 0. Hence we only shift 1
+
+2. Mismatch `A` in `AN`
+    Mismatched the second character we check. The good suffix length is 1. We have to find an occurence of `N` that is not preceded by `A` within the pattern. This means no part of the good suffix can be useful to us, and we shift by the full pattern length 8.
+
+3. Mismatch `M` in `MAN`
+    We matched `AN` but not `M`. Hence, we will look for the first `AN` not preceded by a `M`, which is `PAN`. We shift the pattern to line up the `AN`s, hence the shift is 3
+
+4. Mismatch `N` in `NMAN`
+    We matched `MAN` but not `N`. `MAN` does not match anything within the pattern. However the trailing suffix `AN` matches the start of the pattern, hence we shift by 6. This is the same for all other cases
 
 ## Procedure
 
@@ -244,3 +368,10 @@ int bmSearch(string text, string pattern, int[] charJump, int[] matchJump) {
     return -1;
 }
 ```
+
+# Resources
+
+- https://www.youtube.com/watch?v=4Xyhb72LCX4
+- https://www.youtube.com/watch?v=Wj606N0IAsw
+- https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
+- https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
