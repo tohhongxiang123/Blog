@@ -323,8 +323,6 @@ ABCABABACBA
      CBAAB
 ```
 
-Consid
-
 Consider the pattern `ANPANMAN`, we want to calculate the good character heuristic for each possible mismatch
 
 1. Mismatch `N`
@@ -341,33 +339,177 @@ Consider the pattern `ANPANMAN`, we want to calculate the good character heurist
 
 ## Procedure
 
-For text `text`, pattern `pattern`, and 2 tables generated in preprocessing, `charJump` and `matchJump`
+Below is the simplified boyer-moore algorithm, which only implements the bad character heuristic
 
 ```cpp
-int bmSearch(string text, string pattern, int[] charJump, int[] matchJump) {
-    int patternLength = pattern.length();
-    int stringLength = string.length();
+#include <iostream>
+#include <vector>
+#include <string>
 
-    int j = patternLength - 1;
-    int k = patternLength - 1;
+#define NUMBER_OF_CHARACTERS 26
 
-    while (j <= n) { // while we have not reached the end of the text
-        if (k < 1) {
-            return j; // if k reaches 0, match is found
-        }
+using namespace std;
 
-        if (text.at[j] == pattern.at[k]) { // if the current character we are looking at matches
-            j--;
-            k--;
-        } else {
-            j += max(charJump[text.at(j)], matchJump[k]);
-            k = patternLength;
-        }
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int characterToNumber(char character) {
+    return character - 'A';
+}
+
+vector<int> badCharacterHeuristic(string pattern)
+{
+    vector<int> result;
+
+    // default to be the length
+    for (int i = 0; i < NUMBER_OF_CHARACTERS; i++) {
+        result.push_back(pattern.length()); 
     }
 
+    // for each character, find the rightmost occurrence
+    for (int i = 0; i < pattern.length(); i++) {
+        result[characterToNumber(pattern.at(i))] = pattern.length() - i - 1; // position from end
+    }
+
+    return result;
+}
+
+int search(string text, string pattern)
+{
+    vector<int> badCharacterTable = badCharacterHeuristic(pattern);
+
+    int currentIndexInText = pattern.length() - 1;
+    int currentIndexInPattern = pattern.length() - 1;
+
+    while (currentIndexInText < (int) text.length()) {
+        // went through whole pattern, found match
+        if (currentIndexInPattern < 0) { 
+            return currentIndexInText + 1;
+        }
+
+        // same last character, decrease both indices by 1
+        if (text.at(currentIndexInText) == pattern.at(currentIndexInPattern)) {
+            currentIndexInText--;
+            currentIndexInPattern--;
+            continue;
+        }
+
+        // mismatched, calculate jump
+        currentIndexInText += max(
+            badCharacterTable[characterToNumber(text.at(currentIndexInText))], 
+            pattern.length() - currentIndexInPattern
+        );
+
+        currentIndexInPattern = pattern.length() - 1;
+    }
+
+    // no match
     return -1;
 }
+
+int main()
+{
+    cout << search("ZSXVAFVNSBAAABASFHASF", "BAAA") << endl;
+
+    return 0;
+}
 ```
+
+Below is the Boyer-Moore search implemented with both the good suffix and bad character heuristic
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+
+#define NUMBER_OF_CHARACTERS 26
+
+using namespace std;
+
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int characterToNumber(char character) {
+    return character - 'A';
+}
+
+vector<int> badCharacterHeuristic(string pattern)
+{
+    vector<int> result;
+
+    // default to be the length
+    for (int i = 0; i < NUMBER_OF_CHARACTERS; i++) {
+        result.push_back(pattern.length()); 
+    }
+
+    // for each character, find the rightmost occurrence
+    for (int i = 0; i < pattern.length(); i++) {
+        result[characterToNumber(pattern.at(i))] = pattern.length() - i - 1; // position from end
+    }
+
+    return result;
+}
+
+vector<int> goodCharacterHeuristic(string pattern) {
+    vector<int> result;
+    vector<int> slide;
+
+    int m = pattern.length() - 1;
+    int q = pattern.length() - 1;
+
+    while (m >= 0) {
+        
+    }
+
+    for (int i = pattern.length() - 1; i >= 0; i--) {
+        int numberOfMatchedCharacters = pattern.length() - 1 - i;
+
+    }
+}
+
+int search(string text, string pattern)
+{
+    vector<int> badCharacterTable = badCharacterHeuristic(pattern);
+
+    int currentIndexInText = pattern.length() - 1;
+    int currentIndexInPattern = pattern.length() - 1;
+
+    while (currentIndexInText < (int) text.length()) {
+        // went through whole pattern, found match
+        if (currentIndexInPattern < 0) { 
+            return currentIndexInText + 1;
+        }
+
+        // same last character, decrease both indices by 1
+        if (text.at(currentIndexInText) == pattern.at(currentIndexInPattern)) {
+            currentIndexInText--;
+            currentIndexInPattern--;
+            continue;
+        }
+
+        // mismatched, calculate jump
+        currentIndexInText += max(
+            badCharacterTable[characterToNumber(text.at(currentIndexInText))], 
+            pattern.length() - currentIndexInPattern
+        );
+
+        currentIndexInPattern = pattern.length() - 1;
+    }
+
+    // no match
+    return -1;
+}
+
+int main()
+{
+    cout << search("ZSXVAFVNSBAAABASFHASF", "BAAA") << endl;
+
+    return 0;
+}
+```
+
 
 # Resources
 
