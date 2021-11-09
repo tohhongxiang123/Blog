@@ -291,6 +291,54 @@ AATCAATAGC
   TCGC
 ```
 
+### Simplifying Bad Character Heuristic
+
+Instead of creating a 2D table, we can just create a 1D table, where the entries represent the currently mismatched character in the text, and the value of the entry represents the index of the rightmost character within `P` that matches the mismatched character
+
+Consider us having a mismatch at index `k` of the pattern, and `j` in the text. The character in the pattern at index `k` is `b`, and the current character in the text is `d` Note the 2 cases
+1. If `d` does not occur within the text, we set `j = j + m`, since we shift the whole text past `j`
+2. If `d` occurs at index `i` within the pattern, where `i` is the rightmost occurrence of `d`, we shift by `j = j + m - i`, to align the 2 occurrences of `d` within the text, and the pattern
+
+For example, 
+
+```
+RATSANDCATS - m = 11
+
+badCharacterTable = [ 2, 11, 3, 4, ..., ]
+```
+
+The first element of `badCharacterTable` is the rightmost occurence of `A` from the back of the pattern, which is `2`. The second element of `badCharacterTable` is the rightmost occurence of `b` in the table. Since there is no occurence of `b`, the overall shift will be `11`, which is the length of the string
+
+However, sometimes this heuristic fails. If `d` occurs to the right of `b` in the pattern (`j < i`), the pattern will be shifted in the wrong direction instead. 
+
+To fix this, when we are calculating the jump based on the bad character heuristic, we use
+
+```
+int simpleBMScan(char[] P, char[] T, int m, int[] charJump) {
+    int j;
+    int k;
+
+    j = m;
+    k = m;
+
+    while (j <= n) {
+        if (j < 1) {
+            return j + 1; // match found
+        }
+
+        if (T[j] == P[k]) {
+            j--;
+            k--;
+        } else {
+            j += max(charJump[T[j]], m - k + 1); // if bad character heuristic fails, we now compare character in the text that comes directly after the end of the pattern previously
+            k = m;
+        }
+    }
+
+    return -1;
+}
+```
+
 ## Preprocessing Good Character Heuristic
 
 Consider the following alignment
@@ -337,6 +385,20 @@ Consider the pattern `ANPANMAN`, we want to calculate the good character heurist
 4. Mismatch `N` in `NMAN`
     We matched `MAN` but not `N`. `MAN` does not match anything within the pattern. However the trailing suffix `AN` matches the start of the pattern, hence we shift by 6. This is the same for all other cases
 
+Consider `m` the length of the pattern, `k` the current index in the pattern, `j` the current index in the text, and `q`, the index of the end of the reoccurring suffix within `P`
+
+`m - k` tells us how many characters we have matched. `slide[k] = m - q` tells us how much to slide the pattern `p` until a new suffix matches the old matched suffix
+
+```
+RATSANDCATS
+.......DATS........
+       ^ old j
+
+
+goodSuffixTable[k] = m - k + slide[k]
+slide[k] = m - q
+```
+
 ## Procedure
 
 Below is the simplified boyer-moore algorithm, which only implements the bad character heuristic
@@ -369,7 +431,7 @@ vector<int> badCharacterHeuristic(string pattern)
 
     // for each character, find the rightmost occurrence
     for (int i = 0; i < pattern.length(); i++) {
-        result[characterToNumber(pattern.at(i))] = pattern.length() - i - 1; // position from end
+        result[characterToNumber(pattern.at(i))] = pattern.length() - 1 - i; // position from end
     }
 
     return result;
@@ -382,7 +444,7 @@ int search(string text, string pattern)
     int currentIndexInText = pattern.length() - 1;
     int currentIndexInPattern = pattern.length() - 1;
 
-    while (currentIndexInText < (int) text.length()) {
+    while (currentIndexInText < (int) (text.length())) {
         // went through whole pattern, found match
         if (currentIndexInPattern < 0) { 
             return currentIndexInText + 1;
@@ -416,7 +478,7 @@ int main()
 }
 ```
 
-Below is the Boyer-Moore search implemented with both the good suffix and bad character heuristic
+Below is the Boyer-Moore search implemented with both the good suffix and bad character heuristic (Not complete)
 
 ```cpp
 #include <iostream>
@@ -446,7 +508,7 @@ vector<int> badCharacterHeuristic(string pattern)
 
     // for each character, find the rightmost occurrence
     for (int i = 0; i < pattern.length(); i++) {
-        result[characterToNumber(pattern.at(i))] = pattern.length() - i - 1; // position from end
+        result[characterToNumber(pattern.at(i))] = pattern.length() - 1 - i; // position from end
     }
 
     return result;
@@ -455,23 +517,49 @@ vector<int> badCharacterHeuristic(string pattern)
 vector<int> goodCharacterHeuristic(string pattern) {
     vector<int> result;
     vector<int> slide;
+    
+    for (int i = 0; i < pattern.length() + 1; i++) {
+        result.push_back(0);
+        slide.push_back(0);
+    }
 
-    int m = pattern.length() - 1;
-    int q = pattern.length() - 1;
-
-    while (m >= 0) {
+    int i = pattern.length();
+    int j = pattern.length() + 1;
+    
+    slide[i] = j;
+    while (i > 0) {
+        while (j <= pattern.length() && pattern.at(i - 1) != pattern.at(j - 1)) {
+            if (result[j] == 0) {
+                result[j] = j - i;
+            }
+            
+            j = slide[j];
+        }
         
+        i--;
+        j--;
+        slide[i] = j;
     }
-
-    for (int i = pattern.length() - 1; i >= 0; i--) {
-        int numberOfMatchedCharacters = pattern.length() - 1 - i;
-
+    
+    j = slide[0];
+    for (i = 0; i <= pattern.length(); i++) {
+        if (result[i] == 0) {
+            result[i] = j;
+        }
+        
+        if (i == j) {
+            j = slide[j];
+        }
     }
+    
+    return result;
 }
 
 int search(string text, string pattern)
 {
     vector<int> badCharacterTable = badCharacterHeuristic(pattern);
+    vector<int> goodSuffixTable = goodCharacterHeuristic(pattern);
+    
 
     int currentIndexInText = pattern.length() - 1;
     int currentIndexInPattern = pattern.length() - 1;
@@ -517,3 +605,4 @@ int main()
 - https://www.youtube.com/watch?v=Wj606N0IAsw
 - https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
 - https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
+- https://stackoverflow.com/questions/19345263/boyer-moore-good-suffix-heuristics
