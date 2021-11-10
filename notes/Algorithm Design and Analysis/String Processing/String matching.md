@@ -478,12 +478,13 @@ int main()
 }
 ```
 
-Below is the Boyer-Moore search implemented with both the good suffix and bad character heuristic (Not complete)
+Below is the Boyer-Moore search implemented with both the good suffix and bad character heuristic
 
 ```cpp
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstring>
 
 #define NUMBER_OF_CHARACTERS 26
 
@@ -491,6 +492,10 @@ using namespace std;
 
 int max(int a, int b) {
     return (a > b) ? a : b;
+}
+
+int min(int a, int b) {
+    return (a < b) ? a : b;
 }
 
 int characterToNumber(char character) {
@@ -508,48 +513,51 @@ vector<int> badCharacterHeuristic(string pattern)
 
     // for each character, find the rightmost occurrence
     for (int i = 0; i < pattern.length(); i++) {
-        result[characterToNumber(pattern.at(i))] = pattern.length() - 1 - i; // position from end
+        result[characterToNumber(pattern.at(i))] = pattern.length() - i - 1; // position from end
     }
 
     return result;
 }
 
-vector<int> goodCharacterHeuristic(string pattern) {
+vector<int> goodSuffixHeuristic(string pattern) {
     vector<int> result;
     vector<int> slide;
     
-    for (int i = 0; i < pattern.length() + 1; i++) {
+    for (int i = 0; i < pattern.length(); i++) {
         result.push_back(0);
-        slide.push_back(0);
+        slide.push_back(1);
     }
-
-    int i = pattern.length();
-    int j = pattern.length() + 1;
     
-    slide[i] = j;
-    while (i > 0) {
-        while (j <= pattern.length() && pattern.at(i - 1) != pattern.at(j - 1)) {
-            if (result[j] == 0) {
-                result[j] = j - i;
+    // calculate slide from second last character to the first
+    for (int i = pattern.length() - 2; i >= 0; i--) {
+        int numberOfMatchedCharacters = pattern.length() - 1 - i;
+        
+        // check if suffix appears in pattern
+        // current match should not be equal, but remaining suffix has to match
+        // XCAAABAAA, if mismatched at B, CAAA is the next match
+        // XBAAABAAA, if mismatched at rightmost B, no other matching suffix
+        for (int j = 0; j < i + 1; j++) {
+            if (pattern.at(j) != pattern.at(i) && 
+                pattern.substr(j, numberOfMatchedCharacters).compare(pattern.substr(i + 1)) == 0) {
+                int shiftDueToSuffixMatch = i - j;
+                slide[i] = shiftDueToSuffixMatch;
             }
-            
-            j = slide[j];
         }
         
-        i--;
-        j--;
-        slide[i] = j;
+        // check for prefix
+        // OWWOW, OW in front matches OW behind
+        for (int j = 1; j <= numberOfMatchedCharacters; j++) {
+            if (pattern.substr(0, j).compare(pattern.substr(pattern.length() - j, j)) == 0) {
+                int endOfPrefixMatch = j - 1;
+                int shiftDueToPrefixMatch = pattern.length() - 1 - endOfPrefixMatch;
+                slide[i] = shiftDueToPrefixMatch;
+            }
+        }
     }
     
-    j = slide[0];
-    for (i = 0; i <= pattern.length(); i++) {
-        if (result[i] == 0) {
-            result[i] = j;
-        }
-        
-        if (i == j) {
-            j = slide[j];
-        }
+    for (int i = 0; i < pattern.length(); i++) {
+        int numberOfMatchedCharacters = pattern.length() - 1 - i;
+        result[i] = numberOfMatchedCharacters + slide[i];
     }
     
     return result;
@@ -558,8 +566,7 @@ vector<int> goodCharacterHeuristic(string pattern) {
 int search(string text, string pattern)
 {
     vector<int> badCharacterTable = badCharacterHeuristic(pattern);
-    vector<int> goodSuffixTable = goodCharacterHeuristic(pattern);
-    
+    vector<int> goodSuffixTable = goodSuffixHeuristic(pattern);
 
     int currentIndexInText = pattern.length() - 1;
     int currentIndexInPattern = pattern.length() - 1;
@@ -577,10 +584,9 @@ int search(string text, string pattern)
             continue;
         }
 
-        // mismatched, calculate jump
         currentIndexInText += max(
             badCharacterTable[characterToNumber(text.at(currentIndexInText))], 
-            pattern.length() - currentIndexInPattern
+            goodSuffixTable[currentIndexInPattern]
         );
 
         currentIndexInPattern = pattern.length() - 1;
@@ -592,7 +598,7 @@ int search(string text, string pattern)
 
 int main()
 {
-    cout << search("ZSXVAFVNSBAAABASFHASF", "BAAA") << endl;
+    cout << search("THEBECKERSARETHECRACKERS", "CRACKERS") << endl;
 
     return 0;
 }
@@ -606,3 +612,4 @@ int main()
 - https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
 - https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
 - https://stackoverflow.com/questions/19345263/boyer-moore-good-suffix-heuristics
+- https://dwnusbaum.github.io/boyer-moore-demo/
