@@ -37,4 +37,38 @@ Examples of P problems:
 
 # NP Problems
 
-Non-deterministic polynomially bounded: The class of **decision problems** for which there is a polynomially bounded nondeterministic algorithm. A non-determininstic algorithm can can be 
+Non-deterministic polynomially bounded: The class of **decision problems** for which there is a polynomially bounded nondeterministic algorithm. 
+
+A non-determininstic algorithm is an algorithm that solves a problem in 2 phases: Guess, then Verify. It then outputs a "yes" or "no". This non-deterministic algorithm can be considered as a machine that checks all possible solutions in parallel, and verifies which one is correct
+
+Examples of NP problems:
+1. Given a network of cities $G$ and a number $k$. Can you visit all cities exactly once, and return to the original city with a path that costs less than $k$?
+2. Given the weights and profits of $n$ items, and a knapsack of capacity $C$, can we fit items into the knapsack such that the profits add up to more than $k$?
+
+# NP Completeness
+
+Before we tackle NP completeness, we must understand what a "problem reduction" is. When we reduce a known hard problem $X$ to another problem $Y$, we have shown that $Y$ is at least as hard as $X$. 
+- If we have an algorithm to solve for $Y$, then this reduction shows us how to solve $X$ as well
+- $X$ is also no harder than $Y$, or $Y$ is at least as hard as $X$
+
+Consider the Hamiltonian path problem: Given a graph $G$, is there any path that passes through all the vertices of the graph exactly once?
+
+We can transform this to the TSP problem, where each existing edge in $G$ is just a edge with weight 1 in a new graph $T$, and everything else is an edge of weight 2. Then the question is: Does $T$ have a travelling salesman tour that is no longer than $N + 1$, where $N$ is the number of vertices in $G$
+- If the answer to the transformed problem is "yes", the answer to the hamiltonian path problem is "yes"
+- Transformation done in polynomial time
+- Hence, if TSP has a polynomial time algorithm, hamiltonian path will also have a polynomial time algorithm as well
+
+> A problem $D$ is NP Complete if it is in NP and every problem $Q$ in NP is reducible to $D$ in polynomial time
+
+E.g. CIRCUIT-SAT: Given a boolean circuit, are there any assignment of inputs that results in the whole circuit outputting "true"?
+- Cook-levin theorem proves that CIRCUIT-SAT is NP complete
+
+How do we solve NP complete problems?
+- Use small problem sizes
+- Solve for special instances of the problem
+- Heuristic algorithms
+    - Fast, polynomially bounded algorithms
+    - However, not guaranteed to give the best solutions
+    - Will give one close to optimal in many cases
+    - However can still return a very bad solution
+    - E.g. Greedy heuristic for TSP, or knapsack
