@@ -23,9 +23,9 @@ export default function Index({ posts = [], notes = [] }) {
 					className="mb-8"
 					alt="logo"
 				/>
-				<h1 className="text-7xl font-bold mb-4">Toh Hong Xiang</h1>
+				<h1 className="text-2xl md:text-7xl font-bold mb-4">Toh Hong Xiang</h1>
 				<p className="opacity-80 font-semibold tracking-wide">
-					Web Developer, studying in NTU
+					Self-motivated web developer with a specialization in React. Currently studying in NTU
 				</p>
 				<ul className="flex flex-wrap justify-center p-0">
 					<li>
@@ -56,6 +56,19 @@ export default function Index({ posts = [], notes = [] }) {
 								className="opacity-80 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75"
 							/>
 						</a>
+					</li>
+					<li>
+						<Link href="/about">
+						<a
+							className="cursor-pointer"
+						>
+							<ImageWithLabel
+								src={"icons/projects.svg"}
+								label={"Portfolio"}
+								className="opacity-80 hover:opacity-100 transform hover:-translate-y-0.5 transition-all duration-75"
+							/>
+						</a>
+						</Link>
 					</li>
 					<li>
 						<a

@@ -21,10 +21,6 @@ const pages = [
 		path: "/notes",
 	},
 	{
-		name: "Projects",
-		path: "/projects",
-	},
-	{
 		name: "About",
 		path: "/about",
 	},

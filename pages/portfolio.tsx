@@ -13,10 +13,6 @@ const pages = [
 		path: "/notes",
 	},
 	{
-		name: "Projects",
-		path: "/projects",
-	},
-	{
 		name: "About",
 		path: "/about",
 	},
@@ -227,7 +223,7 @@ export default function temp({ projects = [] }) {
 				id="about"
 			>
 				<h2 className="text-5xl md:text-8xl font-bold text-center break-words md:mb-8">
-					About me
+					About Me
 				</h2>
 				<p className="md:text-lg leading-loose tracking-wide opacity-80 text-justify px-2">
 					I am Toh Hong Xiang, a self-driven and dependable web
@@ -285,6 +281,55 @@ export default function temp({ projects = [] }) {
 							</div>
 						</li>
 					))}
+				</ul>
+			</section>
+			<section
+				className="flex flex-col py-32 px-4 gap-4 max-w-3xl"
+				id="contact"
+			>
+				<h2 className="text-5xl md:text-8xl font-bold text-center break-words md:mb-8">
+					Contact Me!
+				</h2>
+				<ul
+					className="flex flex-wrap items-center justify-center gap-8 p-8 delay-200"
+					ref={fadeIn}
+				>
+					<li className="flex flex-col items-center justify-center text-center gap-8">
+						<a
+							className="cursor-pointer opacity-50 hover:opacity-80"
+							href="https://github.com/tohhongxiang123"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src="/icons/github-light.svg"
+								alt="Github"
+								width={64}
+								height={64}
+							/>
+							<span className="font-semibold tracking-wider">
+								Github
+							</span>
+						</a>
+					</li>
+					<li className="flex flex-col items-center justify-center text-center gap-8">
+						<a
+							className="cursor-pointer opacity-50 hover:opacity-80"
+							href="https://www.linkedin.com/in/toh-hong-xiang-31551118b/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src="/icons/linkedin-light.svg"
+								alt="LinkedIn"
+								width={64}
+								height={64}
+							/>
+							<span className="font-semibold tracking-wider">
+								LinkedIn
+							</span>
+						</a>
+					</li>
 				</ul>
 			</section>
 		</div>

@@ -10,30 +10,21 @@ interface ProjectPreviewProps {
 }
 
 export default function ProjectPreview({
-	title,
-	description,
-	code,
-	demo,
-	screenshot,
+    title,
+    description,
+    code,
+    demo,
+    screenshot,
     technologies = []
 }: ProjectPreviewProps) {
-	return (
-		<div className="w-full max-w-md shadow-md hover:shadow-lg mb-8 rounded bg-white">
-			<div
-				className="h-52 flex-none bg-cover object-center rounded-t text-center overflow-hidden"
-				style={{ backgroundImage: `url('${screenshot}')`, backgroundPosition: 'center center' }}
-			></div>
-			<div className="p-4 flex flex-col justify-between leading-normal">
-				<div>
-					<div className="text-gray-900 font-bold text-xl mb-2">
-						{title}
-					</div>
-					<p className="text-gray-700 text-base font-medium">{description}</p>
-                </div>
-                {technologies && <ul className="flex flex-row justify-start items-center pt-4 pb-6 gap-8">
-                    {technologies.map(tech => <li key={tech}><img src={`/icons/${tech}.svg`} width={48} height={48} alt={tech} /></li>)}
-                </ul>}
-                <div className="flex justify-center gap-8">
+    return (
+        <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+            <img className="lg:h-48 md:h-36 w-full object-cover object-center" src={screenshot} alt={""} />
+            <div className="p-6 h-full">
+                <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{technologies.map(tech => tech.toUpperCase()).join(', ')}</h2>
+                <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{title}</h1>
+                <p className="leading-relaxed mb-3">{description}</p>
+                <div className="flex items-center flex-wrap gap-8 justify-center m-4">
                     {code && <a
                         href={code}
                         target="_blank"
@@ -53,7 +44,7 @@ export default function ProjectPreview({
                         </span>
                     </a>}
                 </div>
-			</div>
-		</div>
-	);
+            </div>
+        </div>
+    );
 }
