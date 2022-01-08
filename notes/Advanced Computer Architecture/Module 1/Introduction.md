@@ -58,3 +58,217 @@ Computer architecture deals with the design and implementation of computer hardw
     - Systems should consume less power for better battery life, reduced electricity costs, reduced thermal problems etc
 
 The evolution of computer architecture is driven to improve **performance** and **power consumption**
+
+# Performance
+
+**Execution time** of a program is an indicator of performance
+- Execution time is the time taken to execute a program
+- Lower execution time means better performance
+- Performance = 1 / (Execution time)
+
+The Iron Law of Processor Performance
+
+$$
+\frac{\text{Time}}{\text{Program}} = \frac{\text{Instructions}}{\text{Program}} \frac{\text{Cycles}}{\text{Instruction}} \frac{\text{Time}}{\text{Cycle}}
+$$
+
+- Instructions per program (Instruction Count): Each program has a set number of instructions. If a program has less instructions, it takes less time to run
+- Cycles per instruction: Each instruction requires a certain number of cycles to run. The less cycles required to run, the faster the program
+- Time per cycle: Each processor runs at a certain clock speed, which affects the time per cycle. If a cycle takes less time, the program runs faster
+
+## Challenges in Performance Enhancement
+
+1. Reduction of clock cycle time
+    - Power consumption increases with increase in clock frequency
+    - Memory operations may take longer than a single clock period, memory-wall problem (Memory speed limits the speed of program execution)
+2. Reduction of instruction count 
+    - More complex instructions, cycles per instructions increase
+3. Reduction of cycles per instruction
+    - Instruction pipelining
+    - Multi-issue processors: VLIW/superscalar processors which can complete multiple instructions at the same time
+
+# Speedup
+
+Consider 2 computers, $A$ and $B$. The speedup of computer $A$ over computer $B$ can be computed with
+
+$$
+\text{Speedup} = \frac{\text{Performance}_A}{\text{Performance}_B} = \frac{\text{Time}_B}{\text{Time}_A}
+$$
+
+We can also enhance a program instead. The speedup is calculated by
+
+$$
+\text{Speedup} = \frac{\text{Time}_\text{unenhanced}}{\text{Time}_\text{enhanced}}
+$$
+
+## Enhancing a portion of the program
+
+Suppose a program take $T$ time to execute. Suppose that only a fraction $E$ of the program is enhanced by a factor of $S$. Determine the speedup of the enhanced machine over the original
+
+- The unenhanced portion, $U = 1 - E$. 
+- The time required to execute the enhanced portion is $T_{\text{enhanced}} = \frac{ET}{S}$
+- The time required to execute the unenhanced portion is $T_{\text{unenhanced}} = UT = (1 - E)T$
+- The total execution time of the new program is $T' = T_{\text{enhanced}} + T_{\text{unenhanced}} = T \left( (1 - E) + \frac{E}{S} \right)$
+- The overall speedup is given by 
+
+$$
+\frac{T'}{T} = \frac{1}{(1 - E) + E / S}
+$$
+
+Now consider the range of values of $S \in (1, \infty)$
+
+$$
+\lim_{S \to \infty} \frac{T'}{T} = \frac{1}{1 - E}
+$$
+
+# Amdahl's Law
+
+> Amdahl's Law states that speedup via parallelism is limited by that component of an application which cannot be enhanced
+
+This unenhanced portion is denoted with $U = 1 - E$ above
+
+- If fraction $U$ of an application cannot be enhanced for parallel implementation, then the speedup is limited by a factor of $\frac{1}{1 - E}$ (as above), even if the rest of the program is infinitely sped up
+
+![Amdahls Law](https://aavtech.site/wp-content/uploads/2019/05/ExecutionTime.png)
+
+As seen from the diagram above, the serial (unparallelised) portion of the program limits the execution time of the program
+
+# Gustafson's Law
+
+> Gustafson's Law states that if the number of parallel processors for a computer increases, the workload that the computer can perform also increases
+
+![Gustafson's Law](https://media.springernature.com/original/springer-static/image/prt%3A978-0-387-09766-4%2F7/MediaObjects/978-0-387-09766-4_7_Part_Fig1-78_HTML.gif)
+
+Consider a program that takes $T_s$ time to run the serial portion of the program, and $T_p$ time to run the parallelised portion of the program. 
+- The time taken to run the enhanced (parallelised) program is $T_{\text{enhanced}} = T_s + T_p$
+- The time taken to run the unenhanced program (everything run sequentially) is $T_{\text{unenhanced}} = T_s + n T_p$, where $n$ is the number of parallel processes running at the same time
+- The overall speedup by the program is defined as
+
+$$
+\text{Speedup}(U, n) = \frac{T_{\text{original}}}{T_{\text{enhanced}}} = \frac{T_s + n T_p}{T_s + T_p} = n - U(n - 1) = 1 + (n - 1) E     
+$$
+
+- Note that $U$ is the unenhanced portion (Fully serial) of the program, while $E$ is the enhanced (parallelised) portion of the program
+
+Derivation of the above
+
+- Let the time taken to run the parallelised program be $T$. Hence $T_s + T_p = T$
+- The time taken to run the unenhanced program (everything run sequentially) is $T_{\text{unenhanced}} = T_s + n T_p$, where $n$ is the number of parallel processes running at the same time
+- Then,
+
+$$
+\begin{aligned}
+S &= \frac{T'}{T} \\
+&= \frac{T_s + n T_p}{T_s + T_p} \\
+&= \frac{T_s + T_p + (n - 1) T_p}{T_s + T_p} \\
+&= 1 + (n - 1) E
+\end{aligned}
+$$
+
+If we let $T_p = T - T_s$, then we get
+
+$$
+\begin{aligned}
+S &= \frac{T_s + n T_p}{T_s + T_p} \\
+&= \frac{T_s + n (T - T_s)}{T_s + T_p} \\
+&= \frac{nT - (n - 1) T_s}{T_s + T_p} \\
+&= \frac{nT}{T} - \frac{(n - 1)T_s}{T} \\
+&= n - (n - 1) U
+\end{aligned}
+$$
+
+# Performance Metrics
+
+## Millions of Instructions Per Second (MIPS)
+
+- Native MIPS
+- Peak MIPS
+- Relative MIPS
+
+Native MIPS is defined as
+
+$$
+\text{Native MIPS} = \frac{\text{Instruction Count}}{\text{Execution Time} \times 10^6}
+$$
+
+Peak MIPS is obtained by choosing a sequence of instructions which provides the **maximum** MIPS
+
+Relative MIPS is an estimated relative to an agreed-upon reference machine
+
+$$
+\text{Relative MIPS} = \frac{T_{ref}}{T_{\text{machine to be rated}}} \times \text{MIPS}_{\text{ref}}
+$$
+
+- MIPS varies with
+    - ISA (Complexity of instructions)
+    - Choice of instruction mix (program)
+- Higer MIPS does not guarantee better performance (instruction complexity)
+- Relative MIPS is useful to rate evolving designs of the same computer
+
+## FLOPS (Floating Point Operations Per Second)
+
+$$
+\text{FLOPS} = \frac{\text{Number of floating point operations}}{Execution Time}
+$$
+
+- FLOPS used for machines used in fields of scientific calculations
+- E.g. IBM Blue Gene Supercomputer in June 2007 has a peak 596 teraFLOPS
+
+# Power Dissipation in Processors
+
+Higher power dissipation makes the device unreliable
+- More power, larger increase in temperature, more temperate induced effects in device functionalities (overheating)
+- Higher power dissipation, lower battery life
+
+How is power dissipated in a processor?
+- Dynamic power: Power is dissipated when computation is performed
+- Static (leakage) power: Due to leakage current, dissipated whenever system is powered-on, even if no computation is done
+
+## Components in Power Dissipation
+
+1. Dynamic power $P_{dyn}$ dissipated when processor executes instructions
+    - Increases with operating voltage and clock frequency
+    - The faster we compute, the more the dynamic power dissipated
+    - $$
+        P_{dyn} = ACV^2 f
+    $$
+        - $C$ is the total load capacitance in the circuit
+        - $f$ is the clock frequency (Note that reduction of $f$ reduces $P_{dyn}$, but also reduces performance)
+        - $V$ is the operating voltage (Also called $V_{dd}$) (Reduction in $V$ significantly reduces power consumption)
+        - $A$ is the switching activity factor, which is the fraction of transistor switches during a clock cycle (on average) (Can be reduced by turning-off unused resources)
+2. Static (leakage) power $P_{st}$ due to the leakage current, and dissipated whenever the system is turned on, even if no computation is done
+    - Independent of clock frequency
+    - Increases with the temperature of the processor
+    - $$
+        P_{st} = V I_{leak}
+    $$
+        - $I_{leak}$: Leakage current
+        - $V$: Operating voltage
+
+The total power dissipation in a processor,
+
+$$
+P_{total} = ACV^2f + VI_{leak}
+$$
+- Note how a reduction of $V$ can reduce both dynamic and static power dissipation
+- Maximum operating frequency, $f_{max} \propto [V - V_{th}]^2 / V$
+    - $V_{th}$ is the threshold voltage, the gate-source voltage at which the transistor just starts conducting (Minimum voltage for transistor to "turn on")
+    - If $V_{th}$ is small, then the max usable frequency is $f_{max} \propto V$
+
+## Reducing Power Consumption - Voltage and Frequency Scaling
+
+- Since $P_{dyn} \propto V^2$, voltage reduction significantly reduces power dissipation
+- Regarding decreasing frequency,
+    - Even though **power** consumption is reduced, total **energy** consumption is not
+    - Power consumption is decreased with a reduction in frequency, however a reduction is performance occurs as well
+    - A reduction in clock frequency increases clock period, which means the program takes longer to run
+
+$$
+E_{total} = \int_{t = 0}^{T} P_{avg} dt
+$$
+
+Power consumption can be reduced through
+- Improved component design, e.g. efficient cache and memory hierarchy design
+- Power gating: Shutting down unused components
+- Clock gating: Removing the clock signal when the circuit is not in use. Reduces unnecessary switching of transistors
+- Reducing data movement, number of memory accesses, and register transfers
