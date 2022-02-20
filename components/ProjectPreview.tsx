@@ -5,6 +5,7 @@ interface ProjectPreviewProps {
     description: string,
     code: string,
     demo: string,
+    article: string,
     screenshot: string,
     technologies: string[]
 }
@@ -15,7 +16,8 @@ export default function ProjectPreview({
     code,
     demo,
     screenshot,
-    technologies = []
+    technologies = [],
+    article,
 }: ProjectPreviewProps) {
     return (
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-md hover:shadow-lg">
@@ -41,6 +43,15 @@ export default function ProjectPreview({
                     >
                         <span className="inline-block bg-gray-200 hover:bg-gray-300 rounded-md px-4 py-2 font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
                             Demo
+                        </span>
+                    </a>}
+                    {article && <a
+                        href={article}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className="inline-block bg-gray-200 hover:bg-gray-300 rounded-md px-4 py-2 font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
+                            Article
                         </span>
                     </a>}
                 </div>
