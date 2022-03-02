@@ -24,10 +24,10 @@ const pages = [
 		name: "About",
 		path: "/about",
 	},
-	{
-		name: "Portfolio",
-		path: "/portfolio",
-	},
+	// {
+	// 	name: "Portfolio",
+	// 	path: "/portfolio",
+	// },
 	{
 		name: "Support",
 		path: "/support",
