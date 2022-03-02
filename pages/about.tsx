@@ -17,7 +17,7 @@ export default function About({ projects = [] }) {
 						alt="logo"
 					/>
 					<h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-4 text-center">Toh Hong Xiang</h1>
-					<p className="max-w-2xl font-semibold opacity-60 text-md sm:text-lg mb-8 text-justify">Located in Singapore, I am a full-stack web developer who specializes in React. I am committed to high standards of web design, and I am always learning to expand my ever-growing skillset.</p>
+					<p className="max-w-2xl font-semibold opacity-60 text-md sm:text-lg mb-8 text-justify">Located in Singapore, I am a full-stack web developer who specializes in React. I am committed to high standards of web design, and I am always learning to expand my ever-growing skillset. Currently looking for an internship to work at between May - Dec 2022</p>
 					<ul className="flex flex-wrap gap-2 md:gap-8 justify-center items-center">
 						<li>
 							<a
