@@ -65,7 +65,7 @@ export default function Layout({
 				{pages.map((page) => (
 					<Link key={page.path} href={page.path}>
 						<a
-							className={`mb-4 hover:underline ${router.asPath.startsWith(page.path)
+							className={`mb-4 hover:underline cursor-pointer ${router.asPath.startsWith(page.path)
 								? "font-semibold"
 								: ""
 								}`}

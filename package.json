@@ -13,7 +13,7 @@
         "@tailwindcss/typography": "^0.4.0",
         "@zeit/next-css": "^1.0.0",
         "date-fns": "^2.25.0",
-        "framer-motion": "^2.9.5",
+        "framer-motion": "^6.3.3",
         "gray-matter": "^4.0.3",
         "mermaid": "^8.13.2",
         "mermaid.cli": "^0.3.6",
