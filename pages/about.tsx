@@ -82,8 +82,8 @@ export default function About({ projects = [] }) {
 					<h2 className="text-5xl font-bold tracking-wide mb-12">Projects</h2>
 					<ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 auto-rows-max gap-8 items-center mx-auto">
 						{projects.map(({ data }) => (
-							<li className="w-full h-full">
-								<ProjectPreview {...data} key={data.title} />
+							<li className="w-full h-full" key={data.title}>
+								<ProjectPreview {...data} />
 							</li>
 						))}
 					</ul>

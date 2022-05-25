@@ -15,7 +15,7 @@ export default function _NotesLayout({ children, notesStructure = [], ...props }
     return (
         <Layout {...props} enableFooter={false}>
             <div className={"flex justify-between w-full relative overflow-hidden h-full"}>
-                <div className={`bg-white bg-opacity-90 pl-2 pt-4 flex-none h-full overflow-y-auto w-64 ${isSidebarOpen ? 'ml-0' : '-ml-64'} md:ml-0 transition-all`}>
+                <div className={`bg-white bg-opacity-90 pl-2 pt-4 flex-none h-full overflow-y-auto w-72 ${isSidebarOpen ? 'ml-0' : '-ml-72'} md:ml-0 transition-all`}>
                     {notesStructure.map((note) => <NestedDirectoryNavigation {...note} key={note.path} />)}
                 </div>
                 <div className={"p-2 flex-1 w-32 overflow-y-auto"}>

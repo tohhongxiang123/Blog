@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import ArrowRight from '../../public/icons/arrow_right.svg'
 import ArrowDown from '../../public/icons/arrow_down.svg'
 import { PostStructure } from '../../utils/mdxUtils'
+import { AnimatePresence, motion } from 'framer-motion'
 
 interface NestedDirectoryNavigationProps {
     children: PostStructure[],
@@ -11,6 +12,19 @@ interface NestedDirectoryNavigationProps {
     path: string
 }
 const sep = /\\|\//g // possible separators
+
+const container = {
+    hidden: { height: 0, opacity: 0 },
+    show: { height: 'auto', opacity: 1, transition: { delayChildren: 0.4 } },
+    exit: { height: 0, opacity: 0 },
+}
+
+const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+    exit: { opacity: 0 }
+}
+
 export default function NestedDirectoryNavigation({ children, name, path }: NestedDirectoryNavigationProps) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(checkIfOpen({ path, children }, decodeURIComponent(router.asPath)))
@@ -27,11 +41,14 @@ export default function NestedDirectoryNavigation({ children, name, path }: Nest
                 <p className={"m-0"}><strong>{name}</strong></p>
                 <button className={"focus:outline-none border-none fill-current"}>{isOpen ? <ArrowDown /> : <ArrowRight />}</button>
             </div>
-            {isOpen && <ul className={"ml-2 pl-4"}>
-                {children.map(child => (
-                    <li key={child.path} className={"m-0"}><NestedDirectoryNavigation {...child} /></li>
-                ))}
-            </ul>}
+            <AnimatePresence>
+                {isOpen && <motion.ul variants={container} initial="hidden" animate="show" exit="exit" className={"ml-2 pl-4"}>
+                    {children.map(child => (
+                        <motion.li key={child.path} className={"m-0"} variants={item} initial="hidden" animate="show" exit="exit"><NestedDirectoryNavigation {...child} /></motion.li>
+                    ))}
+                </motion.ul>}
+            </AnimatePresence>
+
         </div>
     )
 }
