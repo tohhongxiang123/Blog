@@ -125,7 +125,7 @@ export default function Index({ posts = [], notes = [] }) {
 					bg={true}
 				/>
 			</motion.section>
-			<motion.section id="about" variants={aboutMeVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }} className="flex flex-col items-center relative p-16 mb-32">
+			<motion.section id="about" variants={aboutMeVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }} className="flex flex-col items-center relative p-16 mb-32">
 				<div className="flex flex-col max-w-3xl">
 					<motion.h1 variants={aboutMeItemVariants} className={"text-3xl text-gray-500 font-light tracking-wide mb-8"}>
 						ABOUT ME
@@ -148,13 +148,13 @@ export default function Index({ posts = [], notes = [] }) {
 			<motion.section id="experience" className="p-16 mb-32">
 				<div className="flex items-start flex-col gap-8 w-full mx-auto max-w-3xl">
 					<motion.h1
-						initial={{ opacity: 0, x: '-100px' }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.75, once: true }}
+						initial={{ opacity: 0, x: '-100px' }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.25, once: true }}
 						className={"text-3xl text-gray-500 font-light tracking-wide mb-8"}
 					>
 						EXPERIENCE
 					</motion.h1>
 					<ul className='flex flex-col gap-y-8'>
-						<motion.li variants={experienceVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+						<motion.li variants={experienceVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 							<motion.h2 variants={experienceItemVariants} className="font-semibold text-2xl">Marketplace Intelligence Engineer - Shopee Private Limited</motion.h2>
 							<motion.p variants={experienceItemVariants} className="font-medium text-lg text-gray-600 mb-4">May 2022 - Present</motion.p>
 							<ul className="list-disc list-inside flex flex-col gap-y-2">
@@ -162,7 +162,7 @@ export default function Index({ posts = [], notes = [] }) {
 								<motion.li variants={experienceItemVariants}>Wrote modern, performant, maintainable code for a diverse array of projects</motion.li>
 							</ul>
 						</motion.li>
-						<motion.li variants={experienceVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+						<motion.li variants={experienceVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 							<motion.h2 variants={experienceItemVariants} className="font-semibold text-2xl">Software Developer - Industrial Electronics Private Limited</motion.h2>
 							<motion.p variants={experienceItemVariants} className="font-medium text-lg text-gray-600 mb-4">Aug 2019 - Oct 2019</motion.p>
 							<ul className="list-disc list-inside flex flex-col gap-y-2">
@@ -178,13 +178,13 @@ export default function Index({ posts = [], notes = [] }) {
 			<motion.section id="projects" className="flex items-center flex-col gap-8 minh-screen w-full p-8 mb-32">
 				<div className="flex items-start flex-col gap-8 w-full mx-auto max-w-3xl">
 					<motion.h1
-						initial={{ opacity: 0, x: '-100px' }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.75, once: true }}
+						initial={{ opacity: 0, x: '-100px' }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.25, once: true }}
 						className={"text-3xl text-gray-500 font-light tracking-wide mb-8"}
 					>
 						PROJECTS
 					</motion.h1>
 					<ul className='flex flex-col gap-y-8'>
-						<motion.li variants={projectVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+						<motion.li variants={projectVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 							<div>
 								<motion.img variants={projectItemVariants} src="project_screenshots/nextjs_directus.jpg" className="mb-4" />
 								<motion.h2 variants={projectItemVariants} className="font-semibold text-2xl mb-4">NextJS Directus E-Commerce Website</motion.h2>
@@ -199,7 +199,7 @@ export default function Index({ posts = [], notes = [] }) {
 								</div>
 							</div>
 						</motion.li>
-						<motion.li variants={projectVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+						<motion.li variants={projectVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 							<div>
 								<motion.img variants={projectItemVariants} src="project_screenshots/gallereddit.jpg" className="mb-4" />
 								<motion.h2 variants={projectItemVariants} className="font-semibold text-2xl mb-4">Gallereddit</motion.h2>
@@ -215,7 +215,7 @@ export default function Index({ posts = [], notes = [] }) {
 								</div>
 							</div>
 						</motion.li>
-						<motion.li variants={projectVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+						<motion.li variants={projectVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 							<div>
 								<motion.img variants={projectItemVariants} src="project_screenshots/haze.jpg" className="mb-4" />
 								<motion.h2 variants={projectItemVariants} className="font-semibold text-2xl mb-4">Haze Monitoring Website</motion.h2>
@@ -242,15 +242,15 @@ export default function Index({ posts = [], notes = [] }) {
 					</Link>
 				</div>
 			</motion.section>
-			<motion.section id="blog" variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }} className="flex items-start flex-col gap-8 w-full mx-auto max-w-3xl mb-32 p-8">
+			<motion.section id="blog" variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }} className="flex items-start flex-col gap-8 w-full mx-auto max-w-3xl mb-32 p-8">
 				<motion.h1
-					initial={{ opacity: 0, x: '-100px' }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.75, once: true }}
+					initial={{ opacity: 0, x: '-100px' }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.25, once: true }}
 					className={"text-3xl text-gray-500 font-light tracking-wide mb-8"}
 				>
 					STUFF I WRITE
 				</motion.h1>
 				<ul className='flex flex-col gap-y-8'>
-					<motion.li variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+					<motion.li variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 						<motion.h2 variants={fadeInItemVariants} className="font-semibold text-2xl mb-8">Recent Blog Posts</motion.h2>
 						<ul className="flex flex-col gap-2 mb-4">
 							{posts.length > 0 ? (
@@ -269,7 +269,7 @@ export default function Index({ posts = [], notes = [] }) {
 							</p>
 						</Link>
 					</motion.li>
-					<motion.li variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }}>
+					<motion.li variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }}>
 						<motion.h2 variants={fadeInItemVariants} className="font-semibold text-2xl mb-8">Recent Notes</motion.h2>
 						<ul className="flex flex-col gap-y-2 mb-4">
 							{notes.length > 0 ? (
@@ -290,7 +290,7 @@ export default function Index({ posts = [], notes = [] }) {
 					</motion.li>
 				</ul>
 			</motion.section>
-			<motion.section id="contact" variants={contactMeVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.75, once: true }} className="flex items-center flex-col gap-8 w-full p-8 pb-32">
+			<motion.section id="contact" variants={contactMeVariants} initial="hidden" whileInView="show" viewport={{ amount: 0.25, once: true }} className="flex items-center flex-col gap-8 w-full p-8 pb-32">
 				<div className="flex items-center flex-col gap-8 w-full mx-auto max-w-3xl">
 					<motion.h1 variants={contactMeItemVariants}
 						className={"text-3xl text-gray-800 font-semibold tracking-wide mb-4"}
