@@ -1,0 +1,104 @@
+# Making the Largest Island
+
+- [Leetcode link](https://leetcode.com/problems/making-a-large-island/)
+
+You are given an n x n binary matrix grid. You are allowed to change at most one 0 to be 1.
+
+Return the size of the largest island in grid after applying this operation.
+
+An island is a 4-directionally connected group of 1s.
+
+# Solution
+
+We will define a few variables
+- `max`: The maximum sized island we have found. This is initialised at 0
+- `islandID`: A unique identifier for each island in our input. Our initial value for the `islandID` stars from 2. Every time we encounter an island, we will replace the 1s with our `islandID`, to easily identify which island we have encountered
+- `islandSizeMap`: A map of `islandID: sizeOfIsland`
+
+Our procedure will be as follows:
+1. We will iterate through each cell in our 2D array
+2. If it is a 0, we ignore the cell
+3. If it is a 1, we will run DFS from that cell, to figure out which cells are part of the island. We will replace each cell in the corresponding island with `islandID`. 
+4. Once DFS is done for that specific island, we will also already have the size of the island as well. We will update the `islandSizeMap` with the corresponding `islandID` and `sizeOfIsland`. We will also increment the `islandID`, so that the next island has a different identifier
+5. Repeat through all the cells. If we encounter a cell which is a 0, we ignore. If it is a 1, we run DFS. If it is greater than 1, it means we have encountered the cell before (a cell belonging to a previous island), so we skip it as well. Repeat until all have been encountered
+6. After processing all the cells in the input matrix, we will go through all the cells a second time.
+7. If the number is a 0, we will look at the corresponding 4 neighbors
+    1. We want to see what unique islands surround our current cell. If we turn our current cell into land (convert from 0 to 1), this means that the size of the new island is the **sum of the sizes of the unique islands adjacent to our cell** + 1. We can easily compute this using the `islandSizeMap` we have created previously
+    2. We keep track of the largest value of the above
+
+```python
+class Solution:
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+    grid = []
+    
+    def get_island_size(self, row_number: int, col_number: int, island_id: int) -> int:
+        # Out of bounds
+        if row_number < 0 or col_number < 0 or row_number > len(self.grid) - 1 or col_number > len(self.grid[0]) - 1:
+            return 0
+        
+        # Island already visited
+        if self.grid[row_number][col_number] != 1:
+            return 0
+        
+        self.grid[row_number][col_number] = island_id
+        left_island_size = self.get_island_size(row_number, col_number - 1, island_id)
+        right_island_size = self.get_island_size(row_number, col_number + 1, island_id)
+        up_island_size = self.get_island_size(row_number - 1, col_number, island_id)
+        down_island_size = self.get_island_size(row_number + 1, col_number, island_id)
+        
+        return left_island_size + right_island_size + up_island_size + down_island_size + 1
+        
+
+    def largestIsland(self, grid: List[List[int]]) -> int:
+        max_island_size = 0
+        island_size_map = {}
+        island_id = 2
+        self.grid = grid
+        
+        
+        for row_number in range(len(self.grid)):
+            for col_number in range(len(self.grid[0])):
+                # ignore the water
+                if self.grid[row_number][col_number] == 0:
+                    continue
+                
+                # ignore already processed islands
+                if self.grid[row_number][col_number] > 1:
+                    continue
+                    
+                island_size = self.get_island_size(row_number, col_number, island_id)
+                max_island_size = max(max_island_size, island_size) # Required if all is 1
+                island_size_map[island_id] = island_size
+                island_id += 1 # Increment after finishing processing the island
+            
+        for row_number in range(len(self.grid)):
+            for col_number in range(len(self.grid[row_number])):
+                if self.grid[row_number][col_number] != 0:
+                    continue
+                    
+                neighboring_islands = set()
+                for direction in self.directions:
+                    new_row_number = row_number + direction[0]
+                    new_col_number = col_number + direction[1]
+                    
+                    # Out of bounds
+                    if new_row_number < 0 or new_col_number < 0 or new_row_number > len(self.grid) - 1 or new_col_number > len(self.grid[0]) - 1:
+                        continue
+                        
+                    # Not an island
+                    if self.grid[new_row_number][new_col_number] == 0:
+                        continue
+                        
+                    neighboring_islands.add(self.grid[new_row_number][new_col_number])
+                    
+                # Account for changing the current island into a 1
+                new_island_size = 1
+                for island in neighboring_islands:
+                    new_island_size += island_size_map[island]
+
+                max_island_size = max(max_island_size, new_island_size)
+                    
+        return max_island_size
+                
+                
+```
