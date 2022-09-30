@@ -1,0 +1,68 @@
+# Surrounded Regions
+
+- https://leetcode.com/problems/surrounded-regions/
+
+Given an m x n matrix board containing 'X' and 'O', capture all regions that are 4-directionally surrounded by 'X'.
+
+A region is captured by flipping all 'O's into 'X's in that surrounded region.
+
+# Solution
+
+1. Iterate through the boundary of the board
+2. For each O on the boundary on the board, we mark it as "do not flip". Then we DFS on the O, and continue marking all connected O's as "do not flip"
+3. Once done, we flip all those that were marked to flip, and keep those that "do not flip"
+
+```python
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        
+        def dfs_and_mark(i, j):
+            # out of bounds
+            if i < 0 or i > len(board) - 1 or j < 0 or j > len(board[i]) - 1:
+                return
+            
+            # base cases
+            if board[i][j] == "X" or visited[i][j]:
+                return
+                
+            to_flip[i][j] = False
+            visited[i][j] = True
+
+            # visit the 4 neighbors
+            dfs_and_mark(i - 1, j)
+            dfs_and_mark(i + 1, j)
+            dfs_and_mark(i, j - 1)
+            dfs_and_mark(i, j + 1)
+        
+        to_flip = [[True for cell in row] for row in board]
+        visited = [[False for cell in row] for row in board]
+        
+        # We only need to propagate from cells which are at the border of the matrix
+        # Since any O's at the border of the matrix (and are connected) will not be fully surrounded by X's
+        for i in [0, len(board) - 1]: # first and last row
+            for j in range(len(board[i])):
+                if board[i][j] == "X":
+                    to_flip[i][j] = False
+                    visited[i][j] = True
+                    continue
+                    
+                dfs_and_mark(i, j)
+                
+        for i in range(len(board)): # first and last column
+            for j in [0, len(board[0]) - 1]:
+                if board[i][j] == "X":
+                    to_flip[i][j] = False
+                    visited[i][j] = True
+                    continue
+                    
+                dfs_and_mark(i, j)
+                
+        # Flip those that are marked
+        for i in range(len(to_flip)):
+            for j in range(len(to_flip[i])):
+                if to_flip[i][j]:
+                    board[i][j] = "X"
+```
