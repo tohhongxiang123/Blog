@@ -1,0 +1,67 @@
+# Valid Parentheses
+
+- https://leetcode.com/problems/valid-parentheses/
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+
+Example 1:
+```
+Input: s = "()"
+Output: true
+```
+Example 2:
+```
+Input: s = "()[]{}"
+Output: true
+```
+Example 3:
+```
+Input: s = "(]"
+Output: false
+```
+
+Constraints:
+```
+1 <= s.length <= 104
+s consists of parentheses only '()[]{}'.
+```
+
+# Solution
+
+We will use a stack to keep track of the parentheses
+
+1. Every time we see an open parenthesis, we add it to the stack
+2. Every time we see a close parenthesis, we check the stack. If the top of the stack if not the correspondingly matching open parenthesis, we know that it is invalid (the closing parenthesis does not match the open parenthesis), so we return false. If the stack is empty, this means that the closed parenthesis is missing its corresponding open parenthesis, and we also return false
+3. After iterating through all characters in the string, we check the length of the stack. If the stack is not empty, this means we have open parentheses that are not closed, so we return false. Else, we return true
+
+```py
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = [] # create new stack
+        parentheses = {
+            ")":"(",
+            "}": "{",
+            "]": "[",
+        }
+        
+        for character in s:
+            if character in parentheses.values():
+                stack.append(character)
+                continue
+                
+            if character in parentheses.keys():
+                if len(stack) == 0 or stack[-1] != parentheses[character]:
+                    return False
+                
+                stack.pop()
+                continue
+                
+        return len(stack) == 0
+```
