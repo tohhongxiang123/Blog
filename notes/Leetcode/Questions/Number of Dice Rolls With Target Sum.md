@@ -1,0 +1,85 @@
+# Number of Dice Rolls With Target Sum
+
+- https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/
+
+You have n dice and each die has k faces numbered from 1 to k.
+
+Given three integers n, k, and target, return the number of possible ways (out of the kn total ways) to roll the dice so the sum of the face-up numbers equals target. Since the answer may be too large, return it modulo 109 + 7.
+
+Example 1:
+
+```
+Input: n = 1, k = 6, target = 3
+Output: 1
+Explanation: You throw one die with 6 faces.
+There is only one way to get a sum of 3.
+```
+
+Example 2:
+
+```
+Input: n = 2, k = 6, target = 7
+Output: 6
+Explanation: You throw two dice, each with 6 faces.
+There are 6 ways to get a sum of 7: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1.
+```
+
+Example 3:
+
+```
+Input: n = 30, k = 30, target = 500
+Output: 222616187
+Explanation: The answer must be returned modulo 109 + 7.
+```
+
+Constraints:
+
+```
+1 <= n, k <= 30
+1 <= target <= 1000
+```
+
+# Solution
+
+Note that the solution can be expressed as the following recurrence equation:
+
+$$
+f(n, k, t) = \sum_{i = 1}^{k} f(n - 1, k, t - i) \\
+f(0, k, 0) = 1 \\
+f(0, k, t) = 0, t != 0
+$$
+
+We will use a dictionary to store results of our previous computations to prevent overheads from recalculating
+
+1. Check the dictionary if we already calculated the result. If the result has already been calculated previously, return the value directly from the dictionary
+2. Check the base cases. If `n == 0` and `target != 0`, return 0. If `n == 0` and `target == 0`, return 1
+3. Calculate the result based on the recurrence relation stated above
+4. Store the result into the dictionary
+5. Return the result
+
+
+```python
+class Solution:
+    def numRollsToTarget(self, n: int, k: int, target: int) -> int:
+        results = {} # store previous results to reduce recalculation
+        
+        def calculate(n: int, target: int) -> int:
+            if (n, target) in results:
+                return results[(n, target)]
+            
+            if n == 0 and target == 0:
+                return 1
+            
+            if n == 0 and target != 0:
+                return 0
+            
+            total = 0
+            for i in range(1, k + 1):
+                total += calculate(n - 1, target - i)
+                
+            total = total % (10**9 + 7)
+            results[(n, target)] = total
+            return total
+        
+        return calculate(n, target)
+```
