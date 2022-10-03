@@ -1,0 +1,43 @@
+# Minimum Time to Make Rope Colorful
+
+- https://leetcode.com/problems/minimum-time-to-make-rope-colorful/
+
+Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith balloon.
+
+Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob needs to remove the ith balloon from the rope.
+
+Return the minimum time Bob needs to make the rope colorful.
+
+# Solution
+
+We use greedy search
+
+1. Iterate through all the balloons
+2. We find each group of identical colored balloons
+3. For each group of identically colored balloons, we remove all balloons except the one that takes the most time
+
+```python
+class Solution:
+    def minCost(self, colors: str, neededTime: List[int]) -> int:
+        total_cost = 0
+        
+        i = 0 # current index we are looking at
+        while i < len(colors):
+            # get the group of balloons with the same color: colors[i:i+x]
+            x = 1
+            while i + x < len(colors) and colors[i] == colors[i + x]:
+                x += 1
+                
+            if x == 1: # already distinct colors
+                i += 1
+                continue
+                
+            # we remove all balloons except the one that costs the most
+            total_cost += sum(neededTime[i:i + x]) - max(neededTime[i:i + x])
+            
+            # we go to the next unprocessed balloon
+            i += x
+            
+        return total_cost
+            
+```
