@@ -1,0 +1,70 @@
+# Zigzag Conversion
+
+- https://leetcode.com/problems/zigzag-conversion/
+
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+```
+P   A   H   N
+A P L S I I G
+Y   I   R
+```
+
+And then read line by line: "PAHNAPLSIIGYIR"
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+string convert(string s, int numRows);
+
+
+# Solution
+
+```python
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+        
+        def generateCoordinates(length: int):
+            coords = []
+            
+            goingUp = False
+            i = 0
+            j = 0
+            for _ in range(length):
+                coords.append((i, j))
+                
+                if not goingUp:
+                    if i == numRows - 1:
+                        goingUp = True
+                        i -= 1
+                        j += 1
+                        continue
+                        
+                    i += 1
+                else:
+                    if i == 0:
+                        goingUp = False
+                        i += 1
+                        continue
+                    i -= 1
+                    j += 1
+            return coords
+        
+        coordinates = generateCoordinates(len(s))
+        maxRowLength = max(c[1] for c in coordinates)
+        
+        rows = [[" " for i in range(maxRowLength + 1)] for j in range(numRows)]
+
+        for i in range(len(s)):
+            x, y = coordinates[i]
+            rows[x][y] = s[i]
+            
+        output = ""
+        for row in rows:
+            for letter in row:
+                if letter != " ":
+                    output += letter
+                    
+        return output
+```
