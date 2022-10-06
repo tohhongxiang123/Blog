@@ -1,0 +1,39 @@
+# 3Sum Closest
+
+- https://leetcode.com/problems/3sum-closest/
+
+Given an integer array `nums` of length `n` and an integer `target`, find three integers in `nums` such that the sum is closest to `target`.
+
+Return the sum of the three integers.
+
+You may assume that each input would have exactly one solution.
+
+# Solution
+
+```python
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums = sorted(nums)
+        closest_sum = float("infinity")
+        
+        for i in range(len(nums)):
+            j = i + 1
+            k = len(nums) - 1
+            
+            while j < k:
+                current_sum = nums[i] + nums[j] + nums[k]
+                
+                if current_sum == target:
+                    return current_sum
+                
+                if abs(target - current_sum) < abs(target - closest_sum):
+                    closest_sum = current_sum
+                    
+                if current_sum < target:
+                    j += 1
+                else:
+                    k -= 1
+                    
+        return closest_sum
+```
+

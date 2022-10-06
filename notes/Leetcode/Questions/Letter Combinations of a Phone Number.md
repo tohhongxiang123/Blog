@@ -1,0 +1,45 @@
+# Letter Combinations of a Phone Number
+
+- https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+
+# Solution
+
+```python
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if len(digits) == 0:
+            return []
+        
+        numberLetterMappings = {
+            2: "abc",
+            3: "def",
+            4: "ghi",
+            5: "jkl",
+            6: "mno",
+            7: "pqrs",
+            8: "tuv",
+            9: "wxyz"
+        }
+        
+
+        letters = []
+        for digit in digits:
+            letters.append(numberLetterMappings[int(digit)])
+            
+        # generates all permutations, with one element from each string
+        # ["abc", "def", "ghi"] 
+        def dfs(letters, depth):
+            # base case
+            if depth == len(letters) - 1:
+                return [i for i in letters[depth]]
+            
+            result = []
+            for i in range(len(letters[depth])):
+                for rest in dfs(letters, depth + 1):
+                    result.append(letters[depth][i] + rest)
+                    
+            return result
+            
+        result = dfs(letters, 0)
+        return result
+```
