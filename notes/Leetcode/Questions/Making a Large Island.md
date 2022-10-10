@@ -1,4 +1,4 @@
-# Making the Largest Island
+# Making a Large Island
 
 - [Leetcode link](https://leetcode.com/problems/making-a-large-island/)
 
