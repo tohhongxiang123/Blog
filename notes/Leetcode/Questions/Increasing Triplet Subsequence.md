@@ -1,0 +1,29 @@
+# Increasing Triplet Subsequence
+
+- https://leetcode.com/problems/increasing-triplet-subsequence/
+
+Given an integer array `nums`, return `true` if there exists a triple of indices `(i, j, k)` such that `i < j < k` and `nums[i] < nums[j] < nums[k]`. If no such indices exists, return `false`.
+
+# Solution
+
+```python
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        first, second = float("infinity"), float("infinity")
+        
+        for num in nums:
+            # first will be the smallest number
+            if num <= first:
+                first = num
+            # num > first and num <= second, we set second to be the second smallest number
+            elif num <= second:
+                second = num
+            # if we get num > second > first, we have found the subsequence
+            else:
+                return True
+            
+        return False
+```
+
+
+
