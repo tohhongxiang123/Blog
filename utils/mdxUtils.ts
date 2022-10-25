@@ -18,6 +18,8 @@ export const getFilesInDirectory = (directory: string) => fs
 
 export type Post = {
     data: {
+        title: string,
+        date: string,
         [key: string]: string
     },
     content: string
@@ -46,7 +48,7 @@ export function getFileContent(slug: string) : Post {
         data.date = lastUpdatedDate
     }
 
-    return { content, data }
+    return { content, data } as Post
 }
 
 export function recursivelyGetFilesInDirectory(directory: string) {

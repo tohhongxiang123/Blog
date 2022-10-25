@@ -25,7 +25,7 @@ export default function PostPage({ source, frontMatter, ...props }: PostPageProp
 		mermaid.init();
 	}, [source, frontMatter])	
 	return (
-		<div {...props} className={`prose mx-auto ${props.className}`}>
+		<div {...props} className={`prose max-w-3xl mx-auto ${props.className}`}>
 			<header>
 				{frontMatter.description && (
 					<p>{frontMatter.description}</p>

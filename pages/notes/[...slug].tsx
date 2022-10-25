@@ -2,14 +2,10 @@ import { getFileContent, recursivelyGetFilesInDirectory, renderContentWithPlugin
 import path from 'path'
 import NotesLayout from '../../components/NotesLayout'
 import dynamic from 'next/dynamic'
+import { InferGetStaticPropsType } from 'next'
 
-interface PostPageProps {
-    source: string,
-    frontMatter: { [key: string]: string },
-    notesStructure: PostStructure[]
-}
 const Post = dynamic(() => import('../../components/Post'), { ssr: false })
-export default function PostPage({ source = '', frontMatter = {}, notesStructure = [] }: PostPageProps) {
+export default function PostPage({ source, frontMatter, notesStructure = [] }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <NotesLayout title={frontMatter.title} notesStructure={notesStructure} description={`Learn more about ${frontMatter.title}`}>
             <div className={"p-8"}>
