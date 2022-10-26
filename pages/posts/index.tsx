@@ -26,7 +26,7 @@ export default function PostList({ posts = [] }: InferGetStaticPropsType<typeof 
 				</ul>
 			</div>
 			<div className="max-w-5xl mx-auto p-8 text-right">
-				<Link href="/"><a className="font-medium rounded-md py-2 px-4 hover:bg-gray-100">🠔 Back</a></Link>
+				<Link href="/"><a className="font-medium rounded-md py-2 px-4 hover:bg-gray-100">Back</a></Link>
 			</div>
 		</Layout>
 	);
