@@ -1,12 +1,16 @@
 import React from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 
 interface ImageWithLabelProps extends React.HTMLAttributes<HTMLDivElement> {
-    src: string,
-    label: string
+    src: string;
+    label: string;
 }
 
-export default function ImageWithLabel({ src, label, ...props }: ImageWithLabelProps) {
+export default function ImageWithLabel({
+    src,
+    label,
+    ...props
+}: ImageWithLabelProps) {
     return (
         <div
             {...props}

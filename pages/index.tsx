@@ -92,7 +92,10 @@ const contactMeItemVariants = {
 
 const ParticlesBg = dynamic(() => import('particles-bg'), { ssr: false });
 
-export default function Index({ posts = [], notes = [] }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Index({
+    posts = [],
+    notes = []
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <Layout
             title="Home"

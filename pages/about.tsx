@@ -4,9 +4,11 @@ import ImageWithLabel from '../components/ImageWithLabel';
 import Layout from '../components/Layout';
 import ProjectPreview from '../components/ProjectPreview';
 import { getFileContent, getFilesInDirectory } from '../utils/mdxUtils';
-import Image from 'next/image'
+import Image from 'next/image';
 
-export default function About({ projects = [] }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function About({
+    projects = []
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <Layout title="About" description="All about Toh Hong Xiang">
             <div className="p-4">
@@ -124,7 +126,10 @@ export default function About({ projects = [] }: InferGetStaticPropsType<typeof 
                             />
                         </li>
                         <li>
-                            <ImageWithLabel src="/icons/sass.svg" label="SCSS" />
+                            <ImageWithLabel
+                                src="/icons/sass.svg"
+                                label="SCSS"
+                            />
                         </li>
                         <li>
                             <ImageWithLabel

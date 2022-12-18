@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface FooterProps extends React.HTMLAttributes<HTMLElement> {
-    className?: string
+    className?: string;
 }
 
 export default function Footer({ ...props }: FooterProps) {

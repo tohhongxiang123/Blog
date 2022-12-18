@@ -13,7 +13,12 @@ export default function About() {
                     If you think that I have helped you, do feel free to fund my
                     holiday plans through paylah. Thanks!
                 </p>
-                <Image alt="Paylah QR" src="/paylah_qr.jfif" width={500} height={500} />
+                <Image
+                    alt="Paylah QR"
+                    src="/paylah_qr.jfif"
+                    width={500}
+                    height={500}
+                />
             </div>
         </Layout>
     );

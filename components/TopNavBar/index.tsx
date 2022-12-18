@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 
 const sidebarVariants = {
@@ -24,7 +24,7 @@ const sidebarItemVariants = {
 };
 
 interface NavbarProps {
-    children: React.ReactElement[]
+    children: React.ReactElement[];
 }
 
 export default function NavBar({ children = [] }: NavbarProps) {

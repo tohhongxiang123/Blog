@@ -2,7 +2,7 @@ import {
     getFileContent,
     recursivelyGetFilesInDirectory,
     renderContentWithPlugins,
-    getFilesWithStructure,
+    getFilesWithStructure
 } from '../../utils/mdxUtils';
 import NotesLayout from '../../components/NotesLayout';
 import dynamic from 'next/dynamic';
