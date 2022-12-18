@@ -18,7 +18,7 @@
         "date-fns": "^2.25.0",
         "framer-motion": "^6.3.3",
         "gray-matter": "^4.0.3",
-        "mermaid": "^8.13.2",
+        "mermaid": "^9.3.0",
         "mermaid.cli": "^0.3.6",
         "next": "^13.0.7",
         "next-mdx-remote": "^3.0.8",
@@ -52,10 +52,10 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-promise": "^6.0.0",
         "eslint-plugin-react": "^7.31.11",
+        "husky": "^8.0.0",
         "postcss-preset-env": "^5.3.0",
         "prettier": "^2.8.1",
-        "tailwindcss": "^2.2.17",
-        "husky": "^8.0.0"
+        "tailwindcss": "^2.2.17"
     },
     "engines": {
         "node": ">= 0.14"
