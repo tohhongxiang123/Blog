@@ -1,20 +1,20 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
     sassOptions: {
-        includePaths: [path.join(__dirname, 'styles')],
+        includePaths: [path.join(__dirname, 'styles')]
     },
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
-            use: ["@svgr/webpack"]
-        })
+            use: ['@svgr/webpack']
+        });
 
-        return config
+        return config;
     },
     env: {
         NOTES_PATH: 'notes',
         POSTS_PATH: 'posts',
         PROJECTS_PATH: 'projects'
-    },
-}
+    }
+};

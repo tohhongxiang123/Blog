@@ -25,7 +25,7 @@ a = a % 5;
 a %= 5;
 ```
 
-# Increment and Decrement 
+# Increment and Decrement
 
 Used specifically when incrementing or decrementing by 1
 
@@ -37,7 +37,7 @@ x -= 1;
 x--;
 ```
 
-Also, these operators can be used prefix or postfix. 
+Also, these operators can be used prefix or postfix.
 
 ## Prefix increment
 
@@ -68,4 +68,3 @@ int x = 7;
 int z = x * 8
 x = x + 1
 ```
-

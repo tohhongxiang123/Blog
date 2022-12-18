@@ -38,4 +38,4 @@ i: 4, j: 3
 i: 4, j: 4
 ```
 
-The number of loops run is: number of outside loop iterations * number of inside loop iterations
+The number of loops run is: number of outside loop iterations \* number of inside loop iterations

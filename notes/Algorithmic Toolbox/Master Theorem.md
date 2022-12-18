@@ -1,6 +1,6 @@
 # Master Theorem
 
-If $T(n) = aT(\lceil \frac{n}{b} \rceil) + O(n^d)$ for constants $a > 0, b > 1, d \ge 0$, then 
+If $T(n) = aT(\lceil \frac{n}{b} \rceil) + O(n^d)$ for constants $a > 0, b > 1, d \ge 0$, then
 
 $$
 T(n) = \begin{cases}

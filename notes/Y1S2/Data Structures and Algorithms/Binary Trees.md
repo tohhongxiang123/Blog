@@ -39,6 +39,7 @@ This creates a tree with the root node as 0, its left as 1 and its right as 2.
 # Traversal
 
 There are 3 types of traversals to understand for binary trees
+
 1. Preorder
 2. Inorder
 3. Postorder
@@ -53,7 +54,7 @@ There are 3 types of traversals to understand for binary trees
 ```c
 void printPreorder(Node *root) {
     if (node == NULL) return;
-    
+
     printf("%d\n", root->value);
 
     printPreorder(root->left);
@@ -215,11 +216,11 @@ void mirrorTree(BTNode *node){
 	if (node == NULL) {
 	    return;
 	}
-	
+
 	BTNode *tempNode = node->left;
 	node->left = node->right;
 	node->right = tempNode;
-	
+
 	mirrorTree(node->left);
 	mirrorTree(node->right);
 }
@@ -228,9 +229,9 @@ int hasGreatGrandchild(BTNode *node){
     if (node == NULL || getHeight(node) < 4) {
         return 0;
     }
-    
+
     printf("%d\n", node->item);
-    
+
     hasGreatGrandchild(node->left);
     hasGreatGrandchild(node->right);
     return 1;
@@ -240,14 +241,14 @@ int getHeight(BTNode *node) {
     if (node == NULL) {
         return 0;
     }
-    
+
     if (!node->left && !node->right) {
         return 1;
     }
-    
+
     int leftHeight = getHeight(node->left);
     int rightHeight = getHeight(node->right);
-    
+
     return leftHeight > rightHeight ? 1 + leftHeight : 1 + rightHeight;
 }
 
@@ -255,7 +256,7 @@ void printSmallerValues(BTNode *node, int m){
     if (node == NULL) {
         return;
     }
-    
+
     printSmallerValues(node->left, m);
     if (node->item < m) {
         printf("%d\n", node->item);
@@ -264,10 +265,10 @@ void printSmallerValues(BTNode *node, int m){
 }
 
 int smallestValue(BTNode *node) {
-	int leftMinimumValue = node->left ? smallestValue(node->left) : INFINITY; 
+	int leftMinimumValue = node->left ? smallestValue(node->left) : INFINITY;
 	int rightMinimumValue = node->right ? smallestValue(node->right) : INFINITY;
 	int currentValue = node->item;
-    
+
     int result = leftMinimumValue;
     if (rightMinimumValue < result) {
         result = rightMinimumValue;
@@ -275,7 +276,7 @@ int smallestValue(BTNode *node) {
     if (currentValue < result) {
         result = currentValue;
     }
-    
+
     return result;
 }
 
@@ -291,7 +292,7 @@ void printTree_InOrder(BTNode *node){
 }
 ```
 
-# Tutorial 
+# Tutorial
 
 1. (levelOrderTraversal) Write an iterative C function levelOrderTraversal prints a level-by-level traversal of the binary tree using a queue, starting at the root node level. Note that you should only use `enqueue()` or `dequeue()` operations when you add or remove integers from the queue. Remember to empty the queue at the beginning, if the queue is not empty. The function prototype is given as follows:
 
@@ -392,21 +393,21 @@ void levelOrderTraversal(BSTNode* root)
     Queue *q = malloc(sizeof(Queue));
     q->head = NULL;
     q->tail = NULL;
-    
+
     if (root == NULL) {
         return;
     }
-    
+
     enqueue(&(q->head), &(q->tail), root);
-    
+
     while (!isEmpty(q->head)) {
         BSTNode *currentNode = dequeue(&(q->head), &(q->tail));
         printf("%d\n", currentNode->item);
-        
+
         if (currentNode->left) {
             enqueue(&(q->head), &(q->tail), currentNode->left);
         }
-        
+
         if (currentNode->right) {
             enqueue(&(q->head), &(q->tail), currentNode->right);
         }
@@ -598,21 +599,21 @@ void preOrderIterative(BSTNode *root)
 	 /* add your code here */
 	 Stack *s = malloc(sizeof(Stack));
 	 s->top = NULL;
-	 
+
 	 if (root == NULL) {
 	     return;
 	 }
-	 
+
 	 push(s, root);
-	 
+
 	 while (!isEmpty(s)) {
 	     BSTNode *currentNode = pop(s);
 	     printf("%d\n", currentNode->item);
-	     
+
 	     if (currentNode->right) {
 	         push(s, currentNode->right);
 	     }
-	     
+
 	     if (currentNode->left) {
 	         push(s, currentNode->left);
 	     }
@@ -826,10 +827,10 @@ int maxDepth(BTNode *node)
     if (node == NULL) {
         return -1;
     }
-    
+
     int leftSubtreeMaxDepth = maxDepth(node->left);
     int rightSubtreeMaxDepth = maxDepth(node->right);
-    
+
     return leftSubtreeMaxDepth > rightSubtreeMaxDepth ? 1 + leftSubtreeMaxDepth : 1 + rightSubtreeMaxDepth;
 }
 
@@ -1070,16 +1071,16 @@ BTNode *searchNode(BTNode *node, int key)
     if (node == NULL) {
         return NULL;
     }
-    
+
     if (node->item == key) {
         return node;
     }
-    
+
     BTNode *foundNodeInLeftSubtree = searchNode(node->left, key);
     if (foundNodeInLeftSubtree) {
         return foundNodeInLeftSubtree;
     }
-    
+
     return searchNode(node->right, key);
 }
 

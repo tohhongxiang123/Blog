@@ -37,9 +37,11 @@ We can conclude that $T(n) \ge f_n$
 Consider $T(100) \approx 1.77*10^{21}$. A computer running at 1 GHz will take $1.77*10^{21} / (1*10^9 * 60 * 60 * 24 * 365) \approx 56000$ years to calculate.
 
 # Why is the algorithm inefficient?
+
 We recalculate from scratch everytime.
 
 # Making the algorithm efficient
+
 Everytime we make compute $f_n$, we store the result in a list, so we can use it.
 
 ```py
@@ -47,7 +49,7 @@ def fib(n):
     if n <= 1:
         return n
     results = [0, 1]
-    
+
     for i in range(2, n+1):
         results[n] = results[n-1] + results[n-2]
 

@@ -1,6 +1,6 @@
 # Timsort
 
-Timsort is a hybrid stable sorting algorithm, derived from merge sort and insertion sort, designed to perform well on many kinds of real-world data. It was implemented by Tim Peters in 2002 for use in the Python programming language. 
+Timsort is a hybrid stable sorting algorithm, derived from merge sort and insertion sort, designed to perform well on many kinds of real-world data. It was implemented by Tim Peters in 2002 for use in the Python programming language.
 
 For smaller arrays, insertion sort performs the best. While for larger arrays, merge sort performs the best. We will now write some code to figure out quantitatively, at what size should we use merge sort over insertion sort.
 
@@ -9,7 +9,7 @@ For smaller arrays, insertion sort performs the best. While for larger arrays, m
 #include <time.h>
 #include <stdlib.h>
 
-void printArr(int arr[], int size) { 
+void printArr(int arr[], int size) {
     // print out the entire array
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
@@ -93,16 +93,16 @@ void mergeSortUtil(int arr[], int size) {
 double timeFunction(void (*sortingAlg)(int[], int), int size) { // times how long sortingAlg runs to sort an array of size in milliseconds
     // intialise randomiser
     srand(time(NULL));
-    
+
     // create array
     int *array = malloc(sizeof(int) * size);
     for (int i=0; i<size; i++) {
         array[i] = rand() % 1000; // random number from 0 to 999
     }
-    
+
     clock_t start, end;
     double cpu_time_used;
-    
+
     start = clock();
     sortingAlg(array, size);
     end = clock();
@@ -116,12 +116,12 @@ int main()
     for (int i = 1; i < 50; i++) {
         double averageMergeSortTiming; // run TIMES_TO_REPEAT times
         double averageInsertionSortTiming;
-        
+
         for (int j = 0; j < TIMES_TO_REPEAT; j++) {
             averageMergeSortTiming += timeFunction(mergeSortUtil, i);
             averageInsertionSortTiming += timeFunction(insertionSort, i);
         }
-        
+
         printf("Merge sort: %.4f ms, ", averageMergeSortTiming);
         printf("Insertion sort: %.4f ms, ", averageInsertionSortTiming);
         if (averageMergeSortTiming > averageInsertionSortTiming) {
@@ -144,7 +144,7 @@ Hence to run the code,
 #include <time.h>
 #include <stdlib.h>
 
-void printArr(int arr[], int size) { 
+void printArr(int arr[], int size) {
     // print out the entire array
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
@@ -172,7 +172,7 @@ int insertionSort(int arr[], int size) {
             }
         }
     }
-    
+
     return count;
 }
 
@@ -217,7 +217,7 @@ int merge(int arr[], int startIndex, int middleIndex, int endIndex) {
         count++;
         arr[i] = temporaryArray[i - startIndex];
     }
-    
+
     return count;
 }
 
@@ -241,13 +241,13 @@ int mergeSortUtil(int arr[], int size) {
 int returnCountFromRandomArray(int (*sortingAlg)(int[], int), int size) { // counts comparison required to sort an array of size
     // intialise randomiser
     srand(time(NULL));
-    
+
     // create array
     int *array = malloc(sizeof(int) * size);
     for (int i=0; i<size; i++) {
         array[i] = rand() % 1000; // random number from 0 to 999
     }
-    
+
     return sortingAlg(array, size);
 }
 
@@ -257,15 +257,15 @@ int main()
     for (int i = 1; i < 100; i++) {
         double averageMergeSortCount;
         double averageInsertionSortCount;
-        
+
         for (int j = 0; j < TIMES_TO_REPEAT; j++) {
             averageMergeSortCount += returnCountFromRandomArray(mergeSortUtil, i);
             averageInsertionSortCount += returnCountFromRandomArray(insertionSort, i);
         }
-        
+
         averageMergeSortCount /= TIMES_TO_REPEAT;
         averageInsertionSortCount /= TIMES_TO_REPEAT;
-        
+
         printf("Merge sort: %.4f, ", averageMergeSortCount);
         printf("Insertion sort: %.4f, ", averageInsertionSortCount);
         if (averageMergeSortCount > averageInsertionSortCount) {
@@ -310,7 +310,7 @@ Now, the final code. Used to compare time required to run the code, and number o
 #include <time.h>
 #include <stdlib.h>
 
-void printArr(int arr[], int size) { 
+void printArr(int arr[], int size) {
     // print out the entire array
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
@@ -338,7 +338,7 @@ int insertionSort(int arr[], int size) {
             }
         }
     }
-    
+
     return count;
 }
 
@@ -383,7 +383,7 @@ int merge(int arr[], int startIndex, int middleIndex, int endIndex) {
         count++;
         arr[i] = temporaryArray[i - startIndex];
     }
-    
+
     return count;
 }
 
@@ -427,7 +427,7 @@ int timSortUtil(int arr[], int size) {
 int returnCountFromRandomArray(int (*sortingAlg)(int[], int), int size) { // counts comparison required to sort an array of size
     // intialise randomiser
     srand(time(NULL));
-    
+
     // create array
     int *array = malloc(sizeof(int) * size);
     for (int i=0; i<size; i++) {
@@ -441,16 +441,16 @@ double returnTimingFromRandomArray(int (*sortingAlg)(int[], int), int size) { //
     int MILLISECONDS_PER_SECOND = 1000;
     // intialise randomiser
     srand(time(NULL));
-    
+
     // create array
     int *array = malloc(sizeof(int) * size);
     for (int i=0; i<size; i++) {
         array[i] = rand() % 1000; // random number from 0 to 999
     }
-    
+
     clock_t start, end;
     double cpu_time_used;
-    
+
     start = clock();
     sortingAlg(array, size);
     end = clock();
@@ -466,29 +466,29 @@ int main()
         double averageMergeSortCount;
         double averageInsertionSortCount;
         double averageTimSortCount;
-        
+
         double averageMergeSortTiming;
         double averageInsertionSortTiming;
         double averageTimSortTiming;
-        
+
         for (int j = 0; j < TIMES_TO_REPEAT; j++) {
             averageMergeSortCount += returnCountFromRandomArray(mergeSortUtil, i);
             averageInsertionSortCount += returnCountFromRandomArray(insertionSort, i);
             averageTimSortCount += returnCountFromRandomArray(timSortUtil, i);
-            
+
             averageMergeSortTiming += returnTimingFromRandomArray(mergeSortUtil, i);
             averageInsertionSortTiming += returnTimingFromRandomArray(insertionSort, i);
             averageTimSortTiming += returnTimingFromRandomArray(timSortUtil, i);
         }
-        
+
         averageMergeSortCount /= TIMES_TO_REPEAT;
         averageInsertionSortCount /= TIMES_TO_REPEAT;
         averageTimSortCount /= TIMES_TO_REPEAT;
-        
+
         averageMergeSortTiming /= TIMES_TO_REPEAT;
         averageInsertionSortTiming /= TIMES_TO_REPEAT;
         averageTimSortTiming /= TIMES_TO_REPEAT;
-        
+
         printf("%d elements, ", i);
         printf("Merge sort: %.4f ms, %.4f comparisons, ", averageMergeSortTiming, averageMergeSortCount);
         printf("Insertion sort: %.4f ms, %.4f comparisons, ", averageInsertionSortTiming, averageInsertionSortCount);
@@ -514,4 +514,4 @@ Therefore, the total time complexity is $O\left(nS + n \log \frac{n}{S} \right)$
 
 # Resources
 
-- https://en.wikipedia.org/wiki/Timsort
+-   https://en.wikipedia.org/wiki/Timsort

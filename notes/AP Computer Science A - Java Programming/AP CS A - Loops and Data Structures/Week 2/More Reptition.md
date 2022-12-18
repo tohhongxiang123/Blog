@@ -2,7 +2,7 @@
 
 # Common Practices
 
-- To loop n times, go from 0 to n-1
+-   To loop n times, go from 0 to n-1
 
 ```java
 for (int i=0; i<n; i++) {

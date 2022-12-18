@@ -18,7 +18,8 @@ def linearSearch(A, low, high, key):
     return linearSearch(A, low + 1, high, key)
 ```
 
-Recurrence defining worst-case time: 
+Recurrence defining worst-case time:
+
 $$
 T(n) = T(n-1) + c, T(0) = c
 $$
@@ -37,7 +38,7 @@ Output: An index $i (low \le i \le high)$ where $A[i] = k$. Otherwise the greate
 def binarySearch(A, low, high, key):
     if high < low:
         return low - 1
-    
+
     mid = floor(low + (high - low)/2)
     if key == A[mid]:
         return mid
@@ -48,6 +49,7 @@ def binarySearch(A, low, high, key):
 ```
 
 Recurrence defining worst-case time:
+
 $$
 T(n) = T\left(\lfloor{\frac{n}{2}}\rfloor\right) + c, T(0) = c
 $$
@@ -72,12 +74,14 @@ def binarySearch(A, low, high, key):
 # Polynomial Multiplication
 
 Uses of multiplying polynomials
-- Error-correcting codes
-- Large-integer multiplication
-- Generating functions
-- Convolution in signal processing
+
+-   Error-correcting codes
+-   Large-integer multiplication
+-   Generating functions
+-   Convolution in signal processing
 
 Example:
+
 $$
 \begin{aligned}
 A(x) &= 3x^2 + 2x + 5 \\
@@ -87,6 +91,7 @@ A(x)B(x) &= 15x^4 + 13x^3 + 33x^2 + 9x + 10
 $$
 
 ### Problem Definition
+
 Input: Two $n-1$ degree polynomials: $\sum_{i=0}^{n-1} a_i x^i, \sum_{i=0}^{n-1} b_i x^i$
 
 Output: The product polynomial $\sum_{i=0}^{2n-2} c_i x^i$
@@ -94,6 +99,7 @@ Output: The product polynomial $\sum_{i=0}^{2n-2} c_i x^i$
 Example: n=3, A=(3, 2, 5), B=(5, 1, 2). Output is C=(15, 13, 33, 9, 10)
 
 ### Naive Solution
+
 ```
 multPoly(A, B, n)
 
@@ -111,7 +117,7 @@ Runtime: $O(n^2)$
 
 ### Naive Divide and Conquer Algorithm
 
-Let $A(x) = D_1(x) x^{\frac{n}{2}} + D_0(x)$ where 
+Let $A(x) = D_1(x) x^{\frac{n}{2}} + D_0(x)$ where
 
 $D_1(x) = a_{n-1}x^{\frac{n}{2} - 1} + a_{n-2}x^{\frac{n}{2} - 2} + \cdots + a_{\frac{n}{2}}$
 

@@ -2,7 +2,7 @@
 
 An algorithm used to traverse graphs.
 
-- https://www.programiz.com/dsa/graph-dfs
+-   https://www.programiz.com/dsa/graph-dfs
 
 ```python
 # DFS algorithm

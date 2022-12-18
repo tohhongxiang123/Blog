@@ -20,7 +20,7 @@ public class Example {
 
 # Blocks and Statements
 
-- Statement
+-   Statement
 
 ```java
 int x = 10;
@@ -28,7 +28,7 @@ int y = x + 8;
 System.out.print("Print me!");
 ```
 
-- Block
+-   Block
 
 ```java
 if (x > 10) {
@@ -37,12 +37,13 @@ if (x > 10) {
 ```
 
 There are certain keywords in java, which cannot be used to name variables. A few keywords include:
-- abstract
-- assert
-- boolean
-- public
-- throw
-- import
+
+-   abstract
+-   assert
+-   boolean
+-   public
+-   throw
+-   import
 
 # Comment
 

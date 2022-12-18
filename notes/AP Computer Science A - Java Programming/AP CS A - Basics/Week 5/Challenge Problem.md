@@ -60,7 +60,8 @@ class Grader {
 }
 ```
 
-3. Write an if statement to serve as the header for the conditional block below. Execute the first block if the floating point outcome of c divided by d is  within the given TOLERANCE of b.
+3. Write an if statement to serve as the header for the conditional block below. Execute the first block if the floating point outcome of c divided by d is within the given TOLERANCE of b.
+
 ```java
 public class Practice {
      public static void main(String[] args) {
@@ -69,7 +70,7 @@ public class Practice {
           final double TOLERANCE = 0.001;
 
           /*** TODO: Write an if statement to serve as the header for the conditional block below.
-                     Execute the first block if the floating point outcome of c divided by d is 
+                     Execute the first block if the floating point outcome of c divided by d is
                       within the given TOLERANCE of b. ***/
           {
                System.out.println("Value within the tolerance level!");
@@ -84,17 +85,18 @@ public class Practice {
 
 I. Design a class called `LeapYear` in a file called `LeapYear.java`. This class will hold the main method and the class method that we will write in this assignment.
 
-II. Write an empty `public static void main(String[] args)` method. This method should appear inside the curly braces of the `LeapYear` class. 
+II. Write an empty `public static void main(String[] args)` method. This method should appear inside the curly braces of the `LeapYear` class.
 
-III. Write one static class method (`isLeapYear`). The method `isLeapYear` should take one integer argument and will return a boolean. The method should compare the input (a year) with the qualifications for determining whether a given year is a leap year or not, and return the appropriate true or false value on completing these checks. The rule for leap years is as follows: 
-- if the year is evenly divisible by 4, it is a leap year, except in the case where it is also evenly divisible by 100 but not evenly divisible by 400. 
+III. Write one static class method (`isLeapYear`). The method `isLeapYear` should take one integer argument and will return a boolean. The method should compare the input (a year) with the qualifications for determining whether a given year is a leap year or not, and return the appropriate true or false value on completing these checks. The rule for leap years is as follows:
+
+-   if the year is evenly divisible by 4, it is a leap year, except in the case where it is also evenly divisible by 100 but not evenly divisible by 400.
 
 Several example method calls appear below.
 
 ```java
-LeapYear.isLeapYear(2016); // returns true, divisible evenly by 4 
+LeapYear.isLeapYear(2016); // returns true, divisible evenly by 4
 
-LeapYear.isLeapYear(2015); // returns false, not divisible evenly by 4 
+LeapYear.isLeapYear(2015); // returns false, not divisible evenly by 4
 
 LeapYear.isLeapYear(1900); // returns false,
 

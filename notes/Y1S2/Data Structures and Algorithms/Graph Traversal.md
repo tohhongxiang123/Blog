@@ -110,19 +110,19 @@ void DFS_I (Graph g, int v)
 {
 //Write your code here
     Stack *s = malloc(sizeof(Stack));
-    
+
     int *visited = malloc(g.V * sizeof(int));
     for (int i=0; i<g.V; i++) {
         visited[i] = 0;
     }
-    
+
     push(s, v);
     visited[v - 1] = 1;
-    
+
     while (!isEmptyStack(*s)) {
         int currentNode = peek(*s);
         int hasUnvisitedChildren = 0;
-        
+
         for (int i=0; i<g.V; i++) {
             if (g.matrix[currentNode - 1][i] && !visited[i]) {
                 push(s, i + 1);
@@ -131,7 +131,7 @@ void DFS_I (Graph g, int v)
                 break;
             }
         }
-        
+
         if (!hasUnvisitedChildren) {
             printf("%d ", currentNode);
             pop(s);
@@ -196,7 +196,6 @@ void removeAllItemsFromStack(Stack *sPtr)
 ```c
 void DFS_R ( Graph_DFS g , int v);
 ```
-
 
 ```c
 #include <stdio.h>
@@ -269,13 +268,13 @@ void DFS_R (Graph_DFS g, int v)
 //Write your code here
     int i;
     g.visited[v - 1] = 1;
-    
+
     for (int i=0; i<g.V;i++) {
         if (g.matrix[v-1][i] && !g.visited[i]) {
             DFS_R(g, i+1);
         }
     }
-    
+
     printf("%d ", v);
 }
 
@@ -351,13 +350,13 @@ int nQueens(int** board, int BSize, int col)
         printSolution(board, BSize);
         return 1;
     }
-    
+
     for (int i=0; i<BSize; i++) {
         if (isSafe(board, BSize, i, col)) {
             board[i][col] = 1;
             nQueens(board, BSize, col + 1);
             board[i][col] = 0;
-        } 
+        }
     }
 }
 

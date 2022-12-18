@@ -1,17 +1,18 @@
 # Greedy Algorithms
 
 General process for solving problems with a greedy algorithm:
-- Start at A
 
+-   Start at A
 
 For example
+
 > Given $n$ digits, $x_1 \le x_2 \le \cdots \le x_n$, find the largest number that can be formed with these digits
 
 ```py
 def findLargest(numbers):
     if len(numbers) == 1:
         return str(numbers[0])
-        
+
     maxDigit = max(numbers)
     numbers.remove(maxDigit)
     return str(maxDigit) + findLargest(numbers)
@@ -20,9 +21,11 @@ print(findLargest([1, 2, 3, 9, 9, 4]))
 ```
 
 # Celebration Party Problem
+
 > Many children came to a celebration. Orgasnize them into the minimum possible number of groups such that the age of any two children in the same group differ by at most one year
 
 ### Naive algorithm
+
 ```
 m = len(children)
 for each partition into groups C = g1 u g2 ... u gk:
@@ -52,6 +55,7 @@ Naive algorithm works in $\Omega (2^n)$
 ### Efficient Algorithm
 
 Before covering efficient algorithm, let us look at covering points by segments
+
 > Input: Set of $n$ points $x_1, ..., x_n \in \R$
 > Output: The minimum number of segments of unit length needed to cover all the points
 
@@ -76,10 +80,10 @@ pointsCoverSorted(x1, ..., xn):
 
 Lemma: `pointsCoverSorted` runs in $O(n)$
 
-Proof: 
+Proof:
 
-- $i$ changes from 1 to $n$
-- For each $i$, at most 1 new segment
-- Overall running time is $O(n)$
+-   $i$ changes from 1 to $n$
+-   For each $i$, at most 1 new segment
+-   Overall running time is $O(n)$
 
 What if points were not sorted? Then `pointsCover` runs in $O(n \log n)$

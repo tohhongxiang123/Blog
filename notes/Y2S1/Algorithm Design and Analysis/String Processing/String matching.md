@@ -37,17 +37,17 @@ An example of the worst case is `pattern = "AAAAC"` and `text = "AAAAAAAAAAAAAAA
 3. If $p = t$, we have found the match, and exit
 4. If not end-of-text, shift the window one character right, and convert the string in it to $t$, and go back to step 3; Else, pattern not found and exit
 
-- The hash function converts a string into a unique number
-    - For a string `a1, a2, ..., an`, we use the hash $\sum_{i = 1}^{n} a_i * D^{n - i}$, where $D$ is the number of possible characters in the string
-    - 'ABC' has a hash of $1*10^2 + 2*10^1 + 3*10^0$ if we use only 10 possible characters
-- When we want to update our hash when the window rolls over, we do the following
+-   The hash function converts a string into a unique number
+    -   For a string `a1, a2, ..., an`, we use the hash $\sum_{i = 1}^{n} a_i * D^{n - i}$, where $D$ is the number of possible characters in the string
+    -   'ABC' has a hash of $1*10^2 + 2*10^1 + 3*10^0$ if we use only 10 possible characters
+-   When we want to update our hash when the window rolls over, we do the following
     1. Subtract $a_1 * D^{n - 1}$
     2. Multiply the remaining hash by $D$
     3. Add $a_{n-1}$
-- For example, 'ABC' to 'BCD'
-    - Subtract $1*10^2$
-    - Multiply the remaing hash by 10
-    - Add D ($+ 4$)
+-   For example, 'ABC' to 'BCD'
+    -   Subtract $1*10^2$
+    -   Multiply the remaing hash by 10
+    -   Add D ($+ 4$)
 
 ```cpp
 #include <iostream>
@@ -64,7 +64,7 @@ int characterToInt(char c) {
 }
 
 // sum of char(i) * 57^(n-i-1)
-int hashString(string text) { 
+int hashString(string text) {
     int hashCode = 0;
     for (int i = 0; i < text.length(); i++) {
         hashCode += characterToInt(text.at(i)) * pow(NUMBER_OF_CHARACTERS, text.length() - i - 1);
@@ -77,13 +77,13 @@ bool isMatch(string t1, string t2) {
     if (t1.length() != t2.length()) {
         return false;
     }
-    
+
     for (int i = 0; i < t1.length(); i++) {
         if (t1.at(i) != t2.at(i)) {
             return false;
         }
     }
-    
+
     return true;
 }
 
@@ -92,28 +92,28 @@ int string_match(string text, string pattern) {
     if (text.length() < pattern.length()) {
         return -1;
     }
-    
+
     // hash the first window
     int currentTextHash = hashString(text.substr(0, pattern.length()));
     // hash the pattern
     int patternHash = hashString(pattern);
-    
-    // if immediately match, return 
+
+    // if immediately match, return
     if (isMatch(text.substr(0, pattern.length()), pattern)) {
         return 0;
     }
-    
+
     for (int i = 1; i < text.length() - pattern.length() + 1; i++) {
         // update rolling window hash
         currentTextHash -= characterToInt(text.at(i - 1)) * pow(NUMBER_OF_CHARACTERS, pattern.length() - 1);
         currentTextHash *= NUMBER_OF_CHARACTERS;
         currentTextHash += characterToInt(text.at(i + pattern.length() - 1));
-        
+
         if (isMatch(text.substr(i, pattern.length()), pattern)) {
             return i;
         }
     }
-    
+
     // no match
     return -1;
 }
@@ -147,14 +147,16 @@ THERE WOULD HAVE BEEN A TIME FOR SUCH A WORD
 Just like the naive algorithm, we start from the leftmost side of the text, and try the compare the pattern with the text. However, unlike the naive algorithm, we will begin looking at characters from the back of the pattern instead, so that we can skip as much as possible
 
 Boyer-Moore uses 2 specific rules:
+
 1. Bad character rule
 2. Good suffix rule
 
 ## Bad Character Rule
 
-Upon mismatch, we will skip alignments until 
-- Mismatch becomes a match, or
-- P moves past mismatched character
+Upon mismatch, we will skip alignments until
+
+-   Mismatch becomes a match, or
+-   P moves past mismatched character
 
 ```
 GCTTCTGCTACCTTTTGC
@@ -191,8 +193,9 @@ Finally, we have reached a full match
 ## Good Suffix Rule
 
 Let `t` be the substring matched by the inner loop. We will skip until
-- There are no mismatches between P and `t`, or
-- P moves past `t`
+
+-   There are no mismatches between P and `t`, or
+-   P moves past `t`
 
 ```
 CGTGCCTACTTACTTACTTACTTACGCGAA
@@ -233,7 +236,7 @@ GTTATAGCTGATCGCGGCGTAGCGGCGAA
         ^ align T
 ```
 
-Now we can see that `GCG` is a matched suffix, and `C` is our first mismatch. 
+Now we can see that `GCG` is a matched suffix, and `C` is our first mismatch.
 
 ```
 GTTATAGCTGATCGCGGCGTAGCGGCGAA
@@ -249,7 +252,7 @@ GTTATAGCTGATCGCGGCGTAGCGGCGAA
             ^ first mismatch
 ```
 
-The bad-character rule makes us move 3 spaces, while the good suffix rule makes us skip 8. So in total we skip 8 
+The bad-character rule makes us move 3 spaces, while the good suffix rule makes us skip 8. So in total we skip 8
 
 ```
 GTTATAGCTGATCGCGGCGTAGCGGCGAA
@@ -296,10 +299,11 @@ AATCAATAGC
 Instead of creating a 2D table, we can just create a 1D table, where the entries represent the currently mismatched character in the text, and the value of the entry represents the index of the rightmost character within `P` that matches the mismatched character
 
 Consider us having a mismatch at index `k` of the pattern, and `j` in the text. The character in the pattern at index `k` is `b`, and the current character in the text is `d` Note the 2 cases
+
 1. If `d` does not occur within the text, we set `j = j + m`, since we shift the whole text past `j`
 2. If `d` occurs at index `i` within the pattern, where `i` is the rightmost occurrence of `d`, we shift by `j = j + m - i`, to align the 2 occurrences of `d` within the text, and the pattern
 
-For example, 
+For example,
 
 ```
 RATSANDCATS - m = 11
@@ -309,7 +313,7 @@ badCharacterTable = [ 2, 11, 3, 4, ..., ]
 
 The first element of `badCharacterTable` is the rightmost occurence of `A` from the back of the pattern, which is `2`. The second element of `badCharacterTable` is the rightmost occurence of `b` in the table. Since there is no occurence of `b`, the overall shift will be `11`, which is the length of the string
 
-However, sometimes this heuristic fails. If `d` occurs to the right of `b` in the pattern (`j < i`), the pattern will be shifted in the wrong direction instead. 
+However, sometimes this heuristic fails. If `d` occurs to the right of `b` in the pattern (`j < i`), the pattern will be shifted in the wrong direction instead.
 
 To fix this, when we are calculating the jump based on the bad character heuristic, we use
 
@@ -374,16 +378,16 @@ ABCABABACBA
 Consider the pattern `ANPANMAN`, we want to calculate the good character heuristic for each possible mismatch
 
 1. Mismatch `N`
-    We mismatched the first character within the pattern. The good suffix length is 0. Hence we only shift 1
+   We mismatched the first character within the pattern. The good suffix length is 0. Hence we only shift 1
 
 2. Mismatch `A` in `AN`
-    Mismatched the second character we check. The good suffix length is 1. We have to find an occurence of `N` that is not preceded by `A` within the pattern. This means no part of the good suffix can be useful to us, and we shift by the full pattern length 8.
+   Mismatched the second character we check. The good suffix length is 1. We have to find an occurence of `N` that is not preceded by `A` within the pattern. This means no part of the good suffix can be useful to us, and we shift by the full pattern length 8.
 
 3. Mismatch `M` in `MAN`
-    We matched `AN` but not `M`. Hence, we will look for the first `AN` not preceded by a `M`, which is `PAN`. We shift the pattern to line up the `AN`s, hence the shift is 3
+   We matched `AN` but not `M`. Hence, we will look for the first `AN` not preceded by a `M`, which is `PAN`. We shift the pattern to line up the `AN`s, hence the shift is 3
 
 4. Mismatch `N` in `NMAN`
-    We matched `MAN` but not `N`. `MAN` does not match anything within the pattern. However the trailing suffix `AN` matches the start of the pattern, hence we shift by 6. This is the same for all other cases
+   We matched `MAN` but not `N`. `MAN` does not match anything within the pattern. However the trailing suffix `AN` matches the start of the pattern, hence we shift by 6. This is the same for all other cases
 
 Consider `m` the length of the pattern, `k` the current index in the pattern, `j` the current index in the text, and `q`, the index of the end of the reoccurring suffix within `P`
 
@@ -426,7 +430,7 @@ vector<int> badCharacterHeuristic(string pattern)
 
     // default to be the length
     for (int i = 0; i < NUMBER_OF_CHARACTERS; i++) {
-        result.push_back(pattern.length()); 
+        result.push_back(pattern.length());
     }
 
     // for each character, find the rightmost occurrence
@@ -446,7 +450,7 @@ int search(string text, string pattern)
 
     while (currentIndexInText < (int) (text.length())) {
         // went through whole pattern, found match
-        if (currentIndexInPattern < 0) { 
+        if (currentIndexInPattern < 0) {
             return currentIndexInText + 1;
         }
 
@@ -459,7 +463,7 @@ int search(string text, string pattern)
 
         // mismatched, calculate jump
         currentIndexInText += max(
-            badCharacterTable[characterToNumber(text.at(currentIndexInText))], 
+            badCharacterTable[characterToNumber(text.at(currentIndexInText))],
             pattern.length() - currentIndexInPattern
         );
 
@@ -508,7 +512,7 @@ vector<int> badCharacterHeuristic(string pattern)
 
     // default to be the length
     for (int i = 0; i < NUMBER_OF_CHARACTERS; i++) {
-        result.push_back(pattern.length()); 
+        result.push_back(pattern.length());
     }
 
     // for each character, find the rightmost occurrence
@@ -522,28 +526,28 @@ vector<int> badCharacterHeuristic(string pattern)
 vector<int> goodSuffixHeuristic(string pattern) {
     vector<int> result;
     vector<int> slide;
-    
+
     for (int i = 0; i < pattern.length(); i++) {
         result.push_back(0);
         slide.push_back(1);
     }
-    
+
     // calculate slide from second last character to the first
     for (int i = pattern.length() - 2; i >= 0; i--) {
         int numberOfMatchedCharacters = pattern.length() - 1 - i;
-        
+
         // check if suffix appears in pattern
         // current match should not be equal, but remaining suffix has to match
         // XCAAABAAA, if mismatched at B, CAAA is the next match
         // XBAAABAAA, if mismatched at rightmost B, no other matching suffix
         for (int j = 0; j < i + 1; j++) {
-            if (pattern.at(j) != pattern.at(i) && 
+            if (pattern.at(j) != pattern.at(i) &&
                 pattern.substr(j, numberOfMatchedCharacters).compare(pattern.substr(i + 1)) == 0) {
                 int shiftDueToSuffixMatch = i - j;
                 slide[i] = shiftDueToSuffixMatch;
             }
         }
-        
+
         // check for prefix
         // OWWOW, OW in front matches OW behind
         for (int j = 1; j <= numberOfMatchedCharacters; j++) {
@@ -554,12 +558,12 @@ vector<int> goodSuffixHeuristic(string pattern) {
             }
         }
     }
-    
+
     for (int i = 0; i < pattern.length(); i++) {
         int numberOfMatchedCharacters = pattern.length() - 1 - i;
         result[i] = numberOfMatchedCharacters + slide[i];
     }
-    
+
     return result;
 }
 
@@ -573,7 +577,7 @@ int search(string text, string pattern)
 
     while (currentIndexInText < (int) text.length()) {
         // went through whole pattern, found match
-        if (currentIndexInPattern < 0) { 
+        if (currentIndexInPattern < 0) {
             return currentIndexInText + 1;
         }
 
@@ -585,7 +589,7 @@ int search(string text, string pattern)
         }
 
         currentIndexInText += max(
-            badCharacterTable[characterToNumber(text.at(currentIndexInText))], 
+            badCharacterTable[characterToNumber(text.at(currentIndexInText))],
             goodSuffixTable[currentIndexInPattern]
         );
 
@@ -604,12 +608,11 @@ int main()
 }
 ```
 
-
 # Resources
 
-- https://www.youtube.com/watch?v=4Xyhb72LCX4
-- https://www.youtube.com/watch?v=Wj606N0IAsw
-- https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
-- https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
-- https://stackoverflow.com/questions/19345263/boyer-moore-good-suffix-heuristics
-- https://dwnusbaum.github.io/boyer-moore-demo/
+-   https://www.youtube.com/watch?v=4Xyhb72LCX4
+-   https://www.youtube.com/watch?v=Wj606N0IAsw
+-   https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
+-   https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
+-   https://stackoverflow.com/questions/19345263/boyer-moore-good-suffix-heuristics
+-   https://dwnusbaum.github.io/boyer-moore-demo/

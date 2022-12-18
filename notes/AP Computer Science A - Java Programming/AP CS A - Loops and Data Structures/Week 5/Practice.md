@@ -1,10 +1,11 @@
 # Practice
 
 1. Complete the following code for static vs non-static variables
+
 ```java
 public class Order {
      String menuChoice;
-     /*** TODO: Declare a static variable, orders, to keep track of how many current 
+     /*** TODO: Declare a static variable, orders, to keep track of how many current
                 orders a restaurant has open ***/
 
      public Order(String menuChoice) {
@@ -36,7 +37,7 @@ public class Order {
 ```java
 public class Practice {
 
-     /*** TODO: Write the method header for a method named addMe, which takes three 
+     /*** TODO: Write the method header for a method named addMe, which takes three
                 integer parameters (a, b and c) and returns an integer result ***/
      {
           return a + b + c;

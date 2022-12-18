@@ -4,13 +4,13 @@ A minimum spanning tree is a connected, acyclic subgraph containing **all the ve
 
 # Main Idea of Prim's Algorithm
 
-- Works on undirected graph
-- Builds upon a single partial minimum spanning tree; At each step adding an edge connecting the vertex nearest to, but not already in the current partial minimum spanning tree
-- At first a vertex is chosen, this vertex will be the first node in the minmum spanning tree set, $T$
-- Set $P$ is initialised, where $P$ is the set of vertices not in $T$ but are adjacent to some vertices in $T$
-- In every iteration of Prim's algorithm, a new vertex $u$ from $P$ will be connected to the tree $T$. The vertex $u$ will be deleted from the set $P$. The vertices adjacent to $u$ that are not already in $P$ will be added to $P$
-- When all vertices are connected to $T$, $P$ will be empty, which signals the end of the algorithm
-- The new vertex in every iteration will be chosen greedily - Among all vertices adjacent to $T$ but themselves are not in $T$, we choose the one with the minimum cost
+-   Works on undirected graph
+-   Builds upon a single partial minimum spanning tree; At each step adding an edge connecting the vertex nearest to, but not already in the current partial minimum spanning tree
+-   At first a vertex is chosen, this vertex will be the first node in the minmum spanning tree set, $T$
+-   Set $P$ is initialised, where $P$ is the set of vertices not in $T$ but are adjacent to some vertices in $T$
+-   In every iteration of Prim's algorithm, a new vertex $u$ from $P$ will be connected to the tree $T$. The vertex $u$ will be deleted from the set $P$. The vertices adjacent to $u$ that are not already in $P$ will be added to $P$
+-   When all vertices are connected to $T$, $P$ will be empty, which signals the end of the algorithm
+-   The new vertex in every iteration will be chosen greedily - Among all vertices adjacent to $T$ but themselves are not in $T$, we choose the one with the minimum cost
 
 # Pseudocode
 
@@ -35,7 +35,7 @@ while Q is not empty:
     for all nodes neigborNode adjacent to currentNode:
         if isVisited[neigborNode]:
             continue;
-        
+
         newWeight = graph[currentNode][neigborNode]
         if newWeight < distances[neighborNode]:
             distances[neighborNode] = newWeight;
@@ -76,29 +76,29 @@ Graph *createGraph() {
     int numberOfVertices;
     printf("Enter number of vertices: ");
     scanf("%d", &numberOfVertices);
-    
+
     int **adjMatrix = malloc(sizeof(int*) * numberOfVertices);
     for (int i = 0; i < numberOfVertices; i++) {
         adjMatrix[i] = malloc(sizeof(int) * numberOfVertices);
     }
-    
+
     while (1) {
         int input;
         printf("Enter 1 to input edge, -1 to quit\n");
         scanf("%d", &input);
-        
+
         if (input == -1) {
             break;
         }
-        
+
         int vertex1;
         int vertex2;
-        
+
         printf("Enter vertex 1\n");
         scanf("%d", &vertex1);
         printf("Enter vertex 2\n");
         scanf("%d", &vertex2);
-        
+
         int weight;
         printf("Enter weight\n");
         scanf("%d", &weight);
@@ -107,7 +107,7 @@ Graph *createGraph() {
         adjMatrix[vertex1][vertex2] = weight;
         adjMatrix[vertex2][vertex1] = weight;
     }
-    
+
     Graph *g = malloc(sizeof(Graph));
     g->numberOfVertices = numberOfVertices;
     g->adjMatrix = adjMatrix;
@@ -125,14 +125,14 @@ int minVertexNotInMinimumSpanningTreeSet(int *weights, int *inMinimumSpanningTre
     // returns node that isnt in MST, and has minimum weight
     int minWeight = INFINITY + 1;
     int minIndex = -1;
-    
+
     for (int i =0; i < numberOfVertices; i++){
         if (inMinimumSpanningTreeSet[i] == 0 && weights[i] < minWeight) {
             minIndex = i;
             minWeight = weights[i];
         }
     }
-    
+
     return minIndex;
 }
 
@@ -140,33 +140,33 @@ void primMST(Graph *g) {
     int *parents = malloc(sizeof(int) * g->numberOfVertices); // used to reconstruct MST, parents[i] is the parent of vertex i
     int *weights = malloc(sizeof(int) * g->numberOfVertices); // used to pick minimum weight edge in cut
     int *minimumSpanningTreeSet = malloc(sizeof(int) * g->numberOfVertices); // represents set of vertices included inside MST
-    
+
     for (int i = 0; i < g->numberOfVertices; i++) {
         parents[i] = -1; // each child does not have a parent initially
         weights[i] = INFINITY; // all weights are inifnity initially
         minimumSpanningTreeSet[i] = 0; // no vertex inside mst initially
     }
-    
+
     // include first vertex in mst
     parents[0] = -1; // first vertex has no parents
     weights[0] = 0; // make sure the first vertex is picked first
-    
+
     for (int count = 0; count < g->numberOfVertices - 1; count++) {
         int chosenVerticeIndex = minVertexNotInMinimumSpanningTreeSet(weights, minimumSpanningTreeSet, g->numberOfVertices); // pick minimum vertex that is not in MST
         minimumSpanningTreeSet[chosenVerticeIndex] = 1; // mark as inside MST
-        
+
         for (int neighborIndex = 0; neighborIndex < g->numberOfVertices; neighborIndex++) {
             if (g->adjMatrix[chosenVerticeIndex][neighborIndex] == 0) {
                 continue; // skip if no edge
             }
-            
+
             if (g->adjMatrix[chosenVerticeIndex][neighborIndex] < weights[neighborIndex]) {
                 parents[neighborIndex] = chosenVerticeIndex;
                 weights[neighborIndex] = g->adjMatrix[chosenVerticeIndex][neighborIndex];
             }
         }
     }
-    
+
     printSolution(parents, g);
 }
 
@@ -242,7 +242,7 @@ Therefore, $T$ is an MST if $T$ supports the MST property
 
 # Theorem 2
 
-> Lemma 2: Let $G = (V, E, W)$ be a connected weighted graph; Let $T_k$ be the tree with $k$ vertices constructed by Prim’s Algorithm, for $k = 1, 2, \cdots, n$; and let $G_k$ be the subgraph induced by the vertices of $T_k$. Then $T_k$ has the MST property in $G_k$. 
+> Lemma 2: Let $G = (V, E, W)$ be a connected weighted graph; Let $T_k$ be the tree with $k$ vertices constructed by Prim’s Algorithm, for $k = 1, 2, \cdots, n$; and let $G_k$ be the subgraph induced by the vertices of $T_k$. Then $T_k$ has the MST property in $G_k$.
 
 > Theorem 2: Prim's algorithm outputs a minimum spanning tree
 
@@ -261,13 +261,3 @@ Using a binary heap and an adjacency list will reduce this to $O((V + E) \log V)
 When the matrix is dense, the best performance occurs when an adjacency matrix with normal linear search is used, with $O(V^2)$
 
 When the matrix is sparse, the best performance occurs with the binary heap, giving $O(E \log V)$
-
-
-
-
-
-
-
-
-
-

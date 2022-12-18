@@ -23,6 +23,7 @@ We convert the ideas we had in the first 2 steps into actual code
 ## Testing the solution
 
 Testing the code ensures that no errors are encountered, and all possible cases are taken care of in trying to solve the problem. A good strategy to test code is
+
 1. Write a small piece of code
 2. Test that small piece
 3. Return to step 1

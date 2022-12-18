@@ -1,16 +1,16 @@
 # Union Find
 
-A disjoint-set data structure is defined as a data structure that keeps track of a set of elements partitioned into a number of disjoint (non-overlapping) subsets. 
+A disjoint-set data structure is defined as a data structure that keeps track of a set of elements partitioned into a number of disjoint (non-overlapping) subsets.
 
 A union-find algorithm is an algorithm that performs two useful operations on such a disjoint-set:
 
-- Find: Determine which subset a particular element is in. This can be used for determining if two elements are in the same subset.
-- Union: Join two subsets into a single subset. Here first we have to check if the two subsets belong to same set. If no, then we cannot perform union. 
-
+-   Find: Determine which subset a particular element is in. This can be used for determining if two elements are in the same subset.
+-   Union: Join two subsets into a single subset. Here first we have to check if the two subsets belong to same set. If no, then we cannot perform union.
 
 We will use a dictionary to represent the disjoint set. The disjoint set has the following properties:
-- Key:Value represents element:parent
-- Initially all elements have itself as a parent
+
+-   Key:Value represents element:parent
+-   Initially all elements have itself as a parent
 
 > Note that you could also use an array to represent it (index being the key)
 
@@ -27,7 +27,7 @@ class DisjointSet:
         """
         if self.uf[key] == key:
             return key
-        
+
         return self.find(self.uf[key])
 
     def union(self, v1, v2):
@@ -70,5 +70,5 @@ You will see that elements `1, 2, 3, 4, 5` belong to the same group, `6` belongs
 
 # Resources
 
-- https://www.hackerearth.com/practice/notes/disjoint-set-union-union-find/
-- https://www.youtube.com/watch?v=ayW5B2W9hfo
+-   https://www.hackerearth.com/practice/notes/disjoint-set-union-union-find/
+-   https://www.youtube.com/watch?v=ayW5B2W9hfo

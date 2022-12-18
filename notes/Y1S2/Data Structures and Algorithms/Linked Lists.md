@@ -1,11 +1,12 @@
 # Linked List
 
 The following code shows a linked list with a few methods
-- `void addToList(struct node **list, int value)` adds a node with `value` at the beginning of `list`
-- `int findIndex(struct node *list, int valueToSearch)` returns the first occurence of a `node` in `list` with `valueToSearch`
-- `void removeFromList(struct node **list, int valueToRemove)` removes the first occurence of a `node` in `list` with `valueToRemove`
-- `void printList(struct node *list)` prints the from `list`
-- `void updateIndex(struct node *list, int indexToUpdate, int newValue)` updates the `indexToUpdate`th node in `list` to `newValue`
+
+-   `void addToList(struct node **list, int value)` adds a node with `value` at the beginning of `list`
+-   `int findIndex(struct node *list, int valueToSearch)` returns the first occurence of a `node` in `list` with `valueToSearch`
+-   `void removeFromList(struct node **list, int valueToRemove)` removes the first occurence of a `node` in `list` with `valueToRemove`
+-   `void printList(struct node *list)` prints the from `list`
+-   `void updateIndex(struct node *list, int indexToUpdate, int newValue)` updates the `indexToUpdate`th node in `list` to `newValue`
 
 ```c
 #include <stdio.h>
@@ -19,12 +20,12 @@ struct node {
 void addToList(struct node **list, int value) {
     // add a new node with value to the beginning of the list
     struct node *newNode = malloc(sizeof(struct node));
-    
+
     if (newNode == NULL) {
         printf("Failed to malloc memory\n");
         exit(EXIT_FAILURE);
     }
-    
+
     newNode->value = value;
     newNode->next = *list;
     *list = newNode;
@@ -39,31 +40,31 @@ int findIndex(struct node *list, int valueToSearch) {
             return index;
         }
     }
-    
+
     return -1;
 }
 
 void removeFromList(struct node **list, int valueToRemove) {
     // removes node which matches valueToRemove from the list
     struct node *currentNode, *previousNode;
-    
+
     for (
-        currentNode = *list, previousNode = NULL; 
+        currentNode = *list, previousNode = NULL;
         currentNode != NULL && currentNode->value != valueToRemove;
         previousNode = currentNode, currentNode = currentNode->next
     );
-    
+
     if (currentNode == NULL) {
         printf("Node not found\n");
         return;
     }
-    
+
     if (previousNode == NULL) {
         *list = currentNode->next;
         free(currentNode);
         return;
     }
-    
+
     previousNode->next = currentNode->next;
     free(currentNode);
 }
@@ -75,7 +76,7 @@ void printList(struct node *list) {
         printf("%d ", currentNode->value);
         currentNode = currentNode->next;
     }
-    
+
     printf("\n");
 }
 
@@ -83,18 +84,18 @@ void updateIndex(struct node *list, int indexToUpdate, int newValue) {
     // updates the value of the node at index indexToUpdate of the list to newValue
     struct node *currentNode;
     int currentIndex;
-    
+
     for (
-        currentNode = list, currentIndex = 0; 
-        currentNode != NULL && currentIndex != indexToUpdate; 
+        currentNode = list, currentIndex = 0;
+        currentNode != NULL && currentIndex != indexToUpdate;
         currentNode = currentNode->next, currentIndex++
     );
-    
+
     if (currentNode == NULL) {
         printf("Index out of range\n");
         return;
     }
-    
+
     currentNode->value = newValue;
 }
 
@@ -102,17 +103,17 @@ int main()
 {
     int numberOfNodes = 40;
     struct node *root = NULL;
-    
+
     for (int i = 0; i<numberOfNodes; i++) {
         addToList(&root, i);
     }
-    
+
     printList(root);
     printf("Index: %d\n", findIndex(root, 3));
-    
+
     removeFromList(&root, 3);
     printList(root);
-    
+
     updateIndex(root, 12, 99);
     printList(root);
 }
@@ -216,7 +217,7 @@ void moveEvenItemsToBack(LinkedList *ll)
 	int index;
 	ListNode *currentNode;
 	int nodesRemoved = 0;
-	
+
 	for (index = 0, currentNode = ll->head; currentNode != NULL && index < ll->size; currentNode = currentNode->next, index++) {
 	    if (currentNode->item % 2 == 0) {
 	        insertNode(ll, ll->size, currentNode->item);
@@ -224,7 +225,7 @@ void moveEvenItemsToBack(LinkedList *ll)
 	        nodesRemoved++;
 	    }
 	}
-	
+
 	printList(ll);
 }
 
@@ -447,23 +448,23 @@ int moveMaxToFront(ListNode **ptrHead)
 {
     ListNode *maximumNode = *ptrHead;
     ListNode *previousNode = NULL;
-    
+
     for (ListNode *currentNode = *ptrHead; currentNode->next != NULL; currentNode = currentNode->next) {
         if (currentNode->next->item > maximumNode->item) {
             maximumNode = currentNode->next;
             previousNode = currentNode;
         }
     }
-    
+
     if (previousNode == NULL) {
         return 0;
     }
-    
+
     printf("Previous node: %d, max node: %d\n", previousNode->item, maximumNode->item);
     previousNode->next = maximumNode->next;
     maximumNode->next = *ptrHead;
     *ptrHead = maximumNode;
-    
+
     return 0;
 }
 
@@ -930,7 +931,7 @@ void appendLL(LinkedList *ll_a , LinkedList *ll_b)
     for (ListNode *currentNode = ll_b->head; currentNode != NULL; currentNode = currentNode->next) {
         insertNode(ll_a, ll_a->size, currentNode->item);
     }
-    
+
     removeAllItems(ll_b);
 }
 
@@ -1064,12 +1065,12 @@ int removeNode(LinkedList *ll, int index){
 
 Question 1.
 Implement the removeNode() function for a linked list, using the lecture diagrams and
-pseudo-code as a reference. The prototype for the removeNode() function is given below: 
+pseudo-code as a reference. The prototype for the removeNode() function is given below:
 
-`int removeNode(ListNode **ptrHead, int index);` 
+`int removeNode(ListNode **ptrHead, int index);`
 
 The function should return 0 if the delete operation is successful and -1 otherwise. Recall that
-the function requires a pointer to the head pointer in order to correctly delete the first node. 
+the function requires a pointer to the head pointer in order to correctly delete the first node.
 
 ```c
 #include <stdio.h>
@@ -1308,17 +1309,17 @@ int removeNode2(LinkedList *ll,int index)
     /* Write your program code here */
     ListNode *previousNode = findNode2(*ll, index - 1);
     ListNode *currentNode = findNode2(*ll, index);
-    
+
     if (currentNode == NULL) {
         return -1;
     }
-    
+
     if (previousNode == NULL) {
         ll->head = currentNode->next;
         free(currentNode);
         return 0;
     }
-    
+
     previousNode->next = currentNode->next;
     free(currentNode);
     return 0;
@@ -1331,7 +1332,7 @@ Write a function split() that copies the contents of a linked list into two othe
 
 `split(ListNode *head, ListNode **ptrEvenList, ListNode **ptrOddList);`
 
-The function copies nodes with even indices (0, 2, 4, etc) to evenList and nodes with odd indices (1, 3, 5, etc) to oddList. The original linked list should not be modified. 
+The function copies nodes with even indices (0, 2, 4, etc) to evenList and nodes with odd indices (1, 3, 5, etc) to oddList. The original linked list should not be modified.
 
 ```c
 #include <stdio.h>
@@ -1463,7 +1464,7 @@ Write a function duplicateReverse() that creates a duplicate of a linked list wi
 
 `int duplicateReverse(ListNode *head, ListNode **ptrNewHead);`
 
-The function should return 0 if the operation was successful and -1 otherwise. newHeadPtr should point to the first node of the reversed duplicate list. 
+The function should return 0 if the operation was successful and -1 otherwise. newHeadPtr should point to the first node of the reversed duplicate list.
 
 ```c
 #include <stdio.h>
@@ -1574,10 +1575,10 @@ int duplicateReverse(ListNode *cur,ListNode **ptrNewHead)
         if (!insertNode(ptrNewHead, 0, currentNode->item)) {
             return -1;
         }
-        
+
         currentNode = currentNode->next;
     }
-    
+
     return 0;
 }
 ```

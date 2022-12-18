@@ -1,6 +1,6 @@
 # Scanner
 
-The Scanner class is used to collect input from the keyboard (and can be used to read other streams of data, such as files). To instantiate the Scanner class, 
+The Scanner class is used to collect input from the keyboard (and can be used to read other streams of data, such as files). To instantiate the Scanner class,
 
 ```java
 Scanner s = new Scanner(System.in);
@@ -53,8 +53,8 @@ Practise developing your own class with the following challenge
 2. Write an empty `public static void main(String[] args)` method within the class
 3. Write 3 class methods: `myName`, `mySchool`, `myAge`. Each method should return the appropriate type of information
 4. Complete the definition for main. Your program should
-   1. Greet the user
-   2. Create an `AboutMe` object
-   3. Print out the following statement, replacing the bolded words with the values returned from the methods you wrote for `myName`, `mySchool`, `myAge`.
+    1. Greet the user
+    2. Create an `AboutMe` object
+    3. Print out the following statement, replacing the bolded words with the values returned from the methods you wrote for `myName`, `mySchool`, `myAge`.
 
 "My name is **Phil**, and I attend **Some University**. I am **5** years old."

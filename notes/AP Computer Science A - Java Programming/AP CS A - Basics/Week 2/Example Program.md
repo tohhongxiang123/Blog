@@ -48,7 +48,7 @@ public class Robot {
 
 # Arguments in methods
 
-Now we would like the robot to not say the same thing everytime we call `speak`. We shall pass what we want the robot to say as an *argument* to the method. It should look like
+Now we would like the robot to not say the same thing everytime we call `speak`. We shall pass what we want the robot to say as an _argument_ to the method. It should look like
 
 ```java
 r.speak("Today is a good day");
@@ -97,7 +97,7 @@ public class Robot {
     void speak(String message) {
         System.out.println("The robot said: " + message);
     }
-    
+
     // rest of the code
 }
 ```

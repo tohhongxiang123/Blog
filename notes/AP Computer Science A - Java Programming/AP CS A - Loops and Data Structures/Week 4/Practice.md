@@ -1,6 +1,7 @@
 # Practice
 
 1. Write the declaration for a 4x6 2-dimensional array of integers, mtrx
+
 ```java
 public class Practice {
      public static void main(String[] args) {
@@ -16,6 +17,7 @@ public class Practice {
 ```
 
 2. Given a 2D array and a coordinate, find the number of neighbors of that coordinate. A neighbor is an element which is `true`
+
 ```java
 public class Practice {
      public static void main(String[] args) {
@@ -33,10 +35,10 @@ public class Practice {
           int startR, startC, endR, endC;
           int numNbrs = 0;
 
-          /*** TODO: Set the values of startR, startC, endR, and endC to include the row 
+          /*** TODO: Set the values of startR, startC, endR, and endC to include the row
                      above and below the given input row, and the column above and below
                      the given input col, checking and adjusting for invalid array indices ***/
-          
+
           for (int r = startR; r <= endR; r++)
           {
                for (int c = startC; c <= endC; c++)

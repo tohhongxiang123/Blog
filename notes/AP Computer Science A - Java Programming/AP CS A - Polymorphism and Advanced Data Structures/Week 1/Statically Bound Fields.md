@@ -1,15 +1,15 @@
 # Statically Bound Fields
 
-- Suppose both `Animal` and `Dog` have a field `name`
-- `Dog d = new Dog();`
-- `d.name` is the field in `Dog`
-- `Animal a = d;`
-- `a.name` is the field in `Animal`
-- Unlike methods, fields are **statically bound** (Methods are **dynamically bound**)
-- Determined at compile time, not at runtime
-- We are not recommended to have the same name and type of a field in a derived class and a parent class
+-   Suppose both `Animal` and `Dog` have a field `name`
+-   `Dog d = new Dog();`
+-   `d.name` is the field in `Dog`
+-   `Animal a = d;`
+-   `a.name` is the field in `Animal`
+-   Unlike methods, fields are **statically bound** (Methods are **dynamically bound**)
+-   Determined at compile time, not at runtime
+-   We are not recommended to have the same name and type of a field in a derived class and a parent class
 
-Reminder: A subclass contains its fields as well as all the fields defined in the superclass. But since the subclass and superclass have a variable of the same name and type, the subclass's variable **hides** the superclass variable. 
+Reminder: A subclass contains its fields as well as all the fields defined in the superclass. But since the subclass and superclass have a variable of the same name and type, the subclass's variable **hides** the superclass variable.
 
 ```java
 public abstract class Animal {
@@ -54,7 +54,7 @@ abstract class Animal {
 class Dog extends Animal {
     // note how we removed name here
     // if we wanted to keep name here and access Animal's name, then you must use super
-    
+
     Dog(String name) {
         super(name); // required to add because Animal has no non-default constructor
     }
@@ -74,4 +74,5 @@ public class Main {
     }
 }
 ```
-*Remember now that we have a non-default constructor, we need to call `super` in the subclass*
+
+_Remember now that we have a non-default constructor, we need to call `super` in the subclass_

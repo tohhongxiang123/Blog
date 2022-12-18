@@ -11,7 +11,7 @@ System.out.println(age);
 
 # Primitives
 
-Primitives are a type of variable used to store simple values. References are used to store complex objects. 
+Primitives are a type of variable used to store simple values. References are used to store complex objects.
 
 | Type    | Bytes |
 | ------- | ----- |
@@ -24,7 +24,7 @@ Primitives are a type of variable used to store simple values. References are us
 | char    | 2     |
 | boolean | 1     |
 
-So, we can replace `int age` with `byte age` since the age is not very big. 
+So, we can replace `int age` with `byte age` since the age is not very big.
 
 ## Long
 
@@ -127,7 +127,7 @@ public class Main {
 
 Java allocates 2 separate spots in memory to store these primitives. So, the console logs `5`
 
-```java 
+```java
 package com.company;
 
 import java.awt.*;
@@ -146,7 +146,7 @@ public class Main {
 }
 ```
 
-For `p1`, java first allocates memory for `p1` (let us say, in address 100), and p1 will hold the *address* for that newly created point. And when we write `Point p2 = p1`, we are not copying the actual point, but the address into `p2`. That is why we call these reference types, because they hold a reference to a part of memory.
+For `p1`, java first allocates memory for `p1` (let us say, in address 100), and p1 will hold the _address_ for that newly created point. And when we write `Point p2 = p1`, we are not copying the actual point, but the address into `p2`. That is why we call these reference types, because they hold a reference to a part of memory.
 
 Hence the console logs `java.awt.Point[x=5,y=99]`
 
@@ -156,7 +156,7 @@ Hence the console logs `java.awt.Point[x=5,y=99]`
 String message = new String("Hello world");
 ```
 
-We don't have to import `java.lang` because it is automatically imported. However, we also get the warning that `new String is redundant`, because there is a faster way to instantiate a string, using 
+We don't have to import `java.lang` because it is automatically imported. However, we also get the warning that `new String is redundant`, because there is a faster way to instantiate a string, using
 
 ```java
 String message = "Hello world";
@@ -291,18 +291,17 @@ Mortgage calculator
 
 Take in the following inputs from the user
 
-- Principal
-- Annual interest rate
-- Period (Years)
+-   Principal
+-   Annual interest rate
+-   Period (Years)
 
-The mortgage is defined by 
+The mortgage is defined by
 
 $$
 M = P \frac{r (1+r)^N}{(1+r)^N - 1}
 $$
 
 Where $P$ is the principal amount, $r$ is the monthly interest rate, $N$ is the number of monthly payments
-
 
 ```java
 package com.company;
@@ -315,7 +314,7 @@ public class Main {
     public static void main(String[] args) {
         final byte NUMBER_OF_MONTHS = 12;
         final byte PERCENT = 100;
-        
+
         Scanner s = new Scanner(System.in);
         System.out.print("Principal: ");
         int principal = s.nextInt();
@@ -388,7 +387,7 @@ public class Main {
 }
 ```
 
-# Ternary 
+# Ternary
 
 ```java
 String className = income > 100 ? "First" : "Second";
@@ -413,11 +412,12 @@ switch (role) {
 
 # Challenge 2: Fizzbuzz
 
-Enter a number. 
-- If the number is divisible by 3, print "Fizz"
-- If the number is divisible by 5, print "Buzz"
-- If the number is divisible by 3 and 5, print "FizzBuzz"
-- Else print the number
+Enter a number.
+
+-   If the number is divisible by 3, print "Fizz"
+-   If the number is divisible by 5, print "Buzz"
+-   If the number is divisible by 3 and 5, print "FizzBuzz"
+-   Else print the number
 
 ```java
 package com.company;

@@ -3,8 +3,9 @@
 Instructions are stored in memory as binary patterns called **machine codes**. They are represented in more readable **mnemonics**
 
 ARM (32-bit CPU) Example
-- `MOV R1, R0`
-- `LDR R2, R1`
+
+-   `MOV R1, R0`
+-   `LDR R2, R1`
 
 Memory partitioned into separate **code** and **data** segments
 
@@ -56,9 +57,10 @@ ARM has 16 instructions, hence each instruction is 2 bytes long.
 # Role of Instructions
 
 The role of an instruction is to make **changes to the current state** of the processor
-- The visible current state of a processor is defined by the programmer's model and contents in memory
-- There are 3 broad categories of instructions for general programming
-  
+
+-   The visible current state of a processor is defined by the programmer's model and contents in memory
+-   There are 3 broad categories of instructions for general programming
+
 | Data Processing  | Data Transfer       | Program Control |
 | ---------------- | ------------------- | --------------- |
 | `ADD R0, R1, R2` | `MOV R1, R0`        | `B Back`        |
@@ -67,34 +69,39 @@ The role of an instruction is to make **changes to the current state** of the pr
 
 # Programmer's Model and Memory
 
-- Registers
-- Stack Pointer (SP)
-- Program Counter (PC)
-- Status Register (SR)
-- Memory
+-   Registers
+-   Stack Pointer (SP)
+-   Program Counter (PC)
+-   Status Register (SR)
+-   Memory
 
 The ARM processor can operate in various modes. The following are visible registers in the **User mode**
-- 16 32-bit registers (R0-R15)
-- R13 is the Stack Pointer (SP)
-- R14 is the Link Register (LR)
-- R15 is the Program Counter (PC)
-- The Current Processor Status Register (CPSR) holds the condition code bits (NZVC) 
+
+-   16 32-bit registers (R0-R15)
+-   R13 is the Stack Pointer (SP)
+-   R14 is the Link Register (LR)
+-   R15 is the Program Counter (PC)
+-   The Current Processor Status Register (CPSR) holds the condition code bits (NZVC)
 
 ### Program Counter
+
 ARM's register R15 is the Program Counter and keeps track of program execution
-- The content of the PC is an address, which is the start address of the **next instruction** to be fetched
-- The PC automatically increments by the length of the instruction executed
-- Sequential execution can be altered by modifying the contents of the PC to a new address location (i.e. jump, branch operation)
-- Due to **pipeline** architecture of the ARM CPU, the value in the PC is the address of the current instruction being executed plus 8 bytes
+
+-   The content of the PC is an address, which is the start address of the **next instruction** to be fetched
+-   The PC automatically increments by the length of the instruction executed
+-   Sequential execution can be altered by modifying the contents of the PC to a new address location (i.e. jump, branch operation)
+-   Due to **pipeline** architecture of the ARM CPU, the value in the PC is the address of the current instruction being executed plus 8 bytes
 
 ### Stack Pointer (SP)
-- R13 in the ARM processor is designated by the stack pointer
-- Used to maintain a space in memory (stack) that is used to temporarily stored away register information which will be needed again later
+
+-   R13 in the ARM processor is designated by the stack pointer
+-   Used to maintain a space in memory (stack) that is used to temporarily stored away register information which will be needed again later
 
 ### Link Register (LR)
-- R14 used as a Link Register during the calling of subroutines
-- R14 gets a copy of the PC when a Branch with Link (BL) instruction is executed
-- At all other times, R14 can also act as a general purpose register
+
+-   R14 used as a Link Register during the calling of subroutines
+-   R14 gets a copy of the PC when a Branch with Link (BL) instruction is executed
+-   At all other times, R14 can also act as a general purpose register
 
 ### CPSR Condition Code Flags
 

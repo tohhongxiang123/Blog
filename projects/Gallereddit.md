@@ -8,7 +8,7 @@ technologies: ['react', 'express']
 ---
 
 Display image posts from Reddit in a Gallery. Uses
-- Reddit API
-- OAuth2
-- React Hooks
 
+-   Reddit API
+-   OAuth2
+-   React Hooks

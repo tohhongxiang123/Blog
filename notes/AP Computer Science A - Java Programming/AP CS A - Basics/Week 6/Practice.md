@@ -52,7 +52,7 @@ public class Practice {
      }
      public static void howManyPizzas(int pizzas) {
           String plural = "";
-          /*** TODO: Write a ternary statement that assigns the value 's' to plural if 
+          /*** TODO: Write a ternary statement that assigns the value 's' to plural if
                       the number of pizzas is not 1. **/
           System.out.println("I have " + pizzas + " pizza" + plural + ".");
      }

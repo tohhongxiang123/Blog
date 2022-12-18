@@ -1,23 +1,23 @@
 # Polymorphism
 
-- Many forms
-- Animals can take on many forms, yet implement consistent behaviors
-- Java allows a superclass variable contain a reference to a subclass object
-- `account.withdraw(amount)` could be `SavingsAccount`, `CheckingAccount`, `MoneyMarketAccount`
-  - When we invoke a withdrawal, 2 things happen
-  - Compiler checks whether `withdraw` is a method declared inside the superclass inside the `account` class at compile time
-  - JVM chooses the subclass implementation of any overridden methods at run time
-  - "Dynamic call" or "virtual method call"
+-   Many forms
+-   Animals can take on many forms, yet implement consistent behaviors
+-   Java allows a superclass variable contain a reference to a subclass object
+-   `account.withdraw(amount)` could be `SavingsAccount`, `CheckingAccount`, `MoneyMarketAccount`
+    -   When we invoke a withdrawal, 2 things happen
+    -   Compiler checks whether `withdraw` is a method declared inside the superclass inside the `account` class at compile time
+    -   JVM chooses the subclass implementation of any overridden methods at run time
+    -   "Dynamic call" or "virtual method call"
 
 # Why Polymorphism?
 
-- Allows generic treatment of objects
-- An array of `Animal`s
-  - Some are `Dog`s
-  - Some are `Cat`s
-  - Some are new animal classes defined after the referencing code is written
-- Programmer must be disciplined: the overridden methods should implement "consistent" or "expected" behavior
-- Example: In Java, all GUI widgets are a subclass of `Component`; allows uniform treatment by GUI code
+-   Allows generic treatment of objects
+-   An array of `Animal`s
+    -   Some are `Dog`s
+    -   Some are `Cat`s
+    -   Some are new animal classes defined after the referencing code is written
+-   Programmer must be disciplined: the overridden methods should implement "consistent" or "expected" behavior
+-   Example: In Java, all GUI widgets are a subclass of `Component`; allows uniform treatment by GUI code
 
 # Polymorphism Examples
 
@@ -48,27 +48,27 @@ Will the `f` in `Parent` or the `f` in `Derived` be executed?
 
 # Dynamic Binding
 
-- Methods are selected at runtime based on the **class of the object referenced**, not the class of the variable that holds the object reference. 
+-   Methods are selected at runtime based on the **class of the object referenced**, not the class of the variable that holds the object reference.
 
 ```java
 Parent p = new Derived();
 p.f()
 ```
 
-- This calls `f()` in `Derived`, even though variable is of type `Parent`. Hence it will output `"In derived f()"`
+-   This calls `f()` in `Derived`, even though variable is of type `Parent`. Hence it will output `"In derived f()"`
 
 Note that `g` is in `Derived` but not `Parent`. Will `p.g()` give an error?
 
-- `p.g()` will give an error. Although dynamic binding will tell us that `p.f()` will be run from the `Derived` class
-- If a superclass variable holds a subclass object reference, you still cannot reference the subclass methods not declared in the superclass
+-   `p.g()` will give an error. Although dynamic binding will tell us that `p.f()` will be run from the `Derived` class
+-   If a superclass variable holds a subclass object reference, you still cannot reference the subclass methods not declared in the superclass
 
 ```java
 Parent p = new Derived();
 ```
 
-- `p` is a `Parent` variable which holds a reference to the subclass `Derived`. But JVM will still statically analyse `p` with class `Parent` and since `g` is not defined within `Parent`, it will give an error.
-- We must **cast** to the subclass first, then reference
-- Cast will give an error if the object is not of the right class
+-   `p` is a `Parent` variable which holds a reference to the subclass `Derived`. But JVM will still statically analyse `p` with class `Parent` and since `g` is not defined within `Parent`, it will give an error.
+-   We must **cast** to the subclass first, then reference
+-   Cast will give an error if the object is not of the right class
 
 ```java
 Parent p = new Derived();
@@ -77,9 +77,9 @@ Parent p = new Derived();
 
 # Glitch: Inheritance
 
-- Reminder: private methods are not inherited
-- Hence, private methods cannot be overridden
-- Polymorphism only invokes subclass methods that are overridden
+-   Reminder: private methods are not inherited
+-   Hence, private methods cannot be overridden
+-   Polymorphism only invokes subclass methods that are overridden
 
 Consider the following:
 
@@ -108,10 +108,10 @@ class Derived extends Parent {
 
 Will this compile and run?And if it does run, what does it display?
 
-- It will compile and run, because we are still inside the same class `Parent`, hence we still have access to `f` (), hence `p.f()` will still run
-- However, this time it will run `f` from the `Parent` class instead, because the derived class is not overriding `f`. 
-- The derived class cannot see the private method `f` of `Parent` to override it
-- `f` inside `Parent` and `f` inside `Derived` are **2 different methods**
+-   It will compile and run, because we are still inside the same class `Parent`, hence we still have access to `f` (), hence `p.f()` will still run
+-   However, this time it will run `f` from the `Parent` class instead, because the derived class is not overriding `f`.
+-   The derived class cannot see the private method `f` of `Parent` to override it
+-   `f` inside `Parent` and `f` inside `Derived` are **2 different methods**
 
 Consider the following code
 
@@ -140,7 +140,7 @@ public class A {
 
      public int getX() {return x;}
      public char getC() {return c;}
-     
+
      public String toString() {return "Parent Class, " + x;}
 }
 
@@ -168,7 +168,7 @@ public class Practice {
                      and store it in an A reference, ab ***/
           /*** TODO: Create a new B object with input 2
                      and store it in a B reference, bb ***/
-          /*** TODO: Create a new C object and store it in an A 
+          /*** TODO: Create a new C object and store it in an A
                      reference, ac ***/
           System.out.println(aa);
           System.out.println(ab);

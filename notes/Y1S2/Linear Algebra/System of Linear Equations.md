@@ -35,20 +35,23 @@ If $b_1 = b_2 = \cdots = b_m = 0$, the system is **homogeneous**
 If an SLE has **at least 1 solution**, it is **consistent**. If an SLE has 0 solutions, it is **inconsistent**
 
 Every system of linear equations has
+
 1. Exactly **1** solution
 2. **Infinite** solutions
 3. **No** solutions
 
-A homogeneous linear system is **consistent** because 
+A homogeneous linear system is **consistent** because
 
 $$
 x_1 = x_2 = \cdots = x_n = 0
-$$ 
+$$
 
 is a solution, called the **trivial solution**. Other non-zero solutions that are possible are called **non-trivial solutions**
 
 # Matrix Notation for SLE
+
 Consider the following SLE
+
 $$
 \begin{aligned}
 x + y &= 1 \\
@@ -57,15 +60,16 @@ x + y &= 1 \\
 $$
 
 We can rewrite this as
+
 $$
 \begin{bmatrix}
 1 & 1 \\
-2 & -1 
+2 & -1
 \end{bmatrix}
 \begin{bmatrix}
 x \\
 y
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 1 \\
 2
@@ -73,6 +77,7 @@ y
 $$
 
 This is the form
+
 $$
 Ax = b
 $$
@@ -87,14 +92,17 @@ $\begin{bmatrix}
 To solve $Ax = b$, we reduce the augmented matrix into **row-echelon** form or **reduced row-echelon** form through **elementary row operations**
 
 ### Elementary Row Operations
-- Multiply a row by a non-zero constant
-- Interchange 2 rows
-- Add a constant times one row to another
+
+-   Multiply a row by a non-zero constant
+-   Interchange 2 rows
+-   Add a constant times one row to another
 
 When a matrix $A$ is transformed to another matrix $B$ through a sequence of EROs, they are **row equivalent**
 
 ### Row Echelon Form
+
 A matrix is in row-echelon form if:
+
 1. Any rows that consist entirely of 0's are at the bottom of the matrix
 2. In any 2 consecutive non-zero rows, the first non-zero element in the row, the **pivot**, in the lower row occurs farther to the right than the higher row
 
@@ -112,7 +120,9 @@ The process of reducing a matrix into its row-echelon form is called **Gaussian 
 The row-echelon form for a matrix is **not unique**.
 
 ### Reduced Row Echelon Form
+
 A matrix is in reduced row-echelon form if:
+
 1. The matrix is in row echelon form
 2. Every pivot = 1, and every other element in the pivot's column is 0
 
@@ -130,6 +140,7 @@ The process of reducing a matrix into reduced row-echelon form is called **Gauss
 The reduced row-echelon form for a matrix is **unique**.
 
 When solving $Ax = b$, we must always ask
+
 1. Is the system consistent? (Does at least 1 solution exist?)
 2. If a solution exists, is the solution **unique**?
 
@@ -141,7 +152,7 @@ $$
 \begin{aligned}
 x_2 - 4x_3 &= 8 \\
 2x_1 - 3x_2 + 2x_3 = 1 \\
-5x_1 - 8x_2 + 7x_3 = 1 
+5x_1 - 8x_2 + 7x_3 = 1
 \end{aligned}
 $$
 
@@ -157,7 +168,7 @@ The row-echelon form is $\begin{bmatrix}
 0 & 0 & 0 & 15
 \end{bmatrix}$
 
-The last line is saying 
+The last line is saying
 
 $$
 0 x_1 + 0 x_2 + 0 x_3 = 15
@@ -166,6 +177,7 @@ $$
 Since this is impossible, the system is **inconsistent**
 
 ### Infinite solutions
+
 $$
 \begin{aligned}
 1x_1 + 0x_2 + 2x_3 = 1 \\
@@ -174,7 +186,8 @@ $$
 \end{aligned}
 $$
 
-Augementing and performing gaussian elimination, we get 
+Augementing and performing gaussian elimination, we get
+
 $$
 \begin{bmatrix}
 1 & 0 & 2 & 1 \\
@@ -184,6 +197,7 @@ $$
 $$
 
 This is the same as the following system:
+
 $$
 \begin{aligned}
 1x_1 + 0x_2 + 2x_3 = 1 \\
@@ -201,6 +215,7 @@ x_2 = 2 - 3x_3 \\
 $$
 
 # General Procedure to solve an SLE
+
 1. Write the augmented matrix
 2. Reduce the augmented matrix into row-echelon form. Decide whether the system is consistent or not. If the system is inconsistent, there is nothing else to do. Else, keep going.
 3. Continue row reduction to obtain the reduced row-echelon form
@@ -208,6 +223,7 @@ $$
 5. Rewrite each non-zero term in 4 so that the leading variable is expressed in terms of any free variables in the equation
 
 # Linear Combination of Vectors
+
 Given vectors $v_1, v_2, ..., v_p \in \R^n$, and scalars $c_1, ..., c_n$, the vector
 
 $$
@@ -216,7 +232,8 @@ $$
 
 is a **linear combination** of $v_1, ..., v_p$, with weights $c_1, ..., c_p$
 
-If 
+If
+
 $$
 Ax = b, A \in \R^{m \times n}, b \in \R^n
 $$
@@ -230,7 +247,8 @@ b = x_1 a_1 + x_2 a_2 + \cdots + x_n a_n
 $$
 
 # Span
-If $v_1, ..., v_p \in \R^n$, the set of **all linear combinations of** $v_1, ..., v_p$, denoted by $\text{Span}\{v_1, ..., v_p\}$  is the subset of $\R^n$ spanned by $v_1, ..., v_p$
+
+If $v_1, ..., v_p \in \R^n$, the set of **all linear combinations of** $v_1, ..., v_p$, denoted by $\text{Span}\{v_1, ..., v_p\}$ is the subset of $\R^n$ spanned by $v_1, ..., v_p$
 
 $$
 \text{Span}\{v_1, ..., v_p\} = \sum_{n=1}^{p} c_i v_i
@@ -238,12 +256,14 @@ $$
 
 with scalars $c_1, ..., c_p$
 
-A set of vectors $\{ v_1, ..., v_p \} \in \R^m$ spans $\R^m$ if every vector in \$R^m$ is a linear combination of $v_1, ..., v_p$. 
+A set of vectors $\{ v_1, ..., v_p \} \in \R^m$ spans $\R^m$ if every vector in \$R^m$ is a linear combination of $v_1, ..., v_p$.
 
 Basically, $\text{Span}\{v_1, ..., v_p\} = \R^m$
 
 # Properties arising from Ax = b
+
 Let $A \in \R^{m \times n}$. The following statements are logically equivalent
+
 1. For each $b \in \R^m$, the equation $Ax = b$ has a solution
 2. Each $b \in \R^m$ is a linear combination of the columns of $A$
 3. The columns of $A$ span $\R^m$
@@ -252,7 +272,7 @@ Let $A \in \R^{m \times n}$. The following statements are logically equivalent
 Proof:
 $A$ has a pivot position in every row => For each $b \in \R^m$, the equation $Ax = b$ has a solution.
 
-Consider $Ax = b$, which can be reduced to $Rx = c$, where $R$ is the reduced row-echelon form of A 
+Consider $Ax = b$, which can be reduced to $Rx = c$, where $R$ is the reduced row-echelon form of A
 If $R$ does not have a pivot position in row $m$, then
 
 $$
@@ -268,15 +288,19 @@ Since every $b \in \R^m$ has a solution, every $b \in \R^m$ is a linear combinat
 Since all vectors in $\R^m$ can be expressed as a linear combination of the columns of $A$, by definition, the columns of $A$ span $R^m$
 
 # Properties of multiplying matrices and vectors
+
 Consider $A \in \R^{m \times n}$, $u, v \in \R^m$, and a scalar $c$. The following hold
-- $A(u + v) = Au + Av$
-- $A(cu) = c(Au)$
+
+-   $A(u + v) = Au + Av$
+-   $A(cu) = c(Au)$
 
 # Solution sets of linear systems
+
 Consider the equation $Ax = 0$. The trivial solution $x=0$ always exists. Any other nonzero solution is called a **non-trivial** solution.
 
 Example:
 Describe all solutions for $Ax = 0$ where
+
 $$
 A = \begin{bmatrix}
 3 & 5 & -4 \\
@@ -293,7 +317,7 @@ $$
 x = \begin{bmatrix}-1 \\ 2 \\ 0\end{bmatrix} + x_3\begin{bmatrix}\frac{4}{3} \\ 0 \\ 1\end{bmatrix}
 $$
 
-In general, if $Ax = 0$ has a non-trivial solution $x = kv$ for some scalar $k$ and $Ax = b$ has a particular solution $p$, then $Ax = b$ has the solution set $x = p + kv$ 
+In general, if $Ax = 0$ has a non-trivial solution $x = kv$ for some scalar $k$ and $Ax = b$ has a particular solution $p$, then $Ax = b$ has the solution set $x = p + kv$
 
 $$
 \begin{aligned}
@@ -316,6 +340,7 @@ A(kv + p) &= kAv + Ap \\
 $$
 
 # Linear Independence
+
 An indexed set $\{v_1, ..., v_p\} \in \R^n$ is **linearly independent** if the equation
 
 $$
@@ -325,6 +350,7 @@ $$
 **only has the trivial solution**. If a non-trivial solution exists, then the set is **linearly dependent**.
 
 E.g.
+
 $$
 \begin{aligned}
 v_1 = \begin{bmatrix}3 \\ 1\end{bmatrix}, v_2 = \begin{bmatrix}6 \\ 2\end{bmatrix} \\
@@ -345,9 +371,9 @@ Since only the trivial solution exists, $\{v_1, v_2\}$ are linearly independent
 
 Theorem: If a set contains more vectors than there are entries in each vector, then the set is linearly dependent, i.e. $\{ v_1, ..., v_p \} \in \R^n$ is linearly dependent if $p > n$
 
-Proof: 
+Proof:
 
-Let $A = \begin{bmatrix} v_1 & \cdots & v_p \end{bmatrix}$. 
+Let $A = \begin{bmatrix} v_1 & \cdots & v_p \end{bmatrix}$.
 
 $A \in \R^{n \times p}$
 
@@ -359,9 +385,10 @@ E.g. $\{ \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 4 \\ -1 \end{bmat
 
 Theorem: If a set contains the zero vector, then the set is linearly dependent
 
-Proof: 
+Proof:
 
 Consider the set $\{ v_1, ..., v_p, 0 \}$
+
 $$
     c_1 v_1 + \cdots + c_p v_p + c_{p+1} 0 = 0
 $$
@@ -369,11 +396,13 @@ $$
 $c_{p+1}$ can be any real nonzero value (e.g. $c_{p+1} = 1$), and still satisfy the equation. Hence a non-trivial solution exists, and the set is linearly dependent
 
 # Linear Transformations
+
 $Ax = b$ can be thought of transforming the vector $x$ into the vector $b$.
 
 A **transformation** $T: \R^n \to \R^m$ is a rule that maps each vector $x \in \R^n$ to a vector $T(x) \in \R^m$
 
 Example of transformation matrices:
+
 $$
 T: \R^3 \to \R^3, T(x) = Ax, A = \begin{bmatrix}
 1 & 2 & 3 \\
@@ -383,10 +412,12 @@ T: \R^3 \to \R^3, T(x) = Ax, A = \begin{bmatrix}
 $$
 
 A transformation is **linear** if
+
 1. $T(u+v) = T(u) + T(v)$, for all $u, v$ in the domain of $T$
 2. $T(cu) = cT(u)$ for some scalar $c$
 
 In general
+
 $$
 T(\sum_{i=1}^{n}c_iv_i) = \sum_{i=1}^{n} c_i T(v_i)
 $$
@@ -394,6 +425,7 @@ $$
 ### Finding the transformation matrix $A$
 
 The transformation matrix $A$ can be found by the tracking where the columns of the **standard basis** end up after the transformation. In general:
+
 $$
 \begin{aligned}
 T(x) &= Ax \\
@@ -410,9 +442,10 @@ The first standard basis vector, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ ends up 
 The second standard basis vector, $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ ends up at $\begin{bmatrix} -\sin \theta \\ \cos \theta \end{bmatrix}$
 
 Hence the transformation matrix,
+
 $$
 A = \begin{bmatrix}
-\cos \theta & -\sin \theta  \\ 
+\cos \theta & -\sin \theta  \\
 \sin \theta & \cos \theta
 \end{bmatrix}
 $$

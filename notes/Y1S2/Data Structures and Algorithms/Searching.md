@@ -59,7 +59,7 @@ void dualSearch(int A[], int size, int K, int dualIndex[])
 ```
 
 2. Given a sorted array of n elements. Find two elements in the array such that their sum is equal to K. The two elements can be the same element. Once a pair of elements are found, the program can be terminated. The results may be different from the results of Question 1.
-The function prototype is given below:
+   The function prototype is given below:
 
 ```c
 void dualSearch (int A [] , int size , int K , int dualIndex [])
@@ -297,15 +297,15 @@ ListNode* HashSearch(HashTable Q3Hash, int key)
     }
     int slot = Hash(key, Q3Hash.hSize);
     ListNode *currentNode = Q3Hash.Table[slot].head;
-    
+
     while (currentNode != NULL) {
         if (currentNode->key == key) {
             return currentNode;
         }
-        
+
         currentNode = currentNode->next;
     }
-    
+
     return currentNode;
 }
 
@@ -315,13 +315,13 @@ int HashInsert(HashTable* Q3HashPtr, int key)
     if (Q3HashPtr->hSize == 0) {
         return 0;
     }
-    
+
     if (HashSearch(*Q3HashPtr, key)) {
         return 0;
     }
-    
+
     int slot = Hash(key, Q3HashPtr->hSize);
-    
+
     ListNode *newNode = malloc(sizeof(ListNode));
     if (!newNode) {
         return 0;
@@ -331,7 +331,7 @@ int HashInsert(HashTable* Q3HashPtr, int key)
     Q3HashPtr->Table[slot].head = newNode;
     Q3HashPtr->Table[slot].size++;
     Q3HashPtr->nSize++;
-    
+
     return 1;
 }
 

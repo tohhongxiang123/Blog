@@ -47,4 +47,4 @@ If numbers are bigger than what primitive types can handle, use the `BigDecimal`
 
 # Enabling assertions in Intellij
 
-- Assertions are not enabled by default in IntelliJ. To enable assertions, follow the instructions [here](https://se-education.org/guides/tutorials/intellijUsefulSettings.html)
+-   Assertions are not enabled by default in IntelliJ. To enable assertions, follow the instructions [here](https://se-education.org/guides/tutorials/intellijUsefulSettings.html)

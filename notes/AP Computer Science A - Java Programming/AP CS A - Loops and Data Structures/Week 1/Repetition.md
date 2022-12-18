@@ -1,23 +1,27 @@
 # Repetition
 
 Repetition can be used to
-- Perform the same operation on different data
-- Accumulate information over a set of data
+
+-   Perform the same operation on different data
+-   Accumulate information over a set of data
 
 Repetition is broken down into 2 parts
+
 1. Body of the code that gets repeatedly executed
 2. Condition (boolean) to determine when to stop
 
 How do we construct the body so that it does something different/useful each time it is run?
 
 There are 2 forms of iterations
+
 1. Indefinite: loop until "done"; no advance knowledge of how many iterations will be required
 2. Definite: loop a given number of times; used when the iteration are controlled by a counter/size/limit
 
 Java Repetition Constructs
-- `while`
-- `do-while`
-- `for`
+
+-   `while`
+-   `do-while`
+-   `for`
 
 # `while` loop
 

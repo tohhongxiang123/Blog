@@ -1,12 +1,13 @@
 # Program Control Instructions
 
 These intsructions facilitate the disruption of a program's normal sequential flow
-- Done by modifying the contents of the Program Counter (PC)
-- Content of PC can be modified directly or by using Branch instruction
-- Jump can be executed based on a given condition (e.g. if previous execution is negative). This is called a **Conditional branch**
-- Conditional branch is useful for implementing 
-  - Conditional constructs (if, else)
-  - Loop constructs (for, while loop)
+
+-   Done by modifying the contents of the Program Counter (PC)
+-   Content of PC can be modified directly or by using Branch instruction
+-   Jump can be executed based on a given condition (e.g. if previous execution is negative). This is called a **Conditional branch**
+-   Conditional branch is useful for implementing
+    -   Conditional constructs (if, else)
+    -   Loop constructs (for, while loop)
 
 # Conditional Branch (Bcc)
 
@@ -21,14 +22,16 @@ If the condition specified in the condition field (`cc`) is true, a displacement
 Skip MOV R1, R0 ;instruction at Skip
 ```
 
-- `Bcc` uses PC-relative addressing modes with a displacement range of +-32 MB
-- PC value used to compute required displacement is 8 bytes ahead of the current `Bcc` being executed
-- `Bcc` is used with address labels that allows the assembler to compute the required displacement values
+-   `Bcc` uses PC-relative addressing modes with a displacement range of +-32 MB
+-   PC value used to compute required displacement is 8 bytes ahead of the current `Bcc` being executed
+-   `Bcc` is used with address labels that allows the assembler to compute the required displacement values
 
 # Test Conditions for Bcc
+
 ARM provides different conditional branch options
-- 15 possible conditions is permitted in the condition field using combinations of NZVC flags
-- Flexible conditional branch can be programmed based on outcome of instructions prior to `Bcc`
+
+-   15 possible conditions is permitted in the condition field using combinations of NZVC flags
+-   Flexible conditional branch can be programmed based on outcome of instructions prior to `Bcc`
 
 | Suffix   | Flags              | Meaning                                             |
 | -------- | ------------------ | --------------------------------------------------- |
@@ -61,15 +64,17 @@ Loop	MOV R0, R0, ROR #1  ; Rotate R0 right 1 bit
 ```
 
 # Comparing Signed and Unsigned Values
-- Appropriate conditional test must be selected based on the number representation used
-- For signed values, use GT, LT, GE, LE
-- For unsigned values, use HI, LO, HS, LS
+
+-   Appropriate conditional test must be selected based on the number representation used
+-   For signed values, use GT, LT, GE, LE
+-   For unsigned values, use HI, LO, HS, LS
 
 # `CMP`
-- `CMP` subtracts the source operand from the destination operand and sets the CC flags according to the results
-- Destination register remain unmodified after `CMP`
-- `CMP DESTINATION SOURCE`
-- Use `CMP` instead of `SUBS` to compare values of two operands without affecting the  operands
+
+-   `CMP` subtracts the source operand from the destination operand and sets the CC flags according to the results
+-   Destination register remain unmodified after `CMP`
+-   `CMP DESTINATION SOURCE`
+-   Use `CMP` instead of `SUBS` to compare values of two operands without affecting the operands
 
 ```
 CMP R1, #4  ; test R1-4 where R1 is a signed number

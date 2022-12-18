@@ -11,9 +11,9 @@ A binary heap is a binary tree with the following properties
 
 A binary heap should implement the following methods:
 
-- `void insert(T item)`, which inserts an item into the tree
-- `void delete()`, which deletes the root node of the tree
-- `T peek()`, which returns the minimum element in the heap (the root node)
+-   `void insert(T item)`, which inserts an item into the tree
+-   `void delete()`, which deletes the root node of the tree
+-   `T peek()`, which returns the minimum element in the heap (the root node)
 
 Note that for both of these methods, the property that the parent node is smaller than its children for min heap, and larger than its children for the max heap must still be maintained throughout.
 
@@ -54,9 +54,9 @@ Steps 2 and 3, which restore the heap property by swapping the child and its par
 ```c
 void insert(BinaryHeap *b, int item) { // insert into min heap
     if (b->currentSize >= b->maxSize) return; // if binary heap is full, do not insert
-    
+
     b->heap[b->currentSize] = item; // insert into leftmost open space in the tree
-    
+
     int parentIndex = (b->currentSize - 1) / 2; // index of parent of current element
     int currentIndex = b->currentSize; // index of current element in array
     while (b->heap[parentIndex] > b->heap[currentIndex]) { // if parent is larger than element, min heap property is broken
@@ -86,11 +86,11 @@ void delete(BinaryHeap *b) {
     swap(&(b->heap[b->currentSize - 1]), &(b->heap[0])); // swap root with last element
     b->heap[b->currentSize - 1] = 0; // delete last element
     b->currentSize--; // decrease size
-    
+
     int currentIndex = 0; // start comparing from the root
     int leftChildIndex = 2 * currentIndex + 1; // index of left child of current element
     int rightChildIndex = 2 * currentIndex + 2; // index of right child of current element
-    
+
     while (1) {
         int smallestIndex = currentIndex; // index of child who is smaller than parent
 
@@ -100,7 +100,7 @@ void delete(BinaryHeap *b) {
         } else if (rightChildIndex < b->currentSize && b->heap[smallestIndex] > b->heap[rightChildIndex]) {
             smallestIndex = rightChildIndex;
         }
-        
+
         // if no child is smaller than the parent
         if (smallestIndex == currentIndex) {
             // done
@@ -152,12 +152,12 @@ void printHeap(BinaryHeap *b) { // prints out the heap from top to bottom, left 
 
 void insert(BinaryHeap *b, int item) { // insert into min heap
     if (b->currentSize >= b->maxSize) return; // if binary heap is full, do not insert
-    
+
     b->heap[b->currentSize] = item; // insert into leftmost open space in the tree
-    
+
     int parentIndex = (b->currentSize - 1) / 2; // index of parent of current element
     int currentIndex = b->currentSize; // index of current element in array
-    
+
     while (b->heap[parentIndex] > b->heap[currentIndex]) { // if parent is larger than element, min heap property is broken
         swap(&b->heap[parentIndex], &b->heap[currentIndex]); // swap parent and element
         currentIndex = parentIndex; // now change to look at element and new parent
@@ -171,11 +171,11 @@ void delete(BinaryHeap *b) {
     swap(&(b->heap[b->currentSize - 1]), &(b->heap[0])); // swap root with last element
     b->heap[b->currentSize - 1] = 0; // delete last element
     b->currentSize--; // decrease size
-    
+
     int currentIndex = 0; // start comparing from the root
     int leftChildIndex = 2 * currentIndex + 1; // index of left child of current element
     int rightChildIndex = 2 * currentIndex + 2; // index of right child of current element
-    
+
     while (1) {
         int smallestIndex = currentIndex; // index of child who is smaller than parent
 
@@ -185,7 +185,7 @@ void delete(BinaryHeap *b) {
         } else if (rightChildIndex < b->currentSize && b->heap[smallestIndex] > b->heap[rightChildIndex]) {
             smallestIndex = rightChildIndex;
         }
-        
+
         // if no child is smaller than the parent
         if (smallestIndex == currentIndex) {
             // done
@@ -210,7 +210,7 @@ int main()
     b->heap = malloc(sizeof(int) * SIZE);
     b->currentSize = 0;
     b->maxSize = SIZE;
-    
+
     insert(b, 10);
     insert(b, 4);
     insert(b, 15);
@@ -266,7 +266,7 @@ void heapify(int heap[], int heapSize, int rootIndex) {
     // converts the heap into a max heap
     int leftChildIndex = 2 * rootIndex + 1;
     int rightChildIndex = 2 * rootIndex + 2;
-    
+
     // search for the largest element's index
     int largestElementIndex = rootIndex;
     if (leftChildIndex < heapSize && heap[leftChildIndex] > heap[largestElementIndex]) {
@@ -275,7 +275,7 @@ void heapify(int heap[], int heapSize, int rootIndex) {
     if (rightChildIndex < heapSize && heap[rightChildIndex] > heap[largestElementIndex]) {
         largestElementIndex= rightChildIndex;
     }
-    
+
     // if the largest element is not the root, swap and continue heapifying the swapped element
     if (largestElementIndex != rootIndex) {
         swap(&heap[rootIndex], &heap[largestElementIndex]);
@@ -316,7 +316,7 @@ Now to sort the array,
 ```c
 void heapSort(int arr[], int size) {
     buildMaxHeap(arr, size); // build a max heap from the array
-    
+
     // actually sort the heap
     for (int i = size - 1; i > 0; i--) {
         swap(&arr[i], &arr[0]); // swap the last element with the root since it is the largest
@@ -347,7 +347,7 @@ void heapify(int heap[], int heapSize, int rootIndex) {
     // converts the heap into a max heap
     int leftChildIndex = 2 * rootIndex + 1;
     int rightChildIndex = 2 * rootIndex + 2;
-    
+
     // search for the largest element's index
     int largestElementIndex = rootIndex;
     if (leftChildIndex < heapSize && heap[leftChildIndex] > heap[largestElementIndex]) {
@@ -356,7 +356,7 @@ void heapify(int heap[], int heapSize, int rootIndex) {
     if (rightChildIndex < heapSize && heap[rightChildIndex] > heap[largestElementIndex]) {
         largestElementIndex= rightChildIndex;
     }
-    
+
     // if the largest element is not the root, swap and continue heapifying the swapped element
     if (largestElementIndex != rootIndex) {
         swap(&heap[rootIndex], &heap[largestElementIndex]);
@@ -373,7 +373,7 @@ void buildMaxHeap(int heap[], int heapSize) {
 
 void heapSort(int arr[], int size) {
     buildMaxHeap(arr, size); // build a max heap from the array
-    
+
     for (int i = size - 1; i > 0; i--) {
         swap(&arr[i], &arr[0]); // swap the last element with the root since it is the largest
         heapify(arr, i, 0); // now heapify the remaining elements (excluding the largest one we just swapped)
@@ -387,7 +387,7 @@ int main()
     printArray(a, size);
     heapSort(a, size);
     printArray(a, size);
-    
+
 
     return 0;
 }
@@ -399,7 +399,7 @@ The best, worst and average time complexity for heap sort is $O(n \log n)$.
 
 Heapsort consists of 2 major parts - Building the max heap, and then extracting the max elements out of the max heap. Considering the worst case:
 
-For building a max heap, the worst case is when all elements have to be pushed from the root to the bottom of the tree. Each element has to be pushed down the entire height of the tree ($\log n$). When we `buildMaxHeap`, note that we only had to heapify `n/2` elements, because we are only heapifying non-leaf nodes. 
+For building a max heap, the worst case is when all elements have to be pushed from the root to the bottom of the tree. Each element has to be pushed down the entire height of the tree ($\log n$). When we `buildMaxHeap`, note that we only had to heapify `n/2` elements, because we are only heapifying non-leaf nodes.
 
 Consider a single node, and its 2 children. To find the largest node, we have to make 2 comparisons (3 nodes requires 2 comparisons to figure out which node is the largest). Then, we swap the root node with its largest child, and repeat the process. This means, for every swap we do, we take 2 comparisons. And the number of swaps for a single node, is the number of layers the node traverses down.
 
@@ -421,7 +421,8 @@ Note how this is similar to $\log n!$, which can be approximated with [Stirling'
 Hence, the total runtime for heap sort is $n + n \log n = O(n \log n)$ runtime
 
 # Resources
-- https://www.programiz.com/dsa/heap-sort
-- https://www.youtube.com/watch?v=k72DtCnY4MU
-- http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
-- https://en.wikipedia.org/wiki/Stirling%27s_approximation
+
+-   https://www.programiz.com/dsa/heap-sort
+-   https://www.youtube.com/watch?v=k72DtCnY4MU
+-   http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+-   https://en.wikipedia.org/wiki/Stirling%27s_approximation

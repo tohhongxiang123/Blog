@@ -60,7 +60,7 @@ Consider an array that ends at position `k`. There are 2 possibilities for the m
 1. The subarray consists of only the element at position `k`
 2. The subarray consists of the element at position `k`, and the subarray that ends at `k-1`
 
-Since we want to find a subarray with maximum sum, the subarray that ends at `k-1` also should have the maximum sum. Hence, 
+Since we want to find a subarray with maximum sum, the subarray that ends at `k-1` also should have the maximum sum. Hence,
 
 ```cpp
 int best = 0, sum = 0;
@@ -77,6 +77,6 @@ This algorithm is [Kadane's Algorithm](https://medium.com/@rsinghal757/kadanes-a
 
 # Resources
 
-- https://www.youtube.com/watch?v=2MmGzdiKR9Y
-- https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
-- https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+-   https://www.youtube.com/watch?v=2MmGzdiKR9Y
+-   https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
+-   https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/

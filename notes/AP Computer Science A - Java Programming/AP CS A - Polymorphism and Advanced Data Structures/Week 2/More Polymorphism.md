@@ -1,10 +1,11 @@
 # Polymorphism Example
 
 Let us create the following:
-- PoliceOfficer
-- Clown
-- Barber
-  
+
+-   PoliceOfficer
+-   Clown
+-   Barber
+
 All these should inherit from an abstract class Person.
 
 ```java
@@ -43,7 +44,7 @@ Now, we know that we have all these different professions for a person. We need 
 
 > Do we want to instantiate a `Person` object without a profession?
 
-If the answer is no, then we should declare the class `abstract`, since we should not be able to instantiate the `Person` object, but we should be able to instantiate a `PoliceOfficer` or a `Clown`. Hence, we declare 
+If the answer is no, then we should declare the class `abstract`, since we should not be able to instantiate the `Person` object, but we should be able to instantiate a `PoliceOfficer` or a `Clown`. Hence, we declare
 
 ```java
 public abstract class Person {
@@ -145,7 +146,7 @@ public class PoliceOfficer extends Person {
     public String act() { // needs to be implemented since we declared it abstract in Person, and we do not want PoliceOfficer to be abstract
         return makeAnArrest(new Clown("Bubbles", 36, false));
     }
-    
+
     private String makeAnArrest(Person p) {
         return p + " is under arrest";
     }

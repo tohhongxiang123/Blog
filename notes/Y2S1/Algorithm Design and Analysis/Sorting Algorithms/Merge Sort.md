@@ -6,9 +6,11 @@ Merge sort is a divide-and-conquer algorithm. It divides the input array into 2 
 2. `merge(int arr[], int startIndex, int middle, int endIndex)` - a function that helps merge the 2 halves generated within `mergeSort`
 
 Merge sort is stable
-- Relative order of elements of the same value remain the same before and after the sorting
+
+-   Relative order of elements of the same value remain the same before and after the sorting
 
 `mergeSort` does the following:
+
 1. If startIndex >= endIndex, the program is complete
 2. Get the middle of the array
 3. `mergeSort` the lower half of the array (`mergeSort(arr, startIndex, middleIndex)`)
@@ -26,6 +28,7 @@ void mergeSort(int arr[], int startIndex, int endIndex) {
 ```
 
 `merge` does the following:
+
 1. Create a temporary array to store all the elements required (`numberOfElements = endIndex - startIndex + 1`)
 2. Create a pointer to the start of the lower array
 3. Create a pointer to the start of the upper array
@@ -43,7 +46,7 @@ void mergeSort(int arr[], int startIndex, int endIndex) {
 ```c
 #include <stdio.h>
 
-void printArr(int arr[], int size) { 
+void printArr(int arr[], int size) {
     // print out the entire array
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
@@ -114,9 +117,9 @@ int main()
 
 ## Complexity Analysis of Merge Sort
 
-- After each comparison of keys from the 2 sub lists, at least 1 element is moved into the new merged list and never compared to again
-- After the last comparison of keys from the 2 sub lists, at least 2 elements are moved into the new merged list
-- To merge the 2 lists together, we require at most $n-1$ comparisons
+-   After each comparison of keys from the 2 sub lists, at least 1 element is moved into the new merged list and never compared to again
+-   After the last comparison of keys from the 2 sub lists, at least 2 elements are moved into the new merged list
+-   To merge the 2 lists together, we require at most $n-1$ comparisons
 
 ```c
 void mergeSort(int arr[], int startIndex, int endIndex) {
@@ -145,13 +148,15 @@ $$
 ## Pros and Cons
 
 Pros
-- Simple and good runtime
-- Easy to implement with linked list
+
+-   Simple and good runtime
+-   Easy to implement with linked list
 
 Cons
-- Difficult to implement for contiguous data storage (such as arrays) without auxiliary storage (requires data movements during merging)
 
+-   Difficult to implement for contiguous data storage (such as arrays) without auxiliary storage (requires data movements during merging)
 
 ## Read More about MergeSort
-- https://en.wikipedia.org/wiki/Merge_sort
-- https://www.programiz.com/dsa/merge-sort
+
+-   https://en.wikipedia.org/wiki/Merge_sort
+-   https://www.programiz.com/dsa/merge-sort

@@ -2,7 +2,7 @@
 
 It is important to distinguish **population** vs **sample**. A **population** is defined as **all members of a specified group**, while a **sample** is **part of a population**
 
- >The **sample mean** is the average and is the sum of all observed outcomes from the sample divided by the total number of samples. The sample mean is denoted by $\bar{X}$
+> The **sample mean** is the average and is the sum of all observed outcomes from the sample divided by the total number of samples. The sample mean is denoted by $\bar{X}$
 
 $$
 \bar{X} = \frac{1}{n}\sum_{i=1}^{n} x_i
@@ -20,7 +20,6 @@ $$
 \hat{\sigma}^2 = \frac{1}{N-1} \sum_{i=1}^{N}(x_i - \bar{X})^2 = \frac{1}{N-1} \left( \sum_{i=1}^{N}x_i^2 - \frac{\left(\sum_{i=1}^{N} x_i\right)^2}{N} \right)
 $$
 
-
 > The standard deviation is the square root of the variance
 
 $$
@@ -34,6 +33,7 @@ $$
 # Effects of Transformations on the Mean and Variance
 
 If a random variable $X$ has a mean $\mu$ and standard deviation $\sigma$, and we let $Y = AX + B$, then
+
 $$
 \begin{aligned}
 \mu_Y &= A\mu + B \\
@@ -70,7 +70,8 @@ $$
 
 From this, we can conclude that the **expected mean of the sample is the population mean**
 
-Similarly, the variance of $\bar{X}$, 
+Similarly, the variance of $\bar{X}$,
+
 $$
 \begin{aligned}
 Var(\bar{X}) &= Var\left(\frac{1}{n}\sum_{i=1}^{n} X_i \right) \\
@@ -83,12 +84,13 @@ Var(\bar{X}) &= Var\left(\frac{1}{n}\sum_{i=1}^{n} X_i \right) \\
 $$
 
 In conclusion, the sampling distribution of $\bar{X}$ has
-- Mean $\mu$
-- Standard deviation $\frac{\sigma}{\sqrt{n}}$
+
+-   Mean $\mu$
+-   Standard deviation $\frac{\sigma}{\sqrt{n}}$
 
 # Why is the sample variance divided by $N-1$?
 
-We will now prove that 
+We will now prove that
 
 $$
 E(S^2) = E\left[\frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2\right] = \sigma^2
@@ -98,7 +100,7 @@ This will show why we divide the sample variance by $n-1$ and not $n$
 
 Let $X_1, X_2, ..., X_n$ be $n$ independently drawn (with replacement) observations from a distribution with mean $\mu$ and variance $\sigma^2$. This means that $E(X) = \mu, Var(X) = \sigma^2$.
 
-We know that 
+We know that
 
 $$
 \begin{aligned}
@@ -108,7 +110,7 @@ E(X^2) &= \sigma^2 + \mu^2
 \end{aligned}
 $$
 
-Similarly, 
+Similarly,
 
 $$
 E(\bar{X}^2) = \frac{\sigma^2}{n} + \mu
@@ -132,12 +134,12 @@ E\left[\sum_{i=1}^{n}(X_i - \bar{X})^2\right] &= E\left[\sum_{i=1}^{n}(X_i^2 - 2
 \end{aligned}
 $$
 
-Now, 
+Now,
 
 $$
 \begin{aligned}
 E(S^2) &= E\left[\frac{1}{n-1} \sum_{i=1}^{n}(X_i - \bar{X})^2\right] \\
-&= \frac{1}{n-1}  E\left[\sum_{i=1}^{n}(X_i - \bar{X})^2\right] \\ 
+&= \frac{1}{n-1}  E\left[\sum_{i=1}^{n}(X_i - \bar{X})^2\right] \\
 &= \frac{1}{n-1} (n-1)\sigma^2 \\
 &= \sigma^2
 \end{aligned}
@@ -166,7 +168,7 @@ Consider 2 independent, non-overlapping datasets:
 1. $X = \{X_1, X_2, ..., X_m\}$ with mean $\mu_1$ and standard deviation $\sigma_1$
 2. $Y = \{Y_1, Y_2, ..., Y_n\}$ with mean $\mu_2$ and standard deviation $\sigma_2$
 
-If we combine the 2 datasets together, 
+If we combine the 2 datasets together,
 
 $$
 \begin{aligned}
@@ -184,6 +186,7 @@ $$
 ### Derivation
 
 The mean of the combination of the 2 datasets
+
 $$
 \begin{aligned}
 \mu_3 &= \frac{\sum_{z_i \in X \cup Y} z_i}{|X| + |Y|} & \text{Definition of mean} \\
@@ -193,6 +196,7 @@ $$
 $$
 
 The variance of the combination of the 2 datasets
+
 $$
 \begin{aligned}
 \sigma_3^2 &= \frac{\sum_{z_i \in X \cup Y} (z_i - \bar{z})^2}{|X| + |Y|} \\
@@ -219,9 +223,9 @@ $$
 \end{aligned}
 $$
 
-
 ### Sources
-- [Deriving the Mean and Variance of the Sample Mean](https://www.youtube.com/watch?v=7mYDHbrLEQo)
-- [Proof that the Sample Variance is an Unbiased Estimator of the Population Variance](https://www.youtube.com/watch?v=D1hgiAla3KI)
-- https://stats.stackexchange.com/questions/55999/is-it-possible-to-find-the-combined-standard-deviation
-- https://stats.stackexchange.com/questions/3931/intuitive-explanation-for-dividing-by-n-1-when-calculating-standard-deviation
+
+-   [Deriving the Mean and Variance of the Sample Mean](https://www.youtube.com/watch?v=7mYDHbrLEQo)
+-   [Proof that the Sample Variance is an Unbiased Estimator of the Population Variance](https://www.youtube.com/watch?v=D1hgiAla3KI)
+-   https://stats.stackexchange.com/questions/55999/is-it-possible-to-find-the-combined-standard-deviation
+-   https://stats.stackexchange.com/questions/3931/intuitive-explanation-for-dividing-by-n-1-when-calculating-standard-deviation

@@ -41,7 +41,7 @@ has a closed form polynomial solution of degree $k + 1$. For example,
 $$
 \begin{aligned}
 \sum_{x = 1}^{n} x &= \frac{n(n + 1)}{2} \\
-\sum_{x = 1}^{n} x^2 &= \frac{n(2n+1)(n+1)}{6} 
+\sum_{x = 1}^{n} x^2 &= \frac{n(2n+1)(n+1)}{6}
 \end{aligned}
 $$
 
@@ -49,7 +49,7 @@ The general form of this equation is known as **Faulhaber's formula**
 
 ## Arithmetic Progression
 
-An arithmetic progression is a sequence of numbers where the difference between 2 consecutive numbers is constant. 
+An arithmetic progression is a sequence of numbers where the difference between 2 consecutive numbers is constant.
 
 An example of an arithmetic progression is:
 
@@ -57,7 +57,7 @@ $$
 5, 10, 15, 20, 25, ...
 $$
 
-The sum of an arithmetic progression is 
+The sum of an arithmetic progression is
 
 $$
 \begin{aligned}
@@ -115,6 +115,3 @@ $$
 &1 + 1 * \log_2 n
 \end{aligned}
 $$
-
-
-

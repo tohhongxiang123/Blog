@@ -1,6 +1,6 @@
 # If
 
-- How is `if` implemented in assembly? From the C code:
+-   How is `if` implemented in assembly? From the C code:
 
 ```c
 if (a > b) {
@@ -68,7 +68,6 @@ if (a == 3) {
 
 In assembly:
 
-
 ```assembly
         CMP a, #3
         BEQ S1
@@ -116,9 +115,9 @@ Compilers resolve compounnd ANDs by negating the statements
 Skip
 ```
 
-- Conditions are tested **left to right** in order given by the C program. 
-- The first false condition means that the remaining conditions do not need to be computed. This is called **fast Boolean operation**
-- Keep the least likely condition to be **leftmost** to improve speed
+-   Conditions are tested **left to right** in order given by the C program.
+-   The first false condition means that the remaining conditions do not need to be computed. This is called **fast Boolean operation**
+-   Keep the least likely condition to be **leftmost** to improve speed
 
 ```assembly
         CMP a, b
@@ -130,7 +129,7 @@ Skip
 
 ### Compound OR statements
 
-Most compilers handle compound or statements by reversing the last conditional test. 
+Most compilers handle compound or statements by reversing the last conditional test.
 
 ```c
 if ((a == 1) || (a == 2)) { S1; }
@@ -143,7 +142,7 @@ DoIf    { S1 }
 Skip    ...
 ```
 
-- The condition that is most likely to be true should be the **leftmost** condition
+-   The condition that is most likely to be true should be the **leftmost** condition
 
 ```assembly
         CMP a, #1
@@ -169,11 +168,11 @@ Skip    ...
 ```
 
 # Branchless Logic
-- Branchless logic avoids using conditional jump instructions when implementing logical constructs
-- `Bcc` instructions may result in costly **flushing** operations when the wrong instruction is prefetched
+
+-   Branchless logic avoids using conditional jump instructions when implementing logical constructs
+-   `Bcc` instructions may result in costly **flushing** operations when the wrong instruction is prefetched
 
 ### How to implement branchless logic?
+
 1. Exploit arithmetic relationships to transform the test case into the desired outcome
 2. Conditional execution statements to avoid branching
-
-

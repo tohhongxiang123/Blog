@@ -144,7 +144,7 @@ void recursiveReverse(Queue *q){
         recursiveReverse(q);
         enqueue(q, firstElement);
     }
-    
+
 }
 
 ////////////////////////////////////////////////////////////
@@ -154,40 +154,40 @@ int palindrome(char *word){
 	// write your code here
 	char *strippedWord = malloc(strlen(word));
 	int strippedWordLength = 0;
-	
+
 	while (*word != '\0') {
 	    if (*word != ' ') {
 	        *(strippedWord + strippedWordLength) = tolower(*word);
             strippedWordLength++;
 	    }
-	    
+
         word++;
 	}
-	
+
 	int middle = strippedWordLength / 2;
 	Stack *s = malloc(sizeof(Stack));
 	s->ll.size = 0;
-	
+
 	while (middle > 0) {
 	    push(s, *strippedWord);
 	    strippedWord++;
 	    middle--;
 	}
-	
+
 	if (strippedWordLength % 2 == 1) {
 	    strippedWord++;
 	}
-	
+
 	while (*strippedWord != '\0') {
 	    if (peek(s) != *strippedWord) {
 	        printf("Not a palindrome\n");
 	        return 0;
 	    }
-	    
+
 	    pop(s);
 	    strippedWord++;
 	}
-	
+
 	printf("Palindrome\n");
 	return 1;
 }
@@ -203,14 +203,14 @@ int balanced(char *expression){
 	printf("%s\n", currentCharacter);
 	Stack *stack = malloc(sizeof(Stack));
 	stack->ll.size = 0;
-	
+
     while (*currentCharacter != '\0') {
         if (isEmptyStack(stack)) {
-            push(stack, *currentCharacter);   
+            push(stack, *currentCharacter);
             currentCharacter++;
             continue;
         }
-        
+
         char topOfStack = peek(stack);
         if (
             (topOfStack == '(' && *currentCharacter == ')') ||
@@ -221,7 +221,7 @@ int balanced(char *expression){
         } else {
             push(stack, *currentCharacter);
         }
-        
+
         currentCharacter++;
     }
     return !isEmptyStack(stack);

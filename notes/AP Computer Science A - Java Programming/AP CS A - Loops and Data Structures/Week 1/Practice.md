@@ -1,10 +1,11 @@
 # Practice
 
 1. Write a `while` loop that runs until `x` is 6
+
 ```java
 public class Practice {
      public static void main(String[] args) {
-          int x = 0, howMuch = 0; 
+          int x = 0, howMuch = 0;
 
           /*** TODO: Write a while loop that runs until x is 6 ***/
           {

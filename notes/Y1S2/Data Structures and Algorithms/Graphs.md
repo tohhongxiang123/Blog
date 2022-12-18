@@ -29,11 +29,13 @@ void adjM2adjL ( Graph *g );
 ```
 
 2. Write a function adjL2adjM() to convert an adjacency list to an adjacency matrix. Please reuse the work down in Q1. The function prototype is given as follows:
+
 ```c
 void adjL2adjM ( Graph *g );
 ```
 
 3. The degree of a vertex v of a graph is the number of edges incident on v. Write a function calDegreeV() to compute vertex degrees using adjacent lists and using adjacency matrix. Please reuse the work done in Q1 and Q2.
+
 ```c
 void calDegreeV ( Graph g , int * degreeV )
 ```
@@ -168,20 +170,20 @@ void adjM2adjL(Graph *g)
 {
  // Question 1
  // Write your code here
- 
+
     // malloc new matrix
     int **newMatrix = (int **)malloc(g->V*sizeof(int *));
     for(int i=0;i<g->V;i++) {
         newMatrix[i] = (int *)malloc(g->V*sizeof(int));
     }
-        
+
     // copy values to new matrix
     for (int i=0; i<g->V; i++) {
         for (int j=0; j<g->V; j++) {
             newMatrix[i][j] = g->adj.matrix[i][j];
         }
     }
-    
+
     // loop through new matrix, insert node into adjacency list if there exists an edge
     for (int i=0; i<g->V; i++) {
         g->adj.list[i] = NULL;
@@ -191,13 +193,13 @@ void adjM2adjL(Graph *g)
             }
         }
     }
-    
+
     // free created matrix
     for (int i=0; i<g->V; i++) {
         free(newMatrix[i]);
     }
     free(newMatrix);
-    
+
     // set type
     g->type = ADJ_LIST;
 }
@@ -205,27 +207,27 @@ void adjM2adjL(Graph *g)
 void adjL2adjM(Graph *g){
 	// Question 2
     // Write your code here
-    
+
     // create temporary new matrix
     int **newMatrix = (int **)malloc(g->V*sizeof(int *));
     for(int i=0;i<g->V;i++) {
         newMatrix[i] = (int *)malloc(g->V*sizeof(int));
     }
-    
+
     // set all to zeroes
     for (int i=0; i<g->V; i++) {
         for (int j=0; j<g->V; j++) {
            newMatrix[i][j] = 0;
         }
     }
-    
+
     // loop through adjacency list, and set new matrix if there is an edge
     for (int i=0; i<g->V; i++) {
         for (ListNode *currentNode = g->adj.list[i]; currentNode != NULL; currentNode = currentNode->next) {
             newMatrix[i][currentNode->vertex - 1] += 1;
         }
     }
-    
+
     // free the existing adjacency list
     for (int i=0; i<g->V; i++) {
         for (ListNode *currentNode = g->adj.list[i]; currentNode != NULL; currentNode = currentNode->next) {
@@ -233,7 +235,7 @@ void adjL2adjM(Graph *g){
         }
     }
     free(g->adj.list);
-    
+
     // set type and matrix
     g->type = ADJ_MATRIX;
     g->adj.matrix = newMatrix;
@@ -245,7 +247,7 @@ void calDegreeV(Graph g, int *degreeV)
     // Write your code here
     for(int i=0;i<g.V;i++)
         degreeV[i]=0;
-        
+
     if (g.type == ADJ_MATRIX) {
         for (int i=0; i<g.V; i++) {
             for (int j=0; j<g.V; j++) {
@@ -256,7 +258,7 @@ void calDegreeV(Graph g, int *degreeV)
         }
         return;
     }
-    
+
     for (int i=0; i<g.V; i++) {
         for (ListNode *currentNode = g.adj.list[i]; currentNode != NULL; currentNode = currentNode->next) {
             degreeV[i] += 1;
@@ -267,7 +269,7 @@ void calDegreeV(Graph g, int *degreeV)
 void insertNode(ListNode **head, int vertex) {
     ListNode *newNode = malloc(sizeof(ListNode));
     newNode->vertex = vertex;
-    
+
     newNode->next = *head;
     *head = newNode;
     return;

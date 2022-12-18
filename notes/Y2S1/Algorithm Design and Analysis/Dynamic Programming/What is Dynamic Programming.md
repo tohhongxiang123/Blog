@@ -2,10 +2,10 @@
 
 Dynamic Programming (DP) is a problem solving paradigm, similar to divide and conquer. The general procedure for dynamic programming is
 
-- Divide a problem into overlapping subproblems
-- Solve each subproblem recursively
-- Combine the solutions to the subproblems into a solution for the given problem
-    - Do not compute the answer to the same subproblem more than once
+-   Divide a problem into overlapping subproblems
+-   Solve each subproblem recursively
+-   Combine the solutions to the subproblems into a solution for the given problem
+    -   Do not compute the answer to the same subproblem more than once
 
 ## E.g. Fibonacci Numbers
 
@@ -64,11 +64,11 @@ int fib(int n, int *sols) {
         sols[n] = n;
         return n;
     }
-    
+
     if (sols[n] != -1) {
         return sols[n];
     }
-    
+
     int f1;
     if (sols[n-1] == -1) {
         f1 = fib(n-1, sols);
@@ -92,11 +92,11 @@ int main()
 {
     int n = 50;
     int *sols = malloc(sizeof(int) * (n + 1));
-    
+
     for (int i = 0; i < n + 1; i++) {
         sols[i] = -1;
     }
-    
+
     printf("fib(%d): %d\n", n, fib(n, sols));
 }
 ```
@@ -117,7 +117,6 @@ Instead of solving from the top of the problem, we start from the smallest versi
 2. As we increase the problem size, we use the previous solutions and store the new solution back into the dictionary
 3. The solution to P is computed based on the solutions to its subproblems
 
-
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -129,14 +128,14 @@ int fib(int n) {
     for (int i = 2; i < n + 1; i++) {
         sols[i] = sols[i - 1] + sols[i - 2];
     }
-    
+
     return sols[n];
 }
 
 int main()
 {
     int n = 30;
-    
+
     printf("fib(%d): %d\n", n, fib(n));
 }
 ```

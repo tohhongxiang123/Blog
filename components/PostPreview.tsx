@@ -1,21 +1,34 @@
-import React from "react"
-import Link from 'next/link'
-import { formatDate } from '../utils/convertDate'
+import React from 'react';
+import Link from 'next/link';
+import { formatDate } from '../utils/convertDate';
 
-interface PostPreviewProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	filePath: string,
-	data: { [key:string]: string }
+interface PostPreviewProps
+    extends React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLDivElement>,
+        HTMLDivElement
+    > {
+    filePath: string;
+    data: { [key: string]: string };
 }
 
-export default function PostPreview({ filePath, data, ...props }: PostPreviewProps) {
-	return (
-		<div className="flex flex-col sm:flex-row sm:justify-between items-baseline gap-x-4 p-4" {...props}>
-			<Link as={`/${filePath}`} href={`/posts/[slug]`} className="hover:underline text-xl">
-				{data.title}
-			</Link>
-			<small className="flex-shrink-0">
-				{formatDate(data.date)}
-			</small>
-		</div>
-	);
+export default function PostPreview({
+    filePath,
+    data,
+    ...props
+}: PostPreviewProps) {
+    return (
+        <div
+            className="flex flex-col sm:flex-row sm:justify-between items-baseline gap-x-4 p-4"
+            {...props}
+        >
+            <Link
+                as={`/${filePath}`}
+                href="/posts/[slug]"
+                className="hover:underline text-xl"
+            >
+                {data.title}
+            </Link>
+            <small className="flex-shrink-0">{formatDate(data.date)}</small>
+        </div>
+    );
 }

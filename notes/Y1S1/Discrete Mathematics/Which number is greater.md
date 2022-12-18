@@ -2,7 +2,7 @@
 
 Consider the function $f(x) = x^{\frac{1}{x}}$
 
-Differentiating it gives us 
+Differentiating it gives us
 
 $$
 f'(x) = (\frac{1}{x^2})(x^{\frac{1}{x}})(1 - \ln x)
@@ -10,7 +10,7 @@ $$
 
 Solving for stationary points $f'(x) = 0$, we get $x = e$ as a **maximum** point.
 
-Hence we know that 
+Hence we know that
 
 $$
 \begin{aligned}

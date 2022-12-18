@@ -1,4 +1,4 @@
-# Binary Search Trees 
+# Binary Search Trees
 
 1. Write a function `insertBSTNode()` that adds an item to a Binary Search Tree.
 
@@ -16,7 +16,6 @@ void printBSTInOrder(BTNode *node);
 
 3. Write a function `isBST()` that determines whether a given Binary Tree is also a Binary Search Tree. The function should return 1 if the BT is a BST, and 0 otherwise.
 4. Write a function `removeBSTNode()` that removes a given item from a Binary Search Tree. The function should return 0 if the item was found and successfully removed and 1 otherwise.
-
 
 ```c
 //////////////////////////////////////////////////////////////////////
@@ -94,7 +93,7 @@ void insertBSTNode(BTNode **node, int value)
     	*node = newNode;
     	return;
 	}
-	
+
 	if (value < (*node)->item) {
 	    insertBSTNode(&((*node)->left), value);
 	} else if (value > (*node)->item) {
@@ -113,7 +112,7 @@ void printBSTInOrder(BTNode *node)
 	if (node == NULL) {
 	    return;
 	}
-	
+
 	printBSTInOrder(node->left);
 	printf("%d ", node->item);
 	printBSTInOrder(node->right);
@@ -125,11 +124,11 @@ int isBST(BTNode *node, int min, int max) // the item stored in node has to be s
 {
 	// write your code here
 	if (node == NULL) return 1;
-	
+
 	if (node->item < min || node->item > max) {
 	    return 0;
 	}
-	
+
 	return isBST(node->left, min, node->item) && isBST(node->right, node->item, max);
 }
 
@@ -141,7 +140,7 @@ BTNode *removeBSTNode(BTNode *node, int value)
 	if (node == NULL) {
 	    return node;
 	}
-	
+
 	if (value < node->item) {
 	    node->left = removeBSTNode(node->left, value);
 	} else if (value > node->item) {
@@ -164,7 +163,7 @@ BTNode *removeBSTNode(BTNode *node, int value)
 	        node->right = removeBSTNode(node->right, inOrderSuccessor->item);
 	    }
 	}
-	
+
 	return node;
 }
 
@@ -176,11 +175,11 @@ BTNode *findMin(BTNode *p)
 	if (p == NULL) {
 	    return p;
 	}
-	
+
 	while (p->left) {
 	    p = p->left;
 	}
-	
+
 	return p;
 }
 

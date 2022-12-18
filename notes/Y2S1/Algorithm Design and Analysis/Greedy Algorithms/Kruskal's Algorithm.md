@@ -2,8 +2,8 @@
 
 Kruskal's algorithm is a greedy algorithm used to find the minimum spanning tree in an undirected graph. Note that a minimum spanning tree
 
-- Contains all vertices of the graph
-- Has the minimum sum of weights of edges among all the trees that can be formed in the graph
+-   Contains all vertices of the graph
+-   Has the minimum sum of weights of edges among all the trees that can be formed in the graph
 
 # General Procedure
 
@@ -22,6 +22,7 @@ Repeat until all edges are considered
 The most common way to find a cycle in a graph is called the union find. The Union-Find algorithm divides vertices into clusters and allows us to check whether vertices belong to the same cluster. If 2 vertices belong to the same cluster, adding a new edge between these 2 vertices will create a cycle
 
 There are 2 components to the Union-Find algorithm
+
 1. Find - Finds the root vertice of a cluster
 2. Union - Unifies 2 different clusters together
 
@@ -100,7 +101,7 @@ typedef struct _Edge {
     int weight;
 } Edge;
 
-Edge *createEdge(int u, int v, int weight) { 
+Edge *createEdge(int u, int v, int weight) {
     // create a graph edge that connects vertex u to vertex v, with weight
     Edge *e = malloc(sizeof(Edge));
     e->u = u;
@@ -113,7 +114,7 @@ void printArray(int *arr, int size) {
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }
-    
+
     printf("\n");
 }
 
@@ -126,19 +127,19 @@ void printEdges(Edge **edges, int size) {
 int find(int *ids, int *sizes, int index) {
     // find the root of the component
     int root = index;
-    
+
     // find the root of the set
     while (root != ids[root]) {
         root = ids[root];
     }
-    
+
     // compress the path leading back to the root
     while (index != root) {
         int next = ids[index];
         ids[index] = root;
         index = next;
     }
-    
+
     return root;
 }
 
@@ -151,12 +152,12 @@ void unify(int *ids, int *sizes, int p, int q) {
     // unify 2 components together
     int root1 = find(ids, sizes, p);
     int root2 = find(ids, sizes, q);
-    
+
     // same group
     if (root1 == root2) {
         return;
     }
-    
+
     // merge smaller group into larger group
     if (sizes[root1] > sizes[root2]) {
         sizes[root1] += sizes[root2];
@@ -171,7 +172,7 @@ void sortEdges(Edge **edges, int size) {
     // sort edges with increasing weight
     int i, j;
     Edge *temp;
-    
+
     for (i = 1; i < size; i++) {
         for (j = 0; j < size - 1; j++) {
             if (edges[j]->weight > edges[j + 1]->weight) {
@@ -188,19 +189,19 @@ void kruskal(Edge **edges, int numberOfEdges, int numberOfVertices) {
     int *sizes = malloc(sizeof(int) * numberOfVertices); // size of the component each vertex belongs to
     Edge **mstForest = malloc(sizeof(Edge*) * numberOfEdges); // final MST forest of edges
     int mstForestCount = 0; // number of edges within MST forest
-    
+
     for (int i = 0; i < numberOfVertices; i++) {
         ids[i] = i; // initially, each vertice is in its own component (unconnected)
         sizes[i] = 1; // each component consists of only vertex i
     }
-    
+
     sortEdges(edges, numberOfEdges); // sort edges from smallest to largest
-    
+
     for (int i = 0; i < numberOfEdges; i++) {
         Edge *currentEdge = edges[i]; // pick the smallest unpicked edge
         int vertex1Index = currentEdge->u;
         int vertex2Index = currentEdge->v;
-        
+
         // if same group, adding an edge creates a cycle
         if (find(ids, sizes, vertex1Index) == find(ids, sizes, vertex2Index)) {
             continue;
@@ -211,7 +212,7 @@ void kruskal(Edge **edges, int numberOfEdges, int numberOfVertices) {
             mstForestCount++;
         }
     }
-    
+
     printEdges(mstForest, mstForestCount);
 }
 
@@ -259,7 +260,7 @@ WLOG, let $h_2 \leq h_1$. We know that after the union, the new tree has height 
 1. $h_1$
 2. $h_2 + 1$
 
-We know that 
+We know that
 
 $$
 h_1 \leq \lfloor \log k_1 \rfloor \leq \lfloor \log k \rfloor
@@ -287,7 +288,7 @@ From this lemma, we can conclude that both `find` and `unify` on a tree of $n$ e
 On a graph $G = (V, E, W)$
 
 1. We initialise `ids` and `sizes` for union-find accordingly - $O(V)$
-2. We initialise `mstForest`, which is an array of edges that are in the MST 
+2. We initialise `mstForest`, which is an array of edges that are in the MST
 3. We sort the edges from the lowest weight to the highest weight - $O(E \log E)$
 4. We start with the edge with lowest weight, for all edges: - $O(E)$
     1. We look at the 2 vertices that are connected by the edge, `u` and `v`
@@ -296,7 +297,7 @@ On a graph $G = (V, E, W)$
 
 Hence, the overall time complexity is $O(E\log V + E \log E)$
 
-If the graph is dense, note that the time complexity is then $O(E \log E) = O(V^2 \log V)$, and if the graph is sparse ($E < V$), then the time complexity is $O(E \log V)$. 
+If the graph is dense, note that the time complexity is then $O(E \log E) = O(V^2 \log V)$, and if the graph is sparse ($E < V$), then the time complexity is $O(E \log V)$.
 
 Comparatively, on a dense graph, Prim's algorithm runs in $O(V^2)$ and on a sparse graph, Prim's algorithm runs in $O(E \log V)$.
 
@@ -304,9 +305,9 @@ Hence, on a dense graph, Prim's algorithm performs better ($O(V^2)$) and on a sp
 
 # Resources
 
-- https://www.youtube.com/watch?v=JZBQLXgSGfs
-- https://www.youtube.com/watch?v=KbFlZYCpONw
-- https://www.youtube.com/watch?v=0jNmHPfA_yE
-- https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
-- https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
-- https://www.programiz.com/dsa/kruskal-algorithm
+-   https://www.youtube.com/watch?v=JZBQLXgSGfs
+-   https://www.youtube.com/watch?v=KbFlZYCpONw
+-   https://www.youtube.com/watch?v=0jNmHPfA_yE
+-   https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+-   https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
+-   https://www.programiz.com/dsa/kruskal-algorithm

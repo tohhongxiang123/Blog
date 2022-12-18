@@ -7,7 +7,7 @@ public class Practice {
      public static void main(String[] args) {
 
           /*** TODO: Declare a new array, myAry, that can store 12 integers ***/
-          
+
           for (int i = 0; i < 12; i++) {
                myAry[i] = i % 6;
                System.out.println("myAry[" + i + "] stores " + myAry[i]);
@@ -25,7 +25,7 @@ public class Practice {
           /*** TODO: Declare a new array, monthAry, that stores the exact
                      values: {"Jan","Feb","Mar","Apr","May","Jun","Jul",
                               "Aug","Sep","Oct","Nov","Dec"} ***/
-          
+
           for (int i = 0; i < 12; i++) {
                System.out.println(myAry[i]);
           }
@@ -49,7 +49,7 @@ public class Practice {
           double[] distance = {35.3, 17.8, 21.3, 104.0, 55.9, 59.7, 44.3};
           double totalDistance = 0;
 
-          /*** TODO: Write the header for a for-each loop that iterates 
+          /*** TODO: Write the header for a for-each loop that iterates
                      through distance using "d" as the temporary variable ***/
           {
                totalDistance += d;

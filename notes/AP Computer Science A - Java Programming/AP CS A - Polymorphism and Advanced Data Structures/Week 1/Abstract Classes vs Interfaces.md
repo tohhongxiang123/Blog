@@ -14,14 +14,15 @@
 
 ### Consider using abstract classes if you:
 
-- Want to share code among serveral closely related classes
-- Expect that classes that extend your abstract class have many common methods or fields
-- Expect that classes that extend your abstract class require access modifiers other than `public` (such as `private`/`protected`)
-- You want to declare non-static or non-final fields
+-   Want to share code among serveral closely related classes
+-   Expect that classes that extend your abstract class have many common methods or fields
+-   Expect that classes that extend your abstract class require access modifiers other than `public` (such as `private`/`protected`)
+-   You want to declare non-static or non-final fields
 
 ### Consider using interfaces if you:
-- Expect that unerlated classes would implement your interface (E.g. `Comparable` and `Cloneable` are implemented by many unrelated classes)
-- Want to specify the behavior of a particular data type, but not concerned about who implements the behavior
+
+-   Expect that unerlated classes would implement your interface (E.g. `Comparable` and `Cloneable` are implemented by many unrelated classes)
+-   Want to specify the behavior of a particular data type, but not concerned about who implements the behavior
 
 Tldr;
 

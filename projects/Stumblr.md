@@ -6,4 +6,3 @@ demo: https://stumblr-social-media-website.herokuapp.com/
 screenshot: /project_screenshots/stumblr.jpg
 technologies: ['react', 'express', 'postgresql', 'node']
 ---
-

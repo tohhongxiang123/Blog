@@ -4,11 +4,11 @@ A few conventions or suggestions to write code that is easier to read. Breaking 
 
 # Naming Conventions
 
-Variables are named with *lowerCamelCase* (`maxSpeed`, `isEligible`, `hasAdminPrivileges`)
+Variables are named with _lowerCamelCase_ (`maxSpeed`, `isEligible`, `hasAdminPrivileges`)
 
-Classes are named with *UpperCamelCase* (`BankingAccount`, `InternationalAirline`, `CorporateVehicle`). Note that the file must have the same name as the class.
+Classes are named with _UpperCamelCase_ (`BankingAccount`, `InternationalAirline`, `CorporateVehicle`). Note that the file must have the same name as the class.
 
-Symbolic constants are *UPPER_CASE* (`DAYS_IN_MONTH`, `PI`, `DEFAULT_NAME`)
+Symbolic constants are _UPPER_CASE_ (`DAYS_IN_MONTH`, `PI`, `DEFAULT_NAME`)
 
 # Formatting Brackets
 

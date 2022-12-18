@@ -6,7 +6,7 @@ Object Oriented programming (OOP) is a programming paradigm that relies on the c
 
 # Class
 
-A class is a template for creating objects. For example, let us create a robot. 
+A class is a template for creating objects. For example, let us create a robot.
 
 This robot has a `name`, a `color`, and a `max_speed`. These are all **variables** of a class, because each robot can have different names, colors, or max speeds.
 

@@ -2,8 +2,8 @@
 
 > We have a knapsack of capacity $C$, where $C$ is a positive integer, and $n$ objects with weights $w_1, w_2, ..., w_n$ and profits $p_1, p_2, ... , p_n$, where all $w_i$ and $p_i$ are positive integers. Find the largest total profit of any subset of the objects that fit in the knapsack
 
-- We have to take whole objects
-- There are $2^n$ subsets of $n$ objects, brute force will take $O(2^n)$ time
+-   We have to take whole objects
+-   There are $2^n$ subsets of $n$ objects, brute force will take $O(2^n)$ time
 
 # Procedure
 
@@ -24,6 +24,7 @@ $$
 $$
 
 3. Draw subproblem graph and find dependencies among subproblems
+
     - For this, we know that $P(C, n)$ depends on $P(C - w_n, n-1)$ and $P(C, n-1)$
 
 4. Create the dynamic programming table
@@ -66,7 +67,7 @@ int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
 
             if (weights[currentNumberOfElements - 1] <= currentCapacity) { // if we can fit a new item
                 // we check the profit if we include the item
-                int profitsIncludingNewElement = profits[currentNumberOfElements - 1] + 
+                int profitsIncludingNewElement = profits[currentNumberOfElements - 1] +
                     overallProfits[currentCapacity - weights[currentNumberOfElements - 1]][currentNumberOfElements - 1];
                 // if profits for including item > profits without including item
                 if (profitsIncludingNewElement > overallProfits[currentCapacity][currentNumberOfElements]) {
@@ -121,7 +122,7 @@ int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
 
             if (weights[currentNumberOfElements - 1] <= currentCapacity) { // if we can fit a new item
                 // we check the profit if we include the item
-                int profitsIncludingNewElement = profits[currentNumberOfElements - 1] + 
+                int profitsIncludingNewElement = profits[currentNumberOfElements - 1] +
                     overallProfits[currentCapacity - weights[currentNumberOfElements - 1]][currentNumberOfElements - 1];
                 // if profits for including item > profits without including item
                 if (profitsIncludingNewElement > overallProfits[currentCapacity][currentNumberOfElements]) {
@@ -131,7 +132,7 @@ int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
             }
         }
     }
-    
+
     // print out the contents of the knapsack
     int remainingWeight = capacity;
     cout << "Contents: " << endl;
@@ -139,7 +140,7 @@ int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
         if (remainingWeight <= 0) {
             break;
         }
-        
+
         if (overallProfits[remainingWeight][i] != overallProfits[remainingWeight][i - 1]) {
             cout << "Weight: " << weights[i - 1] << ", Profit: " << profits[i - 1] << endl;
             remainingWeight -= weights[i - 1];
@@ -156,8 +157,9 @@ int knapsack(int weights[], int profits[], int numberOfElements, int capacity) {
 The time complexity of 0/1 knapsack is $O(nC)$, where $n$ is the number of objects, and $C$ is the capacity
 
 This algorithm runs in **pseudo-polynomial** time
-- The runtime is a polynomial function of the **value** of the input
-- For this case, the runtime depends on the capacity $C$ of the knapsack
+
+-   The runtime is a polynomial function of the **value** of the input
+-   For this case, the runtime depends on the capacity $C$ of the knapsack
 
 # Variation to 0/1 Knapsack: Unbounded Knapsack
 
@@ -183,13 +185,13 @@ Instead of either having 0 or 1 of each item, assume that we have an infinite su
         3. We print out this item's profit (`profit[c]`) and then set `c = c - weights[itemsKept[c]]`. We want reduce the capacity by the weight of the item, and continue from there
 7. Return `overallProfits[capacity]`
 
-To print each item, 
+To print each item,
 
 ```py
 def knapsack(profits, weights, capacity):
     overallProfits = [0 for i in range(capacity + 1)]
     itemKept = [-1 for i in range(capacity + 1)]
-    
+
     for i in range(1, capacity + 1):
         indexOfWeightKept = -1
         for j in range(len(profits)):
@@ -199,16 +201,16 @@ def knapsack(profits, weights, capacity):
                 if currentProfit < newProfit:
                     overallProfits[i] = newProfit
                     indexOfWeightKept = j
-                    
+
         itemKept[i] = indexOfWeightKept
-    
+
     currentCapacity = capacity
     while currentCapacity > 0:
         if overallProfits[currentCapacity] != overallProfits[currentCapacity-1]:
             print("Weight used: ", profits[itemKept[currentCapacity]])
             currentCapacity -= weights[itemKept[currentCapacity]]
             continue
-            
+
         currentCapacity -= 1
     return overallProfits[capacity]
 ```

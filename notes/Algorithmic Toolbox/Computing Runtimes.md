@@ -1,16 +1,17 @@
 # Computing Runtimes
 
 To figure out how long a program runs, you may need to take into account
-- How fast the computer is
-- The compiler being used
-- The computer architecture
-- The program's language etc.
+
+-   How fast the computer is
+-   The compiler being used
+-   The computer architecture
+-   The program's language etc.
 
 Figuring out accurate runtime is a huge mess, and in practice, you don't know any of these details. We need to measure runtime without knowing these details, and what the runtime is for **very large** inputs.
 
 # Asymptotic Notation
 
-All the minute details above, should only affect the runtime by a **constant**. So, we measure runtime in a way that ignores these constant multiples. 
+All the minute details above, should only affect the runtime by a **constant**. So, we measure runtime in a way that ignores these constant multiples.
 
 We will consider **asymptotic** runtimes - how runtimes **scale with input size**
 
@@ -21,43 +22,46 @@ $$
 # Big-O Notation
 
 > $f(n) = O(g(n))$ if there exists constants $N$ and $c$ such that for all $n \ge N$, $f(n) \le c g(n)$
-> 
+>
 > $f$ is bounded above by some constant multiple of $g$
 
 For example,
-$3n^2 + 5n + 2 = O(n^2)$, because if $n \ge 1$, 
+$3n^2 + 5n + 2 = O(n^2)$, because if $n \ge 1$,
 
 $3n^2 + 5n + 2 \le 3n^2 + 5n^2 + 2n^2 = 10n^2$
 
 ### Advantages of Big-O
-- Big-O notation clearly shows how the runtime scales with input size
-- It is easier to write $O(n^2)$ rather than $3n^2 + 5n + 2$, or $O(n)$ instead of $n + \log_2 n + \sin n$
-  - Note, $\log_2 n, \log_3 n, \log_x n$ all differ by constant multiples, hence we don't need to specify which base the log is
-- Don't need to worry about small details such as computer specifications etc.
+
+-   Big-O notation clearly shows how the runtime scales with input size
+-   It is easier to write $O(n^2)$ rather than $3n^2 + 5n + 2$, or $O(n)$ instead of $n + \log_2 n + \sin n$
+    -   Note, $\log_2 n, \log_3 n, \log_x n$ all differ by constant multiples, hence we don't need to specify which base the log is
+-   Don't need to worry about small details such as computer specifications etc.
 
 ### Disadvantages of Big-O
-- Loses important information about constant multiples
-  - 2 algorithms that scale equally with input size, however one runs 100x faster than the other
-- Big-O is only asymptotic
-  - Sometimes an algorithm is only more efficient than another at unmeasurably large input sizes
+
+-   Loses important information about constant multiples
+    -   2 algorithms that scale equally with input size, however one runs 100x faster than the other
+-   Big-O is only asymptotic
+    -   Sometimes an algorithm is only more efficient than another at unmeasurably large input sizes
 
 # Using Big-O Notation
 
-- Multiplicative constants can be ignored
-  - $\frac{\pi n^2}{e^{69}} = O(n^2)$
-  - $10000000000 \log n = O(\log n)$
-- $0 < a < b \implies n^a = O(n^b)$
-  - $0 < a < b \implies 1 < n^a < n^b$, hence $\forall n > 0, n^a > 1*n^b$
-  - $n = O(n^2)$
-  - $\sqrt{n} = O(n) = O(n^2)$
-- $a > 0, b > 1 \implies n^a = O(b^n)$ (Exponentials always grow faster than polynomials)
-  - $n^5 = O(\sqrt{2}^n)$
-  - $n^{10^{10}} = O(1.0001^n)$
-- $a, b > 0 \implies (\log n)^a = O(n^b)$
-  - $(\log n)^{69} = O(\sqrt{n})$
-  - $n \log n = O(n^2)$
+-   Multiplicative constants can be ignored
+    -   $\frac{\pi n^2}{e^{69}} = O(n^2)$
+    -   $10000000000 \log n = O(\log n)$
+-   $0 < a < b \implies n^a = O(n^b)$
+    -   $0 < a < b \implies 1 < n^a < n^b$, hence $\forall n > 0, n^a > 1*n^b$
+    -   $n = O(n^2)$
+    -   $\sqrt{n} = O(n) = O(n^2)$
+-   $a > 0, b > 1 \implies n^a = O(b^n)$ (Exponentials always grow faster than polynomials)
+    -   $n^5 = O(\sqrt{2}^n)$
+    -   $n^{10^{10}} = O(1.0001^n)$
+-   $a, b > 0 \implies (\log n)^a = O(n^b)$
+    -   $(\log n)^{69} = O(\sqrt{n})$
+    -   $n \log n = O(n^2)$
 
 ### Proof that $\lim_{n \to \infty} \frac{n^a}{b^n} = 0$
+
 $$
 \begin{aligned}
     0 \le \lim_{n \to \infty} \frac{n^a}{b^n} &= \lim_{n \to \infty} \frac{n^a}{(1+p)^n} &  \text{(Binomial theorem)} \\
@@ -71,9 +75,9 @@ $$
 \end{aligned}
 $$
 
-- Smaller terms can be omitted
-  - $\frac{1}{100000}n^2 + 69^{420}n = O(n^2)$
-  - $2^n + n^{10000} = O(2^n)$
+-   Smaller terms can be omitted
+    -   $\frac{1}{100000}n^2 + 69^{420}n = O(n^2)$
+    -   $2^n + n^{10000} = O(2^n)$
 
 Let us look at the fibonacci algorithm
 
@@ -86,24 +90,26 @@ for i from 2 to n:
 return F[n]
 ```
 
-Operation | Runtime
---- | ---
-create an array F[0, ..., n] | $O(n)$
-F[0] = 0 | $O(1)$
-F[1] = 1 | $O(1)$
-for i from 2 to n | Loop $O(n)$ times
-F[i] = F[i-1] + F[i-2] | $O(n)$ (Large numbers take a longer time to add, and as n increases, the number increases in magnitude)
-return F[n] | $O(1)$
-Total | $O(n) + O(1) + O(1) + O(n) * O(n) + O(1) = O(n^2)$
+| Operation                    | Runtime                                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------- |
+| create an array F[0, ..., n] | $O(n)$                                                                                                  |
+| F[0] = 0                     | $O(1)$                                                                                                  |
+| F[1] = 1                     | $O(1)$                                                                                                  |
+| for i from 2 to n            | Loop $O(n)$ times                                                                                       |
+| F[i] = F[i-1] + F[i-2]       | $O(n)$ (Large numbers take a longer time to add, and as n increases, the number increases in magnitude) |
+| return F[n]                  | $O(1)$                                                                                                  |
+| Total                        | $O(n) + O(1) + O(1) + O(n) * O(n) + O(1) = O(n^2)$                                                      |
 
 # Other Notation
-For functions $f, g: \N \mapsto \R^+$, we say that
-- $f(n) = \Omega(g(n))$ if for some $c, f(n) \ge cg(n)$ ($f$ grows no slower than $g$)
-- $f(n) = \Theta(g(n))$ if $f = O(g)$ and $f = \Omega(g)$ ($f$ grows at the same rate as $g$)
-- $f(n) = o(g(n))$ if $\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0$ ($f$ grows strictly slower than $g$)
 
+For functions $f, g: \N \mapsto \R^+$, we say that
+
+-   $f(n) = \Omega(g(n))$ if for some $c, f(n) \ge cg(n)$ ($f$ grows no slower than $g$)
+-   $f(n) = \Theta(g(n))$ if $f = O(g)$ and $f = \Omega(g)$ ($f$ grows at the same rate as $g$)
+-   $f(n) = o(g(n))$ if $\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0$ ($f$ grows strictly slower than $g$)
 
 # Example Questions
+
 Order the functions by increasing growth rate:
 
 $$

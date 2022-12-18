@@ -1,11 +1,12 @@
 # Matrix Algebra
 
 # Matrix multiplication
-- $A(Bx)$ is produced from $x$ by a *composition* of 2 linear transformations B, then A
-- We can represent the 2 transformations with a single matrix, by multiplying 
-$$
-A(Bx) = (AB)x
-$$
+
+-   $A(Bx)$ is produced from $x$ by a _composition_ of 2 linear transformations B, then A
+-   We can represent the 2 transformations with a single matrix, by multiplying
+    $$
+    A(Bx) = (AB)x
+    $$
 
 # Inverse of a Matrix
 
@@ -14,6 +15,7 @@ $$
 Proof: Let $b \in \R^n$
 
 Proof that solution exists: Substitute $A^{-1}b$ into $Ax = b$
+
 $$
 \begin{aligned}
 Ax &= AA^{-1}b \\
@@ -24,6 +26,7 @@ Ax &= AA^{-1}b \\
 $$
 
 Proof that solution is unique
+
 $$
 \begin{aligned}
 Ax &= b \\
@@ -33,14 +36,16 @@ x &= A^{-1}b
 $$
 
 Theorem on invertible matrices
-- If $A$ is an invertible matrix, then $A^{-1}$ is invertible and $(A^{-1})^{-1} = A$
-- If $A$ and $B$ are $n \times n$ invertible matrices, then $AB$ is also invertible. $(AB)^{-1} = B^{-1}A^{-1}$
-- If $A$ is an invertible matrix, so is $A^T$, and $(A^T)^{-1} = (A^{-1})^T$
+
+-   If $A$ is an invertible matrix, then $A^{-1}$ is invertible and $(A^{-1})^{-1} = A$
+-   If $A$ and $B$ are $n \times n$ invertible matrices, then $AB$ is also invertible. $(AB)^{-1} = B^{-1}A^{-1}$
+-   If $A$ is an invertible matrix, so is $A^T$, and $(A^T)^{-1} = (A^{-1})^T$
 
 Proofs
-- Find a matrix $C$ such that $A^{-1}C = I$ and $CA^{-1} = I$. $C$ is simply $A$. Hence $A^{-1}$ is invertible, and its inverse is $A$
-- Find a matrix $C$ such that $(AB)C = I$ and $C(AB) = I$. If $C = B^{-1}A^{-1}$, then $(AB)(B^{-1}A^{-1}) = I$, similarly for $(B^{-1}A^{-1})(AB)$
-- Find a matrix $C$ such that $A^TC = I$ and $CA^T = I$. If $C = (A^{-1})^T$, then $A^T (A^{-1})^T = (AA^{-1})^T = I^T = I$. Similarly for $(A^{-1})^T A^T$. Hence $A^T$ is invertible, and $(A^T)^{-1} = (A^{-1})^T$
+
+-   Find a matrix $C$ such that $A^{-1}C = I$ and $CA^{-1} = I$. $C$ is simply $A$. Hence $A^{-1}$ is invertible, and its inverse is $A$
+-   Find a matrix $C$ such that $(AB)C = I$ and $C(AB) = I$. If $C = B^{-1}A^{-1}$, then $(AB)(B^{-1}A^{-1}) = I$, similarly for $(B^{-1}A^{-1})(AB)$
+-   Find a matrix $C$ such that $A^TC = I$ and $CA^T = I$. If $C = (A^{-1})^T$, then $A^T (A^{-1})^T = (AA^{-1})^T = I^T = I$. Similarly for $(A^{-1})^T A^T$. Hence $A^T$ is invertible, and $(A^T)^{-1} = (A^{-1})^T$
 
 # Elementary matrix
 
@@ -48,18 +53,18 @@ An elementary matrix is one that is obtained by performing a **single** elementa
 
 $$
 \begin{bmatrix}
-0 & 1 & 0 \\ 
+0 & 1 & 0 \\
 1 & 0 & 0 \\
 0 & 0 & 1
 \end{bmatrix},
 \begin{bmatrix}
 1 & 0 & 0 \\
-0 & 7 & 0 \\ 
+0 & 7 & 0 \\
 0 & 0 & 1
 \end{bmatrix},
 \begin{bmatrix}
 1 & 0 & 0 \\
-0 & 1 & 0 \\ 
+0 & 1 & 0 \\
 -69 & 0 & 1
 \end{bmatrix}
 $$
@@ -91,6 +96,7 @@ E = \begin{bmatrix}
 $$
 
 The inverse of $E$ is itself
+
 $$
 E^{-1} = \begin{bmatrix}
 0 & 1 & 0 \\
@@ -111,8 +117,8 @@ To do this, we can create an augmented matrix $\begin{bmatrix} A & I \end{bmatri
 
 $$
 \begin{aligned}
-\begin{bmatrix} A & I \end{bmatrix} &= 
-\begin{bmatrix} 
+\begin{bmatrix} A & I \end{bmatrix} &=
+\begin{bmatrix}
 0 & 1 & 2 & 1 & 0 & 0 \\
 1 & 0 & 3 & 0 & 1 & 0 \\
 4 & -3 & 8 & 0 & 0 & 1
@@ -147,6 +153,7 @@ A^{-1} &= \begin{bmatrix}
 $$
 
 Invertible Matrix Theorem: Let $A$ be a square $n \times n$ matrix. Then the following statements are equivalent (all true or all false)
+
 1. $A$ is invertible
 2. $A$ is row equivalent to $I_n$
 3. $A$ has $n$ pivots
@@ -159,16 +166,19 @@ Invertible Matrix Theorem: Let $A$ be a square $n \times n$ matrix. Then the fol
 10. $A^T$ is invertible
 
 # Matrix Factorizations
-- Matrix multiplication is the *synthesis* of data $AB = C$
-- Give $C$, we want to extract out $A$ and $B$, that is the *analysis* of data
+
+-   Matrix multiplication is the _synthesis_ of data $AB = C$
+-   Give $C$, we want to extract out $A$ and $B$, that is the _analysis_ of data
 
 # LU Factorization
+
 Consider solving a sequence of equations $Ax = b_1, Ax = b_2, \cdots, Ax = b_p$
-- Inefficient solution: Compute $A^{-1}$ and then find $A^{-1}b_1, \cdots, A^{-1}b_p$
-- Efficient solution: $A_{m \times n} = L_{m \times m}U_{m \times n}$
-    - Assumption that $A$ can be reduced to echelon form **without** row interchanges
-    - $L$ is the Unit Lower Triangular
-    - $U$ is the Upper Triangular
+
+-   Inefficient solution: Compute $A^{-1}$ and then find $A^{-1}b_1, \cdots, A^{-1}b_p$
+-   Efficient solution: $A_{m \times n} = L_{m \times m}U_{m \times n}$
+    -   Assumption that $A$ can be reduced to echelon form **without** row interchanges
+    -   $L$ is the Unit Lower Triangular
+    -   $U$ is the Upper Triangular
 
 $$
 A = LU = \begin{bmatrix}
@@ -187,7 +197,7 @@ $$
 $$
 \begin{aligned}
 Ax &= b \\
-LUx &= b 
+LUx &= b
 \end{aligned}
 
 \text{Let} y = Ux \\
@@ -198,10 +208,10 @@ Ux = y \text{(Solve for $x$ by backward substitution)}
 \end{aligned}
 $$
 
-E.g. Solve 
+E.g. Solve
 
 $$
-Ax = b, A = 
+Ax = b, A =
 \begin{bmatrix}
 3 & -7 & -2 & 2 \\
 -3 & 5 & 1 & 0 \\
@@ -218,10 +228,12 @@ Ax = b, A =
 0 & 0 & -1 & 1 \\
 0 & 0 & 0 & -1
 \end{bmatrix}
-$$ 
+$$
+
 and $b = \begin{bmatrix} -9 \\ 5 \\ 7 \\ 11 \end{bmatrix}$
 
 First, we can solve $Ly = b$ using an augmented matrix of $\begin{bmatrix} L \\ b \end{bmatrix}$
+
 $$
 \begin{bmatrix}
 1 & 0 & 0 & 0 & -9 \\
@@ -245,7 +257,7 @@ $$
 0 & -2 & -1 & 2 & -4 \\
 0 & 0 & -1 & 1 & 5 \\
 0 & 0 & 0 & -1 & 1
-\end{bmatrix} \rightarrow 
+\end{bmatrix} \rightarrow
 \begin{bmatrix}
 1 & 0 & 0 & 0 & 3 \\
 0 & 1 & 0 & 0 & 4 \\
@@ -263,10 +275,11 @@ x = \begin{bmatrix} 3 \\ 4 \\ -6 \\ -1 \end{bmatrix}
 $$
 
 # LU Factorization Procedure
-- Row reduction of $A$ to $U$ produces $L$ without extra work
-- Recall the assumption that $A$ can be reduced to echelon form **without row interchanges**
 
-There exists unit lower traignular elementary matrices $E_1, \cdots, E_p$ such that 
+-   Row reduction of $A$ to $U$ produces $L$ without extra work
+-   Recall the assumption that $A$ can be reduced to echelon form **without row interchanges**
+
+There exists unit lower traignular elementary matrices $E_1, \cdots, E_p$ such that
 
 $$
 \begin{aligned}
@@ -289,6 +302,7 @@ E.g. Find an $LU$ factorization of $A = \begin{bmatrix}
 \end{bmatrix}$
 
 First we reduce A to REF to find U
+
 $$
 \begin{aligned}
 A &= \begin{bmatrix}
@@ -309,7 +323,7 @@ A &= \begin{bmatrix}
 \end{aligned}
 $$
 
-We know $L$ takes the form 
+We know $L$ takes the form
 
 $$
 L = \begin{bmatrix}
@@ -337,6 +351,7 @@ $$
 Divide all the columns such that the top most non-zero element is a 1
 
 Alternatively
+
 $$
 L = \begin{bmatrix}
 1 & 0 & 0 \\
@@ -362,6 +377,7 @@ $$
 Just place the nonzero off-diagonal elements of the elementary matrices into the appropriate positions of L
 
 When the assumption is not valid,
+
 $$
 A = \begin{bmatrix}
 1 & 1 & 1 \\
@@ -388,7 +404,8 @@ For every $n \times n$ matrix $A$, there exists a matrix $P$, such that $PA$ pos
 FYI:
 
 For $n \times n$ dense matrix and for $n$ moderately large, (e.g. $n \ge 30$):
-- $LU$ factorization: about $2n^3/3$ flops
-- Find $A^{-1}$: about $2n^3$ flops
-- Solving $Ly = b$ and $Ux = y$: $2n^2$ flops
-- Multiplication of $b$ by $A^{-1}$: about $2n^2$ flops
+
+-   $LU$ factorization: about $2n^3/3$ flops
+-   Find $A^{-1}$: about $2n^3$ flops
+-   Solving $Ly = b$ and $Ux = y$: $2n^2$ flops
+-   Multiplication of $b$ by $A^{-1}$: about $2n^2$ flops

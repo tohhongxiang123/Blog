@@ -15,12 +15,14 @@ Output format: The maximum pairwise product
 Constraints: $2 \le n \le 2*10^5; 0 \le a_1, ..., a_n, 2*10^5$
 
 ### Input
+
 ```
 3
 1 2 3
 ```
 
 ### Output
+
 ```
 6
 ```
@@ -36,7 +38,7 @@ def max_prod(numbers):
         for j in range(len(numbers)):
             if i == j:
                 continue
-            
+
             product = numbers[i] * numbers[j]
             if product > max_product:
                 max_product = product
@@ -49,6 +51,7 @@ It runs in $O(n^2)$ time, which is bad because $n \le 2*10^5$. Consider my curre
 # Improving the algorithm
 
 What we can do instead is
+
 1. Find the biggest number in the array
 2. Find the second biggest number in the array
 3. Multiplying both together will give the maximum pairwise product
@@ -71,7 +74,7 @@ def max_product(numbers):
 
 We will prove by induction that `max_product` gives the correct result for any array with at least length 2
 
-For the base case, `len(numbers) == 2`, there is only 1 possible pairwise product. Hence, this pairwise product is the largest. 
+For the base case, `len(numbers) == 2`, there is only 1 possible pairwise product. Hence, this pairwise product is the largest.
 
 Assume that `max_product` is correct for arrays up to length `n`. Now we prove that, if `max_product` is correct for arrays up to length `n`, then it should be correct for arrays up to length `n+1`
 
@@ -86,6 +89,7 @@ If the last number is the largest number in the `n+1` length array, then `larges
 From all this, we have proven that `max_product` is correct for all arrays of at least length `n`.
 
 # Incorrect Algorithm and Proof of Incorrectness
+
 Let's look at an incorrect algorithm and see that we can prove that it is wrong.
 
 ```py

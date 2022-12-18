@@ -19,6 +19,7 @@ $$
 $$
 
 Solving for $b$,
+
 $$
 b = \frac{\sum_{i=1}^{n} y_i - \sum_{i=1}^{n} x_i}{n} = \bar{Y} - m\bar{X}
 $$

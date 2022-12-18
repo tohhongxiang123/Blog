@@ -16,7 +16,8 @@ static double cos(double x);
 static double tan(double x);
 ```
 
-2. Method overloading. Write an overloaded method `getUser` which can get the user via the `name` or the `id` of the user 
+2. Method overloading. Write an overloaded method `getUser` which can get the user via the `name` or the `id` of the user
+
 ```java
 public class User {
      String name;
@@ -44,7 +45,7 @@ public class Practice {
           return -1;
      }
 
-     /*** TODO: Write the overloaded method for getUser that takes an integer, id 
+     /*** TODO: Write the overloaded method for getUser that takes an integer, id
                 and returns an integer ***/
      {
           for (int i = 0; i < users.length; i++) {
@@ -62,8 +63,8 @@ public class Practice {
 ```
 
 3. Write a class `UserAccount` with the following:
-   - `private String email`
-   - `private String password` 
-   - `public String getEmail`
-   - `public String setEmail` - Only change email if email contains an `@` and ends with `.com` or `.edu`
-   - `public String setPassword` - Only change password if password is at least 8 characters long
+    - `private String email`
+    - `private String password`
+    - `public String getEmail`
+    - `public String setEmail` - Only change email if email contains an `@` and ends with `.com` or `.edu`
+    - `public String setPassword` - Only change password if password is at least 8 characters long

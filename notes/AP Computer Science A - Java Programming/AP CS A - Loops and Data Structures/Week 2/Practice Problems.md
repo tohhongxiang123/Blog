@@ -22,6 +22,7 @@ public class Main {
 ```
 
 There is also an alternative implementation for `reveerse` using `StringBuilder`
+
 ```java
 public class Main {
     static String reverse(String s) {
@@ -74,6 +75,7 @@ public class Main {
     }
 }
 ```
+
 Note: You can also use the `reverse` method used before to check whether a string is a palindrome.
 
 ```java
@@ -136,11 +138,11 @@ public class Practice {
 6. Print an n*n table, and print a * if i divides j or j divides i, else print a blank space. For n = 5 it should look like:
 
 ```
- *  *  *  *  * 
- *  *     *    
- *     *       
- *  *     *    
- *           * 
+ *  *  *  *  *
+ *  *     *
+ *     *
+ *  *     *
+ *           *
 ```
 
 ```java
@@ -172,7 +174,7 @@ II. Write an empty `public static void main(String[] args)` method. This method 
 III. Write at least one static class methods (`whatsMissing`). Note, that you may write additional methods to help you solve this problem. The method `whatsMissing` should take one String argument and return a String. The method should examine each character in the input String, and return a String that includes every letter in the alphabet that does not appear in the input String. Several example method calls appear below.
 
 ```java
-Alphabet.whatsMissing("hello darkness my old friend"); // returns “bcgjpqtuvwxz” 
+Alphabet.whatsMissing("hello darkness my old friend"); // returns “bcgjpqtuvwxz”
 Alphabet.whatsMissing("abc"); // returns “defghijklmnopqrstuvwxyz”
 ```
 

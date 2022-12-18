@@ -1,7 +1,8 @@
 # Querying DataFrames
 
 Boolean mask
-- An array which can be of one dimension (like a Series) or 2 dimensions (dataframe), each value is either true or false. The array is overlaid on top of the data structure we are querying. Any cell aligned with `true` will be admitted into our final result, and any cell aligned with `false` will not
+
+-   An array which can be of one dimension (like a Series) or 2 dimensions (dataframe), each value is either true or false. The array is overlaid on top of the data structure we are querying. Any cell aligned with `true` will be admitted into our final result, and any cell aligned with `false` will not
 
 ```py
 df['chance of admit'] > 0.7
@@ -36,6 +37,7 @@ df[(df['chance of admit'] > 0.7) & (df['toefl score'] > 100)]
 `df[df['chance of admit'] > 0.7 & df['toefl score'] > 100]`. Pandas tries to `0.7 & df['toefl score']`, which causes an error. You can also, instead of using `>`, use pandas' built-in `gt` (greater than) function `df[df['chance of admit'].gt(0.7) & df['toefl score'].gt(100)]`
 
 # Multi indexing
+
 ```py
 df.set_index(['STNAME', 'CTYNAME'])
 ```
@@ -49,11 +51,13 @@ And to get a specific index, `df.loc['Michigan', 'Washtenaw County']`
 ```py
 df.dropna()
 ```
+
 Drops all `na` values
 
 ```py
 df.fillna(value_to_fill)
 ```
+
 Fills up `na` values
 
 `ffill` (forward fill) fills missing data with data from previous row,

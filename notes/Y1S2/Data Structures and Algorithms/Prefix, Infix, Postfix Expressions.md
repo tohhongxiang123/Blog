@@ -1,27 +1,30 @@
 # Prefix, Infix and Postfix Expressions
 
 # Infix
+
 The most readable expression, because that is what expressions are usually written in
 
-- `A + B`
-- `B * C`
-- `X - Y`
+-   `A + B`
+-   `B * C`
+-   `X - Y`
 
 > An infix expression is where the operator is in the middle of the 2 operands
 
 # Prefix
+
 > A prefix expression is where the operator is on the left of the 2 operands
 
-- `+ A B`
-- `* B C`
-- `- X Y`
+-   `+ A B`
+-   `* B C`
+-   `- X Y`
 
 # Postfix
+
 > A postfix expression is where the operator is on the right side of the 2 operands
 
-- `A B +`
-- `B C *`
-- `X Y -`
+-   `A B +`
+-   `B C *`
+-   `X Y -`
 
 # Advantages of Prefix/Postfix expressions
 
@@ -31,7 +34,7 @@ Writing in prefix/postfix makes the **order of precedence** obvious for computer
 
 Consider `A + B * C`
 
-We know that the order of precedence comes as `(A + (B * C))`. 
+We know that the order of precedence comes as `(A + (B * C))`.
 
 1. We multiply `B * C` first
 2. We add A to that result
@@ -52,20 +55,22 @@ Consider the expression `(A + B) * C + D`. Using order of precedence, we can ful
 `(((A + B) * C) + D)`
 
 ### Prefix
-- Move the operator to its corresponding left bracket
-- `(A + B) = + A B`
-- `((A + B) * C) = ((+ A B) * C) = * + A B C`
-- `(((A + B) * C) + D) = ((* + A B C) + D) = + * + A B C D`
+
+-   Move the operator to its corresponding left bracket
+-   `(A + B) = + A B`
+-   `((A + B) * C) = ((+ A B) * C) = * + A B C`
+-   `(((A + B) * C) + D) = ((* + A B C) + D) = + * + A B C D`
 
 ### Postfix
-- Move the operator to its corresponding right bracket
-- `(A + B) = A B +`
-- `((A + B) * C) = ((A B +) * C) = A B + C *`
-- `(((A + B) * C) + D) = ((A B + C *) + D) = A B + C * D +`
+
+-   Move the operator to its corresponding right bracket
+-   `(A + B) = A B +`
+-   `((A + B) * C) = ((A B +) * C) = A B + C *`
+-   `(((A + B) * C) + D) = ((A B + C *) + D) = A B + C * D +`
 
 # General Conversion from Infix to Postfix
 
-Input: A string of tokens delimited by spaces. The operator tokens are *, /, +, and -, along with the left and right parentheses, ( and ). The operand tokens are the single-character identifiers A, B, C, and so on
+Input: A string of tokens delimited by spaces. The operator tokens are \*, /, +, and -, along with the left and right parentheses, ( and ). The operand tokens are the single-character identifiers A, B, C, and so on
 Output: A string, the postfix expression of the input string
 
 ### Algorithm
@@ -75,14 +80,14 @@ Output: A string, the postfix expression of the input string
 3. Create an empty list `parenthesisStack` to keep track of the last parenthesis encountered
 4. Split the input string into individual tokens
 5. Scan the token list from left to right
-   1. If the token is an operand, append it to the end of `output`
-   2. If token is a opening parenthesis
-      1. Push it onto `opstack`
-      2. Push the corresponding closing parenthesis onto `parenthesisStack`
-   3. If token is the corresponding closing parenthesis
-      1. Pop `opstack` until the corresponding opening parenthesis is popped. Append each operator onto the end of `output`
-   4. If the token is an operator (`+, -, *, /`), 
-      1. Push it onto `opstack`. However, remove any operators already on the opstack that have **higher or equal** precedence, and append them to the output list
+    1. If the token is an operand, append it to the end of `output`
+    2. If token is a opening parenthesis
+        1. Push it onto `opstack`
+        2. Push the corresponding closing parenthesis onto `parenthesisStack`
+    3. If token is the corresponding closing parenthesis
+        1. Pop `opstack` until the corresponding opening parenthesis is popped. Append each operator onto the end of `output`
+    4. If the token is an operator (`+, -, *, /`),
+        1. Push it onto `opstack`. However, remove any operators already on the opstack that have **higher or equal** precedence, and append them to the output list
 6. Once input completes, pop any remaining operators on the stack to the end of `output`
 
 ### To convert from infix to prefix
@@ -121,9 +126,9 @@ def isBalanced(expression):
             if s[-1] != validParentheses[token]:
                 return False
             s.pop()
-            
+
     return len(s) == 0
-    
+
 validOperators = '* / % + - << >> ='.split()
 
 def getPrecedence(operand):
@@ -134,7 +139,7 @@ def getPrecedence(operand):
     '''
     if not operand:
         return 0
-        
+
     if operand in '* / %'.split():
         return 3
     elif operand in '+ -'.split():
@@ -143,7 +148,7 @@ def getPrecedence(operand):
         return 1
     else:
         return 0
-        
+
 def convertToPostfix(expression):
     '''
     Converts infix expression to postfix expression
@@ -152,22 +157,22 @@ def convertToPostfix(expression):
     output = []
     opstack = []
     parenthesisStack = []
-    
+
     for token in splitExpression(expression):
         if token.isalnum():
             output.append(token)
             continue
-        
+
         if token in validParentheses.values():
             # Get corresponding closing parenthesis
             for closingParenthesis, openingParenthesis in validParentheses.items():
                 if token == openingParenthesis:
                     parenthesisStack.append(closingParenthesis)
                     break
-                
+
             opstack.append(token)
             continue
-        
+
         if len(parenthesisStack) > 0 and token == parenthesisStack[-1]:
             topOfOpstack = opstack.pop()
             while topOfOpstack != validParentheses[parenthesisStack[-1]]:
@@ -175,17 +180,17 @@ def convertToPostfix(expression):
                 topOfOpstack = opstack.pop()
             parenthesisStack.pop()
             continue
-        
+
         if token in validOperators:
             while len(opstack) > 0 and getPrecedence(opstack[-1]) >= getPrecedence(token):
                 output.append(opstack.pop())
             opstack.append(token)
-            
+
     while len(opstack) > 0:
         output.append(opstack.pop())
-        
+
     return ' '.join(output)
-    
+
 def reverseExpression(expression):
     '''
     Reverses the expression, and maintains the parentheses
@@ -202,9 +207,9 @@ def reverseExpression(expression):
             output.append(validParentheses[token])
         else:
             output.append(token)
-            
+
     return ' '.join(output)
-    
+
 def convertToPrefix(expression):
     '''
     Converts infix to prefix expression
@@ -227,11 +232,12 @@ if __name__ == "__main__":
 # Postfix Evaluation
 
 The general procedure is:
+
 1. Create an empty stack `operandStack`
-2. Convert string to list 
+2. Convert string to list
 3. Scan tokens from left to right
-   1. If token is operand, convert from string to int, and push onto `operandStack`
-   2. If token is operator, pop `operandStack` twice. The first pop is the **second operand**, the second pop is the first operand. Perform the operation, and push the result back onto `operandStack`
+    1. If token is operand, convert from string to int, and push onto `operandStack`
+    2. If token is operator, pop `operandStack` twice. The first pop is the **second operand**, the second pop is the first operand. Perform the operation, and push the result back onto `operandStack`
 4. When input expression is completely processed, the result is on top of the `operandStack`. Pop and return
 
 ```python
@@ -239,10 +245,10 @@ def performOperation(token, operand1, operand2):
     assert token in validOperators, f"{token} is not a valid operator"
     if not operand1.isnumeric() or not operand2.isnumeric():
         return "(" + str(operand1) + " " + str(token) + " " + str(operand2) + ")"
-    
+
     operand1 = int(operand1)
     operand2 = int(operand2)
-    
+
     if token == "*":
         return operand1*operand2
     elif token == "/":
@@ -273,14 +279,14 @@ def convertPostfixToInfix(expression):
             operand1 = operandStack.pop()
             result = performOperation(token, operand1, operand2)
             operandStack.append(result)
-            
+
     return operandStack.pop()
 ```
 
 # External Resources
 
-- [What is Prefix, Infix, Postfix](https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
-- [Converter between infix/prefix/postfix](https://raj457036.github.io/Simple-Tools/prefixAndPostfixConvertor.html)
+-   [What is Prefix, Infix, Postfix](https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
+-   [Converter between infix/prefix/postfix](https://raj457036.github.io/Simple-Tools/prefixAndPostfixConvertor.html)
 
 # Overall Code
 
@@ -310,9 +316,9 @@ def isBalanced(expression):
             if s[-1] != validParentheses[token]:
                 return False
             s.pop()
-            
+
     return len(s) == 0
-    
+
 validOperators = '* / % + - << >> ='.split()
 
 def getPrecedence(operand):
@@ -323,7 +329,7 @@ def getPrecedence(operand):
     '''
     if not operand:
         return 0
-        
+
     if operand in '* / %'.split():
         return 3
     elif operand in '+ -'.split():
@@ -332,7 +338,7 @@ def getPrecedence(operand):
         return 1
     else:
         return 0
-        
+
 def convertToPostfix(expression):
     '''
     Converts infix expression to postfix expression
@@ -341,22 +347,22 @@ def convertToPostfix(expression):
     output = []
     opstack = []
     parenthesisStack = []
-    
+
     for token in splitExpression(expression):
         if token.isalnum():
             output.append(token)
             continue
-        
+
         if token in validParentheses.values():
             # Get corresponding closing parenthesis
             for closingParenthesis, openingParenthesis in validParentheses.items():
                 if token == openingParenthesis:
                     parenthesisStack.append(closingParenthesis)
                     break
-                
+
             opstack.append(token)
             continue
-        
+
         if len(parenthesisStack) > 0 and token == parenthesisStack[-1]:
             topOfOpstack = opstack.pop()
             while topOfOpstack != validParentheses[parenthesisStack[-1]]:
@@ -364,17 +370,17 @@ def convertToPostfix(expression):
                 topOfOpstack = opstack.pop()
             parenthesisStack.pop()
             continue
-        
+
         if token in validOperators:
             while len(opstack) > 0 and getPrecedence(opstack[-1]) >= getPrecedence(token):
                 output.append(opstack.pop())
             opstack.append(token)
-            
+
     while len(opstack) > 0:
         output.append(opstack.pop())
-        
+
     return ' '.join(output)
-    
+
 def reverseExpression(expression):
     '''
     Reverses the expression, and maintains the parentheses
@@ -391,9 +397,9 @@ def reverseExpression(expression):
             output.append(validParentheses[token])
         else:
             output.append(token)
-            
+
     return ' '.join(output)
-    
+
 def convertToPrefix(expression):
     '''
     Converts infix to prefix expression
@@ -402,15 +408,15 @@ def convertToPrefix(expression):
     expression = reverseExpression(expression)
     postfixedExpression = convertToPostfix(expression)
     return reverseExpression(postfixedExpression)
-    
+
 def performOperation(token, operand1, operand2):
     assert token in validOperators, f"{token} is not a valid operator"
     if not operand1.isnumeric() or not operand2.isnumeric():
         return "(" + str(operand1) + " " + str(token) + " " + str(operand2) + ")"
-    
+
     operand1 = int(operand1)
     operand2 = int(operand2)
-    
+
     if token == "*":
         return operand1*operand2
     elif token == "/":
@@ -441,7 +447,7 @@ def convertPostfixToInfix(expression):
             operand1 = operandStack.pop()
             result = performOperation(token, operand1, operand2)
             operandStack.append(result)
-            
+
     return operandStack.pop()
 
 
@@ -457,7 +463,7 @@ if __name__ == "__main__":
 
 # Lab Questions
 
-1. Write a C program to convert an infix expression to a postfix expression. The input and the output of the function are character strings. The input expression contains only four possible operators: +, -, * and /. Operands can be any alphanumeric. Each operand is represented by a character symbol. The parentheses are allowed in the input expression. You may assume that the expression is always valid. The function prototype is given below:
+1. Write a C program to convert an infix expression to a postfix expression. The input and the output of the function are character strings. The input expression contains only four possible operators: +, -, \* and /. Operands can be any alphanumeric. Each operand is represented by a character symbol. The parentheses are allowed in the input expression. You may assume that the expression is always valid. The function prototype is given below:
 
 ```c
 void in2Post(char* infix, char* postfix);
@@ -521,30 +527,30 @@ void in2Post(char* infix, char* postfix)
 // Write your code here
     int infixOffset = 0;
     int postfixOffset = 0;
-    
+
     Stack *s = malloc(sizeof(Stack));
     s->head = NULL;
     s->size = 0;
 
     for (int i=0; i<strlen(infix); i++) {
         char currentChar = infix[i];
-        
+
         if (currentChar == '(') {
             push(s, currentChar);
             continue;
         }
-        
+
         if (currentChar == ')') {
             while (!isEmptyStack(*s) && peek(*s) != '(') {
                 postfix[postfixOffset] = peek(*s);
                 pop(s);
                 postfixOffset++;
             }
-            
+
             pop(s);
             continue;
         }
-        
+
         // operator
         if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
             while (!isEmptyStack(*s) && peek(*s) != '(' && peek(*s) != currentChar && getPrecedence(peek(*s)) >= getPrecedence(currentChar)) {
@@ -552,22 +558,22 @@ void in2Post(char* infix, char* postfix)
                 postfixOffset++;
                 pop(s);
             }
-            
+
             push(s, currentChar);
             continue;
         }
-        
+
         // operand
         postfix[postfixOffset] = currentChar;
         postfixOffset++;
     }
-    
+
     while (!isEmptyStack(*s)) {
         postfix[postfixOffset] = peek(*s);
         postfixOffset++;
         pop(s);
     }
-    
+
     postfix[postfixOffset] = '\0';
 }
 
@@ -669,27 +675,27 @@ double exePostfix(char* postfix)
     Stack *s = malloc(sizeof(Stack));
     s->head = NULL;
     s->size = 0;
-    
+
     for (int i=0; i<strlen(postfix);i++) {
         char currentChar = postfix[i];
         int currentNumber;
-        
+
         if (isdigit(currentChar)) {
             currentNumber = currentChar - '0'; // convert char to int
             push(s, currentNumber);
             continue;
         }
-        
+
         double operand2 = peek(*s);
         pop(s);
         double operand1 = peek(*s);
         pop(s);
-        
+
         double result = performOperation(currentChar, operand1, operand2);
         push(s, result);
-        
+
     }
-    
+
     double result = peek(*s);
     pop(s);
     free(s);
@@ -793,35 +799,35 @@ void in2Pre(char* infix, char* prefix)
     Stack tokens;
     tokens.head = NULL;
     tokens.size = 0;
-    
+
     for (int i=0; i<strlen(infix); i++) {
         int currentChar = infix[i];
         if (currentChar == '(') {
             push(&tokens, ')');
             continue;
         }
-        
+
         if (currentChar == ')') {
             push(&tokens, '(');
             continue;
         }
-        
+
         push(&tokens, currentChar);
         continue;
     }
-    
+
     Stack opStack;
     opStack.head = NULL;
     opStack.size = 0;
-    
+
     Stack result;
     result.head = NULL;
     result.size = 0;
-    
+
     while (!isEmptyStack(tokens)) {
         int currentToken = peek(tokens);
         pop(&tokens);
-        
+
         switch(currentToken) {
             case '+':
             case '-':
@@ -847,7 +853,7 @@ void in2Pre(char* infix, char* prefix)
                 push(&result, currentToken);
         }
     }
-    
+
     while (!isEmptyStack(opStack)) {
         push(&result, peek(opStack));
         pop(&opStack);
@@ -859,7 +865,7 @@ void in2Pre(char* infix, char* prefix)
         pop(&result);
         offset++;
     }
-    
+
     prefix[offset] = '\0';
 }
 

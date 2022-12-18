@@ -12,7 +12,7 @@ $$
 f(n) \leq c g(n) \ \forall n > n_0
 $$
 
-Then 
+Then
 
 $$
 f(n) = O(g(n))
@@ -86,8 +86,8 @@ $$
 
 The recurrence describes the computational cost of an algorithm that uses a divide and conquer approach
 
-- $f(n)$ is the cost of dividing the problem and combining the results of the subproblems
-- Problem is divided from $n$ to $a$ subproblems, each of size $\frac{n}{b}$
+-   $f(n)$ is the cost of dividing the problem and combining the results of the subproblems
+-   Problem is divided from $n$ to $a$ subproblems, each of size $\frac{n}{b}$
 
 Examples of recurrence problems
 
@@ -99,20 +99,20 @@ Examples of recurrence problems
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/AlgoAnalysis.png)
 
-Let $a \geq 1, b > 1$, and $f(n)$ be an asymptotically positive function (For a positively large enough value of $n$, $f(n) > 0$) 
+Let $a \geq 1, b > 1$, and $f(n)$ be an asymptotically positive function (For a positively large enough value of $n$, $f(n) > 0$)
 
 $$
 T(n) = \begin{cases}
 \Theta(n^{\log_b a}) & \text{if } \exists \epsilon \text{ st } f(n) = O(n^{\log_b a - \epsilon}) \\
 \Theta(n^{\log_b a} \log^{k+1} n) & \text{if } f(n) = \Theta(n^{\log_b a} \log^k n) \text{ and } k \geq 0\\
-\Theta(f(n)) & (\text{if } \exists \epsilon \text{ st } f(n) = \Omega(n^{\log_b a + \epsilon}) \text{ and } \\ 
+\Theta(f(n)) & (\text{if } \exists \epsilon \text{ st } f(n) = \Omega(n^{\log_b a + \epsilon}) \text{ and } \\
 &a f\left( \frac{n}{b} \right) \leq c f(n) \text{ for some } c < 1)
 \end{cases}
 $$
 
-*For case 2, when k < 0, check the [wiki page for master theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms))*
+_For case 2, when k < 0, check the [wiki page for master theorem](<https://en.wikipedia.org/wiki/Master_theorem_(analysis*of_algorithms)>)*
 
-We know that each problem is split into $a$ cases, each with a smaller size $\frac{n}{b}$. Now we want to find the height of the recursion tree $H$. Since we keep dividing $n$ by $b$ until the size of the problem is $1$, then 
+We know that each problem is split into $a$ cases, each with a smaller size $\frac{n}{b}$. Now we want to find the height of the recursion tree $H$. Since we keep dividing $n$ by $b$ until the size of the problem is $1$, then
 
 $$
 \begin{aligned}
@@ -147,10 +147,10 @@ $$
 
     Consider the recurrence $T(n) = T(n/2) + \sin n, T(0) = T(1) = 1$. If we used the master theorem and ignore regularity, then $a = 1, b = 2, log_b(a) = 0, f(n) = \sin n$. We can see that $\sin n = \Omega(1)$, hence $T(n) = \Theta(\sin n)$
 
-    However, when we plot the graph, we can see that $T(n)$ does not follow the growth of $\sin n$. 
-    
+    However, when we plot the graph, we can see that $T(n)$ does not follow the growth of $\sin n$.
+
     ![Regularity fails](/public/regularity_condition_fails.png)
-    
+
     This is regularity does not hold. Assume there exists $0 < c < 1$ such that $a f(n/b) \leq c f(n)$ for sufficiently large $n$. Substituting in the appropriate values,
 
     $$
@@ -165,21 +165,22 @@ $$
 ## Limitations of Master Theorem
 
 The master theorem cannot be used if
-- $T(n)$ is not monotone
-    - A function $f$ is monotonic if it either entirely non-increasing, or entirely non-decreasing
-    - For example, $f(n) = \sin n$ does not work
-- $f(n)$ is not a polynomial
-    - E.g. $f(n) = 2^n$ does not work
-- $a$ is not a constant
-    - E.g. $a = 2n$ does not work
-- $a < 1$
-    - $T(n) = 0.5T(\frac{n}{2}) + 5n$
-    - Cannot have less than 1 subproblem
+
+-   $T(n)$ is not monotone
+    -   A function $f$ is monotonic if it either entirely non-increasing, or entirely non-decreasing
+    -   For example, $f(n) = \sin n$ does not work
+-   $f(n)$ is not a polynomial
+    -   E.g. $f(n) = 2^n$ does not work
+-   $a$ is not a constant
+    -   E.g. $a = 2n$ does not work
+-   $a < 1$
+    -   $T(n) = 0.5T(\frac{n}{2}) + 5n$
+    -   Cannot have less than 1 subproblem
 
 # Resources
 
-- https://www.programiz.com/dsa/master-theorem
-- https://math.stackexchange.com/questions/262733/can-we-prove-a-log-bn-n-log-ba
-- https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/mm-proof.pdf
-- https://cs.stackexchange.com/questions/4854/why-is-there-the-regularity-condition-in-the-master-theorem
-- https://cs.stackexchange.com/questions/28991/satisfying-all-the-conditions-of-case-3-of-the-master-method-except-the-regulari
+-   https://www.programiz.com/dsa/master-theorem
+-   https://math.stackexchange.com/questions/262733/can-we-prove-a-log-bn-n-log-ba
+-   https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/mm-proof.pdf
+-   https://cs.stackexchange.com/questions/4854/why-is-there-the-regularity-condition-in-the-master-theorem
+-   https://cs.stackexchange.com/questions/28991/satisfying-all-the-conditions-of-case-3-of-the-master-method-except-the-regulari

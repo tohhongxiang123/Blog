@@ -15,21 +15,21 @@ But we never defined `toString`. Where does it come from?
 
 This is because all classes extend the `Object` class. Every class has `Object` as a superclass. All objects including arrays implement the methods of this class.
 
-- Any class that does not extend another class implicitly extends the `Object` class.
-- A class can only extend one other class (but can implement multiple interfaces)
-- Java is a "single inheritance" system.
+-   Any class that does not extend another class implicitly extends the `Object` class.
+-   A class can only extend one other class (but can implement multiple interfaces)
+-   Java is a "single inheritance" system.
 
 # Subclass Object
 
-- Contains its fields as well as all the fields defined in the superclasses
+-   Contains its fields as well as all the fields defined in the superclasses
 
 # Object Class Methods
 
-- `clone()` - makes a copy of the object
-- `equals(Object e)` - compares for equality
-- `toString()` - Return String representation of the object
+-   `clone()` - makes a copy of the object
+-   `equals(Object e)` - compares for equality
+-   `toString()` - Return String representation of the object
 
-# Practice 
+# Practice
 
 ```java
 /*** TODO: Write a header for the Pizza class which inherits from Object ***/

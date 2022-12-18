@@ -7,10 +7,10 @@ For example, 6 is perfect because its factors are 1, 2, and 3, and 6 = 1+2+3; bu
 because its factors are 1, 2, 3, 4, 6, 8, 12, but 1+2+3+4+6+8+12 = 36. Write a function that takes
 a number, num, prints the perfrct numbers that are less than the number, and returns the product of
 all perfect numbers. For example, if the number is 100, the function should return 168 (which is
-6*28), as 6 and 28 are the only perfect numbers less than 100. If there is no perfect number for
+6\*28), as 6 and 28 are the only perfect numbers less than 100. If there is no perfect number for
 the input number, then the function should return 1. Write the function in two versions. The
 function perfectProd1() returns the result to the caller, while perfectProd2() passes the result
-through the pointer parameter result. The function prototypes are given as follows: 
+through the pointer parameter result. The function prototypes are given as follows:
 
 ```c
 int perfectProd1(int num);
@@ -26,13 +26,13 @@ int perfectProd1(int num);
 void perfectProd2(int num, int *prod);
 int main()
 {
-   int number, result=0;      
-       
+   int number, result=0;
+
    printf("Enter a number: \n");
    scanf("%d", &number);
    printf("Calling perfectProd1() \n");
    printf("perfectProd1(): %d\n", perfectProd1(number));
-   
+
    printf("Calling perfectProd2() \n");
    perfectProd2(number, &result);
    printf("perfectProd2(): %d\n", result);
@@ -49,12 +49,12 @@ int perfectProd1(int num)
             finalProd *= i;
         }
     }
-    
+
     return finalProd;
 	/*end_edit*/
 }
 void perfectProd2(int num, int *prod)
-{  
+{
 	/*edit*/
    /* Write your code here */
     *prod = 1;
@@ -72,7 +72,7 @@ bool isPerfect(int n) {
         if (n % i == 0) {
             sum += i;
         }
-        
+
         if (sum > n) {
             return false;
         }
@@ -165,7 +165,7 @@ colSize are 4, and M is {{1,2,3,4},{2,2,5,6},{3,5,3,7}, {4,6,7,4}}, then M will
 be symmetric. The function prototype is given as follows:
 
 ```c
-int symmetry2D(int M[][SIZE], int rowSize, int colSize); 
+int symmetry2D(int M[][SIZE], int rowSize, int colSize);
 ```
 
 ```c
@@ -215,7 +215,9 @@ int symmetry2D(int M[][SIZE], int rowSize, int colSize)
 
 Write a C program for the following functions that work on arrays which can store up to 10
 integers:
-1. 
+
+1.
+
 ```c
 void insert(int max, int *size, int ar[], int num);
 ```
@@ -224,25 +226,28 @@ This function inserts the number num into the array ar where the pointer paramet
 size stores the number of integers in ar. Before and after the function call, ar is an
 array of integers in ascending order. max is the maximum number of integers which
 can be stored in ar. This means that the function should issue an error message "The
-array is full\n" and no insertion should be done if *size is equal to max
+array is full\n" and no insertion should be done if \*size is equal to max
 before insertion.
 
-2. 
+2.
+
 ```c
 void iremove(int *size, int ar[], int num);
 ```
 
 This function removes the first appearance of the number num from the array ar
-which has *size numbers in it. Before and after the function call, ar is an array of
+which has \*size numbers in it. Before and after the function call, ar is an array of
 integers in ascending order. Please note:
-- After the number is removed, the message "The integer is removed\n"
-should be displayed.
-- If *size is equal to zero, the error message "The array is empty\n"
-should be displayed.
-- If num does not appear in ar, the function should issue an error message "The
-number is not in the array\n".
 
-3. 
+-   After the number is removed, the message "The integer is removed\n"
+    should be displayed.
+-   If \*size is equal to zero, the error message "The array is empty\n"
+    should be displayed.
+-   If num does not appear in ar, the function should issue an error message "The
+    number is not in the array\n".
+
+3.
+
 ```c
 void initialize(int *size, int ar[]);
 ```
@@ -251,7 +256,8 @@ This function reads in a specified number of integers and uses insert() to store
 them in ar. The pointer parameter size returns the actual number of integers stored in
 ar, and ar will be an array of integers in ascending order.
 
-4. 
+4.
+
 ```c
 void display(int size, int ar[]);
 ```

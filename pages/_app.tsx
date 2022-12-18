@@ -1,9 +1,10 @@
-import "../styles/reset.scss";
-import "../styles/tailwind.css";
-import "../styles/markdown.css";
+import '../styles/reset.scss';
+import '../styles/tailwind.css';
+import '../styles/markdown.css';
+import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }) {
-	return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }: AppProps)  {
+    return <Component {...pageProps} />;
 }
 
 // Only uncomment this method if you have blocking data requirements for
