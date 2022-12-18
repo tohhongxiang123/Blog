@@ -45,22 +45,17 @@ export default function temp({ projects = [] }) {
 		<div className="flex flex-col items-center bg-gray-800 min-h-screen text-white overflow-x-hidden relative">
 			<nav className="px-6 sm:px-16 py-4 flex items-center sm:justify-around justify-between gap-x-4 w-full fixed top-0 z-20 bg-gray-800 bg-opacity-90">
 				<div>
-					<Link href="/">
-						<a className="text-2xl font-bold tracking-wide">THX.</a>
+					<Link href="/" className="text-2xl font-bold tracking-wide">
+						THX.
 					</Link>
 				</div>
 				<ul className="gap-4 hidden sm:flex">
 					{pages.map((page) => (
-						<Link key={page.path} href={page.path}>
-							<a
-								className={`hover:underline tracking-wide ${
-									router.asPath.startsWith(page.path)
-										? "font-semibold"
-										: "font-light"
-								}`}
-							>
-								{page.name}
-							</a>
+						<Link key={page.path} href={page.path} className={`hover:underline tracking-wide ${router.asPath.startsWith(page.path)
+							? "font-semibold"
+							: "font-light"
+							}`}>
+							{page.name}
 						</Link>
 					))}
 				</ul>
@@ -87,18 +82,16 @@ export default function temp({ projects = [] }) {
 				<div
 					className={`bg-black bg-opacity-90 w-screen h-screen top-0 left-0 z-20 flex items-center justify-center
 					transition-all duration-200 transform
-					${
-						isOpen
+					${isOpen
 							? "fixed translate-x-0 scale-100"
 							: "absolute translate-x-full scale-75"
-					}
+						}
 				`}
 				>
 					<button
 						onClick={() => setIsOpen((c) => !c)}
-						className={`fixed top-0 left-0 m-8 z-30 ${
-							isOpen ? "" : "hidden"
-						}`}
+						className={`fixed top-0 left-0 m-8 z-30 ${isOpen ? "" : "hidden"
+							}`}
 					>
 						<svg
 							className="h-6 w-6"
@@ -120,16 +113,13 @@ export default function temp({ projects = [] }) {
 						className={` sm:hidden flex flex-col items-center justify-center`}
 					>
 						{pages.map((page) => (
-							<Link key={page.path} href={page.path}>
-								<a
-									className={`text-2xl m-8 hover:underline tracking-wide opacity-80 hover:opacity-100 ${
-										router.asPath.startsWith(page.path)
-											? "font-normal"
-											: "font-light"
+							<Link key={page.path} href={page.path}
+								className={`text-2xl m-8 hover:underline tracking-wide opacity-80 hover:opacity-100 ${router.asPath.startsWith(page.path)
+									? "font-normal"
+									: "font-light"
 									}`}
-								>
-									{page.name}
-								</a>
+							>
+								{page.name}
 							</Link>
 						))}
 					</ul>

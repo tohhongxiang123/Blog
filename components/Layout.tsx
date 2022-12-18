@@ -63,15 +63,13 @@ export default function Layout({
 			</Head>
 			<TopNavBar>
 				{pages.map((page) => (
-					<Link key={page.path} href={page.path}>
-						<a
-							className={`mb-4 hover:underline cursor-pointer ${router.asPath.startsWith(page.path)
-								? "font-semibold"
-								: ""
-								}`}
-						>
-							{page.name}
-						</a>
+					<Link key={page.path} href={page.path}
+						className={`mb-4 hover:underline cursor-pointer ${router.asPath.startsWith(page.path)
+							? "font-semibold"
+							: ""
+							}`}
+					>
+						{page.name}
 					</Link>
 				))}
 			</TopNavBar>

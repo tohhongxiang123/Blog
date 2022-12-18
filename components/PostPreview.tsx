@@ -10,8 +10,8 @@ interface PostPreviewProps extends React.DetailedHTMLProps<React.HTMLAttributes<
 export default function PostPreview({ filePath, data, ...props }: PostPreviewProps) {
 	return (
 		<div className="flex flex-col sm:flex-row sm:justify-between items-baseline gap-x-4 p-4" {...props}>
-			<Link as={`/${filePath}`} href={`/posts/[slug]`}>
-				<a className="hover:underline text-xl">{data.title}</a>
+			<Link as={`/${filePath}`} href={`/posts/[slug]`} className="hover:underline text-xl">
+				{data.title}
 			</Link>
 			<small className="flex-shrink-0">
 				{formatDate(data.date)}

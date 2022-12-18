@@ -30,10 +30,8 @@ export default function index({ notes = [], notesStructure = [] }: InferGetStati
 						<p className="opacity-60"><i>Nothing found...</i></p>
 					)}
 				</ul>
-				<Link href="/">
-					<a className="font-medium rounded-md py-2 px-4 hover:bg-gray-100 ml-auto">
-						Back
-					</a>
+				<Link href="/" className="font-medium rounded-md py-2 px-4 hover:bg-gray-100 ml-auto">
+					Back
 				</Link>
 			</div>
 		</NotesLayout>
@@ -56,7 +54,7 @@ export async function getStaticProps() {
 	const notesStructure = getFilesWithStructure(
 		process.env.NOTES_PATH
 	).children.sort((a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime());  // latest comes first
-	
+
 	return {
 		props: {
 			notes,

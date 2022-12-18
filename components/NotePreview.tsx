@@ -6,8 +6,8 @@ export default function NotePreview({ filePath, data, ...props }) {
     return (
         <div {...props}>
             <div className="flex flex-col sm:flex-row sm:justify-between items-baseline">
-                <Link href={`/${filePath}`}>
-                    <a className="cursor-pointer hover:underline text-xl font-normal">{data.title}</a>
+                <Link href={`/${filePath}`} className="cursor-pointer hover:underline text-xl font-normal">
+                    {data.title}
                 </Link>
                 {data.date && <small className="flex-shrink-0">{formatDate(data.date)}</small>}
             </div>

@@ -234,11 +234,9 @@ export default function Index({ posts = [], notes = [] }) {
 				</div>
 				<div>
 					<Link href="/about">
-						<a>
-							<motion.button variants={projectItemVariants} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} type="button" className="shadow-sm text-white font-semibold tracking-loose bg-blue-400 hover:bg-blue-500 py-2 px-6 rounded-md w-48">
-								View All Projects
-							</motion.button>
-						</a>
+						<motion.button variants={projectItemVariants} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} type="button" className="shadow-sm text-white font-semibold tracking-loose bg-blue-400 hover:bg-blue-500 py-2 px-6 rounded-md w-48">
+							View All Projects
+						</motion.button>
 					</Link>
 				</div>
 			</motion.section>
