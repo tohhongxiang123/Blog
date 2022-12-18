@@ -43,17 +43,6 @@ export default function Layout({
 	return (
 		<div className="flex flex-col h-screen overflow-y-hidden">
 			<Head>
-				<link
-					rel="stylesheet"
-					href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css"
-					integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="stylesheet"
-					href="https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css"
-					as="script"
-				/>
 				<title>{title ? `THX - ${title}` : "THX"}</title>
 				<meta
 					name="viewport"
