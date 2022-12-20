@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 yarn lint
-yarn format $(git diff --name-only HEAD | grep -E '\.(js|jsx|ts|tsx|md)$' | xargs)
+npx pretty-quick --staged
