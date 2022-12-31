@@ -37,17 +37,17 @@ An example of the worst case is `pattern = "AAAAC"` and `text = "AAAAAAAAAAAAAAA
 3. If $p = t$, we have found the match, and exit
 4. If not end-of-text, shift the window one character right, and convert the string in it to $t$, and go back to step 3; Else, pattern not found and exit
 
--   The hash function converts a string into a unique number
-    -   For a string `a1, a2, ..., an`, we use the hash $\sum_{i = 1}^{n} a_i * D^{n - i}$, where $D$ is the number of possible characters in the string
-    -   'ABC' has a hash of $1*10^2 + 2*10^1 + 3*10^0$ if we use only 10 possible characters
--   When we want to update our hash when the window rolls over, we do the following
-    1. Subtract $a_1 * D^{n - 1}$
-    2. Multiply the remaining hash by $D$
-    3. Add $a_{n-1}$
--   For example, 'ABC' to 'BCD'
-    -   Subtract $1*10^2$
-    -   Multiply the remaing hash by 10
-    -   Add D ($+ 4$)
+- The hash function converts a string into a unique number
+  - For a string `a1, a2, ..., an`, we use the hash $\sum_{i = 1}^{n} a_i * D^{n - i}$, where $D$ is the number of possible characters in the string
+  - 'ABC' has a hash of $1*10^2 + 2*10^1 + 3*10^0$ if we use only 10 possible characters
+- When we want to update our hash when the window rolls over, we do the following
+  1. Subtract $a_1 * D^{n - 1}$
+  2. Multiply the remaining hash by $D$
+  3. Add $a_{n-1}$
+- For example, 'ABC' to 'BCD'
+  - Subtract $1*10^2$
+  - Multiply the remaing hash by 10
+  - Add D ($+ 4$)
 
 ```cpp
 #include <iostream>
@@ -155,8 +155,8 @@ Boyer-Moore uses 2 specific rules:
 
 Upon mismatch, we will skip alignments until
 
--   Mismatch becomes a match, or
--   P moves past mismatched character
+- Mismatch becomes a match, or
+- P moves past mismatched character
 
 ```
 GCTTCTGCTACCTTTTGC
@@ -194,8 +194,8 @@ Finally, we have reached a full match
 
 Let `t` be the substring matched by the inner loop. We will skip until
 
--   There are no mismatches between P and `t`, or
--   P moves past `t`
+- There are no mismatches between P and `t`, or
+- P moves past `t`
 
 ```
 CGTGCCTACTTACTTACTTACTTACGCGAA
@@ -610,9 +610,9 @@ int main()
 
 # Resources
 
--   https://www.youtube.com/watch?v=4Xyhb72LCX4
--   https://www.youtube.com/watch?v=Wj606N0IAsw
--   https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
--   https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
--   https://stackoverflow.com/questions/19345263/boyer-moore-good-suffix-heuristics
--   https://dwnusbaum.github.io/boyer-moore-demo/
+- https://www.youtube.com/watch?v=4Xyhb72LCX4
+- https://www.youtube.com/watch?v=Wj606N0IAsw
+- https://stackoverflow.com/questions/27428605/constructing-a-good-suffix-table-understanding-an-example
+- https://www.inf.hs-flensburg.de/lang/algorithmen/pattern/bmen.htm
+- https://stackoverflow.com/questions/19345263/boyer-moore-good-suffix-heuristics
+- https://dwnusbaum.github.io/boyer-moore-demo/

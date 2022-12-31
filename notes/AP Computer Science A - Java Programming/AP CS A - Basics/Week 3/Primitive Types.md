@@ -8,15 +8,15 @@ Boolean: `boolean` (either `true` or `false`)
 
 # Operations on Integer Types
 
--   Usual mathematical + - \* / %
--   Important note
-    -   Division is "integer division", where the result is an integer, even if it should be a fraction
-    -   Example:
-        -   10 / 5 = 2
-        -   3 / 2 = 1
-        -   1 / 2 = 0
-        -   m / n = floor(m / n)
-    -   However, doing 4.5 / 9.0 = 0.5, because both are doubles, hence the result is as expected, a double too
+- Usual mathematical + - \* / %
+- Important note
+  - Division is "integer division", where the result is an integer, even if it should be a fraction
+  - Example:
+    - 10 / 5 = 2
+    - 3 / 2 = 1
+    - 1 / 2 = 0
+    - m / n = floor(m / n)
+  - However, doing 4.5 / 9.0 = 0.5, because both are doubles, hence the result is as expected, a double too
 
 ```java
 int a = 9 / 2;
@@ -58,11 +58,11 @@ divide
 
 # Operations on Real Types (Float and Double)
 
--   Usual mathematical: + - \* /
--   The `Math` class includes many others (which are also applicable to integers)
-    -   `Math.pow(base, exponent)`
-    -   `Math.log10(number)`
-    -   Trigonometric functions, logs etc.
+- Usual mathematical: + - \* /
+- The `Math` class includes many others (which are also applicable to integers)
+  - `Math.pow(base, exponent)`
+  - `Math.log10(number)`
+  - Trigonometric functions, logs etc.
 
 ## Challenge
 
@@ -85,10 +85,10 @@ Declare a constant `GRAVITY` that holds the value `9.81` and print it out to the
 
 # Chars
 
--   Set of possible characters, symbols that make up a String
--   We map characters to a number ('A' = 65, 'B' = 66 under ASCII)
--   In Java, a char has 2 bytes (16 bits)
--   Java uses the Unicode character set, specifically UTF-16 (Since chars are 16 bits)
+- Set of possible characters, symbols that make up a String
+- We map characters to a number ('A' = 65, 'B' = 66 under ASCII)
+- In Java, a char has 2 bytes (16 bits)
+- Java uses the Unicode character set, specifically UTF-16 (Since chars are 16 bits)
 
 ASCII subset uses character codes from 0-127, and included the English alphabet (upper and lower), numbers, punctuation and special characters
 
@@ -102,11 +102,11 @@ A single character surrounded by single quotes, for example: 'a', 'A', '0', '!'
 
 There are also special escape sequences surrounded by single quotes, for example
 
--   '\t' (tab)
--   '\n' (newline)
--   '\'' (single quote)
--   '\\' (backslash)
--   '\uxxxx' (char hexadecimal xxxx in Unicode set, e.g. '\u12FC')
+- '\t' (tab)
+- '\n' (newline)
+- '\'' (single quote)
+- '\\' (backslash)
+- '\uxxxx' (char hexadecimal xxxx in Unicode set, e.g. '\u12FC')
 
 ## Operations on chars
 
@@ -132,17 +132,17 @@ System.out.println(s); // "Hello World!"
 
 The only non-numeric primitive type. Booleans are a set of 2 elements: { `true`, `false` }. Operators that work on Boolean values are called logical operators.
 
--   `&&` (and)
--   `||` (or)
--   `^` (xor)
--   `!` (not)
+- `&&` (and)
+- `||` (or)
+- `^` (xor)
+- `!` (not)
 
 Booleans are also used in testing various Java statements (if/else)
 
 Booleans can be created by comparison operators as well
 
--   `<`, `>`, `<=`, `>=`, `==`, `!=`
--   Note: `==` and `!=` work with reference types, but only compare references (addresses), not the values
+- `<`, `>`, `<=`, `>=`, `==`, `!=`
+- Note: `==` and `!=` work with reference types, but only compare references (addresses), not the values
 
 ## Challenge
 

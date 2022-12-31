@@ -2,8 +2,8 @@
 
 Entrepreneur means "undertaker" - one who undertakes a major project
 
--   reform or revolutionize the pattern of production by exploiting an invertion or an untried technological possibility
--   The discovery, evaluation and exploitation of opportunities
+- reform or revolutionize the pattern of production by exploiting an invertion or an untried technological possibility
+- The discovery, evaluation and exploitation of opportunities
 
 Creativity + Leadership = Innovation
 
@@ -11,30 +11,30 @@ Innovation + Leadership = Entrepreneurship
 
 Entrepreneurial Mindset
 
--   Creative problem solver
--   Market aware
--   Action-oriented
--   Focused on value creation
--   Tolerance for risk and uncertainty
--   Willing and able to lead others
--   Able to listen and absorb new information
--   Able to learn from failures
+- Creative problem solver
+- Market aware
+- Action-oriented
+- Focused on value creation
+- Tolerance for risk and uncertainty
+- Willing and able to lead others
+- Able to listen and absorb new information
+- Able to learn from failures
 
 # Where Do Entrepreneurial Ideas Come From?
 
--   Daily life, work experience
--   Emerging trend
--   Specific market gap
--   Drive to help others in new ways
--   Special skill or expertise
+- Daily life, work experience
+- Emerging trend
+- Specific market gap
+- Drive to help others in new ways
+- Special skill or expertise
 
 Triggering Events
 
--   Job loss
--   Job dissatisfaction
--   Education
--   Lifestyle changes
--   Frustration with business or personal challenges
+- Job loss
+- Job dissatisfaction
+- Education
+- Lifestyle changes
+- Frustration with business or personal challenges
 
 Design Thinking
 
@@ -68,89 +68,89 @@ In general, Business-to-Business value propositions should
 
 Questions
 
--   Why are they interested?
--   What are their "hot buttons"?
--   What objections are they likely to raise?
+- Why are they interested?
+- What are their "hot buttons"?
+- What objections are they likely to raise?
 
 Why should they support you?
 
--   To make money
--   To have fun
--   To make the world a better place
+- To make money
+- To have fun
+- To make the world a better place
 
 Describe the problem you're solving
 
--   Who has the problem?
--   Why does it matter?
--   Why did you choose to try to solve it?
+- Who has the problem?
+- Why does it matter?
+- Why did you choose to try to solve it?
 
 > We help X do Y by doing Z
 
--   Why will customers buy your product
--   What pain are you adressing?
--   What gain are you enabling?
--   How are you better/faster/cheaper/easier?
+- Why will customers buy your product
+- What pain are you adressing?
+- What gain are you enabling?
+- How are you better/faster/cheaper/easier?
 
 Market Size
 
--   Total available market
--   Serviceable Available Market
--   Serviceable Obtainable Market
+- Total available market
+- Serviceable Available Market
+- Serviceable Obtainable Market
 
 Customers
 
--   Target customers
--   Early adopters
-    -   They know they have the problem
-    -   They have the money
-    -   They have tried to solve the problem before
+- Target customers
+- Early adopters
+  - They know they have the problem
+  - They have the money
+  - They have tried to solve the problem before
 
 How will you reach your customers?
 
--   Direct/indirect
--   Online/offline
--   Do you need a sales force?
--   What sort of relationship do you need?
--   How will you secure your early adopter customers?
--   How will you scale?
+- Direct/indirect
+- Online/offline
+- Do you need a sales force?
+- What sort of relationship do you need?
+- How will you secure your early adopter customers?
+- How will you scale?
 
 Revenue Model
 
--   Recurring vs non-recurring revenue
--   Two-sided markets
--   Third-party payers
--   Pricing strategy
--   Lifetime value of a customer
+- Recurring vs non-recurring revenue
+- Two-sided markets
+- Third-party payers
+- Pricing strategy
+- Lifetime value of a customer
 
 Financial Projections
 
--   Top-down vs Bottom-up revenue forecasting
--   Growth and profit drivers
--   Customer acquisition cost
--   Cash-to-cash cycle
--   Overhead costs
+- Top-down vs Bottom-up revenue forecasting
+- Growth and profit drivers
+- Customer acquisition cost
+- Cash-to-cash cycle
+- Overhead costs
 
 Customers
 
--   What are your customers doing now?
--   Existing vs. potential competitors
--   What are your competitive advantages
--   Are they sustainable?
+- What are your customers doing now?
+- Existing vs. potential competitors
+- What are your competitive advantages
+- Are they sustainable?
 
 Establishing Credibility
 
--   What have you achieved so far?
-    -   Technology
-    -   Customers
-    -   Revenue
-    -   Profits
+- What have you achieved so far?
+  - Technology
+  - Customers
+  - Revenue
+  - Profits
 
 Conclusion and Call to Action
 
--   What will your audience remember?
--   Remind them why it's important
--   Tell the conclusion to the story
--   Call to action
-    -   Follow up meeting
-    -   Introduction
-    -   Feedback
+- What will your audience remember?
+- Remind them why it's important
+- Tell the conclusion to the story
+- Call to action
+  - Follow up meeting
+  - Introduction
+  - Feedback

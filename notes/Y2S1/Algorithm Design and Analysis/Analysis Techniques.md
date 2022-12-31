@@ -86,8 +86,8 @@ $$
 
 The recurrence describes the computational cost of an algorithm that uses a divide and conquer approach
 
--   $f(n)$ is the cost of dividing the problem and combining the results of the subproblems
--   Problem is divided from $n$ to $a$ subproblems, each of size $\frac{n}{b}$
+- $f(n)$ is the cost of dividing the problem and combining the results of the subproblems
+- Problem is divided from $n$ to $a$ subproblems, each of size $\frac{n}{b}$
 
 Examples of recurrence problems
 
@@ -135,7 +135,7 @@ Let us look at each condition one by one
 
 2. If the cost of solving the subproblems at each level is nearly equal to solving the subproblem, then $f(n) = \Theta(n^{\log_b a})$. Then the overall time complexity will be $f(n)$ times the number of layers, hence $\Theta(n^{\log_b a} \log n)$
 
-    Notably, if $k = 0$,
+   Notably, if $k = 0$,
 
 $$
 f(n) = \Theta(n^{\log_b a}) \implies T(n) = \Theta(n^{\log_b a} \log n)
@@ -143,44 +143,44 @@ $$
 
 3. If the cost of solving each subproblem decreases per level, then $f(n)$ will become polynomially larger than $n^{\log_b a}$. The time taken to split/recombine the problems dominate the time taken to solve each subproblem. Thus the cost of the algorithm will be oppressed by $f(n)$ (The tree is root-heavy). Hence the overall cost is $\Theta(f(n))$
 
-    The extra condition here is called the regularity condition, where $a f(n/b) \leq c f(n)$ for some $c < 1$ and for all sufficiently large $n$. The regularity condition ensures that $f(n)$ (the amount of work done at the root) must be at least as big as the sum of the work done in the next lower level ($a f(n/b)$). If regularity is not satisfied, we cannot guarantee that $f(n)$ will dominate the runtime
+   The extra condition here is called the regularity condition, where $a f(n/b) \leq c f(n)$ for some $c < 1$ and for all sufficiently large $n$. The regularity condition ensures that $f(n)$ (the amount of work done at the root) must be at least as big as the sum of the work done in the next lower level ($a f(n/b)$). If regularity is not satisfied, we cannot guarantee that $f(n)$ will dominate the runtime
 
-    Consider the recurrence $T(n) = T(n/2) + \sin n, T(0) = T(1) = 1$. If we used the master theorem and ignore regularity, then $a = 1, b = 2, log_b(a) = 0, f(n) = \sin n$. We can see that $\sin n = \Omega(1)$, hence $T(n) = \Theta(\sin n)$
+   Consider the recurrence $T(n) = T(n/2) + \sin n, T(0) = T(1) = 1$. If we used the master theorem and ignore regularity, then $a = 1, b = 2, log_b(a) = 0, f(n) = \sin n$. We can see that $\sin n = \Omega(1)$, hence $T(n) = \Theta(\sin n)$
 
-    However, when we plot the graph, we can see that $T(n)$ does not follow the growth of $\sin n$.
+   However, when we plot the graph, we can see that $T(n)$ does not follow the growth of $\sin n$.
 
-    ![Regularity fails](/public/regularity_condition_fails.png)
+   ![Regularity fails](/public/regularity_condition_fails.png)
 
-    This is regularity does not hold. Assume there exists $0 < c < 1$ such that $a f(n/b) \leq c f(n)$ for sufficiently large $n$. Substituting in the appropriate values,
+   This is regularity does not hold. Assume there exists $0 < c < 1$ such that $a f(n/b) \leq c f(n)$ for sufficiently large $n$. Substituting in the appropriate values,
 
-    $$
-    \begin{aligned}
-        \sin \frac{n}{2} &\leq c \sin n \\
-        \frac{1}{2 \cos \frac{n}{2}} &\leq c
-    \end{aligned}
-    $$
+   $$
+   \begin{aligned}
+       \sin \frac{n}{2} &\leq c \sin n \\
+       \frac{1}{2 \cos \frac{n}{2}} &\leq c
+   \end{aligned}
+   $$
 
-    From the final equation, we can see that regularity cannot be satisfied. Hence, master's theorem case 3 requires that regularity is satisfied to be correct
+   From the final equation, we can see that regularity cannot be satisfied. Hence, master's theorem case 3 requires that regularity is satisfied to be correct
 
 ## Limitations of Master Theorem
 
 The master theorem cannot be used if
 
--   $T(n)$ is not monotone
-    -   A function $f$ is monotonic if it either entirely non-increasing, or entirely non-decreasing
-    -   For example, $f(n) = \sin n$ does not work
--   $f(n)$ is not a polynomial
-    -   E.g. $f(n) = 2^n$ does not work
--   $a$ is not a constant
-    -   E.g. $a = 2n$ does not work
--   $a < 1$
-    -   $T(n) = 0.5T(\frac{n}{2}) + 5n$
-    -   Cannot have less than 1 subproblem
+- $T(n)$ is not monotone
+  - A function $f$ is monotonic if it either entirely non-increasing, or entirely non-decreasing
+  - For example, $f(n) = \sin n$ does not work
+- $f(n)$ is not a polynomial
+  - E.g. $f(n) = 2^n$ does not work
+- $a$ is not a constant
+  - E.g. $a = 2n$ does not work
+- $a < 1$
+  - $T(n) = 0.5T(\frac{n}{2}) + 5n$
+  - Cannot have less than 1 subproblem
 
 # Resources
 
--   https://www.programiz.com/dsa/master-theorem
--   https://math.stackexchange.com/questions/262733/can-we-prove-a-log-bn-n-log-ba
--   https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/mm-proof.pdf
--   https://cs.stackexchange.com/questions/4854/why-is-there-the-regularity-condition-in-the-master-theorem
--   https://cs.stackexchange.com/questions/28991/satisfying-all-the-conditions-of-case-3-of-the-master-method-except-the-regulari
+- https://www.programiz.com/dsa/master-theorem
+- https://math.stackexchange.com/questions/262733/can-we-prove-a-log-bn-n-log-ba
+- https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/mm-proof.pdf
+- https://cs.stackexchange.com/questions/4854/why-is-there-the-regularity-condition-in-the-master-theorem
+- https://cs.stackexchange.com/questions/28991/satisfying-all-the-conditions-of-case-3-of-the-master-method-except-the-regulari

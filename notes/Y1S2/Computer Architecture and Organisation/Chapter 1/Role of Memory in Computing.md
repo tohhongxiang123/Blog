@@ -4,11 +4,11 @@
 
 Programming in hardware
 
--   Fast computation but very inflexible
+- Fast computation but very inflexible
 
 Programming in software
 
--   Slower and more complex, but easily programmable
+- Slower and more complex, but easily programmable
 
 # Code, Data and Memory
 
@@ -40,8 +40,8 @@ Processor/Register <-> Cache Memory <-> Main Memory <-> Secondary Memory
 
 ### Characteristics of Main Memory
 
--   Fixed size (typically 8bit) storage location accessible at high speed and in any order
--   Each byte sized location has a unique address that is accessed by specifiying its binary pattern on the address bus
--   Memory size dependent on number of lines in the address bus (for n lines, memory size = 2^n bytes)
--   https://superuser.com/questions/1216428/if-a-cpu-has-a-16-bit-address-bus-and-8-bit-words-how-much-memory-can-it-addres/1216434
--   Memory stores both data and instructions. Consecutive locations used to store multi-byte data
+- Fixed size (typically 8bit) storage location accessible at high speed and in any order
+- Each byte sized location has a unique address that is accessed by specifiying its binary pattern on the address bus
+- Memory size dependent on number of lines in the address bus (for n lines, memory size = 2^n bytes)
+- https://superuser.com/questions/1216428/if-a-cpu-has-a-16-bit-address-bus-and-8-bit-words-how-much-memory-can-it-addres/1216434
+- Memory stores both data and instructions. Consecutive locations used to store multi-byte data

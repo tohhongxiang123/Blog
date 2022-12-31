@@ -2,25 +2,25 @@
 
 Expressions are built by combining
 
--   variables (x, y) and literals (3, 27, 'a') with
--   operators (+, - etc)
+- variables (x, y) and literals (3, 27, 'a') with
+- operators (+, - etc)
 
 Usual mathematical precedence
 
--   Multiplication and division
--   Addition and subtraction
--   `double y = 5.0 / 1.0 + 2.0 * 3.0`, `y = 11.0`
+- Multiplication and division
+- Addition and subtraction
+- `double y = 5.0 / 1.0 + 2.0 * 3.0`, `y = 11.0`
 
 What happens if we mix types? (Adding shorts to longs, doubles to ints). We have to _cast_, convert from one type to another. There are 2 types of casting
 
--   Upcast: from "narrower" to "wider" (more bits)
-    -   short to int
-    -   float to double
-    -   int to double
--   Downcast: from "wider" to "narrower" (fewer bits)
-    -   int to short
-    -   double to float
-    -   double to int
+- Upcast: from "narrower" to "wider" (more bits)
+  - short to int
+  - float to double
+  - int to double
+- Downcast: from "wider" to "narrower" (fewer bits)
+  - int to short
+  - double to float
+  - double to int
 
 **Java is usually able to upcast automatically**, but not downcast. To manually cast, we have to do the following
 

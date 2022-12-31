@@ -2,7 +2,7 @@
 
 Boolean mask
 
--   An array which can be of one dimension (like a Series) or 2 dimensions (dataframe), each value is either true or false. The array is overlaid on top of the data structure we are querying. Any cell aligned with `true` will be admitted into our final result, and any cell aligned with `false` will not
+- An array which can be of one dimension (like a Series) or 2 dimensions (dataframe), each value is either true or false. The array is overlaid on top of the data structure we are querying. Any cell aligned with `true` will be admitted into our final result, and any cell aligned with `false` will not
 
 ```py
 df['chance of admit'] > 0.7

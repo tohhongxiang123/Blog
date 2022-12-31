@@ -2,10 +2,10 @@
 
 Dynamic Programming (DP) is a problem solving paradigm, similar to divide and conquer. The general procedure for dynamic programming is
 
--   Divide a problem into overlapping subproblems
--   Solve each subproblem recursively
--   Combine the solutions to the subproblems into a solution for the given problem
-    -   Do not compute the answer to the same subproblem more than once
+- Divide a problem into overlapping subproblems
+- Solve each subproblem recursively
+- Combine the solutions to the subproblems into a solution for the given problem
+  - Do not compute the answer to the same subproblem more than once
 
 ## E.g. Fibonacci Numbers
 
@@ -50,10 +50,10 @@ else
 2. Turn this formulation into a recursive function to solve problem $P$
 3. Use a dictionary to store solutions to subproblems
 4. In the recursive function to solve $P$
-    - Before any recursive call, say on subproblem $Q_i$, check the dictionary to see if a solution for $Q_i$ exists
-        - If no solution has been stored, make the recursive call
-        - Otherwise, retrieve the stored solution
-    - Just before returning the solution for $P$, store the solution in the dictionary: Memoisation
+   - Before any recursive call, say on subproblem $Q_i$, check the dictionary to see if a solution for $Q_i$ exists
+     - If no solution has been stored, make the recursive call
+     - Otherwise, retrieve the stored solution
+   - Just before returning the solution for $P$, store the solution in the dictionary: Memoisation
 
 ```c
 #include <stdio.h>
@@ -103,10 +103,10 @@ int main()
 
 1. Before calling `fib`, the `sols` array has to be intialised. `-1` in `sols[n]` means that the answer for `fib(n)` has not been calculated yet
 2. When entering the function, we check the base case
-    - If it is the base case, then we immediately store the solution into the `sols` array, and return
+   - If it is the base case, then we immediately store the solution into the `sols` array, and return
 3. Afterwards, we check whether `fib(n-1)` and `fib(n-2)` have been solved already
-    - If solved, we can just retrieve the value from the `sols` array
-    - If not, we solve it by recursing
+   - If solved, we can just retrieve the value from the `sols` array
+   - If not, we solve it by recursing
 4. Once we have both `fib(n-1)` and `fib(n-2)`, we store the solution into `sols[n]` and return the solution
 
 # Bottom Up Dynamic Programming

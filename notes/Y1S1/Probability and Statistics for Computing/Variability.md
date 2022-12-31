@@ -4,10 +4,10 @@
 
 There are several measures of variability
 
--   Range
--   Interquartile range
--   Variance
--   Standard deviation
+- Range
+- Interquartile range
+- Variance
+- Standard deviation
 
 ### Range
 
@@ -49,15 +49,15 @@ The standard deviation is the square root of the variance. Population standard d
 
 Standard deviation is very useful for **normal distributions**
 
--   68% of the data is within +- 1 SD from the mean
--   95% of the data is within +- 2 SD from the mean
+- 68% of the data is within +- 1 SD from the mean
+- 95% of the data is within +- 2 SD from the mean
 
 # Skew and Kurtosis
 
 Distributions can vary in
 
--   Skew
--   Kurtosis
+- Skew
+- Kurtosis
 
 ### Skew
 

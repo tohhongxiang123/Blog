@@ -1,9 +1,9 @@
 # Practice
 
 1. Write the recursive function `int collatz(int n)`, printing the collatz sequence for positive integers `n`, which is defined as the following sequence
-    - If `n` is even, the next term will be `n/2`
-    - If `n` is odd, the next term is `3n + 1`
-    - Terminate if `n == 1`
+   - If `n` is even, the next term will be `n/2`
+   - If `n` is odd, the next term is `3n + 1`
+   - Terminate if `n == 1`
 
 For example, if `n == 10`, the following sequence will be printed out:
 
@@ -40,8 +40,8 @@ public class Main {
 ```
 
 2. Write the recursive function `gcd(a, b)`, where given 2 positive integers `a` and `b`, returns the greatest common divisor between `a` and `b`
-    - If `a` evenly divides `b`, return `b`
-    - Else, return `gcd(b, a % b)`
+   - If `a` evenly divides `b`, return `b`
+   - Else, return `gcd(b, a % b)`
 
 ```java
 public class Main {

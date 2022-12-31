@@ -2,11 +2,11 @@
 
 The following code shows a linked list with a few methods
 
--   `void addToList(struct node **list, int value)` adds a node with `value` at the beginning of `list`
--   `int findIndex(struct node *list, int valueToSearch)` returns the first occurence of a `node` in `list` with `valueToSearch`
--   `void removeFromList(struct node **list, int valueToRemove)` removes the first occurence of a `node` in `list` with `valueToRemove`
--   `void printList(struct node *list)` prints the from `list`
--   `void updateIndex(struct node *list, int indexToUpdate, int newValue)` updates the `indexToUpdate`th node in `list` to `newValue`
+- `void addToList(struct node **list, int value)` adds a node with `value` at the beginning of `list`
+- `int findIndex(struct node *list, int valueToSearch)` returns the first occurence of a `node` in `list` with `valueToSearch`
+- `void removeFromList(struct node **list, int valueToRemove)` removes the first occurence of a `node` in `list` with `valueToRemove`
+- `void printList(struct node *list)` prints the from `list`
+- `void updateIndex(struct node *list, int indexToUpdate, int newValue)` updates the `indexToUpdate`th node in `list` to `newValue`
 
 ```c
 #include <stdio.h>

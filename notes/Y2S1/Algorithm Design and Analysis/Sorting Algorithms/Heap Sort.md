@@ -11,9 +11,9 @@ A binary heap is a binary tree with the following properties
 
 A binary heap should implement the following methods:
 
--   `void insert(T item)`, which inserts an item into the tree
--   `void delete()`, which deletes the root node of the tree
--   `T peek()`, which returns the minimum element in the heap (the root node)
+- `void insert(T item)`, which inserts an item into the tree
+- `void delete()`, which deletes the root node of the tree
+- `T peek()`, which returns the minimum element in the heap (the root node)
 
 Note that for both of these methods, the property that the parent node is smaller than its children for min heap, and larger than its children for the max heap must still be maintained throughout.
 
@@ -45,9 +45,9 @@ The following shows the procedure for inserting into a min binary heap
 
 1. Insert the item into the leftmost open slot
 2. Compare the added element with its parent
-    1. If the element is smaller than its parent, swap the element and the parent
-    2. Now that the element is swapped, compare the element again with its new parent, and repeat step 2
-    3. If the element is larger than its parent, we are done
+   1. If the element is smaller than its parent, swap the element and the parent
+   2. Now that the element is swapped, compare the element again with its new parent, and repeat step 2
+   3. If the element is larger than its parent, we are done
 
 Steps 2 and 3, which restore the heap property by swapping the child and its parent, are also known as a up-heap operation. The runtime of `insert` depends on how many levels the newly added element has to bubble up. In the worst case, it has to bubble up the entire tree, with heigh $\log n$. Hence the worst case scenario is $O(\log n)$. Best case for `insert` is $O(1)$
 
@@ -76,8 +76,8 @@ void insert(BinaryHeap *b, int item) { // insert into min heap
 1. Swap the root element with the last element inserted into the heap
 2. Delete the element from the heap
 3. Check that the new root of the heap is smaller than both the children
-    1. If it is not, swap the new root with the child that is smaller
-    2. Now, compare the newly swapped root, with its new children again. Repeat step 3 until the parent is smaller than its children
+   1. If it is not, swap the new root with the child that is smaller
+   2. Now, compare the newly swapped root, with its new children again. Repeat step 3 until the parent is smaller than its children
 
 Step 2 and 3, which restore the heap's property by swapping the node with its child, is also known as a down-heap. Worst case scenario occurs if the new root has to move all the way back down $\log n$ levels, hence worst case scenario is $O(\log n)$, while the best case occurs if the root does not have to move at all $O(1)$
 
@@ -422,7 +422,7 @@ Hence, the total runtime for heap sort is $n + n \log n = O(n \log n)$ runtime
 
 # Resources
 
--   https://www.programiz.com/dsa/heap-sort
--   https://www.youtube.com/watch?v=k72DtCnY4MU
--   http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
--   https://en.wikipedia.org/wiki/Stirling%27s_approximation
+- https://www.programiz.com/dsa/heap-sort
+- https://www.youtube.com/watch?v=k72DtCnY4MU
+- http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+- https://en.wikipedia.org/wiki/Stirling%27s_approximation

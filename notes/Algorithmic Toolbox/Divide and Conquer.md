@@ -75,10 +75,10 @@ def binarySearch(A, low, high, key):
 
 Uses of multiplying polynomials
 
--   Error-correcting codes
--   Large-integer multiplication
--   Generating functions
--   Convolution in signal processing
+- Error-correcting codes
+- Large-integer multiplication
+- Generating functions
+- Convolution in signal processing
 
 Example:
 

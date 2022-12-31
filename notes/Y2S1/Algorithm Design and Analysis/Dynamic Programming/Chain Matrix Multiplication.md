@@ -2,15 +2,15 @@
 
 Consider 4 matrices $A_1, A_2, A_3, A_4$, where
 
--   $A_1 = \R^{30 \times 1}$
--   $A_2 = \R^{1 \times 40}$
--   $A_3 = \R^{40 \times 10}$
--   $A_4 = \R^{10 \times 25}$
+- $A_1 = \R^{30 \times 1}$
+- $A_2 = \R^{1 \times 40}$
+- $A_3 = \R^{40 \times 10}$
+- $A_4 = \R^{10 \times 25}$
 
 If we multiply the matrices in different orders, we will get a different number of required operations
 
--   $((A_1 A_2)A_3)A_4 = (30)(1)(40) + (30)(40)(10) + (30)(10)(25) = 20700$
--   $A_1((A_2 A_3) A_4) = (1)(40)(10) + (1)(10)(25) + (30)(1)(25) = 1400$
+- $((A_1 A_2)A_3)A_4 = (30)(1)(40) + (30)(40)(10) + (30)(10)(25) = 20700$
+- $A_1((A_2 A_3) A_4) = (1)(40)(10) + (1)(10)(25) + (30)(1)(25) = 1400$
 
 # Problem Statement
 
@@ -251,6 +251,6 @@ In the worst case, chain matrix multiplication using dynamic programming runs in
 
 # Resources
 
--   https://www.geeksforgeeks.org/matrix-chain-multiplication-costs-8/
--   https://www.youtube.com/watch?v=prx1psByp7U
--   https://www.youtube.com/watch?v=eKkXU3uu2zk
+- https://www.geeksforgeeks.org/matrix-chain-multiplication-costs-8/
+- https://www.youtube.com/watch?v=prx1psByp7U
+- https://www.youtube.com/watch?v=eKkXU3uu2zk

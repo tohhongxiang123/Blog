@@ -2,9 +2,9 @@
 
 Let us create the following:
 
--   PoliceOfficer
--   Clown
--   Barber
+- PoliceOfficer
+- Clown
+- Barber
 
 All these should inherit from an abstract class Person.
 

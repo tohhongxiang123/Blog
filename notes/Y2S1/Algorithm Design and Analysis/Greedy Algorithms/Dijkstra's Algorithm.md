@@ -2,8 +2,8 @@
 
 A single source shortest path algorithm for graphs with **non-negative edge weights**. Typically, Dijkstra's algorithm runs in $O(E \log V)$ where $E$ is the number of edges and $V$ is the number of vertices
 
--   The graph must only contain non-negative edges, to ensure that once a node has been visited, its optimal distance cannot be improved
--   This allows Dijkstra's algorithm to act in a greedy manner by always selecting the next most promising node
+- The graph must only contain non-negative edges, to ensure that once a node has been visited, its optimal distance cannot be improved
+- This allows Dijkstra's algorithm to act in a greedy manner by always selecting the next most promising node
 
 # Algorithm
 
@@ -13,9 +13,9 @@ Let the node we are starting at be the initial node. Let the distance of node Y 
 2. Assign all nodes a tentative initial distance - 0 for initial node, infinity for every other node
 3. Set the initial node as the current node
 4. For the current node, consider all unvisited neighbors. For each unvisited neighbor
-    1. Calculate their tentative distance through the current node
-    2. Compare this newly calculated tentative distance with its current assigned value, and set it to the smaller of the 2
-    3. E.g. if the current node has a distance 6 from the initial node, and the distance between the current node and a visited neighbor N is 2, then the tentative distance for N will be 6 + 2 = 8. If B was marked with a distance initially larger than 8, then set it to 8.
+   1. Calculate their tentative distance through the current node
+   2. Compare this newly calculated tentative distance with its current assigned value, and set it to the smaller of the 2
+   3. E.g. if the current node has a distance 6 from the initial node, and the distance between the current node and a visited neighbor N is 2, then the tentative distance for N will be 6 + 2 = 8. If B was marked with a distance initially larger than 8, then set it to 8.
 5. After considering all unvisited neighbors, mark the current node as visited, remove it from the unvisited set. A node that has been visited will not be visited again.
 6. If the destination node is marked visited (reached destination node) or if the smallest tentative distance among all nodes in the unvisited set is infinity (no connection between initial node and destination node), then the algorithm has finished
 7. Otherwise select the unvisited node marked with the shortest tentative distance, set it as the new current node, and go back to step 4.
@@ -276,5 +276,5 @@ By theorem d1, $d[v_k]$ is the shortest distance from source to $v_k$, hence the
 
 # Resources
 
--   https://stackoverflow.com/questions/26547816/understanding-time-complexity-calculation-for-dijkstra-algorithm
--   https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+- https://stackoverflow.com/questions/26547816/understanding-time-complexity-calculation-for-dijkstra-algorithm
+- https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm

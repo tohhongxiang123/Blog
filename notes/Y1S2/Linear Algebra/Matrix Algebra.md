@@ -2,11 +2,11 @@
 
 # Matrix multiplication
 
--   $A(Bx)$ is produced from $x$ by a _composition_ of 2 linear transformations B, then A
--   We can represent the 2 transformations with a single matrix, by multiplying
-    $$
-    A(Bx) = (AB)x
-    $$
+- $A(Bx)$ is produced from $x$ by a _composition_ of 2 linear transformations B, then A
+- We can represent the 2 transformations with a single matrix, by multiplying
+  $$
+  A(Bx) = (AB)x
+  $$
 
 # Inverse of a Matrix
 
@@ -37,15 +37,15 @@ $$
 
 Theorem on invertible matrices
 
--   If $A$ is an invertible matrix, then $A^{-1}$ is invertible and $(A^{-1})^{-1} = A$
--   If $A$ and $B$ are $n \times n$ invertible matrices, then $AB$ is also invertible. $(AB)^{-1} = B^{-1}A^{-1}$
--   If $A$ is an invertible matrix, so is $A^T$, and $(A^T)^{-1} = (A^{-1})^T$
+- If $A$ is an invertible matrix, then $A^{-1}$ is invertible and $(A^{-1})^{-1} = A$
+- If $A$ and $B$ are $n \times n$ invertible matrices, then $AB$ is also invertible. $(AB)^{-1} = B^{-1}A^{-1}$
+- If $A$ is an invertible matrix, so is $A^T$, and $(A^T)^{-1} = (A^{-1})^T$
 
 Proofs
 
--   Find a matrix $C$ such that $A^{-1}C = I$ and $CA^{-1} = I$. $C$ is simply $A$. Hence $A^{-1}$ is invertible, and its inverse is $A$
--   Find a matrix $C$ such that $(AB)C = I$ and $C(AB) = I$. If $C = B^{-1}A^{-1}$, then $(AB)(B^{-1}A^{-1}) = I$, similarly for $(B^{-1}A^{-1})(AB)$
--   Find a matrix $C$ such that $A^TC = I$ and $CA^T = I$. If $C = (A^{-1})^T$, then $A^T (A^{-1})^T = (AA^{-1})^T = I^T = I$. Similarly for $(A^{-1})^T A^T$. Hence $A^T$ is invertible, and $(A^T)^{-1} = (A^{-1})^T$
+- Find a matrix $C$ such that $A^{-1}C = I$ and $CA^{-1} = I$. $C$ is simply $A$. Hence $A^{-1}$ is invertible, and its inverse is $A$
+- Find a matrix $C$ such that $(AB)C = I$ and $C(AB) = I$. If $C = B^{-1}A^{-1}$, then $(AB)(B^{-1}A^{-1}) = I$, similarly for $(B^{-1}A^{-1})(AB)$
+- Find a matrix $C$ such that $A^TC = I$ and $CA^T = I$. If $C = (A^{-1})^T$, then $A^T (A^{-1})^T = (AA^{-1})^T = I^T = I$. Similarly for $(A^{-1})^T A^T$. Hence $A^T$ is invertible, and $(A^T)^{-1} = (A^{-1})^T$
 
 # Elementary matrix
 
@@ -167,18 +167,18 @@ Invertible Matrix Theorem: Let $A$ be a square $n \times n$ matrix. Then the fol
 
 # Matrix Factorizations
 
--   Matrix multiplication is the _synthesis_ of data $AB = C$
--   Give $C$, we want to extract out $A$ and $B$, that is the _analysis_ of data
+- Matrix multiplication is the _synthesis_ of data $AB = C$
+- Give $C$, we want to extract out $A$ and $B$, that is the _analysis_ of data
 
 # LU Factorization
 
 Consider solving a sequence of equations $Ax = b_1, Ax = b_2, \cdots, Ax = b_p$
 
--   Inefficient solution: Compute $A^{-1}$ and then find $A^{-1}b_1, \cdots, A^{-1}b_p$
--   Efficient solution: $A_{m \times n} = L_{m \times m}U_{m \times n}$
-    -   Assumption that $A$ can be reduced to echelon form **without** row interchanges
-    -   $L$ is the Unit Lower Triangular
-    -   $U$ is the Upper Triangular
+- Inefficient solution: Compute $A^{-1}$ and then find $A^{-1}b_1, \cdots, A^{-1}b_p$
+- Efficient solution: $A_{m \times n} = L_{m \times m}U_{m \times n}$
+  - Assumption that $A$ can be reduced to echelon form **without** row interchanges
+  - $L$ is the Unit Lower Triangular
+  - $U$ is the Upper Triangular
 
 $$
 A = LU = \begin{bmatrix}
@@ -276,8 +276,8 @@ $$
 
 # LU Factorization Procedure
 
--   Row reduction of $A$ to $U$ produces $L$ without extra work
--   Recall the assumption that $A$ can be reduced to echelon form **without row interchanges**
+- Row reduction of $A$ to $U$ produces $L$ without extra work
+- Recall the assumption that $A$ can be reduced to echelon form **without row interchanges**
 
 There exists unit lower traignular elementary matrices $E_1, \cdots, E_p$ such that
 
@@ -405,7 +405,7 @@ FYI:
 
 For $n \times n$ dense matrix and for $n$ moderately large, (e.g. $n \ge 30$):
 
--   $LU$ factorization: about $2n^3/3$ flops
--   Find $A^{-1}$: about $2n^3$ flops
--   Solving $Ly = b$ and $Ux = y$: $2n^2$ flops
--   Multiplication of $b$ by $A^{-1}$: about $2n^2$ flops
+- $LU$ factorization: about $2n^3/3$ flops
+- Find $A^{-1}$: about $2n^3$ flops
+- Solving $Ly = b$ and $Ux = y$: $2n^2$ flops
+- Multiplication of $b$ by $A^{-1}$: about $2n^2$ flops

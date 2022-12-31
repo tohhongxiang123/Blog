@@ -4,8 +4,8 @@
 
 The `LDR` operator copies memory content to a register
 
--   The left operand is always a destination register
--   The right source operand is a memory location whose address is contained in a register (indirect addressing)
+- The left operand is always a destination register
+- The right source operand is a memory location whose address is contained in a register (indirect addressing)
 
 ```
 LDR R1, [R0]
@@ -36,17 +36,17 @@ Then, the contents at the address will be copied into `R1`
 
 # Role of the Processor
 
--   Fetch instructions - CPU reads instructions from memory
--   Decode instructions - Instruction is decoded to determine action required
--   Fetch data - Data from memory may need to be fetched in order to complete execution of instruction through an external data bus (optional)
--   Execute - Instruction execution may require CPU to perform some arithmentic/logical operation on the data, or just move the data into a register
+- Fetch instructions - CPU reads instructions from memory
+- Decode instructions - Instruction is decoded to determine action required
+- Fetch data - Data from memory may need to be fetched in order to complete execution of instruction through an external data bus (optional)
+- Execute - Instruction execution may require CPU to perform some arithmentic/logical operation on the data, or just move the data into a register
 
 The **fetch-decode-execute** cycle is performed repeatedly once the CPU is powered on.
 
--   Execution of a single instruction may involve multiople accesses to memory, and in most single memory CPU (von-Neumann type), different instructions take different number of clock cycles to execute
--   Data transfer on external bus (loading from memory to the CPU) is slower than within the CPU's internal bus. Microprocessor's performance is limited by data traffic bandwidth between CPU and memory (von Neumann bottleneck)
--   Keeping regularly used operands in CPU registers helps reduce memory access (caching)
--   Keeping instructions and data in separate memories (Harvard architecture) can help make instructions execute in more regular cycles (using parallel fetches), improving performance
+- Execution of a single instruction may involve multiople accesses to memory, and in most single memory CPU (von-Neumann type), different instructions take different number of clock cycles to execute
+- Data transfer on external bus (loading from memory to the CPU) is slower than within the CPU's internal bus. Microprocessor's performance is limited by data traffic bandwidth between CPU and memory (von Neumann bottleneck)
+- Keeping regularly used operands in CPU registers helps reduce memory access (caching)
+- Keeping instructions and data in separate memories (Harvard architecture) can help make instructions execute in more regular cycles (using parallel fetches), improving performance
 
 ### Example Fetch Cycle - `LDR R1, [R0]`
 

@@ -44,25 +44,25 @@ However, this solution is bad because it wastes memory. If the user only wants a
 
 # Static vs Dynamic Memory
 
--   Static elements are allocated on the **stack**
--   Dynamic elements are allocated on the **heap**
+- Static elements are allocated on the **stack**
+- Dynamic elements are allocated on the **heap**
 
 ### Stack
 
--   Elements are nicely stacked on top of one another **contiguously**
+- Elements are nicely stacked on top of one another **contiguously**
 
 ### Heap
 
--   Memory space for elements allocated anywhere
--   Use `malloc` to perform memory allocation on the heap
+- Memory space for elements allocated anywhere
+- Use `malloc` to perform memory allocation on the heap
 
 # `void *malloc(size_t size)`
 
--   Reserves `size` bytes of memory for your variable/struct
--   Returns the address where the reserved space starts, `NULL` if memory allocation fails
--   `malloc` comes from `stdlib.h`, so to use `malloc`, you should `#include <stdlib.h>`
--   Everytime `malloc(size)` is called, the OS looks for a space in the heap with `size` contiguous bytes of memory
-    -   `malloc` can fail if your memory is fragmented. Many small blocks of memory are free, but none are large enough to fit `size` bytes
+- Reserves `size` bytes of memory for your variable/struct
+- Returns the address where the reserved space starts, `NULL` if memory allocation fails
+- `malloc` comes from `stdlib.h`, so to use `malloc`, you should `#include <stdlib.h>`
+- Everytime `malloc(size)` is called, the OS looks for a space in the heap with `size` contiguous bytes of memory
+  - `malloc` can fail if your memory is fragmented. Many small blocks of memory are free, but none are large enough to fit `size` bytes
 
 ```c
 #include <stdio.h>
@@ -95,8 +95,8 @@ Note: `sizeof(int)` returns 4 bytes
 
 # Memory De-allocation
 
--   Free up memory by using `free`
--   Memory de-allocation is important because any memory we `malloc` and do not use will not be automatically freed up (unlike languages with automatic garbage-collection such as python)
+- Free up memory by using `free`
+- Memory de-allocation is important because any memory we `malloc` and do not use will not be automatically freed up (unlike languages with automatic garbage-collection such as python)
 
 ```c
 #include <stdlib.h>
@@ -113,7 +113,7 @@ We allocate memory and point to it using `ptr`, and then we allocate another blo
 
 ### `void free(void *ptr)`
 
--   Frees memory allocated at `ptr`
+- Frees memory allocated at `ptr`
 
 ```c
 #include <stdlib.h>
@@ -132,10 +132,10 @@ int main() {
 
 Memory for 5 integers was allocated, but we inserted 10000 integers in to the array.
 
--   This is called a **buffer overflow**, where we write more memory than we were allocated
--   This causes parts of memory that were not allocated to us to be overwritten
--   Other variables, other program instructions etc.
--   Sometimes this will work (if lucky), most of the time it will crash the program
+- This is called a **buffer overflow**, where we write more memory than we were allocated
+- This causes parts of memory that were not allocated to us to be overwritten
+- Other variables, other program instructions etc.
+- Sometimes this will work (if lucky), most of the time it will crash the program
 
 ### Buffer overflow
 

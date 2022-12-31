@@ -2,7 +2,7 @@
 
 General process for solving problems with a greedy algorithm:
 
--   Start at A
+- Start at A
 
 For example
 
@@ -82,8 +82,8 @@ Lemma: `pointsCoverSorted` runs in $O(n)$
 
 Proof:
 
--   $i$ changes from 1 to $n$
--   For each $i$, at most 1 new segment
--   Overall running time is $O(n)$
+- $i$ changes from 1 to $n$
+- For each $i$, at most 1 new segment
+- Overall running time is $O(n)$
 
 What if points were not sorted? Then `pointsCover` runs in $O(n \log n)$

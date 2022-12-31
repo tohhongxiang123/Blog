@@ -4,8 +4,8 @@ Memory is usually measured in **bytes**, which are multiples of 8 bits.
 
 A computer represents information in 2 states
 
--   0 (off)
--   1 (on)
+- 0 (off)
+- 1 (on)
 
 Each digit is a single **bit**, and 8 bits make a **byte**
 

@@ -2,20 +2,20 @@
 
 We have looked at primitive types already:
 
--   byte
--   short
--   int
--   long
--   float
--   double
--   boolean
--   char
+- byte
+- short
+- int
+- long
+- float
+- double
+- boolean
+- char
 
 Object (reference) types are different
 
--   They are a collection of primitive data, with methods that can operate on that object
--   Created using the `new` keyword and a special function called the **constructor**
--   Variable will hold not the values, but a memory location where these values can be found, known as an address
+- They are a collection of primitive data, with methods that can operate on that object
+- Created using the `new` keyword and a special function called the **constructor**
+- Variable will hold not the values, but a memory location where these values can be found, known as an address
 
 > A primitive variable can be assigned a value, and that value can be stored directly in short-term memory. However, a reference type will never hold a specific value directly, instead holding the address of the information associated with the corresponding object in memory.
 
@@ -32,13 +32,13 @@ Reference types are defined with a class declaration, and a set of values are cr
 
 A pre-implemented type in the Java library
 
--   A sequence of characters length 0 - 2 147 483 647
--   Methods include
-    -   `concat()`
-    -   `toUpper()`
-    -   `length`
-    -   `Substring()`
-    -   etc.
+- A sequence of characters length 0 - 2 147 483 647
+- Methods include
+  - `concat()`
+  - `toUpper()`
+  - `length`
+  - `Substring()`
+  - etc.
 
 # Reference Example: Car
 

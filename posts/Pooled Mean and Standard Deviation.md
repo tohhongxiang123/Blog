@@ -85,8 +85,8 @@ $$
 
 In conclusion, the sampling distribution of $\bar{X}$ has
 
--   Mean $\mu$
--   Standard deviation $\frac{\sigma}{\sqrt{n}}$
+- Mean $\mu$
+- Standard deviation $\frac{\sigma}{\sqrt{n}}$
 
 # Why is the sample variance divided by $N-1$?
 
@@ -225,7 +225,7 @@ $$
 
 ### Sources
 
--   [Deriving the Mean and Variance of the Sample Mean](https://www.youtube.com/watch?v=7mYDHbrLEQo)
--   [Proof that the Sample Variance is an Unbiased Estimator of the Population Variance](https://www.youtube.com/watch?v=D1hgiAla3KI)
--   https://stats.stackexchange.com/questions/55999/is-it-possible-to-find-the-combined-standard-deviation
--   https://stats.stackexchange.com/questions/3931/intuitive-explanation-for-dividing-by-n-1-when-calculating-standard-deviation
+- [Deriving the Mean and Variance of the Sample Mean](https://www.youtube.com/watch?v=7mYDHbrLEQo)
+- [Proof that the Sample Variance is an Unbiased Estimator of the Population Variance](https://www.youtube.com/watch?v=D1hgiAla3KI)
+- https://stats.stackexchange.com/questions/55999/is-it-possible-to-find-the-combined-standard-deviation
+- https://stats.stackexchange.com/questions/3931/intuitive-explanation-for-dividing-by-n-1-when-calculating-standard-deviation

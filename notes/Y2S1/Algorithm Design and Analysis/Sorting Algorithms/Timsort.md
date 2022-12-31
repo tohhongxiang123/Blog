@@ -514,4 +514,4 @@ Therefore, the total time complexity is $O\left(nS + n \log \frac{n}{S} \right)$
 
 # Resources
 
--   https://en.wikipedia.org/wiki/Timsort
+- https://en.wikipedia.org/wiki/Timsort

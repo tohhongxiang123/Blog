@@ -63,8 +63,8 @@ public class Practice {
 ```
 
 3. Write a class `UserAccount` with the following:
-    - `private String email`
-    - `private String password`
-    - `public String getEmail`
-    - `public String setEmail` - Only change email if email contains an `@` and ends with `.com` or `.edu`
-    - `public String setPassword` - Only change password if password is at least 8 characters long
+   - `private String email`
+   - `private String password`
+   - `public String getEmail`
+   - `public String setEmail` - Only change email if email contains an `@` and ends with `.com` or `.edu`
+   - `public String setPassword` - Only change password if password is at least 8 characters long

@@ -22,13 +22,13 @@ We can use backtracking to solve the problem. The pseudocode is as follows:
 
 1. Start from (0, 0)
 2. For a specific row
-    1. For all columns in the row
-        1. Place the queen in that column
-        2. If the board is still valid
-            1. Recurse with the next row, starting again from the first column
-        3. If all the queens are placed, and the board is valid
-            1. Print the board
-        4. Remove the queen from the space
+   1. For all columns in the row
+      1. Place the queen in that column
+      2. If the board is still valid
+         1. Recurse with the next row, starting again from the first column
+      3. If all the queens are placed, and the board is valid
+         1. Print the board
+      4. Remove the queen from the space
 
 ```python
 def n_queens(board, row, col):

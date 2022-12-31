@@ -2,19 +2,19 @@
 
 > We have a knapsack of capacity $C$, where $C$ is a positive integer, and $n$ objects with weights $w_1, w_2, ..., w_n$ and profits $p_1, p_2, ... , p_n$, where all $w_i$ and $p_i$ are positive integers. Find the largest total profit of any subset of the objects that fit in the knapsack
 
--   We have to take whole objects
--   There are $2^n$ subsets of $n$ objects, brute force will take $O(2^n)$ time
+- We have to take whole objects
+- There are $2^n$ subsets of $n$ objects, brute force will take $O(2^n)$ time
 
 # Procedure
 
 1. Formulate the 0/1 Knapsack Problem in terms of smaller versions of the same problem
-    - Consider the last of $n$ objects with weights $w_1, w_2, ..., w_n$
-    - If we include it in the knapsack, the available weight of the knapsack is reduced by $w_n$
-    - Our profits would be $p_n$, plus the maximum we can get from solving the subproblem of $n-1$ objects with capacity $C - w_n$
-    - If we do not include the $n^{th}$ object in our knapsack, it is the same as solving the problem of filling a knapsack with capacity $C$ and $n-1$ objects
-    - The dynamic programming selection rule: When given a number of possibilities, compute all the possibilities, and take the best
+   - Consider the last of $n$ objects with weights $w_1, w_2, ..., w_n$
+   - If we include it in the knapsack, the available weight of the knapsack is reduced by $w_n$
+   - Our profits would be $p_n$, plus the maximum we can get from solving the subproblem of $n-1$ objects with capacity $C - w_n$
+   - If we do not include the $n^{th}$ object in our knapsack, it is the same as solving the problem of filling a knapsack with capacity $C$ and $n-1$ objects
+   - The dynamic programming selection rule: When given a number of possibilities, compute all the possibilities, and take the best
 2. Turn the formulation into a recursive formula
-    - From the above formulation, we can write the recursive formula,
+   - From the above formulation, we can write the recursive formula,
 
 $$
     P(C, n) = \begin{cases}
@@ -25,11 +25,11 @@ $$
 
 3. Draw subproblem graph and find dependencies among subproblems
 
-    - For this, we know that $P(C, n)$ depends on $P(C - w_n, n-1)$ and $P(C, n-1)$
+   - For this, we know that $P(C, n)$ depends on $P(C - w_n, n-1)$ and $P(C, n-1)$
 
 4. Create the dynamic programming table
-    - We shall create a dictionary `profits[C + 1][n + 1]`
-    - Going down each column means increasing the capacity $C$ of the knapsack, while going rightwards for each row means increasing the number of objects to consider
+   - We shall create a dictionary `profits[C + 1][n + 1]`
+   - Going down each column means increasing the capacity $C$ of the knapsack, while going rightwards for each row means increasing the number of objects to consider
 
 # Code
 
@@ -158,8 +158,8 @@ The time complexity of 0/1 knapsack is $O(nC)$, where $n$ is the number of objec
 
 This algorithm runs in **pseudo-polynomial** time
 
--   The runtime is a polynomial function of the **value** of the input
--   For this case, the runtime depends on the capacity $C$ of the knapsack
+- The runtime is a polynomial function of the **value** of the input
+- For this case, the runtime depends on the capacity $C$ of the knapsack
 
 # Variation to 0/1 Knapsack: Unbounded Knapsack
 
@@ -170,19 +170,19 @@ Instead of either having 0 or 1 of each item, assume that we have an infinite su
 3. We initially let all entries of `overallProfits` be 0, and `itemKept` be -1
 4. When capacity is 0, we know that the overall profit is 0
 5. Loop from `c = 1` to `capacity` (inclusive)
-    1. Introduce a `indexOfWeightKept` to see which was the index of the new item we chose to add to the knapsack at capacity `c`. Initially, we set `indexOfWeightKept = -1`, assuming that we did not choose any new item to add to the knapsack.
-    2. For each `c`, loop through each item `i` = 0 to n
-        1. `currentProfit = overallProfits[c]`
-        2. `newProfit = overallProfits[c - weights[i]] + profits[i]`
-        3. `overallProfits[c] = max(currentProfit, newProfit)`
-        4. `indexOfWeightKept = i`
-    3. If `indexOfWeightKept != -1`, we set `itemKept[c] = indexOfWeightKept`
+   1. Introduce a `indexOfWeightKept` to see which was the index of the new item we chose to add to the knapsack at capacity `c`. Initially, we set `indexOfWeightKept = -1`, assuming that we did not choose any new item to add to the knapsack.
+   2. For each `c`, loop through each item `i` = 0 to n
+      1. `currentProfit = overallProfits[c]`
+      2. `newProfit = overallProfits[c - weights[i]] + profits[i]`
+      3. `overallProfits[c] = max(currentProfit, newProfit)`
+      4. `indexOfWeightKept = i`
+   3. If `indexOfWeightKept != -1`, we set `itemKept[c] = indexOfWeightKept`
 6. To print out the items we chose to keep in the knapsack,
-    1. We set `c = capacity`
-    2. While `c > 0`
-        1. If `overallProfits[c] == overallProfits[c - 1]`, this means that no new item was added to the knapsack. We will set `c--` and `continue`
-        2. If not, this means that a new item was kept in the knapsack. This item has `index = itemKept[c]`
-        3. We print out this item's profit (`profit[c]`) and then set `c = c - weights[itemsKept[c]]`. We want reduce the capacity by the weight of the item, and continue from there
+   1. We set `c = capacity`
+   2. While `c > 0`
+      1. If `overallProfits[c] == overallProfits[c - 1]`, this means that no new item was added to the knapsack. We will set `c--` and `continue`
+      2. If not, this means that a new item was kept in the knapsack. This item has `index = itemKept[c]`
+      3. We print out this item's profit (`profit[c]`) and then set `c = c - weights[itemsKept[c]]`. We want reduce the capacity by the weight of the item, and continue from there
 7. Return `overallProfits[capacity]`
 
 To print each item,

@@ -291,9 +291,9 @@ Mortgage calculator
 
 Take in the following inputs from the user
 
--   Principal
--   Annual interest rate
--   Period (Years)
+- Principal
+- Annual interest rate
+- Period (Years)
 
 The mortgage is defined by
 
@@ -414,10 +414,10 @@ switch (role) {
 
 Enter a number.
 
--   If the number is divisible by 3, print "Fizz"
--   If the number is divisible by 5, print "Buzz"
--   If the number is divisible by 3 and 5, print "FizzBuzz"
--   Else print the number
+- If the number is divisible by 3, print "Fizz"
+- If the number is divisible by 5, print "Buzz"
+- If the number is divisible by 3 and 5, print "FizzBuzz"
+- Else print the number
 
 ```java
 package com.company;

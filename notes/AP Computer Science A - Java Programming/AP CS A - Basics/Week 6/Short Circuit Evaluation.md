@@ -2,9 +2,9 @@
 
 Boolean operators `&&` and `||` abandon evaluation if the result is determined with certainty
 
--   `true || (anything) == true`
--   `false && (anything) == false`
--   `(anything)` is not evaluated
+- `true || (anything) == true`
+- `false && (anything) == false`
+- `(anything)` is not evaluated
 
 A common use of short circuiting:
 
@@ -16,8 +16,8 @@ If `p` was null and we tried to run `p.isImportant()`, it would fail because `p`
 
 If you want to avoid lazy evaluation, then we use the bitwise version of the `&&` and `||` operators
 
--   `&` instead of `&&`
--   `|` instead of `||`
+- `&` instead of `&&`
+- `|` instead of `||`
 
 This forces java to evaluate both sides of the boolean expression regardless of values.
 

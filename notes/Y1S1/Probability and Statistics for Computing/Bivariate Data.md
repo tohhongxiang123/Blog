@@ -22,12 +22,12 @@ $$
 
 ### Properties of Pearson Product
 
--   Ranges from $[-1, 1]$
--   -1 means the 2 variables are perfectly negatively correlated
--   +1 means the 2 variables are perfectly positively correlated
--   0 means the 2 variables have no correlation with each other
--   Symmetric - The correlation of X with Y is the same as the correlation of Y with X
--   Unafffected by linear transformations - The correlation of X with Y is the same as the correlation of aX + b to Y
+- Ranges from $[-1, 1]$
+- -1 means the 2 variables are perfectly negatively correlated
+- +1 means the 2 variables are perfectly positively correlated
+- 0 means the 2 variables have no correlation with each other
+- Symmetric - The correlation of X with Y is the same as the correlation of Y with X
+- Unafffected by linear transformations - The correlation of X with Y is the same as the correlation of aX + b to Y
 
 # Variance Sum Laws
 

@@ -552,19 +552,19 @@ There are 3 cases to take care of when deleting a node
 
 ## 0 children
 
--   Point the parent of the node to `NULL`
--   `free` the target node
+- Point the parent of the node to `NULL`
+- `free` the target node
 
 ## 1 child
 
--   Copy the child to the target node
--   `free` the target node
+- Copy the child to the target node
+- `free` the target node
 
 ## 2 children
 
--   Get the smallest value node in the right subtree
--   Copy that node into the target node
--   `free` the target node
+- Get the smallest value node in the right subtree
+- Copy that node into the target node
+- `free` the target node
 
 After deleting the target node, check for balance, and rebalance if necessary.
 

@@ -1,13 +1,13 @@
 # Statically Bound Fields
 
--   Suppose both `Animal` and `Dog` have a field `name`
--   `Dog d = new Dog();`
--   `d.name` is the field in `Dog`
--   `Animal a = d;`
--   `a.name` is the field in `Animal`
--   Unlike methods, fields are **statically bound** (Methods are **dynamically bound**)
--   Determined at compile time, not at runtime
--   We are not recommended to have the same name and type of a field in a derived class and a parent class
+- Suppose both `Animal` and `Dog` have a field `name`
+- `Dog d = new Dog();`
+- `d.name` is the field in `Dog`
+- `Animal a = d;`
+- `a.name` is the field in `Animal`
+- Unlike methods, fields are **statically bound** (Methods are **dynamically bound**)
+- Determined at compile time, not at runtime
+- We are not recommended to have the same name and type of a field in a derived class and a parent class
 
 Reminder: A subclass contains its fields as well as all the fields defined in the superclass. But since the subclass and superclass have a variable of the same name and type, the subclass's variable **hides** the superclass variable.
 

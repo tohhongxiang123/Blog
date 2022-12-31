@@ -2,29 +2,29 @@
 
 A proposition is a declarative statement that is either **true** or **false**
 
--   1 + 1 = 2 - True
--   2 + 2 < 0 - False
--   Singapore is in Europe - False
--   1 + 1 > X - Not a proposition unless we know the value of X
--   What a great book! - Not a proposition because it is not a declarative statement
+- 1 + 1 = 2 - True
+- 2 + 2 < 0 - False
+- Singapore is in Europe - False
+- 1 + 1 > X - Not a proposition unless we know the value of X
+- What a great book! - Not a proposition because it is not a declarative statement
 
 A declarative statement that cannot be assigned a truth value is a **paradox**
 
--   This statement is false
+- This statement is false
 
 # Logical operators
 
 We use symbols to represent statements
 
--   P : "dogs are mammals"
--   P is true if dogs are mammals
+- P : "dogs are mammals"
+- P is true if dogs are mammals
 
 We can use logical operators to combine statements
 Logical operators include
 
--   ^ (and)
--   v (or)
--   ¬ (not, or ~)
+- ^ (and)
+- v (or)
+- ¬ (not, or ~)
 
 ### Negation (NOT)
 
@@ -35,7 +35,7 @@ Logical operators include
 
 ### Disjunction (OR)
 
--   p v q is true if AT LEAST 1 of p or q is true
+- p v q is true if AT LEAST 1 of p or q is true
 
 | p   | q   | $p \lor q$ |
 | --- | --- | ---------- |
@@ -44,11 +44,11 @@ Logical operators include
 | 1   | 0   | 1          |
 | 1   | 1   | 1          |
 
--   $p \lor q \equiv q \lor p$, hence the operator v commutes
+- $p \lor q \equiv q \lor p$, hence the operator v commutes
 
 ### Conjunction (AND)
 
--   p ^ q is true only if BOTH p and q are true
+- p ^ q is true only if BOTH p and q are true
 
 | p   | q   | $p \land q$ |
 | --- | --- | ----------- |
@@ -57,7 +57,7 @@ Logical operators include
 | 1   | 0   | 0           |
 | 1   | 1   | 1           |
 
--   ^ is also commutative
+- ^ is also commutative
 
 # De Morgan's Laws
 
@@ -79,7 +79,7 @@ $$
 
 A compound statement that is always false is a **contradiction**
 
--   This course is easy and this course is not easy ($p \land \neg p \equiv F$)
+- This course is easy and this course is not easy ($p \land \neg p \equiv F$)
 
 | $p$ | $\neg p$ | $p \land \neg p$ |
 | --- | -------- | ---------------- |
@@ -88,7 +88,7 @@ A compound statement that is always false is a **contradiction**
 
 A compound statement that is always true is a **tautology**
 
--   $p \lor \neg p \equiv T$
+- $p \lor \neg p \equiv T$
 
 | $p$ | $\neg p$ | $p \lor \neg p$ |
 | --- | -------- | --------------- |
@@ -99,10 +99,10 @@ A compound statement that is always true is a **tautology**
 
 Let
 
--   $b$: Bob is single
--   $\neg b$: Bob is not single
--   $h$: Alice is married
--   $\neg h$: Alice is not married
+- $b$: Bob is single
+- $\neg b$: Bob is not single
+- $h$: Alice is married
+- $\neg h$: Alice is not married
 
 Alice is not married **but** Bob is not single (But is equivalent to and in english)
 
@@ -219,15 +219,15 @@ E.g. Bob pays taxes **only if** is income > \$1000, If Bob's income <= \$1000, t
 
 When $p \implies q$, $p$ is called a **sufficient** condition for $q$, $q$ is a **necessary condition** for p.
 
--   Being an apple is a **sufficient condition** for being a fruit -> If it is an apple, then it must be a fruit
--   Being a fruit is a **necessary condition** for being an apple -> If it is not a fruit then it cannot be an apple
+- Being an apple is a **sufficient condition** for being a fruit -> If it is an apple, then it must be a fruit
+- Being a fruit is a **necessary condition** for being an apple -> If it is not a fruit then it cannot be an apple
 
 # Biconditional Operator (If and only if)
 
 The **biconditional** of $p$ and $q$: $p \iff q \equiv (p \implies q) \land (q \implies p)$
 
--   True only if $p$ and $q$ have identical truth values
--   Written as **iff**
+- True only if $p$ and $q$ have identical truth values
+- Written as **iff**
 
 | $p$ | $q$ | $p \implies q$ | $q \implies p$ | $p \iff q$ |
 | --- | --- | -------------- | -------------- | ---------- |
@@ -246,11 +246,11 @@ The **biconditional** of $p$ and $q$: $p \iff q \equiv (p \implies q) \land (q \
 
 When equal binary instances of **binary connectives** (Connect 2 statements together) are not separated by (), the **leftmost** one has precedence
 
--   $p \implies q \implies r \equiv (p \implies q) \implies r$
+- $p \implies q \implies r \equiv (p \implies q) \implies r$
 
 When instances of $\neg$ are not separated by (), the **rightmost** one has precedence
 
--   $\neg \neg \neg p \equiv \neg (\neg (\neg p))$
+- $\neg \neg \neg p \equiv \neg (\neg (\neg p))$
 
 E.g. $p \lor q \implies r \equiv (p \implies r) \land (q \implies r)$
 
@@ -299,7 +299,7 @@ We can see that $((p \implies q) \land p) \implies q$ is a tautology, hence the 
 
 If in all critical rows the conclusion is true, then the **argument is valid**. A critical row with a false conclusion is a **counterexample**
 
--   Counterexamples invalidates the arguments, and shows that the conclusion does not follow the premises
+- Counterexamples invalidates the arguments, and shows that the conclusion does not follow the premises
 
 E.g.
 
@@ -344,9 +344,9 @@ p \implies &q \\
 \end{aligned}
 $$
 
--   If it is Christmas, then it is a holiday
--   It is a holiday. Therefore, it is Christmas
--   This is false, because it could have been Good Friday instead
+- If it is Christmas, then it is a holiday
+- It is a holiday. Therefore, it is Christmas
+- This is false, because it could have been Good Friday instead
 
 ### Fallacy 2 (Inverse Error)
 
@@ -358,18 +358,18 @@ p \implies &q \\
 \end{aligned}
 $$
 
--   If it is raining, I will stay at home
--   It is not raining, therefore I will not stay at home
--   False, because I can stay at home even if it is raining
+- If it is raining, I will stay at home
+- It is not raining, therefore I will not stay at home
+- False, because I can stay at home even if it is raining
 
 ### Invalid argument, correct conclusion
 
 An argument may be invalid but still draw a correct conclusion
 
--   If New York is a big city, then New York has tall buildings
--   New York has tall buildings
--   So, New York is a big city
--   This is an invalid argument, because having tall buildings does not imply that the city is big (Converse error). However the conclusion was still valid by coincidence
+- If New York is a big city, then New York has tall buildings
+- New York has tall buildings
+- So, New York is a big city
+- This is an invalid argument, because having tall buildings does not imply that the city is big (Converse error). However the conclusion was still valid by coincidence
 
 # Inference Rules
 

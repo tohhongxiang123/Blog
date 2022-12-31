@@ -13,7 +13,7 @@ There are 4 access modifiers, which give different access levels to variables/me
 
 # Subclass Access
 
--   Subclasses cannot access private fields in their superclasses
--   Two options
-    -   Leave as is; provide accessors/mutators
-    -   Change private to protected
+- Subclasses cannot access private fields in their superclasses
+- Two options
+  - Leave as is; provide accessors/mutators
+  - Change private to protected

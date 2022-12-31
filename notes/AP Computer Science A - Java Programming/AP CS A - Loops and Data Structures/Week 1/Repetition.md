@@ -2,8 +2,8 @@
 
 Repetition can be used to
 
--   Perform the same operation on different data
--   Accumulate information over a set of data
+- Perform the same operation on different data
+- Accumulate information over a set of data
 
 Repetition is broken down into 2 parts
 
@@ -19,9 +19,9 @@ There are 2 forms of iterations
 
 Java Repetition Constructs
 
--   `while`
--   `do-while`
--   `for`
+- `while`
+- `do-while`
+- `for`
 
 # `while` loop
 

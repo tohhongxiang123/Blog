@@ -93,9 +93,9 @@ To solve $Ax = b$, we reduce the augmented matrix into **row-echelon** form or *
 
 ### Elementary Row Operations
 
--   Multiply a row by a non-zero constant
--   Interchange 2 rows
--   Add a constant times one row to another
+- Multiply a row by a non-zero constant
+- Interchange 2 rows
+- Add a constant times one row to another
 
 When a matrix $A$ is transformed to another matrix $B$ through a sequence of EROs, they are **row equivalent**
 
@@ -291,8 +291,8 @@ Since all vectors in $\R^m$ can be expressed as a linear combination of the colu
 
 Consider $A \in \R^{m \times n}$, $u, v \in \R^m$, and a scalar $c$. The following hold
 
--   $A(u + v) = Au + Av$
--   $A(cu) = c(Au)$
+- $A(u + v) = Au + Av$
+- $A(cu) = c(Au)$
 
 # Solution sets of linear systems
 

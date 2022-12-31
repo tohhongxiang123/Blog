@@ -2,12 +2,12 @@
 
 Programming languages have many different data types
 
--   Numbers
--   Characters
--   Boolean
--   Arrays
--   Structures
--   Pointers
+- Numbers
+- Characters
+- Boolean
+- Arrays
+- Structures
+- Pointers
 
 # Number Representation
 
@@ -18,8 +18,8 @@ There are 2 basic types of numbers
 
 Floating point numbers are useful for scientific calculations. However, there is a trade off between **precision** and **range**
 
--   Precision is the number of decimal places you can represent (0.123456789 vs 0.123)
--   Range is determined by the biggest and smallest positive number you can represent ($10^0 - 10^99$ vs $10^0 - 10^9$)
+- Precision is the number of decimal places you can represent (0.123456789 vs 0.123)
+- Range is determined by the biggest and smallest positive number you can represent ($10^0 - 10^99$ vs $10^0 - 10^9$)
 
 Floating point numbers are always **signed**. However, integers can either be **signed** (`int`) or **unsigned** (`unsigned int`)
 
@@ -42,14 +42,14 @@ The range of a number can be increased by using more bytes to represent the numb
 | `float`              | 4     | 32   |
 | `double`             | 8     | 64   |
 
--   More information on the [wiki page](https://en.wikipedia.org/wiki/C_data_types)
+- More information on the [wiki page](https://en.wikipedia.org/wiki/C_data_types)
 
 # Data Organisation in Memory
 
 How is a 32-bit number stored in memory?
 
--   Each memory address can only store a certain number of bytes (8 bytes)
--   2 ways depending on **byte-ordering** of the data in memory
+- Each memory address can only store a certain number of bytes (8 bytes)
+- 2 ways depending on **byte-ordering** of the data in memory
 
 1. Big Endian - The biggest (most significant) byte in the smallest address
 2. Little Endian - The smallest (least significant) byte in the smallest address
@@ -58,41 +58,41 @@ How is a 32-bit number stored in memory?
 
 Characters are declared as `char`. Each `char` requires 1 byte of memory storage
 
--   Data in a computer is stored in binary, but are transformed into representative characters through some encoding standard
--   The most common character encoding standard is the 7-bit ASCII code
+- Data in a computer is stored in binary, but are transformed into representative characters through some encoding standard
+- The most common character encoding standard is the 7-bit ASCII code
 
 ### ASCII (American Standard Code for Information Interchange)
 
--   7 bit code for representing characters
+- 7 bit code for representing characters
 
 ![ASCII Table](http://projects.zo.uni-heidelberg.de/course_resources/s02/images/image61.gif)
 
--   A byte is normally used to store an ASCII character, and the MSB could be used for **parity error checking**
+- A byte is normally used to store an ASCII character, and the MSB could be used for **parity error checking**
 
 ### Unicode
 
--   Developed to handle text expressions for all major living languages in the world
--   8/16/32-bit character encoding standard that is downward compatible with ASCII
--   Adopted by technologies such as XML, Java, .NET and many operating systems
+- Developed to handle text expressions for all major living languages in the world
+- 8/16/32-bit character encoding standard that is downward compatible with ASCII
+- Adopted by technologies such as XML, Java, .NET and many operating systems
 
 # Boolean Representation
 
 Boolean variables have only 2 states
 
--   1
--   0
+- 1
+- 0
 
 The Boolean type was made available in ANSI C (after 1999) as `_Bool` with the `stdbool.h` header file
 
--   False: 0
--   True: Non-zero (1)
+- False: 0
+- True: Non-zero (1)
 
 Memory storage for Boolean variables is **inefficient** as most implementation use a byte to store a 1-bit boolean value. The 8051 processor solves this problem by providing 128 **bit-addressable** memory locations
 
 ### Bit Addressable Memory
 
--   In embedded applications, data variables are often related to ON-OFF status of discrete sensors and outputs (LEDs or switches)
--   Bit-addressable memory provided an efficient way to handle such information
+- In embedded applications, data variables are often related to ON-OFF status of discrete sensors and outputs (LEDs or switches)
+- Bit-addressable memory provided an efficient way to handle such information
 
 # Array Representation
 
@@ -203,9 +203,9 @@ int main() {
 
 Pointers in C provide a mechanism for referencing memory variables, elements of structures and arrays
 
--   C pointers are declared to point to a particular data type
--   The value of a pointer is an **address**. Its size is **fixed** regardless of data type
--   The size of the pointer depends on the processor's **address range**
+- C pointers are declared to point to a particular data type
+- The value of a pointer is an **address**. Its size is **fixed** regardless of data type
+- The size of the pointer depends on the processor's **address range**
 
 ```c
 int main() {
@@ -226,6 +226,6 @@ int main() {
 
 We do not know where the pointer will be stored. However we can see that each pointer will be 2 bytes (16 bits), because the address is a 16 bit address (Each digit is a hexadecimal digit of 4 bits, hence 4 digits = 16 bits = 2 bytes)
 
--   When properly initialised, a pointer contains the start address where the memory variable can be found
--   We use the dereferencing operator (\*) to copy a value to the address pointed to by the pointer `ptr`
--   Knowing the start address of an array/struct makes it easy to access their different elements
+- When properly initialised, a pointer contains the start address where the memory variable can be found
+- We use the dereferencing operator (\*) to copy a value to the address pointed to by the pointer `ptr`
+- Knowing the start address of an array/struct makes it easy to access their different elements

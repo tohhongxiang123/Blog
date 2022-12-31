@@ -1,52 +1,52 @@
 # Interfaces
 
--   We want to model a supermarket cart
--   Bought bananas, eggs, water
+- We want to model a supermarket cart
+- Bought bananas, eggs, water
 
--   Each has price
--   Each modeled as a class
+- Each has price
+- Each modeled as a class
 
--   We need a `getTotal` method. What is its argument type?
--   We shouldn't have 3 different argument types because it will not scale. If there are 50 types of items, it is very tedious to write them all.
+- We need a `getTotal` method. What is its argument type?
+- We shouldn't have 3 different argument types because it will not scale. If there are 50 types of items, it is very tedious to write them all.
 
 An interface is
 
--   A point where 2 systems interact
--   Typically asymmetric: one system "defines" the interface, the other system uses it
--   Examples
-    -   Graphical User Interface (GUI): User -> Computer
-    -   Application Programming Interface (API): Application program -> library of related methods
+- A point where 2 systems interact
+- Typically asymmetric: one system "defines" the interface, the other system uses it
+- Examples
+  - Graphical User Interface (GUI): User -> Computer
+  - Application Programming Interface (API): Application program -> library of related methods
 
 # Java Class
 
--   Java class provides one form of an interface
--   Public members (methods) define the interface to "clients" (users) of that class
--   Class interfaces consists of
-    -   Public method signatures (What the method expects)
-    -   Method return types (What the method returns)
--   Java abstracts this idea one step further
+- Java class provides one form of an interface
+- Public members (methods) define the interface to "clients" (users) of that class
+- Class interfaces consists of
+  - Public method signatures (What the method expects)
+  - Method return types (What the method returns)
+- Java abstracts this idea one step further
 
 A java interface can be used as a type!
 
--   Defines a "contract" between
-    -   Class that implements the interface
-    -   Class that uses the interface
--   Any class that implements the interface must probide implementations for all the method bodies given in the interface definition
+- Defines a "contract" between
+  - Class that implements the interface
+  - Class that uses the interface
+- Any class that implements the interface must probide implementations for all the method bodies given in the interface definition
 
 # Interface Syntax
 
--   A class like declaration
-    -   `interface Doable {...}`
-    -   Exists in own file
-    -   Includes method declarations
--   But
+- A class like declaration
+  - `interface Doable {...}`
+  - Exists in own file
+  - Includes method declarations
+- But
 
-    -   No method bodies
-    -   No fields (Except constants)
-    -   No static methods
+  - No method bodies
+  - No fields (Except constants)
+  - No static methods
 
--   Classes may declare that they "implement" an interface
--   Given interface `Doable` and a class `Henway` can implement it:
+- Classes may declare that they "implement" an interface
+- Given interface `Doable` and a class `Henway` can implement it:
 
 ```
 public class Henway implements Doable {
@@ -54,13 +54,13 @@ public class Henway implements Doable {
 }
 ```
 
--   All methods declared in `Doable` must appear in `Henway`
--   `Henway` may also implement methods that are not found in `Doable`, but must **at least implement all methods declared within `Doable`**
+- All methods declared in `Doable` must appear in `Henway`
+- `Henway` may also implement methods that are not found in `Doable`, but must **at least implement all methods declared within `Doable`**
 
 # Interface Variables
 
--   It is possible and useful to declare variables of an interface type `Doable b;`
--   Interface variables can hold a reference to any object that implements the interface
+- It is possible and useful to declare variables of an interface type `Doable b;`
+- Interface variables can hold a reference to any object that implements the interface
 
 ```java
 interface Doable {
@@ -79,7 +79,7 @@ class Henway implements Doable {
 }
 ```
 
--   Sometimes the class does not need to implement all methods in the interface, so we can leave the method body in the class blank. This counts as an implementation of the method.
+- Sometimes the class does not need to implement all methods in the interface, so we can leave the method body in the class blank. This counts as an implementation of the method.
 
 ```java
 interface Doable {
@@ -100,9 +100,9 @@ class Henway implements Doable {
 
 We have a supermarket cart with the following items
 
--   Bananas
--   Eggs
--   Water
+- Bananas
+- Eggs
+- Water
 
 Each type of item is implemented as a different class. The pricing calculated for each item is different too.
 
@@ -186,10 +186,10 @@ By having the cart items all implement `Priceable`, this means that they all are
 
 # Fields in Interfaces
 
--   An interface may include fields as well
--   Fields are implicitly declared as `public static final`
--   Fields in interfaces are constants and must be declared with initialiser (=)
--   Methods are implicitly declared public
+- An interface may include fields as well
+- Fields are implicitly declared as `public static final`
+- Fields in interfaces are constants and must be declared with initialiser (=)
+- Methods are implicitly declared public
 
 ```java
 interface Constants {
@@ -213,8 +213,8 @@ Another note: If we were to change the value of one of the constants within the 
 
 # Implementing Multiple Interfaces
 
--   A class can implement multiple interfaces
--   The methods implemented are the **union** of the methods specified in the interfaces
+- A class can implement multiple interfaces
+- The methods implemented are the **union** of the methods specified in the interfaces
 
 ```
 class SoapOpera implements Cryable {...}
@@ -222,9 +222,9 @@ class SitCom implements Laughable {...}
 class Movie implements Laughable, Cryable {...}
 ```
 
--   `SoapOpera` has to implement all methods in `Cryable`
--   `Sitcom` has to implement all methods in `Laughable`
--   `Movie` has to implement all methods in `Laughable` and `Cryable`
+- `SoapOpera` has to implement all methods in `Cryable`
+- `Sitcom` has to implement all methods in `Laughable`
+- `Movie` has to implement all methods in `Laughable` and `Cryable`
 
 What happens if a class implements 2 interfaces that contain the same signature but different return types?
 
@@ -246,11 +246,11 @@ Answer: There will be a compile time error: We cannot have 2 methods in a class 
 
 # Example: Fibonacci Generator
 
--   Write a program to generate the Fibonacci sequence
--   Each value is the sum of 2 previous values
--   1, 1, 2, 3, 5, 8, 13, 21
--   Constructor takes in an `int n` that specifies the (finite) number of values to generate
--   Fibonacci object provides `hasNext()` and `next()` methods to generate the values (Note the similarities to `Scanner`)
+- Write a program to generate the Fibonacci sequence
+- Each value is the sum of 2 previous values
+- 1, 1, 2, 3, 5, 8, 13, 21
+- Constructor takes in an `int n` that specifies the (finite) number of values to generate
+- Fibonacci object provides `hasNext()` and `next()` methods to generate the values (Note the similarities to `Scanner`)
 
 ```java
 public class Fibonacci1 {
@@ -317,8 +317,8 @@ Note: The `for each` loop uses the `Iterable` interface
 for (Tree t: list) {...}
 ```
 
--   The list must implement the `Iterable` interface
--   Must have a method that returns an `Iterator` over elements of the collection
+- The list must implement the `Iterable` interface
+- Must have a method that returns an `Iterator` over elements of the collection
 
 Now we can rewrite `Fibonacci2`
 
@@ -415,9 +415,9 @@ public class FibonacciGenerator implements Iterator<Integer>, Iterable<Integer> 
 
 # Comparable Interface
 
--   Allows consistent approach for comparing 2 objects
--   Has one method used to report on comparison between 2 (equality, greater than or less than)
--   Has added bonus of providing functionality with regards to the sort function of list types
+- Allows consistent approach for comparing 2 objects
+- Has one method used to report on comparison between 2 (equality, greater than or less than)
+- Has added bonus of providing functionality with regards to the sort function of list types
 
 ```java
 interface Comparable<T> {
@@ -425,9 +425,9 @@ interface Comparable<T> {
 }
 ```
 
--   Returns 0 if equal
--   1 if caller is greater than argument
--   -1 if caller is less than argument
+- Returns 0 if equal
+- 1 if caller is greater than argument
+- -1 if caller is less than argument
 
 ```java
 public class KarateKid implements Comparable<KarateKid> {
@@ -472,10 +472,10 @@ public class KarateKid implements Comparable<KarateKid> {
 
 # Summary
 
--   An interface declaration looks like a class declaration except
-    -   Methods have no bodies (**abstract**)
-    -   All fields are implicitly `public static final`
--   Classes that implement an interface
-    -   Must provide the method bodies declared
-    -   Get access to the fields declared
--   Interface variables allow methods to access "interface methods" of an object without knowing the actual class of the object
+- An interface declaration looks like a class declaration except
+  - Methods have no bodies (**abstract**)
+  - All fields are implicitly `public static final`
+- Classes that implement an interface
+  - Must provide the method bodies declared
+  - Get access to the fields declared
+- Interface variables allow methods to access "interface methods" of an object without knowing the actual class of the object

@@ -1,8 +1,8 @@
 # `super()` and `this()`
 
--   If specified explicitly, calls to `super(...)` or `this(...)` must be the **first** statement in a constructor to ensure proper initialisation by superclass constructors before subclass constructors continue.
--   Recall that `this(...)` can be used to call another constructor in the **current** class.
--   If you call `this(...)`, you will not call `super()`
+- If specified explicitly, calls to `super(...)` or `this(...)` must be the **first** statement in a constructor to ensure proper initialisation by superclass constructors before subclass constructors continue.
+- Recall that `this(...)` can be used to call another constructor in the **current** class.
+- If you call `this(...)`, you will not call `super()`
 
 ```java
 public class Mountain {

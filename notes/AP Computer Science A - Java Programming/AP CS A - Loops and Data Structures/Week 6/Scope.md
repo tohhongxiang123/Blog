@@ -1,10 +1,10 @@
 # Variable Scope
 
--   Where in code the variable can be used
--   Basic rule: a variable is usable from the **point of declaration** until **end of enclosing block**
--   Special cases
-    -   Parameters: accessible within method body
-    -   For loop variable: accessible within heading and body
+- Where in code the variable can be used
+- Basic rule: a variable is usable from the **point of declaration** until **end of enclosing block**
+- Special cases
+  - Parameters: accessible within method body
+  - For loop variable: accessible within heading and body
 
 For example
 
@@ -23,9 +23,9 @@ if (b > 2) {
 
 Note: We cannot have 2 variables with the same name active in the same scope (compiler gives a syntax error). The only exception is
 
--   parameters and local variables can "shadow" or "hide" fields with the same name
--   Use `this.field` to access hidden `field`
--   E.g.
+- parameters and local variables can "shadow" or "hide" fields with the same name
+- Use `this.field` to access hidden `field`
+- E.g.
 
 ```java
 class Person {
@@ -42,12 +42,12 @@ class Person {
 
 # Extent (vs Scope)
 
--   Scope: Where a variable is visible
--   Extent: How long a value is kept (its lifetime)
--   Variables: lifetime same as scope
-    -   When block is left, value of variable is lost
-    -   So initialisers are re-done on block entry
--   Objects: lifetime lasts until it is no longer accessible (no variables reference it)
+- Scope: Where a variable is visible
+- Extent: How long a value is kept (its lifetime)
+- Variables: lifetime same as scope
+  - When block is left, value of variable is lost
+  - So initialisers are re-done on block entry
+- Objects: lifetime lasts until it is no longer accessible (no variables reference it)
 
 ```java
 Customer c1 = new Customer();

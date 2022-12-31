@@ -16,8 +16,8 @@ This is called **dynamic binding**
 
 # Interface and "extends"
 
--   An interface can extend another interface
--   In fact and interface can extend many other interfaces
--   A class cannot extend an interface, only implement
--   An interface cannot extend a class
--   An interface cannot implement another interface
+- An interface can extend another interface
+- In fact and interface can extend many other interfaces
+- A class cannot extend an interface, only implement
+- An interface cannot extend a class
+- An interface cannot implement another interface

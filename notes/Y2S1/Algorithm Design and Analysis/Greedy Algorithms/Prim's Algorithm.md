@@ -4,13 +4,13 @@ A minimum spanning tree is a connected, acyclic subgraph containing **all the ve
 
 # Main Idea of Prim's Algorithm
 
--   Works on undirected graph
--   Builds upon a single partial minimum spanning tree; At each step adding an edge connecting the vertex nearest to, but not already in the current partial minimum spanning tree
--   At first a vertex is chosen, this vertex will be the first node in the minmum spanning tree set, $T$
--   Set $P$ is initialised, where $P$ is the set of vertices not in $T$ but are adjacent to some vertices in $T$
--   In every iteration of Prim's algorithm, a new vertex $u$ from $P$ will be connected to the tree $T$. The vertex $u$ will be deleted from the set $P$. The vertices adjacent to $u$ that are not already in $P$ will be added to $P$
--   When all vertices are connected to $T$, $P$ will be empty, which signals the end of the algorithm
--   The new vertex in every iteration will be chosen greedily - Among all vertices adjacent to $T$ but themselves are not in $T$, we choose the one with the minimum cost
+- Works on undirected graph
+- Builds upon a single partial minimum spanning tree; At each step adding an edge connecting the vertex nearest to, but not already in the current partial minimum spanning tree
+- At first a vertex is chosen, this vertex will be the first node in the minmum spanning tree set, $T$
+- Set $P$ is initialised, where $P$ is the set of vertices not in $T$ but are adjacent to some vertices in $T$
+- In every iteration of Prim's algorithm, a new vertex $u$ from $P$ will be connected to the tree $T$. The vertex $u$ will be deleted from the set $P$. The vertices adjacent to $u$ that are not already in $P$ will be added to $P$
+- When all vertices are connected to $T$, $P$ will be empty, which signals the end of the algorithm
+- The new vertex in every iteration will be chosen greedily - Among all vertices adjacent to $T$ but themselves are not in $T$, we choose the one with the minimum cost
 
 # Pseudocode
 

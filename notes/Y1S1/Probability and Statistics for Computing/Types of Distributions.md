@@ -1,12 +1,12 @@
 # Types of Distribution
 
--   Uniform
--   Binomial
--   Normal
--   Poisson
--   Exponential
--   Geometric
--   Hypergeometric
+- Uniform
+- Binomial
+- Normal
+- Poisson
+- Exponential
+- Geometric
+- Hypergeometric
 
 Do note the general formulas for finding the mean, and the standard deviation of any function:
 
@@ -219,8 +219,8 @@ It has a mean of $\frac{1}{\lambda}$ and a variance of $\frac{1}{\lambda^2}$
 
 The geometric distribution is either one of two discrete probability distributions:
 
--   The probability distribution of the number X of Bernoulli trials needed to get one success, supported on the set { 1, 2, 3, ... }
--   The probability distribution of the number Y = X − 1 of failures before the first success, supported on the set { 0, 1, 2, 3, ... }
+- The probability distribution of the number X of Bernoulli trials needed to get one success, supported on the set { 1, 2, 3, ... }
+- The probability distribution of the number Y = X − 1 of failures before the first success, supported on the set { 0, 1, 2, 3, ... }
 
 $$
 P(X = x) = (1-p)^{x-1} p

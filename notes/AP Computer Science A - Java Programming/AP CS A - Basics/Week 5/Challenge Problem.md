@@ -89,7 +89,7 @@ II. Write an empty `public static void main(String[] args)` method. This method 
 
 III. Write one static class method (`isLeapYear`). The method `isLeapYear` should take one integer argument and will return a boolean. The method should compare the input (a year) with the qualifications for determining whether a given year is a leap year or not, and return the appropriate true or false value on completing these checks. The rule for leap years is as follows:
 
--   if the year is evenly divisible by 4, it is a leap year, except in the case where it is also evenly divisible by 100 but not evenly divisible by 400.
+- if the year is evenly divisible by 4, it is a leap year, except in the case where it is also evenly divisible by 100 but not evenly divisible by 400.
 
 Several example method calls appear below.
 

@@ -35,5 +35,5 @@ Small   SUBS R1, R1, #1 ; Subtract 1 from loop counter
 
 # Conditional Execution
 
--   ARM instruction can be conditionally executed based on CC flag
--   For example `MOVEQ R1, R2` only executes `MOV` if `R1 == R2`
+- ARM instruction can be conditionally executed based on CC flag
+- For example `MOVEQ R1, R2` only executes `MOV` if `R1 == R2`

@@ -2,9 +2,9 @@
 
 We want to reduce a fraction $\frac{a}{b}$ into its simplest form. We can do this by dividing both $a$ and $b$ by a number $d$, to get $\frac{a/d}{b/d}$
 
--   We need $d$ to divide both $a$ and $b$
--   We want $d$ to be as large as possible
--   For example, GCD(10, 4) = 2
+- We need $d$ to divide both $a$ and $b$
+- We want $d$ to be as large as possible
+- For example, GCD(10, 4) = 2
 
 > For integers $a$ and $b$, their **greatest common divisor**, gcd(a, b) is the largest integer $d$ that divides both $a$ and $b$
 
@@ -25,8 +25,8 @@ def gcd(a, b):
     return best
 ```
 
--   Runtime is approximately $O(a+b)$
--   Very slow for 20 digit numbers
+- Runtime is approximately $O(a+b)$
+- Very slow for 20 digit numbers
 
 # Efficient algorithm
 
@@ -47,5 +47,5 @@ def euclidGCD(a, b):
     return euclidGCD(b, a % b)
 ```
 
--   Each step reduces the size of numbers by about a factor of 2
--   Takes about $\log(ab)$ steps
+- Each step reduces the size of numbers by about a factor of 2
+- Takes about $\log(ab)$ steps

@@ -4,16 +4,16 @@
 
 We usually write code in **high-level** languages, such as
 
--   Python
--   C++
--   Fortran
--   Java
--   Etc.
+- Python
+- C++
+- Fortran
+- Java
+- Etc.
 
 A compiler is used to convert high-level instructions to a low-level language that the machine can implement. Low level languages include
 
--   ARM
--   MIPS
+- ARM
+- MIPS
 
 The computer stores all data as binary information (0's and 1's), which includes instructions. We use a compiler to translate our code and symbols into instructions specific to a machine's instruction set and architecture. For example, take the following C code in the file `simple.c`:
 
@@ -70,6 +70,6 @@ Which language you choose is based on what you want to do, because each has its 
 
 # Extra Resources
 
--   [How do computers read code?](https://www.youtube.com/watch?v=QXjU9qTsYCc)
--   [#67 Python Tutorial for Beginners | is Python Compiled or Interpreted Language?](https://www.youtube.com/watch?v=0BhSWyDEDC4)
--   [Compiled vs Interpreted Programming Languages - C++, Rust, Go, Haskell, C#, Java, Python, Javascript](https://www.youtube.com/watch?v=y6VvxGHCxa4)
+- [How do computers read code?](https://www.youtube.com/watch?v=QXjU9qTsYCc)
+- [#67 Python Tutorial for Beginners | is Python Compiled or Interpreted Language?](https://www.youtube.com/watch?v=0BhSWyDEDC4)
+- [Compiled vs Interpreted Programming Languages - C++, Rust, Go, Haskell, C#, Java, Python, Javascript](https://www.youtube.com/watch?v=y6VvxGHCxa4)

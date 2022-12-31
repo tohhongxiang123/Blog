@@ -21,15 +21,15 @@ Also, it is illegal to have 2 cases for the same value
 
 A switch case only works with
 
--   byte
--   short
--   char
--   int
--   Their corresponding wrapper classes
--   String (Java 7)
--   Enumerated types
+- byte
+- short
+- char
+- int
+- Their corresponding wrapper classes
+- String (Java 7)
+- Enumerated types
 
 # When to use If or Switch
 
--   Readability
--   An if-else statement can test expressions based on ranges of values, whereas a switch statement tests expressions based only on a single integer, enumerated value or string object
+- Readability
+- An if-else statement can test expressions based on ranges of values, whereas a switch statement tests expressions based only on a single integer, enumerated value or string object

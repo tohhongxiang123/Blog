@@ -4,16 +4,16 @@ A built-in java class, no need to import, and supports string literals ("Hello")
 
 Because `String` is a class:
 
--   Instances are objects
--   Can create with `new` operator
--   String variables hold references to new objects
+- Instances are objects
+- Can create with `new` operator
+- String variables hold references to new objects
 
 ## Operations on Strings
 
--   Concatenation (`+` or `concat()`)
--   `length()`
--   `charAt(int index)`
--   `indexOf(char character)`
+- Concatenation (`+` or `concat()`)
+- `length()`
+- `charAt(int index)`
+- `indexOf(char character)`
 
 `charAt()` and `indexOf()` are both **zero-based** indexing, just like arrays.
 
@@ -161,9 +161,9 @@ Other than `System.out.println` and `System.out.print`, we have other methods to
 
 There might also be complications in printing caused by floats and doubles
 
--   How many digits to print after the decimal?
--   Default is all non-zero digits
--   `10.0 - 9.1 = 0.9000000000000004`, due to binary being unable to accurately represent the floating point number
+- How many digits to print after the decimal?
+- Default is all non-zero digits
+- `10.0 - 9.1 = 0.9000000000000004`, due to binary being unable to accurately represent the floating point number
 
 We can solve this problem using `printf` instead of `println`
 
@@ -213,20 +213,20 @@ System.out.printf("This is a string: %s", s);
 
 Some references for string formats:
 
--   `%s`: string
--   `%d`: decimal (byte, short, int, long)
--   `%f`: float, double
+- `%s`: string
+- `%d`: decimal (byte, short, int, long)
+- `%f`: float, double
 
 Width specifications:
 
--   `%10s`: pad string on the left to make it 10 characters
--   `%-10s`: pad string on the right to make it 10 characters
--   `%10.3f`: format number with 3 decimal places, and total width 10 (the width of a number includes the number of digits + the decimal point)
--   `%.2f`: format number with 2 decimal places, whatever width needed
+- `%10s`: pad string on the left to make it 10 characters
+- `%-10s`: pad string on the right to make it 10 characters
+- `%10.3f`: format number with 3 decimal places, and total width 10 (the width of a number includes the number of digits + the decimal point)
+- `%.2f`: format number with 2 decimal places, whatever width needed
 
 A similar method to `System.out.printf` is `String.format`
 
--   Formats strings without printing them
--   `String.format(template, arg1, arg2, ...)`
--   Has the same arguments as `System.out.printf`
--   Will not print anything out on the console, will only return the formatted string.
+- Formats strings without printing them
+- `String.format(template, arg1, arg2, ...)`
+- Has the same arguments as `System.out.printf`
+- Will not print anything out on the console, will only return the formatted string.

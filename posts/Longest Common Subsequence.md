@@ -15,9 +15,9 @@ Between `ABC` and `BDC`, we know that `C` will be part of the subsequence, hence
 
 3. Now between `ABCD` and `BDEF`, to find the longest common subsequence, we
 
--   Remove 1 character from the first string, and compare the LCS for both strings (`lcs("ABC", "BDEF")`)
--   Remove 1 character from the second string, and compare the LCS for both strings (`lcs("ABCD", "BDE")`)
--   Take the maximum as the answer
+- Remove 1 character from the first string, and compare the LCS for both strings (`lcs("ABC", "BDEF")`)
+- Remove 1 character from the second string, and compare the LCS for both strings (`lcs("ABCD", "BDE")`)
+- Take the maximum as the answer
 
 With these information, we can write a recurrent function first
 

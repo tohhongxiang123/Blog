@@ -2,8 +2,8 @@
 
 Most computer systems have restrictions on the allowable address for accessing various data types
 
--   Multi-byte data must be aligned to addresses that are multiple of values such as 2, 4, 8
--   Programs written with Visual C++ or GNU (gcc) and compiled for a 64-bit Intel processor uses the following data alignment enforcement
+- Multi-byte data must be aligned to addresses that are multiple of values such as 2, 4, 8
+- Programs written with Visual C++ or GNU (gcc) and compiled for a 64-bit Intel processor uses the following data alignment enforcement
 
 | Data Type | Size (Bytes) | Example of allowable start addresses due to alignment |
 | --------- | ------------ | ----------------------------------------------------- |
@@ -20,7 +20,7 @@ Most computer systems have restrictions on the allowable address for accessing v
 
 Main memory consist of multiple 8-bit memory modules required to make up 64-bit data word size of processor
 
--   Data width selected by additional control lines
+- Data width selected by additional control lines
 
 By aligning memory properly, we can read all 8 bits with 1 cycle. However, if data is not aligned, we will require 2 read cycles.
 

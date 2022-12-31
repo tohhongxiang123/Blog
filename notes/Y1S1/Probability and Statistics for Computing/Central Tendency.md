@@ -2,9 +2,9 @@
 
 There are multiple ways of defining the "center" of a dataset
 
--   Mean (Minimum absolute difference)
--   Median (Minimum squared difference)
--   Mode
+- Mean (Minimum absolute difference)
+- Median (Minimum squared difference)
+- Mode
 
 ### Arithmetic Mean
 

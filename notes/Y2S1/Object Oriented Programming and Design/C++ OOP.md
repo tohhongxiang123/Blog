@@ -1,7 +1,7 @@
 # C++ OOP
 
--   `.h`: Header files, used for function declarations
--   `.cpp`: Source code, used for defining the implementations of the functions
+- `.h`: Header files, used for function declarations
+- `.cpp`: Source code, used for defining the implementations of the functions
 
 For example, `MyClass.h` declares a class `MyClass` with a private attribute `value` and public methods `foo` and `evaluate`
 
@@ -46,9 +46,9 @@ int main() {
 
 By separating classes into their individual `.h` and `.cpp` files:
 
--   Speeds up compile time (Because only classes that got changed need to be recompiled)
--   Keeps code more organised (Eaiser to find which class belongs in which file rather than going through a single large file)
--   Allows separation of implementation from interface. Client classes only require the `.h` files, instead of the `.cpp` files
+- Speeds up compile time (Because only classes that got changed need to be recompiled)
+- Keeps code more organised (Eaiser to find which class belongs in which file rather than going through a single large file)
+- Allows separation of implementation from interface. Client classes only require the `.h` files, instead of the `.cpp` files
 
 Make sure to have an `#include Guard` within your header files, to prevent duplicate inclusions of the header files. The syntax is
 
@@ -112,7 +112,7 @@ x = 3; // error because x is a const
 
 ## Constructors
 
--   Just like java, cosntructors should have exactly the same name as the class itself
+- Just like java, cosntructors should have exactly the same name as the class itself
 
 ```cpp
 Point(): _x(0), _y(0) {}
@@ -130,8 +130,8 @@ The above `Person` constructor takes in 2 arguments, a string `username` and an 
 
 ## Destructors
 
--   Destructors are called just before an object is deleted from memory
--   Destructors have the same name as the class itself, prefixed with a `~`
+- Destructors are called just before an object is deleted from memory
+- Destructors have the same name as the class itself, prefixed with a `~`
 
 ```cpp
 ~Person() {
@@ -192,10 +192,10 @@ class DerivedClass : [visibility-mode] BaseClass {
 
 `visibility-mode` is optional, either `public` or `private`
 
--   `private`: privately inherited (default)
-    -   public members of base class become private in the derived class
--   `public`: publicly inherited (default)
-    -   public members of base class remain public in the derived class
+- `private`: privately inherited (default)
+  - public members of base class become private in the derived class
+- `public`: publicly inherited (default)
+  - public members of base class remain public in the derived class
 
 ```cpp
 class Point3D : public Point {
@@ -241,8 +241,8 @@ DerivedConstructor(parameters): BaseConstructor1(parameters1), BaseConstructor2(
 
 Note that for inheritance
 
--   Constructors are called from the lowest class to the highest class (base class -> sub class)
--   Destructors are called from the highest class to the lowest class (sub class -> base class)
+- Constructors are called from the lowest class to the highest class (base class -> sub class)
+- Destructors are called from the highest class to the lowest class (sub class -> base class)
 
 # Method Overloading
 
@@ -251,9 +251,9 @@ int add(int x, int y);
 double add(double x, double y);
 ```
 
--   Different signatures with the same method name will overload the method
--   Note that having the same signature with different return types will errror
-    -   `int doSomething()` and `double doSomething()` will fail
+- Different signatures with the same method name will overload the method
+- Note that having the same signature with different return types will errror
+  - `int doSomething()` and `double doSomething()` will fail
 
 # Default Parameters
 
@@ -261,24 +261,24 @@ double add(double x, double y);
 int doSomething(int x, int y = 10);
 ```
 
--   `doSomething(1)` will call `doSomething(1, 10)`
--   `doSomething(5, 2)` will set `y = 2`
+- `doSomething(1)` will call `doSomething(1, 10)`
+- `doSomething(5, 2)` will set `y = 2`
 
 Remember that
 
--   Default parameters are always the rightmost elements
-    -   `doSomething(int x = 4, int z)` will be an error
--   Leftmost parameters should be the one most likely changed by the user
--   C++ excludes default parameters to check function signatures. Make sure signatures do not clash
-    -   `void print(int z)` and `void print(int z, int x = 40)`. When you call `print(5)`, which method do you actually call?
+- Default parameters are always the rightmost elements
+  - `doSomething(int x = 4, int z)` will be an error
+- Leftmost parameters should be the one most likely changed by the user
+- C++ excludes default parameters to check function signatures. Make sure signatures do not clash
+  - `void print(int z)` and `void print(int z, int x = 40)`. When you call `print(5)`, which method do you actually call?
 
 # References vs Pointers
 
 A reference is an "alias" to a real object/variable
 
--   `&` used to define an alias
--   References cannot be `NULL` (`int &a;` is not allowed)
--   References cannot be rebound after initialisation
+- `&` used to define an alias
+- References cannot be `NULL` (`int &a;` is not allowed)
+- References cannot be rebound after initialisation
 
 ```cpp
 int x;
@@ -295,10 +295,10 @@ int &q = *p; // dereference p, and let q be an alias to whatever is stored at p.
 
 `virtual`
 
--   Force method evaluation to be based on **object type**, instead of **reference type**
--   Without virtual, objects only use static binding
--   Virtual function magic only works on references (`&`) and pointers (`*`)
--   If a method is `virtual` in the base class, it is implicitly `virtual` in all derived classes
+- Force method evaluation to be based on **object type**, instead of **reference type**
+- Without virtual, objects only use static binding
+- Virtual function magic only works on references (`&`) and pointers (`*`)
+- If a method is `virtual` in the base class, it is implicitly `virtual` in all derived classes
 
 ```cpp
 #include <iostream>
@@ -367,18 +367,18 @@ int main() {
 
 Abstract method
 
--   Place `= 0` in its declaration
--   `virtual void abstractMethodName() = 0;`
--   If a class has an abstract method, it is automatically an abstract class
+- Place `= 0` in its declaration
+- `virtual void abstractMethodName() = 0;`
+- If a class has an abstract method, it is automatically an abstract class
 
 # Polymorphism
 
--   Safe down cast
-    -   Use `dynamic_cast`
-    -   `Type* t = dynamic_cast<Type*>(variable)`
-    -   Returns `NULL` if the conversion was not possible
-    -   Only applicable to pointers
--   If you keep using downcasts, it is likely that your application design is flawed
+- Safe down cast
+  - Use `dynamic_cast`
+  - `Type* t = dynamic_cast<Type*>(variable)`
+  - Returns `NULL` if the conversion was not possible
+  - Only applicable to pointers
+- If you keep using downcasts, it is likely that your application design is flawed
 
 ```cpp
 #include <iostream>
@@ -568,4 +568,4 @@ int const *const *cicp = &a; // constant pointer to constant integer
 
 # Resources
 
--   https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable-in
+- https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable-in

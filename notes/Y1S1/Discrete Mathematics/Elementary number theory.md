@@ -2,37 +2,37 @@
 
 There are different types of numbers
 
--   Natural numbers $\N$, such as 1, 2, 3. Sometimes 0 is also included (Whole numbers)
--   Integers $\Z$, natural numbers including zero and their negatives (..., -3, -2, -1, 0, 1, 2, 3, ...)
--   Real numbers $\R$, any number on the continuous number line (0, $\pi$, $-\sqrt{2}$)
--   Rational numbers $\mathbb{Q}$, numbers that can be represented in the form $\frac{a}{b}$, for $a, b \in \Z, b \neq 0$ ($\frac{3}{7}, \frac{999}{1000}$)
--   Irrational numbers $\mathbb{I}$, numbers that cannot be represented in the form $\frac{a}{b}$ for any integers $a$ or $b$ ($\pi, e, \sqrt{2}$)
+- Natural numbers $\N$, such as 1, 2, 3. Sometimes 0 is also included (Whole numbers)
+- Integers $\Z$, natural numbers including zero and their negatives (..., -3, -2, -1, 0, 1, 2, 3, ...)
+- Real numbers $\R$, any number on the continuous number line (0, $\pi$, $-\sqrt{2}$)
+- Rational numbers $\mathbb{Q}$, numbers that can be represented in the form $\frac{a}{b}$, for $a, b \in \Z, b \neq 0$ ($\frac{3}{7}, \frac{999}{1000}$)
+- Irrational numbers $\mathbb{I}$, numbers that cannot be represented in the form $\frac{a}{b}$ for any integers $a$ or $b$ ($\pi, e, \sqrt{2}$)
 
 # Euclidean Division
 
--   There exists **unique** integers $q$ and $r$ such that
+- There exists **unique** integers $q$ and $r$ such that
 
-    $$
-    m = qn + r, 0 \leq r < n
-    $$
+  $$
+  m = qn + r, 0 \leq r < n
+  $$
 
--   $q$ is the quotient, $r$ is the remainder
--   If $r = 0$, then:
+- $q$ is the quotient, $r$ is the remainder
+- If $r = 0$, then:
 
-    -   $n$ divides $m$: ($n | m$)
+  - $n$ divides $m$: ($n | m$)
 
--   A prime number $p$ is a _natural_ number that have only 2 factors: ($1, p$)
--   An even number $a$ is a number that is divisible by 2, can be expressed in the form $a = 2n, n \in \Z$
--   An odd number $b$ is a number not divisible by 2, can be expressed in the form $b = 2n + 1, n \in \Z$
+- A prime number $p$ is a _natural_ number that have only 2 factors: ($1, p$)
+- An even number $a$ is a number that is divisible by 2, can be expressed in the form $a = 2n, n \in \Z$
+- An odd number $b$ is a number not divisible by 2, can be expressed in the form $b = 2n + 1, n \in \Z$
 
 # Modulo and Congruence
 
--   For a positive divisor $n$, two integers $a$ and $b$ are **congruent modulo $n$**, if $(a - b) | n$
-    $$
-        a \equiv b \pmod n
-    $$
--   If $ a \equiv b \pmod n $, then $a-b = qn$ and $a = qn + b$, and $n | a - b$
--   $- 8 \equiv 2 \equiv 7 \pmod 5$
+- For a positive divisor $n$, two integers $a$ and $b$ are **congruent modulo $n$**, if $(a - b) | n$
+  $$
+      a \equiv b \pmod n
+  $$
+- If $ a \equiv b \pmod n $, then $a-b = qn$ and $a = qn + b$, and $n | a - b$
+- $- 8 \equiv 2 \equiv 7 \pmod 5$
 
 # Modular arithmetic properties
 
@@ -94,12 +94,12 @@ $$
 
 # Operator Closure
 
--   Consider a set $S$ with an operator $\Delta$
-    -   Examples of operators include $ +, \*$, squaring
--   $S$ is closed under $\Delta$ if the result of the operation $\Delta$ on any 2 elements in $S$ results in an element of $S$
-    -   $S \in \R$ is closed under $\Delta = +, *$, every integer multiplied by another integer is an integer, and the same for addition
-    -   $S \in \Z$ is not closed under $\Delta = /$, dividing 2 integers does not always give you an integer
-    -   $S \in k \pmod n, k \in \Z$ is closed under $\Delta = addition \pmod n$
+- Consider a set $S$ with an operator $\Delta$
+  - Examples of operators include $ +, \*$, squaring
+- $S$ is closed under $\Delta$ if the result of the operation $\Delta$ on any 2 elements in $S$ results in an element of $S$
+  - $S \in \R$ is closed under $\Delta = +, *$, every integer multiplied by another integer is an integer, and the same for addition
+  - $S \in \Z$ is not closed under $\Delta = /$, dividing 2 integers does not always give you an integer
+  - $S \in k \pmod n, k \in \Z$ is closed under $\Delta = addition \pmod n$
 
 # More modular properties and proof
 

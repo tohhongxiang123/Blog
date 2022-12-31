@@ -4,29 +4,29 @@ An error that occurs within a program at runtime.
 
 # What to do when an error occurs?
 
--   Old style: return "error code"
--   Caller must check on each call
-    -   Did the method return an error?
-    -   Requires a special value to indicate error
-    -   E.g. `open("file.txt")` in C returns a file descriptor that allows reading from a file
-    -   Returns -1 (invalid file descriptor) if open fails
-    -   Programmer must remember to check for -1
--   Prone to forgetting to check for errors and causing entire program to crash
--   In java, we can throw errors and catch them to be handled accordingly, without having the program fully crash on us
+- Old style: return "error code"
+- Caller must check on each call
+  - Did the method return an error?
+  - Requires a special value to indicate error
+  - E.g. `open("file.txt")` in C returns a file descriptor that allows reading from a file
+  - Returns -1 (invalid file descriptor) if open fails
+  - Programmer must remember to check for -1
+- Prone to forgetting to check for errors and causing entire program to crash
+- In java, we can throw errors and catch them to be handled accordingly, without having the program fully crash on us
 
 # Java Approach - Exceptions
 
--   Write code without worrying about checking for errors
--   When error is detected, an exception is thrown
-    -   Stop execution of current method
-    -   Search for "exception handler" to deal with the problem
--   Search begins in current method and continues to
-    -   Caller of method
-    -   Caller's caller
-    -   Caller's caller's caller
-    -   All the way up to main
-    -   Heads up the caller chain until it either finds a handler, or ends
--   Each method either **catches** the error (handles it immediately) or **throws** the error (lets the caller handle it)
+- Write code without worrying about checking for errors
+- When error is detected, an exception is thrown
+  - Stop execution of current method
+  - Search for "exception handler" to deal with the problem
+- Search begins in current method and continues to
+  - Caller of method
+  - Caller's caller
+  - Caller's caller's caller
+  - All the way up to main
+  - Heads up the caller chain until it either finds a handler, or ends
+- Each method either **catches** the error (handles it immediately) or **throws** the error (lets the caller handle it)
 
 # Syntax
 
@@ -68,14 +68,14 @@ try {
 
 # Exception Class
 
--   Exceptions are objects
--   Created with `new` just like an object
--   The exception object is an instance of
-    -   `class Exception` or
-    -   A subclass of `Exception`
--   2 useful methods
-    -   `e.getMessage()` gets the associated text message
-    -   `e.printStackTrace()` prints the current call stack
+- Exceptions are objects
+- Created with `new` just like an object
+- The exception object is an instance of
+  - `class Exception` or
+  - A subclass of `Exception`
+- 2 useful methods
+  - `e.getMessage()` gets the associated text message
+  - `e.printStackTrace()` prints the current call stack
 
 ```mermaid
 classDiagram
@@ -94,15 +94,15 @@ classDiagram
 
 We are not expected to catch unchecked exceptions
 
--   `RuntimeException` class and its subclasses are **unchecked exceptions**
-    -   No need to check for them (No need to include try catch block or declare that method throws an unchecked exception)
-    -   Typically no recovery is possible; program crashes
-    -   Generally indicate program or JVM error (null pointer, arithmetic, invalid array index etc)
-    -   Problem with program logic, must change code to fix
--   All other exceptions are **checked**
-    -   Generally indicate "user" error (e.g. file not found)
-    -   Must check for them (try-catch or throws)
-    -   Typically recoverable (E.g. prompt user again)
+- `RuntimeException` class and its subclasses are **unchecked exceptions**
+  - No need to check for them (No need to include try catch block or declare that method throws an unchecked exception)
+  - Typically no recovery is possible; program crashes
+  - Generally indicate program or JVM error (null pointer, arithmetic, invalid array index etc)
+  - Problem with program logic, must change code to fix
+- All other exceptions are **checked**
+  - Generally indicate "user" error (e.g. file not found)
+  - Must check for them (try-catch or throws)
+  - Typically recoverable (E.g. prompt user again)
 
 ```java
 public class Main {
@@ -250,10 +250,10 @@ public class FindStudent {
 
 # Catching Multiple Exceptions
 
--   Possible to catch multiple exceptions from a single try
--   Catches must be ordered from lowest subclass to highest superclass
-    -   If we put the most general class `Exception` in the first catch block, since all other exceptions extend `Exception`, the first catch block is matched and will run
-    -   Similar to multiple if else statements, only the first matching try-catch block will run
+- Possible to catch multiple exceptions from a single try
+- Catches must be ordered from lowest subclass to highest superclass
+  - If we put the most general class `Exception` in the first catch block, since all other exceptions extend `Exception`, the first catch block is matched and will run
+  - Similar to multiple if else statements, only the first matching try-catch block will run
 
 ```java
 try {
@@ -267,5 +267,5 @@ try {
 
 # Finally Clause
 
--   `finally`, if present, will run only after all the try catch blocks run
--   `finally` clause is guaranteed to execute even if earlier clause returns
+- `finally`, if present, will run only after all the try catch blocks run
+- `finally` clause is guaranteed to execute even if earlier clause returns

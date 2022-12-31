@@ -2,24 +2,24 @@
 
 Space refers to memory use
 
--   Instruction space
--   Data space
--   Use of call stack
+- Instruction space
+- Data space
+- Use of call stack
 
 Best practices
 
--   Minimal use of short-term memory
--   Scope variables such that they are only in memory when needed
--   Choose data structures best suited for the task at hand
--   Write algorithms which aim to run in the minimum number of steps
--   Limit the number of embedded method calls
+- Minimal use of short-term memory
+- Scope variables such that they are only in memory when needed
+- Choose data structures best suited for the task at hand
+- Write algorithms which aim to run in the minimum number of steps
+- Limit the number of embedded method calls
 
 Time refers to how long an algorithm takes to run
 
--   Time measured in milliseconds or nanoseconds
--   Best, average, worst case
--   Measured considering how long a program will run based on a given input size `n`
--   Big O notation is used to measure time complexity
+- Time measured in milliseconds or nanoseconds
+- Best, average, worst case
+- Measured considering how long a program will run based on a given input size `n`
+- Big O notation is used to measure time complexity
 
 # Big O
 
@@ -36,15 +36,15 @@ Time refers to how long an algorithm takes to run
 
 # Operations that Contribute to Time Complexity
 
--   Comparisons
--   Swaps
--   Data movement
--   Primitive operations (Assignments and arithmetic)
+- Comparisons
+- Swaps
+- Data movement
+- Primitive operations (Assignments and arithmetic)
 
 # Most Powerful Term
 
--   $f(x) = 3x^2 + x = O(x^2)$
--   $f(x) = x \log x + x! = O(x!)$
+- $f(x) = 3x^2 + x = O(x^2)$
+- $f(x) = x \log x + x! = O(x!)$
 
 ```
 for (int i = 0; i < n; i++) {

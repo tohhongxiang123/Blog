@@ -2,8 +2,8 @@
 
 Kruskal's algorithm is a greedy algorithm used to find the minimum spanning tree in an undirected graph. Note that a minimum spanning tree
 
--   Contains all vertices of the graph
--   Has the minimum sum of weights of edges among all the trees that can be formed in the graph
+- Contains all vertices of the graph
+- Has the minimum sum of weights of edges among all the trees that can be formed in the graph
 
 # General Procedure
 
@@ -85,9 +85,9 @@ Now with union find, we can implement kruskal's algorithm
 2. We initialise `mstForest`, which is an array of edges that are in the MST
 3. We sort the edges from the lowest weight to the highest weight
 4. We start with the edge with lowest weight, for all edges:
-    1. We look at the 2 vertices that are connected by the edge, `u` and `v`
-    2. If `u` and `v` belong to the same cluster (`find(u) == find(v)`), this means that including this new edge in the MST will create a cycle, hence we ignore
-    3. Else, we add this edge to the MST, and unify the 2 clusters of `u` and `v` together
+   1. We look at the 2 vertices that are connected by the edge, `u` and `v`
+   2. If `u` and `v` belong to the same cluster (`find(u) == find(v)`), this means that including this new edge in the MST will create a cycle, hence we ignore
+   3. Else, we add this edge to the MST, and unify the 2 clusters of `u` and `v` together
 
 # Code
 
@@ -291,9 +291,9 @@ On a graph $G = (V, E, W)$
 2. We initialise `mstForest`, which is an array of edges that are in the MST
 3. We sort the edges from the lowest weight to the highest weight - $O(E \log E)$
 4. We start with the edge with lowest weight, for all edges: - $O(E)$
-    1. We look at the 2 vertices that are connected by the edge, `u` and `v`
-    2. If `u` and `v` belong to the same cluster (`find(u) == find(v)`), this means that including this new edge in the MST will create a cycle, hence we ignore - $O(\log V)$
-    3. Else, we add this edge to the MST, and unify the 2 clusters of `u` and `v` together - $O(\log V)$
+   1. We look at the 2 vertices that are connected by the edge, `u` and `v`
+   2. If `u` and `v` belong to the same cluster (`find(u) == find(v)`), this means that including this new edge in the MST will create a cycle, hence we ignore - $O(\log V)$
+   3. Else, we add this edge to the MST, and unify the 2 clusters of `u` and `v` together - $O(\log V)$
 
 Hence, the overall time complexity is $O(E\log V + E \log E)$
 
@@ -305,9 +305,9 @@ Hence, on a dense graph, Prim's algorithm performs better ($O(V^2)$) and on a sp
 
 # Resources
 
--   https://www.youtube.com/watch?v=JZBQLXgSGfs
--   https://www.youtube.com/watch?v=KbFlZYCpONw
--   https://www.youtube.com/watch?v=0jNmHPfA_yE
--   https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
--   https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
--   https://www.programiz.com/dsa/kruskal-algorithm
+- https://www.youtube.com/watch?v=JZBQLXgSGfs
+- https://www.youtube.com/watch?v=KbFlZYCpONw
+- https://www.youtube.com/watch?v=0jNmHPfA_yE
+- https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+- https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
+- https://www.programiz.com/dsa/kruskal-algorithm

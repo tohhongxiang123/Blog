@@ -1,17 +1,17 @@
 # Lists and ArrayLists
 
--   Interface = behavior contract
--   A preview of polymorphism
--   Using a list reference allows developers to have flexibility in the choice of data structures when they use your code
+- Interface = behavior contract
+- A preview of polymorphism
+- Using a list reference allows developers to have flexibility in the choice of data structures when they use your code
 
 `interface java.util.List`
 
--   `int size()`
--   `boolean add(E obj)`
--   `void add(int index, E obj)`
--   `E get(int index)`
--   `E set(int index, E obj)`
--   `E remove(int index)`
+- `int size()`
+- `boolean add(E obj)`
+- `void add(int index, E obj)`
+- `E get(int index)`
+- `E set(int index, E obj)`
+- `E remove(int index)`
 
 `java.util.ArrayList implements java.util.List`
 
@@ -38,33 +38,33 @@ public class TodoList {
 
 # ArrayList Class
 
--   Dynamic array: automatically grows to accomodate new items
--   Class provided within `java.utils`
--   Works with any type of objects, but must specify the type of object created
--   `ArrayList<String> list = new ArrayList<String>();`
+- Dynamic array: automatically grows to accomodate new items
+- Class provided within `java.utils`
+- Works with any type of objects, but must specify the type of object created
+- `ArrayList<String> list = new ArrayList<String>();`
 
 # Generic Class
 
--   `ArrayList` is a generic class
--   A generic class is one that can be parameterised with another class
--   `ArrayList<E>` is parameterised with class `E`. It can only "hold" elements that are references to objects of class `E`
+- `ArrayList` is a generic class
+- A generic class is one that can be parameterised with another class
+- `ArrayList<E>` is parameterised with class `E`. It can only "hold" elements that are references to objects of class `E`
 
 # Wrapper Classes
 
--   Unlike Java arrays, `ArrayList` does not work with primitive types, only reference types
--   `ArrayList<int> list;` is not allowed
--   Fortunately, java provides "wrapper" classes for each primitive type
--   `ArrayList<Integer> list;` is allowed
--   Java handles conversion from the wrapper class to the primitive type
+- Unlike Java arrays, `ArrayList` does not work with primitive types, only reference types
+- `ArrayList<int> list;` is not allowed
+- Fortunately, java provides "wrapper" classes for each primitive type
+- `ArrayList<Integer> list;` is allowed
+- Java handles conversion from the wrapper class to the primitive type
 
 # Useful ArrayList Methods
 
--   `add(e)` - Adds `e` to the end of the list
--   `add(i, e)` - Adds `e` at index `i` (0-based), pushing down others to the back of the list
--   `contains(e)` - returns true if `e` is in the list
--   `get(i)` - returns the value at index `i` (0-based)
--   `remove(e)` - removes `e` from the list
--   `size()` - returns current size of the list
+- `add(e)` - Adds `e` to the end of the list
+- `add(i, e)` - Adds `e` at index `i` (0-based), pushing down others to the back of the list
+- `contains(e)` - returns true if `e` is in the list
+- `get(i)` - returns the value at index `i` (0-based)
+- `remove(e)` - removes `e` from the list
+- `size()` - returns current size of the list
 
 Example program using ArrayList:
 

@@ -1,6 +1,6 @@
 # Switches and Loops
 
--   Assembly code compiled from switch statements vary between compilers and depends on the nature and range of the case values
+- Assembly code compiled from switch statements vary between compilers and depends on the nature and range of the case values
 
 1. Running values in a narrow range
 
@@ -58,23 +58,23 @@ This is a standard if-else cascade. It is **not efficient** if there are many ca
 
 If cases are consecutive narrow range values, a **Jump Table** is used to avoid testing each case in turn.
 
--   Jump table contains a list of **start addresses** for each code segment associated with each case value
--   `x` acts as an **offset** into the table to access the corresponding start address
--   Start address loaded into `PC` to execute the required code segment
+- Jump table contains a list of **start addresses** for each code segment associated with each case value
+- `x` acts as an **offset** into the table to access the corresponding start address
+- Start address loaded into `PC` to execute the required code segment
 
 ```assembly
 MOV R1, #0x90 ; Start address of jump table
 LDR PC, [R1, R2, LSL#2] ; Go to the corresponding entry in the jump table
 ```
 
--   Each consecutive address in the jump table is offset by 4, and a `LSL` by 2 bits multiplies `R2` by 4
+- Each consecutive address in the jump table is offset by 4, and a `LSL` by 2 bits multiplies `R2` by 4
 
 _Note: `x = R2`_
 
 # Random and Wide Values
 
--   If cases are random wide range values, a **fork algorithm** is used to speed up the average seasrch time and avoid testing every case
--   Due to the wide value spread, the jump table size will be too large. Cascaded if-else statements will be more efficient
+- If cases are random wide range values, a **fork algorithm** is used to speed up the average seasrch time and avoid testing every case
+- Due to the wide value spread, the jump table size will be too large. Cascaded if-else statements will be more efficient
 
 Example of forking algorithm:
 

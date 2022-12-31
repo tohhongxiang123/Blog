@@ -2,23 +2,23 @@
 
 Suppose you are modelling animals
 
--   Dog
--   Cat
--   Fish
--   Horse
+- Dog
+- Cat
+- Fish
+- Horse
 
 Lots of redundancy, so you create a superclass to inherit from
 
--   Animal
--   All other subclasses extend Animal
--   But what does `new Animal()` mean?
--   Nothing -- we do not want to create a generic `Animal` class
+- Animal
+- All other subclasses extend Animal
+- But what does `new Animal()` mean?
+- Nothing -- we do not want to create a generic `Animal` class
 
 Solution: Abstract Classes
 
--   Declaring a class `abstract` means that it **cannot be instantiated**
--   Some methods may be unimplemented (just like an interface)
--   But abstract classes may also include some implemented methods for default behavior
+- Declaring a class `abstract` means that it **cannot be instantiated**
+- Some methods may be unimplemented (just like an interface)
+- But abstract classes may also include some implemented methods for default behavior
 
 ```java
 public abstract class Animal {
@@ -65,12 +65,12 @@ public abstract class Animal {
 
 # Reminder: Is-A Relationship
 
--   The relationship of a subclass to the superclass should be "is-a"
-    -   `Cat` is a `Animal`
-    -   `Dog` is a `Animal`
--   Other relationships are "has-a"
-    -   `Cat` "has-a" `Home`
-    -   `Dog` "has-a" `Owner`
+- The relationship of a subclass to the superclass should be "is-a"
+  - `Cat` is a `Animal`
+  - `Dog` is a `Animal`
+- Other relationships are "has-a"
+  - `Cat` "has-a" `Home`
+  - `Dog` "has-a" `Owner`
 
 # Practice - Abstract Classes
 

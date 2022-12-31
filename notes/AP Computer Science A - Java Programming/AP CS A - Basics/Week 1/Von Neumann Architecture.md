@@ -8,11 +8,11 @@ The von Neumann architecture is a computer architecture based on a 1945 descript
 
 This are the following components in the von Neumann architecture.
 
--   Input
--   Output
--   Control Unit
--   Arithmetic Logic Unit
--   Memory Unit
+- Input
+- Output
+- Control Unit
+- Arithmetic Logic Unit
+- Memory Unit
 
 ![Von Neumann Architecture Diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Von_Neumann_Architecture.svg/1200px-Von_Neumann_Architecture.svg.png)
 
@@ -20,11 +20,11 @@ This are the following components in the von Neumann architecture.
 
 A computer has many components to it
 
--   keyboard
--   mouse
--   trackpad
--   touchscreen
--   etc.
+- keyboard
+- mouse
+- trackpad
+- touchscreen
+- etc.
 
 ![Input devices to a computer](https://digitalworld839.com/wp-content/uploads/2020/06/10-Input-devices-of-computer.jpg)
 
@@ -34,9 +34,9 @@ These components can be abstracted to a simple idea: The **input**. We interact 
 
 On the other side, we have
 
--   monitors
--   printers
--   etc.
+- monitors
+- printers
+- etc.
 
 ![Output devices to a computer](https://image.shutterstock.com/image-vector/output-devices-icon-set-vector-260nw-1285103905.jpg)
 
@@ -78,8 +78,8 @@ However the in von Neumann architecture, the instruction memory and data memory 
 
 There are many ways to mitigate the von neumann bottleneck, such as
 
--   Providing a cache (which is faster than normal memory) between the CPU and main memory
--   Using branch predictor algorithms and logic
+- Providing a cache (which is faster than normal memory) between the CPU and main memory
+- Using branch predictor algorithms and logic
 
 However, the bottleneck cannot be fully mitigated, and since CPU speeds and memory sizes have been increasing a lot faster than the throughput between them, the severity of the problem has bneen increasing with every generation of CPUs.
 

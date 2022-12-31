@@ -239,12 +239,12 @@ This function removes the first appearance of the number num from the array ar
 which has \*size numbers in it. Before and after the function call, ar is an array of
 integers in ascending order. Please note:
 
--   After the number is removed, the message "The integer is removed\n"
-    should be displayed.
--   If \*size is equal to zero, the error message "The array is empty\n"
-    should be displayed.
--   If num does not appear in ar, the function should issue an error message "The
-    number is not in the array\n".
+- After the number is removed, the message "The integer is removed\n"
+  should be displayed.
+- If \*size is equal to zero, the error message "The array is empty\n"
+  should be displayed.
+- If num does not appear in ar, the function should issue an error message "The
+  number is not in the array\n".
 
 3.
 

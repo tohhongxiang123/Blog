@@ -4,9 +4,9 @@
 
 The most readable expression, because that is what expressions are usually written in
 
--   `A + B`
--   `B * C`
--   `X - Y`
+- `A + B`
+- `B * C`
+- `X - Y`
 
 > An infix expression is where the operator is in the middle of the 2 operands
 
@@ -14,17 +14,17 @@ The most readable expression, because that is what expressions are usually writt
 
 > A prefix expression is where the operator is on the left of the 2 operands
 
--   `+ A B`
--   `* B C`
--   `- X Y`
+- `+ A B`
+- `* B C`
+- `- X Y`
 
 # Postfix
 
 > A postfix expression is where the operator is on the right side of the 2 operands
 
--   `A B +`
--   `B C *`
--   `X Y -`
+- `A B +`
+- `B C *`
+- `X Y -`
 
 # Advantages of Prefix/Postfix expressions
 
@@ -56,17 +56,17 @@ Consider the expression `(A + B) * C + D`. Using order of precedence, we can ful
 
 ### Prefix
 
--   Move the operator to its corresponding left bracket
--   `(A + B) = + A B`
--   `((A + B) * C) = ((+ A B) * C) = * + A B C`
--   `(((A + B) * C) + D) = ((* + A B C) + D) = + * + A B C D`
+- Move the operator to its corresponding left bracket
+- `(A + B) = + A B`
+- `((A + B) * C) = ((+ A B) * C) = * + A B C`
+- `(((A + B) * C) + D) = ((* + A B C) + D) = + * + A B C D`
 
 ### Postfix
 
--   Move the operator to its corresponding right bracket
--   `(A + B) = A B +`
--   `((A + B) * C) = ((A B +) * C) = A B + C *`
--   `(((A + B) * C) + D) = ((A B + C *) + D) = A B + C * D +`
+- Move the operator to its corresponding right bracket
+- `(A + B) = A B +`
+- `((A + B) * C) = ((A B +) * C) = A B + C *`
+- `(((A + B) * C) + D) = ((A B + C *) + D) = A B + C * D +`
 
 # General Conversion from Infix to Postfix
 
@@ -80,14 +80,14 @@ Output: A string, the postfix expression of the input string
 3. Create an empty list `parenthesisStack` to keep track of the last parenthesis encountered
 4. Split the input string into individual tokens
 5. Scan the token list from left to right
-    1. If the token is an operand, append it to the end of `output`
-    2. If token is a opening parenthesis
-        1. Push it onto `opstack`
-        2. Push the corresponding closing parenthesis onto `parenthesisStack`
-    3. If token is the corresponding closing parenthesis
-        1. Pop `opstack` until the corresponding opening parenthesis is popped. Append each operator onto the end of `output`
-    4. If the token is an operator (`+, -, *, /`),
-        1. Push it onto `opstack`. However, remove any operators already on the opstack that have **higher or equal** precedence, and append them to the output list
+   1. If the token is an operand, append it to the end of `output`
+   2. If token is a opening parenthesis
+      1. Push it onto `opstack`
+      2. Push the corresponding closing parenthesis onto `parenthesisStack`
+   3. If token is the corresponding closing parenthesis
+      1. Pop `opstack` until the corresponding opening parenthesis is popped. Append each operator onto the end of `output`
+   4. If the token is an operator (`+, -, *, /`),
+      1. Push it onto `opstack`. However, remove any operators already on the opstack that have **higher or equal** precedence, and append them to the output list
 6. Once input completes, pop any remaining operators on the stack to the end of `output`
 
 ### To convert from infix to prefix
@@ -236,8 +236,8 @@ The general procedure is:
 1. Create an empty stack `operandStack`
 2. Convert string to list
 3. Scan tokens from left to right
-    1. If token is operand, convert from string to int, and push onto `operandStack`
-    2. If token is operator, pop `operandStack` twice. The first pop is the **second operand**, the second pop is the first operand. Perform the operation, and push the result back onto `operandStack`
+   1. If token is operand, convert from string to int, and push onto `operandStack`
+   2. If token is operator, pop `operandStack` twice. The first pop is the **second operand**, the second pop is the first operand. Perform the operation, and push the result back onto `operandStack`
 4. When input expression is completely processed, the result is on top of the `operandStack`. Pop and return
 
 ```python
@@ -285,8 +285,8 @@ def convertPostfixToInfix(expression):
 
 # External Resources
 
--   [What is Prefix, Infix, Postfix](https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
--   [Converter between infix/prefix/postfix](https://raj457036.github.io/Simple-Tools/prefixAndPostfixConvertor.html)
+- [What is Prefix, Infix, Postfix](https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html)
+- [Converter between infix/prefix/postfix](https://raj457036.github.io/Simple-Tools/prefixAndPostfixConvertor.html)
 
 # Overall Code
 

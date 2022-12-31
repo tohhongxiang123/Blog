@@ -4,10 +4,10 @@ Arrays are a list of values, a kind of "container object" in java
 
 Arrays are
 
--   homogeneous
--   static
--   random access
--   reference types
+- homogeneous
+- static
+- random access
+- reference types
 
 Example:
 
@@ -41,22 +41,22 @@ names[199];
 
 # Generalisations
 
--   A method can take an array as parameter
+- A method can take an array as parameter
 
-    -   `int computeSum(int[] a)`
-    -   `public static void main(String[] args)`
+  - `int computeSum(int[] a)`
+  - `public static void main(String[] args)`
 
--   A method can return an array
-    -   `int[] sortIntegers(int[] a)`
-    -   `int[] computeHistogram`
+- A method can return an array
+  - `int[] sortIntegers(int[] a)`
+  - `int[] computeHistogram`
 
 An array of type `T[]` has elements of type `T`.
 
 ## Array Initialisations
 
--   Default: elements intialised with type-specific default
-    -   Integer types: 0
-    -   Real types: 0.0
-    -   Reference types: null
--   Compile-time array initialisation possible
-    -   `char[] vowels = { 'a', 'e', 'i', 'o', 'u' };`
+- Default: elements intialised with type-specific default
+  - Integer types: 0
+  - Real types: 0.0
+  - Reference types: null
+- Compile-time array initialisation possible
+  - `char[] vowels = { 'a', 'e', 'i', 'o', 'u' };`

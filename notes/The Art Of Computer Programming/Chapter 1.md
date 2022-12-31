@@ -7,7 +7,7 @@ An **algorithm** is a routine/recipe/process/method etc. An algorithm has 5 impo
 3. Input - An algorithm has 0 or more inputs: quantities given to it initially before an algorithm begins
 4. Output - An algorithm has 1 or more outputs: quantities that have a specified relation to the input
 5. Effectiveness - An algorithm is generally expected to be effective, in the sense that its operations must all be simple: that they can in principle be done exactly and in a finite length of time by someone using pencil and paper.
-    1. An example of a non-effective step is "If 4 is the largest integer $n$ for which there is a solution to the equation $w^n + x^n + y^n = z^n$ for positive integers $w, x, y, z$, go to step 4"
+   1. An example of a non-effective step is "If 4 is the largest integer $n$ for which there is a solution to the equation $w^n + x^n + y^n = z^n$ for positive integers $w, x, y, z$, go to step 4"
 
 # Euclid's Algorithm
 
@@ -40,17 +40,17 @@ If $r=0$, then $m$ is a multiple of $n$, and therefore $n$ is the greatest commo
 
 Define a _computational method_ to be a quadruple $(Q, I, \Omega, f)$, in which
 
--   $Q$ is a set containing subsets $I$ and $\Omega$
--   $f$ is a function from $Q$ into itself ($f: Q \mapsto Q$).
-    -   Furthermore $f$ should leave $\Omega$ pointwise fixed, that is $f(q) = q,  \forall q \in \Omega$
-    -   This means that, if the final state is passed into the algorithm, it returns the same thing (because the algorithm has already terminated)
+- $Q$ is a set containing subsets $I$ and $\Omega$
+- $f$ is a function from $Q$ into itself ($f: Q \mapsto Q$).
+  - Furthermore $f$ should leave $\Omega$ pointwise fixed, that is $f(q) = q,  \forall q \in \Omega$
+  - This means that, if the final state is passed into the algorithm, it returns the same thing (because the algorithm has already terminated)
 
 The 4 quantities are intended to represent respectively
 
--   $Q$ - the states of the computation
--   $I$ - the input
--   $\Omega$ - the output
--   $f$ - the computational rule
+- $Q$ - the states of the computation
+- $I$ - the input
+- $\Omega$ - the output
+- $f$ - the computational rule
 
 Each input $x$ in the set $I$ defines a computational sequence $x_1, x_2, ...$ as follows:
 

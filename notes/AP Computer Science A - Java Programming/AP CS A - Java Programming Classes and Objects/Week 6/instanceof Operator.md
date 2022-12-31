@@ -1,14 +1,14 @@
 # `instanceof` Operator
 
--   It is possible to determine if an object is of a particular class (or subclass)
--   The expression
+- It is possible to determine if an object is of a particular class (or subclass)
+- The expression
 
 ```java
 objectA instanceof ClassB
 ```
 
--   Evaluates `true` if `objectA` is an instance of the class `ClassB`
--   `"hello" instanceof String` is `true`
+- Evaluates `true` if `objectA` is an instance of the class `ClassB`
+- `"hello" instanceof String` is `true`
 
 ```java
 class InstanceofDemo {
@@ -50,7 +50,7 @@ obj2 instanceof MyInterface: true
 
 From here, we can see
 
--   Objects are instances of whichever class they are created from
--   Parents are not instances of their child class
--   Children are instances of their parent class
--   Objects are instances of whichever interface they implement
+- Objects are instances of whichever class they are created from
+- Parents are not instances of their child class
+- Children are instances of their parent class
+- Objects are instances of whichever interface they implement

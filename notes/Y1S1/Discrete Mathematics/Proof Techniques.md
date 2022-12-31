@@ -27,7 +27,7 @@ General procedure:
 Proving $P(n) \rightarrow Q(n)$
 
 1. Assume that $\neg (P(n) \rightarrow Q(n))$
-    - This occurs when $P(n) \land \neg Q(n)$
+   - This occurs when $P(n) \land \neg Q(n)$
 2. Prove that this assumption is a contradiction $\neg (P(n) \rightarrow Q(n)) \rightarrow C \land \neg C$
 3. This is equivalent to $P(n) \rightarrow Q(n)$
 
@@ -43,9 +43,9 @@ $$
 
 1. Prove that
 
-    $$
-    \sum_{k=1}^{n} a + nd = \frac{n}{2}(2a + (n-1)d)
-    $$
+   $$
+   \sum_{k=1}^{n} a + nd = \frac{n}{2}(2a + (n-1)d)
+   $$
 
 2. Prove that $\sqrt{n}$ is irrational if $n \not = k^2$ for some integer $k$
 
