@@ -1,15 +1,15 @@
+import { motion } from 'framer-motion';
+import { InferGetStaticPropsType } from 'next';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import NotePreview from '../components/NotePreview';
 import PostPreview from '../components/PostPreview';
-import { motion } from 'framer-motion';
 import {
     getFileContent,
     getFilesInDirectory,
     recursivelyGetFilesInDirectory
 } from '../utils/mdxUtils';
-import dynamic from 'next/dynamic';
-import { InferGetStaticPropsType } from 'next';
 
 const heroVariants = {
     show: {
@@ -283,13 +283,14 @@ export default function Index({
                                 May 2022 - Present
                             </motion.p>
                             <ul className="list-disc list-inside flex flex-col gap-y-2">
-                                <motion.li variants={experienceItemVariants}>
-                                    Developed cutting-edge algorithms to improve
-                                    customer retention
+                                <motion.li>
+                                    Improved metric-monitoring capabilities, allowing more confidence in shipping new features and faster reactions to unexpected spikes 
                                 </motion.li>
                                 <motion.li variants={experienceItemVariants}>
-                                    Wrote modern, performant, maintainable code
-                                    for a diverse array of projects
+                                    Took advantage of “clean architecture” to produce reusable, testable and robust code
+                                </motion.li>
+                                <motion.li variants={experienceItemVariants}>
+                                    Reduce technical debt through consistent refactoring
                                 </motion.li>
                             </ul>
                         </motion.li>
