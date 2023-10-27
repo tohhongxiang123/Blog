@@ -86,7 +86,29 @@ Given a set of training examples $(\bold{X}, \bold{d})$
 
 # Linear Regression
 
-For a neuron taking inputs $\bold{x} \in \mathbb{R}^n$ and has an activation function $y = f(u)$:
+For a neuron with
+
+- Weights $\bold{w} \in \mathbb{R}^n$
+- Bias $b \in \mathbb{R}$
+- Input $\bold{x} \in \mathbb{R}^n$
+- Activation function $y = f(u)$
+- A target $d \in \mathbb{R}$
+
+A batch of $P$ inputs is given by $\bold{X} \in \mathbb{R}^{P \times n}$, and its corresponding outputs $\bold{d} \in \mathbb{R}^{P}$: (Put each example as a row)
+
+$\bold{1}_P \in \mathbb{R}^P$ is a column vector of $P$ ones
+
+$$
+\bold{X} = \begin{pmatrix}
+    \bold{x}_1^T \\
+    \vdots \\
+    \bold{x}_P^T
+\end{pmatrix} \in \mathbb{R}^{P \times n}, \bold{d} = \begin{pmatrix}
+    d_1 \\
+    \vdots \\
+    d_P
+\end{pmatrix} \in \mathbb{R}^P
+$$
 
 | Name                | GD                                     | SGD                                           |
 | ------------------- | -------------------------------------- | --------------------------------------------- |
@@ -99,7 +121,13 @@ For a neuron taking inputs $\bold{x} \in \mathbb{R}^n$ and has an activation fun
 
 # Binary Classification
 
-Logistic regresion uses sigmoid activation function $f(u) = \frac{1}{1+ e^{-u}}$
+For a neuron with
+
+- Weights $\bold{w} \in \mathbb{R}^n$
+- Bias $b \in \mathbb{R}$
+- Input $\bold{x} \in \mathbb{R}^n$
+- Activation function $y = f(u) = \frac{1}{1+ e^{-u}}$
+- A target $d \in \{0, 1\}$
 
 | Name                | GD                                                                 | SGD                                                 |
 | ------------------- | ------------------------------------------------------------------ | --------------------------------------------------- |
@@ -121,7 +149,13 @@ Logistic regresion uses sigmoid activation function $f(u) = \frac{1}{1+ e^{-u}}$
 
 # Neuron Layers
 
-We have a layer of $K$ neurons, and an input $\bold{x} \in \mathbb{R}^n$. The weights and biases of the layer are given by
+We have a layer of $K$ neurons. Each neuron takes in
+
+- Input $\bold{x} \in \mathbb{R}^n$
+- Activation function $f(\bold{u}), f: \mathbb{R}^n \to \mathbb{R}^K$
+- Target $\bold{d} \in \mathbb{R}^K$
+
+The weights $\bold{W}$ and biases $\bold{b}$ of the layer are given by
 
 $$
 \begin{aligned}
@@ -130,30 +164,66 @@ $$
 \end{aligned}
 $$
 
+For a batch of $P$ inputs, we write the inputs $\bold{X} \in \mathbb{R}^{P \times n}$ and their corresponding targets $\bold{D} \in \mathbb{R}^{P \times K}$, where the $i$-th row represents the $i$-th example
+
+$$
+\bold{X} = \begin{pmatrix}
+    \bold{x}_1^T \\
+    \vdots \\
+    \bold{x}_P^T
+\end{pmatrix} \in \mathbb{R}^{P \times n}, \bold{D} = \begin{pmatrix}
+    \bold{d}_1 \\
+    \vdots \\
+    \bold{d}_P
+\end{pmatrix} \in \mathbb{R}^{P \times K}
+$$
+
 ## Regression for Neuron Layer
 
-| Name                  | GD                                                                 | SGD                                                                 |
-| --------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| Inputs                | $(\bold{X}, \bold{D})$                                             | $(\bold{x}, \bold{d})$                                              |
-| Synaptic Inputs       | $\bold{U} = \bold{XW} + \bold{B}$                                  | $\bold{u} = \bold{W}^T \bold{x} + \bold{b}$                         |
-| Outputs               | $\bold{Y} = f(\bold{U})$                                           | $\bold{y} = f(\bold{u})$                                            |
-| Cost function         | $J = \frac{1}{2} \sum_{k=1}^{K} (d_k - y_k)^2$                     | $J = \frac{1}{2} \sum_{p=1}^{P} \sum_{k=1}^{K} (d_{pk} - y_{pk})^2$ |
-| Gradients wrt inputs  | $\nabla_\bold{U} J = -(\bold{D} - \bold{Y}) \cdot f'(\bold{U})$    | $\nabla_\bold{u} J = -(\bold{d} - \bold{y}) \cdot f'(\bold{u})$     |
-| Gradients wrt weights | $\nabla_\bold{W} J = \bold{X}^T \nabla_\bold{U} J$                 | $\nabla_\bold{W} J = \bold{x} \left( \nabla_\bold{u} J \right)^T$   |
-| Gradients wrt biases  | $\nabla_\bold{b} J = \left(\nabla_\bold{U} J \right)^T \bold{1}_P$ | $\nabla_\bold{b} J = \nabla_\bold{u} J$                             |
+| Name                          | GD                                                                  | SGD                                                               |
+| ----------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Inputs                        | $(\bold{X}, \bold{D})$                                              | $(\bold{x}, \bold{d})$                                            |
+| Synaptic Inputs               | $\bold{U} = \bold{XW} + \bold{B}$                                   | $\bold{u} = \bold{W}^T \bold{x} + \bold{b}$                       |
+| Outputs                       | $\bold{Y} = f(\bold{U})$                                            | $\bold{y} = f(\bold{u})$                                          |
+| Cost function                 | $J = \frac{1}{2} \sum_{p=1}^{P} \sum_{k=1}^{K} (d_{pk} - y_{pk})^2$ | $J = \frac{1}{2} \sum_{k=1}^{K} (d_k - y_k)^2$                    |
+| Gradients wrt synaptic inputs | $\nabla_\bold{U} J = -(\bold{D} - \bold{Y}) \cdot f'(\bold{U})$     | $\nabla_\bold{u} J = -(\bold{d} - \bold{y}) \cdot f'(\bold{u})$   |
+| Gradients wrt weights         | $\nabla_\bold{W} J = \bold{X}^T \nabla_\bold{U} J$                  | $\nabla_\bold{W} J = \bold{x} \left( \nabla_\bold{u} J \right)^T$ |
+| Gradients wrt biases          | $\nabla_\bold{b} J = \left(\nabla_\bold{U} J \right)^T \bold{1}_P$  | $\nabla_\bold{b} J = \nabla_\bold{u} J$                           |
 
-## Softmax Activation Function
+## Classification for Neuron Layer
+
+For multi-class classification, we use the softmax activation function:
 
 $$
 P(y = k | \bold{x}) = f(u_k) = \frac{e^{u_k}}{\sum_{k'=1}^{K} e^{u_{k'}}}
 $$
 
-where $u_k = \bold{w}_k^T \bold{x} + b_k$
+where $u_k = \bold{w}_k^T \bold{x} + b_k$ is the synaptic input for the $k$-th neuron. $P(y = k | \bold{x})$ is the final output of the $k$-th neuron in the softmax layer
+
+$1(\bold{k} = d) \in \mathbb{R}^K$ is a one-hot vector where the element corresponding to the target label $d$ is 1, and elsewhere 0
+
+$$
+1(\bold{k} = d) = \begin{pmatrix}
+    1(d = 1) \\
+    \vdots \\
+    1(d = K)
+\end{pmatrix}
+$$
+
+For a batch of $P$ inputs, $\bold{K}$ is a matrix where the $i$-th row corresponds to the $i$-th training example's output
+
+$$
+\bold{K} = \begin{pmatrix}
+    1(\bold{k} = d_1)^T \\
+    \vdots \\
+    1(\bold{k} = d_P)^T
+\end{pmatrix}
+$$
 
 | Name                  | GD                                                                              | SGD                                                               |
 | --------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | Inputs                | $(\bold{X}, \bold{D})$                                                          | $(\bold{x}, d)$                                                   |
-| Synaptic input        | $\bold{XW} + \bold{B}$                                                          | $\bold{u} = \bold{W}^T \bold{x} + \bold{b}$                       |
+| Synaptic input        | $\bold{U} = \bold{XW} + \bold{B}$                                               | $\bold{u} = \bold{W}^T \bold{x} + \bold{b}$                       |
 | Output                | $\bold{y} = \argmax_k f(\bold{U})$                                              | $y = \argmax_k f(\bold{u})$                                       |
 | Cost function         | $J = - \sum_{p=1}^{P} \left( \sum_{k=1}^{K} 1(d_p = k) \log(f(u_{pk})) \right)$ | $J = - \sum_{k=1}^{K} 1(d=k) \log(f(u_k))$                        |
 | Gradients wrt input   | $\nabla_\bold{U} J = -(\bold{K} - f(\bold{U}))$                                 | $\nabla_\bold{u} J = -(1(\bold{k} = d) - f(\bold{u}))$            |
