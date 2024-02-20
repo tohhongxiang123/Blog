@@ -566,7 +566,7 @@ export default function Index({
 							whileHover={{ scale: 1.03 }}
 							whileTap={{ scale: 0.97 }}
 							type="button"
-							className="shadow-sm text-white font-semibold tracking-loose bg-blue-400 hover:bg-blue-500 py-2 px-6 rounded-md w-48"
+							className="shadow-sm text-white font-semibold tracking-loose bg-blue-500 hover:bg-blue-600 py-2 px-6 rounded-md w-48"
 						>
 							View All Projects
 						</motion.button>
@@ -678,8 +678,8 @@ export default function Index({
 						CONTACT ME
 					</motion.h1>
 					<motion.p variants={contactMeItemVariants}>
-						I'm currently not looking for a job. However, feel free
-						to contact me!
+						I'm currently looking for a job. Feel free to contact
+						me!
 					</motion.p>
 					<a href="mailto:tohhongxiang@gmail.com">
 						<motion.button
