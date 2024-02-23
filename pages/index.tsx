@@ -140,7 +140,11 @@ export default function Index({
 								Learn More
 							</motion.button>
 						</a>
-						<a href="#contact">
+						<a
+							href="https://portfolio-mu-rosy-74.vercel.app/"
+							target="_blank"
+							rel="noreferrer noopener"
+						>
 							<motion.button
 								variants={heroItemVariants}
 								whileHover={{ scale: 1.03 }}
@@ -148,7 +152,7 @@ export default function Index({
 								type="button"
 								className="shadow-sm text-white font-semibold tracking-loose bg-blue-400 hover:bg-blue-500 py-2 px-6 rounded-md w-48"
 							>
-								Contact Me
+								My Portfolio
 							</motion.button>
 						</a>
 					</div>
